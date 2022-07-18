@@ -1,5 +1,17 @@
-body, h1{
+body {
+    background-color: black;
+    color: white;
     margin: 0;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    color: gray;
+}
+a:active {
+    color: white;
 }
 .header {
     background-color: black;
@@ -39,4 +51,13 @@ body, h1{
 }
 .active{
     border-bottom: 3px solid white;
+}
+.container {
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
+    font-size: larger;
+}
+.container img {
+    width: 100%;
 }
