@@ -1,0 +1,42 @@
+body, h1{
+    margin: 0;
+}
+.header {
+    background-color: black;
+    display: flex;
+    padding: 10px;
+}
+.logo {
+    float: left;
+    width: 100%;
+    margin: auto;
+}
+.logo img {
+    width: 5%;
+    filter: invert(1);
+}
+.menu {
+    display: flex;
+    float: right;
+    margin: auto;
+}
+.menu button {
+    background-color: transparent;
+    margin-left: 10px;
+    font-size: large;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: 0;
+}
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+.menu a:hover {
+    border-bottom: 3px solid gray;
+    color: gray;
+}
+.active{
+    border-bottom: 3px solid white;
+}
