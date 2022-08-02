@@ -1,5 +1,7 @@
 body {
-    background-color: black;
+    background-image: url(./assets/background.jpg);
+    background-repeat: repeat;
+    background-size: 100%;
     color: white;
     margin: 0;
 }
@@ -16,16 +18,18 @@ a:active {
 .header {
     background-color: black;
     display: flex;
-    padding: 10px;
+    padding: 30px;
 }
 .logo {
     float: left;
     width: 100%;
     margin: auto;
+    display: flex;
 }
 .logo img {
     width: 5%;
     filter: invert(1);
+    padding-right: 5px;
 }
 .menu {
     display: flex;
@@ -55,9 +59,46 @@ a:active {
 .container {
     vertical-align: middle;
     text-align: center;
-    padding: 10px;
     font-size: larger;
+    height: 100vw;
 }
 .container img {
     width: 100%;
+}
+footer {
+    background-color: black;
+    position: fixed;
+    display: flex;
+    padding: 30px;
+    bottom: 0;
+}
+footer img{
+    width: 20%;
+    height: 10%;
+    filter: invert(1);
+    padding-right: 5px;
+    margin: auto 0;
+    margin-left: auto;
+}
+.project {
+    margin: auto;
+    padding-bottom: 10px;
+}
+.project img {
+    width: 40%;
+    filter: invert(1);
+}
+.project h1 {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+    }
+    @keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+    @-webkit-keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
 }
