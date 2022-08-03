@@ -5,11 +5,11 @@
         <link href="./style.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        
+        <div id="particles-js"></div>
         <div class="header">
             <div class="logo">
                 <img src="./assets/logo.png" />
-                <img style="width: 13%;" src="./assets/title.png" />
+                <img style="width: 100px;" src="./assets/title.png" />
             </div>
             <div class="menu">
                 <button><a href="./index.html" class="active">HOME</a></button>
@@ -31,3 +31,12 @@
         <img src="./assets/powered.png" mail />
     </footer>
 </html>
+
+<script src="./script/particles.js"></script>
+<script>
+    particlesJS.load('particles-js',
+    './script/config.json',
+    function() {
+        console.log('callback - particles.js config loaded');
+    });
+</script>
