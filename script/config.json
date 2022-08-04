@@ -4,7 +4,7 @@
         "value": 100,
         "density": {
           "enable": true,
-          "value_area": 800
+          "value_area": 1000
         }
       },
       "color": {
@@ -20,9 +20,7 @@
           "nb_sides": 5
         },
         "image": {
-          "src": "./assets/spark.png",
-          "width": 300,
-          "height": 100
+          "src": "./assets/spark.png"
         }
       },
       "opacity": {
@@ -49,7 +47,7 @@
         "enable": false,
         "distance": 150,
         "color": "#ffffff",
-        "opacity": 0.4,
+        "opacity": 0.5,
         "width": 1
       },
       "move": {
