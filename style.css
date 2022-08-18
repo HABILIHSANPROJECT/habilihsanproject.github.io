@@ -8,7 +8,7 @@ body {
     margin: 0;
     position: absolute;
     top: 0;
-    font-family: 'montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 a {
     text-decoration: none;
@@ -21,7 +21,7 @@ a:active {
     color: white;
 }
 button {
-    font-family: 'montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 .header {
     background-color: transparent;
