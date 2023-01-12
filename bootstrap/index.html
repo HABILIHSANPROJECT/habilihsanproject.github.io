@@ -72,42 +72,42 @@
     }
   }
   $.support.cors = true
-  let NavBar = $.get("./databases/navbar.json")
-  console.log(NavBar.responseJSON)
-  let navbar_list = NavBar.responseJSON
-  let navbarList = document.querySelector("#navbarList")
-  let navbarLink = document.getElementById("navbarLink")
-  const navbar = data => {
-    const template = document.createElement("template")
-    template.innerHTML =
-    `<li class="nav-item navItem" id="navbarItem">
+  $.get("./databases/navbar.json", function (NavBar) {
+    let navbar_list = JSON.parse(NavBar)
+    let navbarList = document.querySelector("#navbarList")
+    let navbarLink = document.getElementById("navbarLink")
+    const navbar = data => {
+      const template = document.createElement("template")
+      template.innerHTML =
+        `<li class="nav-item navItem" id="navbarItem">
     <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
     </li>`
-    .trim()
-    return template.content.firstChild
-  }
-  for (i in navbar_list) {
-    navbarList.append(navbar(0))
-  }
-  document.getElementById("navbarLinkHOME").classList.add("active")
+          .trim()
+      return template.content.firstChild
+    }
+    for (i in navbar_list) {
+      navbarList.append(navbar(0))
+    }
+    document.getElementById("navbarLinkHOME").classList.add("active")
+  })
   // STONE ANIMATION //
   const stone = data => {
     const stoneTemplate = document.createElement("template")
     stoneTemplate.innerHTML =
-    `<img src="./assets/stone.png" class="stone" id="stoneItem">`
-    .trim()
+      `<img src="./assets/stone.png" class="stone" id="stoneItem">`
+        .trim()
     return stoneTemplate.content.firstChild
   }
   let stoneDOM = document.querySelector("#stone")
   for (i = 0; i < 13; i++) {
     stoneDOM.append(stone())
-    let random = Math.round(Math.random()*100)
+    let random = Math.round(Math.random() * 100)
     let stoneStyle = document.querySelectorAll("#stoneItem")[i]
-    if (random%2==0) {
-      let odd = Math.round(Math.random()*100)
-      let even = Math.round(Math.random()*100)
+    if (random % 2 == 0) {
+      let odd = Math.round(Math.random() * 100)
+      let even = Math.round(Math.random() * 100)
       stoneStyle.style.top = `${random}%`
-      stoneStyle.style.width = `${random*2}px`
+      stoneStyle.style.width = `${random * 2}px`
       stoneStyle.style.transform = `rotate(${random}deg)`
       stoneStyle.animate([
         {
@@ -115,23 +115,23 @@
           top: `${odd}%`
         },
         {
-          left: `${even*10}%`,
-          top: `${odd*10}%`
+          left: `${even * 10}%`,
+          top: `${odd * 10}%`
         },
         {
           left: `${even}%`,
           top: `${odd}%`
         }],
         {
-          duration: random*1000000,
+          duration: random * 1000000,
           iterations: Infinity
         }
       )
     } else {
-      let odd = Math.round(Math.random()*100)
-      let even = Math.round(Math.random()*100)
+      let odd = Math.round(Math.random() * 100)
+      let even = Math.round(Math.random() * 100)
       stoneStyle.style.top = `${random}%`
-      stoneStyle.style.width = `${random*3}px`
+      stoneStyle.style.width = `${random * 3}px`
       stoneStyle.style.transform = `rotate(${random}deg)`
       stoneStyle.animate([
         {
@@ -139,15 +139,15 @@
           bottom: `${odd}%`
         },
         {
-          right: `${odd*10}%`,
-          bottom: `${even*10}%`
+          right: `${odd * 10}%`,
+          bottom: `${even * 10}%`
         },
         {
           right: `${even}%`,
           bottom: `${odd}%`
         }],
         {
-          duration: random*10000,
+          duration: random * 10000,
           iterations: Infinity
         }
       )
@@ -159,48 +159,65 @@
   .navbar {
     height: 50px;
   }
+
   .navItem {
     width: max-content;
     font-weight: bold;
   }
+
   .logo img {
     width: 25px;
     margin-bottom: 5px;
   }
+
   .white {
     filter: invert(1);
   }
+
   .theme {
     border: 0;
     width: 100%;
     text-align: right;
     background-color: transparent;
   }
+
   /* NEBULA */
   @font-face {
     font-family: habilihsanproject;
     src: url("./assets/habilihsanproject.ttf");
   }
+
   .filter {
     filter: brightness(70%);
   }
+
   .project {
     animation-name: nebula;
     animation-iteration-count: infinite;
     animation-duration: 3s;
     font-family: habilihsanproject, sans-serif;
-    text-shadow: 0 0 50px darkblue; 
+    text-shadow: 0 0 50px darkblue;
     color: white !important;
     height: 60%;
     z-index: 2;
   }
+
   .project h1 {
     font-size: 10vw;
   }
+
   @keyframes nebula {
-    0% , 100% { text-shadow: 0; }
-    50% { text-shadow: 0 0 10px cyan; }
+
+    0%,
+    100% {
+      text-shadow: 0;
+    }
+
+    50% {
+      text-shadow: 0 0 10px cyan;
+    }
   }
+
   .stone {
     position: absolute;
     z-index: 1;
