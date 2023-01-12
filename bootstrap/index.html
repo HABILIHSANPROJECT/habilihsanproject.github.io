@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+
+<head>
+  <title>habilihsanproject</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="logo" class="navbar-brand logo white" href="#">
+        <img src="./assets/logo.png" />
+        <img style="width: 50px;" src="./assets/title.png" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" id="navbarList">
+        </ul>
+        <button onclick="theme()" class="theme">
+          <span id="setTheme" class="mdi mdi-weather-night white"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <section id="carousel" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active" id="stone">
+        <img src="./assets/background.jpg" class="d-block w-100 filter">
+        <div class="carousel-caption d-md-block project">
+          <h1>nebula project</h1>
+          <h2>MARCH 1ST, 2023</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
+
+<script>
+  function theme() {
+    let html = document.getElementsByTagName("html")[0].dataset.bsTheme
+    let set = document.getElementById("setTheme").classList
+    let logo = document.getElementById("logo").classList
+    if (html === "dark") {
+      document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
+      set.add("mdi-weather-sunny")
+      set.remove("mdi-weather-night")
+      set.remove("white")
+      logo.remove("white")
+    } else {
+      document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
+      set.add("mdi-weather-night")
+      set.remove("mdi-weather-sunny")
+      set.add("white")
+      logo.add("white")
+    }
+  }
+  $.support.cors = true
+  $.get("./databases/navbar.json", 'json', function(NavBar){
+    console.log(NavBar)
+  })
+  let navbarList = document.querySelector("#navbarList")
+  let navbarLink = document.getElementById("navbarLink")
+  const navbar = data => {
+    const template = document.createElement("template")
+    template.innerHTML =
+    `<li class="nav-item navItem" id="navbarItem">
+    <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
+    </li>`
+    .trim()
+    return template.content.firstChild
+  }
+  for (i in navbar_list) {
+    navbarList.append(navbar(0))
+  }
+  document.getElementById("navbarLinkHOME").classList.add("active")
+  // STONE ANIMATION //
+  const stone = data => {
+    const stoneTemplate = document.createElement("template")
+    stoneTemplate.innerHTML =
+    `<img src="./assets/stone.png" class="stone" id="stoneItem">`
+    .trim()
+    return stoneTemplate.content.firstChild
+  }
+  let stoneDOM = document.querySelector("#stone")
+  for (i = 0; i < 13; i++) {
+    stoneDOM.append(stone())
+    let random = Math.round(Math.random()*100)
+    let stoneStyle = document.querySelectorAll("#stoneItem")[i]
+    if (random%2==0) {
+      let odd = Math.round(Math.random()*100)
+      let even = Math.round(Math.random()*100)
+      stoneStyle.style.top = `${random}%`
+      stoneStyle.style.width = `${random*2}px`
+      stoneStyle.style.transform = `rotate(${random}deg)`
+      stoneStyle.animate([
+        {
+          left: `${even}%`,
+          top: `${odd}%`
+        },
+        {
+          left: `${even*10}%`,
+          top: `${odd*10}%`
+        },
+        {
+          left: `${even}%`,
+          top: `${odd}%`
+        }],
+        {
+          duration: random*1000000,
+          iterations: Infinity
+        }
+      )
+    } else {
+      let odd = Math.round(Math.random()*100)
+      let even = Math.round(Math.random()*100)
+      stoneStyle.style.top = `${random}%`
+      stoneStyle.style.width = `${random*3}px`
+      stoneStyle.style.transform = `rotate(${random}deg)`
+      stoneStyle.animate([
+        {
+          right: `${even}%`,
+          bottom: `${odd}%`
+        },
+        {
+          right: `${odd*10}%`,
+          bottom: `${even*10}%`
+        },
+        {
+          right: `${even}%`,
+          bottom: `${odd}%`
+        }],
+        {
+          duration: random*10000,
+          iterations: Infinity
+        }
+      )
+    }
+  }
+</script>
+
+<style>
+  .navbar {
+    height: 50px;
+  }
+  .navItem {
+    width: max-content;
+    font-weight: bold;
+  }
+  .logo img {
+    width: 25px;
+    margin-bottom: 5px;
+  }
+  .white {
+    filter: invert(1);
+  }
+  .theme {
+    border: 0;
+    width: 100%;
+    text-align: right;
+    background-color: transparent;
+  }
+  /* NEBULA */
+  @font-face {
+    font-family: habilihsanproject;
+    src: url("./assets/habilihsanproject.ttf");
+  }
+  .filter {
+    filter: brightness(70%);
+  }
+  .project {
+    animation-name: nebula;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    font-family: habilihsanproject, sans-serif;
+    text-shadow: 0 0 50px darkblue; 
+    color: white !important;
+    height: 60%;
+    z-index: 2;
+  }
+  .project h1 {
+    font-size: 10vw;
+  }
+  @keyframes nebula {
+    0% , 100% { text-shadow: 0; }
+    50% { text-shadow: 0 0 10px cyan; }
+  }
+  .stone {
+    position: absolute;
+    z-index: 1;
+    filter: brightness(50%);
+  }
+</style>
