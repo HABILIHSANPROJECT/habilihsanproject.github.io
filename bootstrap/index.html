@@ -73,9 +73,9 @@
   }
   $.support.cors = true
   $.get("./databases/navbar.json", 'json', function(NavBar){
-    console.log(NavBar)
+    let navbar_list = JSON.parse(NavBar)
   })
-  let navbar_list = JSON.parse(NavBar)
+  NavBar()
   let navbarList = document.querySelector("#navbarList")
   let navbarLink = document.getElementById("navbarLink")
   const navbar = data => {
