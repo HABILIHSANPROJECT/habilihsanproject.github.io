@@ -70,8 +70,12 @@
       logo.add("white")
     }
   }
-  import NavBar from "./databases/navbar.json"
-  let navbar_list = NavBar
+  fetch("./databases/navbar.json")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      let navbar_list = data
+    })
   let navbarList = document.querySelector("#navbarList")
   let navbarLink = document.getElementById("navbarLink")
   const navbar = data => {
