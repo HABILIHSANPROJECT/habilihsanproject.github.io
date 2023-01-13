@@ -1,0 +1,7 @@
+[
+    { "title": "HOME", "to": "#" },
+    { "title": "CONTACT", "to": "mailto:habilihsanproject@gmail.com" },
+    { "/title": "PROJECT", "/to": "./pages/project.html" },
+    { "/title": "PORTOFOLIO", "/to": "./portofolio.html" },
+    { "/title": "ABOUT ME", "/to": "./about-me.html" }
+]
