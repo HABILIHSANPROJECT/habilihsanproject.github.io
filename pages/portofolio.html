@@ -65,46 +65,24 @@
 
 <script src="../script.js"></script>
 <script>
-  let articles = [
-    {
-      title: "PHYSICS CULTURE: ANIMATION APPLICATION OF PHYSICS CONCEPTS IN CIRCULAR MOTION MATERIALS",
-      date: "19 January 2022",
-      journal: "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science"
-    }
-  ]
-  const data = data => {
-    let articleList = document.querySelectorAll("#articleList")
-    const table = document.getElementById("table")
-    table.innerHTML = 
-    `<td>${articles[i].title}</td>
+  let articles = []
+  fetch("../databases/portofolio.json")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      articles = data.articles
+      let articleList = document.querySelectorAll("#articleList")
+      const table = document.getElementById("table")
+      table.innerHTML = 
+      `<td>${articles[i].title}</td>
       <td>${articles[i].date}</td>
       <td>${articles[i].journal}</td>`
-    .trim()
-    return
-  }
+      .trim()
+      return
+  })
   for (i in articles) {
     articleList.append(data(0))
   }
-
-  fetch("https://scholar.google.com/citations?user=YBt6t9EAAAAJ", {
-    method: 'GET',
-    withCredentials: true,
-    crossorigin: true,
-    mode: 'no-cors'
-  })
-    .then(response => response.text())
-    .then(data => {
-      console.log(data)
-      console.log(document.getElementsByClassName("gsc_a_tr"))
-    })
-
-    const xhr = new XMLHttpRequest()
-    xhr.open("GET", "https://scholar.google.com/citations?user=YBt6t9EAAAAJ", true)
-    xhr.onload = () => {
-      console.log(xhr.responseURL)
-      console.log(xhr.responseText)
-    }
-    xhr.send(null)
 </script>
 
 <style>
