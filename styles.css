@@ -1,0 +1,50 @@
+@font-face {
+    font-family: habilihsanproject;
+    src: url("./assets/habilihsanproject.ttf");
+}
+h1 {
+    font-family: habilihsanproject, sans-serif;
+    font-size: 75px !important;
+}
+.navbar {
+    height: 50px;
+}
+
+.navItem {
+    width: max-content;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 25px;
+    margin-bottom: 5px;
+}
+
+.white {
+    filter: invert(1);
+}
+
+.theme {
+    border: 0;
+
+    margin-left: auto !important;
+    background-color: transparent;
+}
+
+footer {
+    position: relative;
+    display: flex;
+    bottom: 0;
+    margin: 5px 10px;
+    align-items: center;
+    height: 40px;
+}
+
+footer img {
+    width: 150px;
+    margin-left: auto;
+}
+
+footer p {
+    margin: 0 !important;
+}

@@ -2,7 +2,7 @@
 <html data-bs-theme="dark">
 
 <head>
-    <title>PROJECT</title>
+    <title>PORTOFOLIO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link href="../styles.css" rel="stylesheet">
@@ -37,7 +37,23 @@
           </div>
         </div>
     </nav>
-    <p style="width: 100%; text-align: center;">UNDER CONSTRUCTION</p>
+    <section class="container-fluid">
+      <div class="pt-5 pb-5 contain justify-content-evenly">
+        <h1 class="contain">scientific articles</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date Publication</th>
+              <th>Journal</th>
+            </tr>
+          </thead>
+          <tbody id="table">
+            <tr id="articleList"></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 </body>
 
 <footer>
@@ -49,7 +65,36 @@
 
 <script src="../script.js"></script>
 <script>
+  let articles = [
+    {
+      title: "PHYSICS CULTURE: ANIMATION APPLICATION OF PHYSICS CONCEPTS IN CIRCULAR MOTION MATERIALS",
+      date: "19 January 2022",
+      journal: "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science"
+    }
+  ]
+  const data = data => {
+    let articleList = document.querySelectorAll("#articleList")
+    const table = document.getElementById("table")
+    table.innerHTML = 
+    `<td>${articles[i].title}</td>
+      <td>${articles[i].date}</td>
+      <td>${articles[i].journal}</td>`
+    .trim()
+    return
+  }
+  for (i in articles) {
+    articleList.append(data(0))
+  }
+
+  fetch("https://scholar.google.com/citations?user=YBt6t9EAAAAJ&hl=id")
+    .then(response => response.text())
+    .then(data => {
+      console.log(data)
+    })
 </script>
 
 <style>
+  .contain {
+    padding: 25px;
+}
 </style>
