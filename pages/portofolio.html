@@ -86,7 +86,12 @@
     articleList.append(data(0))
   }
 
-  fetch("https://scholar.google.com/citations?user=YBt6t9EAAAAJ")
+  fetch("https://scholar.google.com/citations?user=YBt6t9EAAAAJ", {
+    method: 'GET',
+    withCredentials: true,
+    crossorigin: true,
+    mode: 'no-cors'
+  })
     .then(response => response.text())
     .then(data => {
       console.log(data)
