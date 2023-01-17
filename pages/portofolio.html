@@ -97,6 +97,14 @@
       console.log(data)
       console.log(document.getElementsByClassName("gsc_a_tr"))
     })
+
+    const xhr = new XMLHttpRequest()
+    xhr.open("GET", "https://scholar.google.com/citations?user=YBt6t9EAAAAJ", true)
+    xhr.onload = () => {
+      console.log(xhr.responseURL)
+      console.log(xhr.responseText)
+    }
+    xhr.send(null)
 </script>
 
 <style>
