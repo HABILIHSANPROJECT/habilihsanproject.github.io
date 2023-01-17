@@ -71,7 +71,7 @@
     .then(data => {
       console.log(data)
       articles = data.articles
-      let articleList = document.querySelectorAll("#articleList")
+      let articleList = document.querySelector("#articleList")
       const article = data => {
       const template = document.createElement("template")
       template.innerHTML =
