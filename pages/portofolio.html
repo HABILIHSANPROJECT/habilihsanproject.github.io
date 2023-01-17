@@ -63,6 +63,7 @@
 
 </html>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../script.js"></script>
 <script>
   let articles = [
@@ -96,6 +97,10 @@
     .then(data => {
       console.log(data)
     })
+
+    $.get("https://scholar.google.com/citations?user=YBt6t9EAAAAJ&hl=id", null, function(text){
+    alert($(text).find("gsc_a_tr"));
+});
 </script>
 
 <style>
