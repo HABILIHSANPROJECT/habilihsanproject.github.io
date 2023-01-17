@@ -48,7 +48,7 @@
               <th>Journal</th>
             </tr>
           </thead>
-          <tbody id="table">
+          <tbody>
             <tr id="articleList"></tr>
           </tbody>
         </table>
@@ -72,17 +72,19 @@
       console.log(data)
       articles = data.articles
       let articleList = document.querySelectorAll("#articleList")
-      const table = document.getElementById("table")
-      table.innerHTML = 
+      const article = data => {
+      const template = document.createElement("template")
+      template.innerHTML =
       `<td>${articles[i].title}</td>
       <td>${articles[i].date}</td>
       <td>${articles[i].journal}</td>`
       .trim()
-      return
-  })
-  for (i in articles) {
-    articleList.append(data(0))
+      return template.content.firstChild
+      }
+      for (i in articles) {
+    articleList.append(article(0))
   }
+  })
 </script>
 
 <style>
