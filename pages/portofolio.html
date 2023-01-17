@@ -79,9 +79,11 @@
       <td>${articles[i].title}</td>
       <td>${articles[i].date}</td>
       <td>${articles[i].journal}</td>
+      <td>
       <a href="${articles[i].doi}">
         <span class="mdi mdi-eye"></span>
         </a>
+        </td>
       </tr>`
       .trim()
       return template.content.firstChild
