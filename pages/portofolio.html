@@ -46,6 +46,7 @@
               <th>Title</th>
               <th>Date Publication</th>
               <th>Journal</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody id="articleList">
@@ -64,7 +65,7 @@
 
 <script src="../script.js"></script>
 <script>
-  let articles = [{ title: null, date: null, journal: null }]
+  let articles = [{ title: null, date: null, journal: null, doi: null }]
   fetch("../databases/portofolio.json")
     .then(response => response.json())
     .then(data => {
@@ -78,6 +79,9 @@
       <td>${articles[i].title}</td>
       <td>${articles[i].date}</td>
       <td>${articles[i].journal}</td>
+      <a href="${articles[i].doi}">
+        <span class="mdi mdi-eye"></span>
+        </a>
       </tr>`
       .trim()
       return template.content.firstChild

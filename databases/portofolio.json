@@ -2,8 +2,15 @@
     "articles" : [
     {
       "title": "PHYSICS CULTURE: ANIMATION APPLICATION OF PHYSICS CONCEPTS IN CIRCULAR MOTION MATERIALS",
-      "date": "19 January 2022",
-      "journal": "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science"
+      "date": "January 19, 2022",
+      "journal": "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science",
+      "doi": "https://doi.org/10.54482/ijebiiits.v1i1.3"
+    },
+    {
+        "title": "Design of Culture Based Physics Mobile Learning Media on Circular Movement Materials for Class X SMA Students",
+        "date": "June 26, 2022",
+        "journal": "EPICENTRUM",
+        "doi": "https://doi.org/10.54482/epicentrum.v1i02.164"
     }
   ]
 }
