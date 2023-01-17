@@ -2,63 +2,80 @@
 <html data-bs-theme="dark">
 
 <head>
-    <title>PORTOFOLIO</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width = device-width, initial-scale = 1">
-    <link href="../styles.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-        crossorigin="anonymous"></script>
+  <title>PORTOFOLIO</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <link href="../styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand logo white" href="#">
-            <img src="../assets/logo.png" />
-            <img style="width: 50px;" src="../assets/title.png" />
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="navbarList">
-            </ul>
-            <button onclick="theme()" class="theme">
-              <span id="setTheme" class="mdi mdi-weather-night white"></span>
-            </button>
-          </div>
-        </div>
-    </nav>
-    <section class="container-fluid">
-      <div class="pt-5 pb-5 contain justify-content-evenly">
-        <h1><span class="mdi mdi-panorama"></span> digital artworks</h1>
-        </div>
-    </section>
-    <section class="container-fluid">
-      <div class="pt-5 pb-5 contain justify-content-evenly">
-        <h1><span class="mdi mdi-file-document"></span> scientific articles</h1>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Date Publication</th>
-              <th>Journal</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="articleList">
-          </tbody>
-        </table>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="logo" class="navbar-brand logo white" href="#">
+        <img src="../assets/logo.png" />
+        <img style="width: 50px;" src="../assets/title.png" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" id="navbarList">
+        </ul>
+        <button onclick="theme()" class="theme">
+          <span id="setTheme" class="mdi mdi-weather-night white"></span>
+        </button>
       </div>
-    </section>
+    </div>
+  </nav>
+  <section class="container-fluid">
+    <div class="pt-5 pb-5 contain justify-content-evenly">
+      <h1><span class="mdi mdi-panorama"></span> digital artworks</h1>
+    </div>
+  </section>
+  <section class="container-fluid">
+    <div class="pt-5 pb-5 contain justify-content-evenly">
+      <h1><span class="mdi mdi-trophy-award"></span> awards and achievements</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Issue Date</th>
+            <th>Issuer</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="achievementList">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="container-fluid">
+    <div class="pt-5 pb-5 contain justify-content-evenly">
+      <h1><span class="mdi mdi-file-document"></span> scientific articles</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Publication Date</th>
+            <th>Publisher</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="articleList">
+        </tbody>
+      </table>
+    </div>
+  </section>
 </body>
 
 <footer>
@@ -70,37 +87,58 @@
 
 <script src="../script.js"></script>
 <script>
-  let articles = [{ title: null, date: null, journal: null, doi: null }]
+  let achievement = [{ title: null, date: null, issuer: null, link: null }]
+  let articles = [{ title: null, date: null, publlisher: null, link: null }]
   fetch("../databases/portofolio.json")
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      achievements = data.achievement
       articles = data.articles
+      let achievementList = document.querySelector("#achievementList")
       let articleList = document.querySelector("#articleList")
+      const achievement = data => {
+        const template = document.createElement("template")
+        template.innerHTML =
+          `<tr>
+            <td>${achievements[i].title}</td>
+            <td>${achievements[i].date}</td>
+            <td>${achievements[i].issuer}</td>
+            <td>
+              <a href="${achievements[i].link}">
+                <span class="mdi mdi-eye"></span>
+              </a>
+            </td>
+          </tr>`
+        .trim()
+        return template.content.firstChild
+      }
+      for (i in achievements) {
+        achievementList.append(achievement(0))
+      }
       const article = data => {
-      const template = document.createElement("template")
-      template.innerHTML =
-      `<tr>
-      <td>${articles[i].title}</td>
-      <td>${articles[i].date}</td>
-      <td>${articles[i].journal}</td>
-      <td>
-      <a href="${articles[i].doi}">
-        <span class="mdi mdi-eye"></span>
-        </a>
-        </td>
-      </tr>`
-      .trim()
-      return template.content.firstChild
+        const template = document.createElement("template")
+        template.innerHTML =
+          `<tr>
+            <td>${articles[i].title}</td>
+            <td>${articles[i].date}</td>
+            <td>${articles[i].publlisher}</td>
+            <td>
+              <a href="${articles[i].link}">
+                <span class="mdi mdi-eye"></span>
+              </a>
+            </td>
+          </tr>`
+        .trim()
+        return template.content.firstChild
       }
       for (i in articles) {
-    articleList.append(article(0))
-  }
-  })
+        articleList.append(article(0))
+      }
+    })
 </script>
 
 <style>
   .contain {
     padding: 25px;
-}
+  }
 </style>

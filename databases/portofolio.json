@@ -1,16 +1,36 @@
 {
-    "articles" : [
+  "achievement": [
+    {
+      "title": "Silver Medal",
+      "date": "November 14, 2021",
+      "issuer": "INDES UiTM Perak",
+      "link": "https://drive.google.com/file/d/1h5h8mQ--EHJ9RSu91jpqt3q83C5_GBGt/view?usp=sharing"
+    },
+    {
+      "title": "1st Place",
+      "date": "November 13, 2021",
+      "issuer": "HIMASE ULM",
+      "link": "https://drive.google.com/file/d/1T4GFfPtsyR8DxA6tg0XnRKE9zdMs9YBt/view?usp=sharing"
+    },
+    {
+      "title": "Workshop Speaker",
+      "date": "October 24, 2021",
+      "issuer": "HMJ Fisika FMIPA UNP",
+      "link": "https://drive.google.com/file/d/1KCx09E6UDQHsBtbw0ryk0IF19oJfunf6/view?usp=sharing"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Design of Culture Based Physics Mobile Learning Media on Circular Movement Materials for Class X SMA Students",
+      "date": "June 26, 2022",
+      "publlisher": "EPICENTRUM",
+      "link": "https://doi.org/10.54482/epicentrum.v1i02.164"
+    },
     {
       "title": "PHYSICS CULTURE: ANIMATION APPLICATION OF PHYSICS CONCEPTS IN CIRCULAR MOTION MATERIALS",
       "date": "January 19, 2022",
-      "journal": "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science",
-      "doi": "https://doi.org/10.54482/ijebiiits.v1i1.3"
-    },
-    {
-        "title": "Design of Culture Based Physics Mobile Learning Media on Circular Movement Materials for Class X SMA Students",
-        "date": "June 26, 2022",
-        "journal": "EPICENTRUM",
-        "doi": "https://doi.org/10.54482/epicentrum.v1i02.164"
+      "publlisher": "International Journal of Ethnoscience, Bio-Informatic, Innovation, Invention and Techno-Science",
+      "link": "https://doi.org/10.54482/ijebiiits.v1i1.3"
     }
   ]
 }
