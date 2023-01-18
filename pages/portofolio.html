@@ -104,7 +104,7 @@
             <td>${achievements[i].date}</td>
             <td>${achievements[i].issuer}</td>
             <td>
-              <a href="${achievements[i].link}">
+              <a class="link" href="${achievements[i].link}">
                 <span class="mdi mdi-eye"></span>
               </a>
             </td>
@@ -123,7 +123,7 @@
             <td>${articles[i].date}</td>
             <td>${articles[i].publlisher}</td>
             <td>
-              <a href="${articles[i].link}">
+              <a class="link" href="${articles[i].link}">
                 <span class="mdi mdi-eye"></span>
               </a>
             </td>
@@ -140,5 +140,9 @@
 <style>
   .contain {
     padding: 25px;
+  }
+  .link {
+    color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+    text-align: center;
   }
 </style>

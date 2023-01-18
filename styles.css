@@ -9,11 +9,20 @@
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 50px !important;
+    word-wrap: break-word;
 }
 .navbar {
     height: 50px;
 }
-
+.navbar-toggler {
+    height: 30px;
+    padding: 0 !important;
+    border: 0 !important;
+}
+.show {
+    padding: 20px;
+    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+}
 .navItem {
     width: max-content;
     font-weight: bold;
