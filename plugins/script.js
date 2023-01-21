@@ -32,6 +32,7 @@ function setTheme() {
         darkTheme()
     }
 }
+let getTheme = localStorage.getItem("themes")
 if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
     if (localStorage.getItem("theme") == "dark") {
@@ -60,9 +61,8 @@ const navbar = data => {
     return template.content.firstChild
 }
 for (i in navbar_list) {
-    navbarList.append(navbar())
+    navbarList.append(navbar(0))
 }
 let title = document.getElementsByTagName("title")[0]
 document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
 title.innerHTML = `habilihsanproject | ${title.innerText}`
-let getTheme = localStorage.getItem("themes")
