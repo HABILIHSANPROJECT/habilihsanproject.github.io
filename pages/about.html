@@ -41,7 +41,7 @@
         <div class="pt-5 pb-5 d-lg-flex justify-content-evenly">
             <img class="img-fluid ava" src="../assets/hibikun.png">
             <div class="about">
-                <h1>habil ihsan</h1>
+                <h1>Habil Ihsan</h1>
                 <p>Hello, y'all! I am Habil Ihsan. I was born in Padang, on March 1, 2001. I am an undergraduate student of Physics Education, Universitas Negeri Padang.
                     I am very interested in Science, especially Physics. I like to write scientific articles related to current interesting physics phenomena.
                     I am also interested in Programming such as developing frontend websites and making interesting programming in my spare time.
@@ -61,7 +61,7 @@
     <section class="container-fluid">
       <div class="pt-5 pb-5 d-lg-flex justify-content-evenly">
           <div class="about">
-              <h1 class="hibi">habilihsanproject</h1>
+              <h1 class="hibi">©habilihsanproject</h1>
               <p>©habilihsanproject is neither a corporation nor a community, but a platform where I can present all my works from my entire life.
                 Besides that, this platform used to be given the code HI31 or commonly called HIBI which is also my nickname.
                 A little ambitious, but I hope that this platform can also build a company in the future that can accommodate all human creation.</p>
@@ -85,6 +85,17 @@
 
 <script src="../plugins/script.js"></script>
 <script>
+  let getTheme = localStorage.getItem("themes")
+  if (getTheme == "true") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
+    if (localStorage.getItem("theme") == "dark") {
+      document.getElementById("hibi").classList.add("white")
+    } else {
+      document.getElementById("hibi").classList.remove("white")
+    }
+} else {
+    localStorage.clear()
+}
 </script>
 
 <style>

@@ -39,13 +39,12 @@ h1 {
 
 .theme {
     border: 0;
-
     margin-left: auto !important;
     background-color: transparent;
 }
 
 .container-fluid {
-    height: 40rem !important;
+    min-height: 42rem !important;
 }
 
 footer {

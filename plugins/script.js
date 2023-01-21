@@ -8,7 +8,6 @@ function lightTheme() {
     set.remove("white")
     logo.remove("white")
     footer.remove("white")
-    document.getElementById("hibi").classList.remove("white")
 }
 function darkTheme() {
     set.add("mdi-weather-night")
@@ -16,7 +15,6 @@ function darkTheme() {
     set.add("white")
     logo.add("white")
     footer.add("white")
-    document.getElementById("hibi").classList.add("white")
 }
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
@@ -24,11 +22,13 @@ function setTheme() {
         document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "undefined")
+        document.getElementById("hibi").classList.remove("white")
         lightTheme()
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "dark")
+        document.getElementById("hibi").classList.add("white")
         darkTheme()
     }
 }

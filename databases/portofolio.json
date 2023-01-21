@@ -1,5 +1,5 @@
 {
-  "achievement": [
+  "achievements": [
     {
       "title": "Silver Medal",
       "date": "November 14, 2021",
@@ -19,7 +19,7 @@
       "link": "https://drive.google.com/file/d/1KCx09E6UDQHsBtbw0ryk0IF19oJfunf6/view?usp=sharing"
     }
   ],
-  "articles": [
+  "article": [
     {
       "title": "Design of Culture Based Physics Mobile Learning Media on Circular Movement Materials for Class X SMA Students",
       "date": "June 26, 2022",

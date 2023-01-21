@@ -1,4 +1,4 @@
 [
-    { "title": "HOME", "to": "#" },
+    { "title": "HOME", "to": "https://habilihsanproject.github.io/" },
     { "title": "CONTACT", "to": "mailto:habilihsanproject@gmail.com" }
 ]
