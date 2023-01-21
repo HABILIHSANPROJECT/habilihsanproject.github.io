@@ -1,25 +1,46 @@
-function theme() {
-    let html = document.getElementsByTagName("html")[0].dataset.bsTheme
-    let set = document.getElementById("setTheme").classList
-    let logo = document.getElementById("logo").classList
-    let footer = document.getElementById("footer").classList
-    if (html === "dark") {
+let html = document.getElementsByTagName("html")[0].dataset.bsTheme
+let set = document.getElementById("setTheme").classList
+let logo = document.getElementById("logo").classList
+let footer = document.getElementById("footer").classList
+function lightTheme() {
+    set.add("mdi-weather-sunny")
+    set.remove("mdi-weather-night")
+    set.remove("white")
+    logo.remove("white")
+    footer.remove("white")
+    document.getElementById("hibi").classList.remove("white")
+}
+function darkTheme() {
+    set.add("mdi-weather-night")
+    set.remove("mdi-weather-sunny")
+    set.add("white")
+    logo.add("white")
+    footer.add("white")
+    document.getElementById("hibi").classList.add("white")
+}
+function setTheme() {
+    let data = document.getElementsByTagName("html")[0].dataset.bsTheme
+    if (data === "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
-        set.add("mdi-weather-sunny")
-        set.remove("mdi-weather-night")
-        set.remove("white")
-        logo.remove("white")
-        footer.remove("white")
-        document.getElementById("hibi").classList.remove("white")
+        localStorage.setItem("themes", "true")
+        localStorage.setItem("theme", "undefined")
+        lightTheme()
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-        set.add("mdi-weather-night")
-        set.remove("mdi-weather-sunny")
-        set.add("white")
-        logo.add("white")
-        footer.add("white")
-        document.getElementById("hibi").classList.add("white")
+        localStorage.setItem("themes", "true")
+        localStorage.setItem("theme", "dark")
+        darkTheme()
     }
+}
+if (getTheme == "true") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
+    if (localStorage.getItem("theme") == "dark") {
+        darkTheme()
+    } else {
+        lightTheme()
+    }
+} else {
+    localStorage.clear()
 }
 let navbar_list = [
     { title: "HOME", to: "#" },
@@ -44,3 +65,4 @@ for (i in navbar_list) {
 let title = document.getElementsByTagName("title")[0]
 document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
 title.innerHTML = `habilihsanproject | ${title.innerText}`
+let getTheme = localStorage.getItem("themes")

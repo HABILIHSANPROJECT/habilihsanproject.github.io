@@ -22,12 +22,10 @@
     <div id="navbar"></div>
     <section class="container-fluid">
         <div class="p-5 justify-content-evenly">
-            <div class="btn-group">
-                <span onclick="preview()" id="btn-preview" class="mdi mdi-eye icon"></span>
-                <span onclick="editor()" id="btn-editor" class="mdi mdi-code-tags icon active"></span>
-            </div><br />
-            <textarea id="editor"></textarea>
-            <div id="preview" class="preview">
+            <h1><span class="mdi mdi-code-tags"></span> HTML Editor</h1>
+            <div class="d-lg-flex">
+                <textarea id="editor"></textarea>
+                <div id="preview" class="preview"></div>
             </div>
         </div>
     </section>
@@ -51,28 +49,16 @@
             preview.html(editor.val())
         })
     })
-    function preview() {
-        document.getElementById("editor").style.display = "none"
-        document.getElementById("preview").style.display = "block"
-        document.getElementById("btn-preview").classList.add("active")
-        document.getElementById("btn-editor").classList.remove("active")
-        
-    }
-    function editor() {
-        document.getElementById("preview").style.display = "none"
-        document.getElementById("editor").style.display = "block"
-        document.getElementById("btn-editor").classList.add("active")
-        document.getElementById("btn-preview").classList.remove("active")
-    }
 </script>
 
 <style>
     textarea{
-        width: 100%;
-        margin: 20px 0 0;
+        width: 50%;
+        margin: 20px 10px 0 0;
         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
         color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
         font-family: 'Courier New', Courier, monospace;
+        font-size: small;
         height: 30rem
     }
     .icon{
@@ -80,8 +66,8 @@
         font-size: large;
     }
     .preview{
-        display: none;
-        margin: 20px 0 0;
+        width: 50%;
+        margin: 20px 0 0 10px;
     }
     .active{
         color: var(--bs-heading-color,inherit);
