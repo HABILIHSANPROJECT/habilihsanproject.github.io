@@ -5,7 +5,7 @@
     <title>EDITOR</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
-    <link href="../styles.css" rel="stylesheet">
+    <link href="../plugins/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -22,9 +22,15 @@
     <div id="navbar"></div>
     <section class="container-fluid">
         <div class="p-5 justify-content-evenly">
-            WAIT
+            <div class="btn-group">
+                <span onclick="preview()" id="btn-preview" class="mdi mdi-eye icon"></span>
+                <span onclick="editor()" id="btn-editor" class="mdi mdi-code-tags icon active"></span>
+            </div><br />
+            <textarea id="editor"></textarea>
+            <div id="preview" class="preview">
             </div>
-            </section>
+        </div>
+    </section>
 </body>
 
 <footer>
@@ -34,12 +40,50 @@
 
 </html>
 
-<script src="../script.js"></script>
+<script src="../plugins/script.js"></script>
 <script>
     $.get("../plugins/navbar.html", function(data){
             $("#navbar").replaceWith(data);
         })
+    jQuery(function($) {
+        var editor = $('#editor'), preview = $('#preview')
+        editor.keyup(function(e) {
+            preview.html(editor.val())
+        })
+    })
+    function preview() {
+        document.getElementById("editor").style.display = "none"
+        document.getElementById("preview").style.display = "block"
+        document.getElementById("btn-preview").classList.add("active")
+        document.getElementById("btn-editor").classList.remove("active")
+        
+    }
+    function editor() {
+        document.getElementById("preview").style.display = "none"
+        document.getElementById("editor").style.display = "block"
+        document.getElementById("btn-editor").classList.add("active")
+        document.getElementById("btn-preview").classList.remove("active")
+    }
 </script>
 
 <style>
+    textarea{
+        width: 100%;
+        margin: 20px 0 0;
+        background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        font-family: 'Courier New', Courier, monospace;
+        height: 30rem
+    }
+    .icon{
+        padding: 0 10px;
+        font-size: large;
+    }
+    .preview{
+        display: none;
+        margin: 20px 0 0;
+    }
+    .active{
+        color: var(--bs-heading-color,inherit);
+    }
 </style>

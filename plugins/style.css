@@ -1,10 +1,10 @@
 @font-face {
     font-family: habilihsanproject;
-    src: url("./assets/habilihsanproject.ttf");
+    src: url("../assets/fonts/habilihsanproject.ttf");
 }
 @font-face {
     font-family: Montserrat;
-    src: url("./assets/Montserrat-Bold.ttf");
+    src: url("../assets/fonts/Montserrat-Bold.ttf");
 }
 h1 {
     font-family: 'Montserrat', sans-serif;

@@ -22,7 +22,7 @@ function theme() {
     }
 }
 let navbar_list = [
-    { title: "HOME", to: "../index.html" },
+    { title: "HOME", to: "#" },
     { title: "PROJECT", to: "./project.html" },
     { title: "PORTOFOLIO", to: "./portofolio.html" },
     { title: "ABOUT", to: "./about.html" }
@@ -39,7 +39,7 @@ const navbar = data => {
     return template.content.firstChild
 }
 for (i in navbar_list) {
-    navbarList.append(navbar(0))
+    navbarList.append(navbar())
 }
 let title = document.getElementsByTagName("title")[0]
 document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
