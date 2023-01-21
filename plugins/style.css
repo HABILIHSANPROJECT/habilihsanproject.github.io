@@ -44,6 +44,10 @@ h1 {
     background-color: transparent;
 }
 
+.container-fluid {
+    height: 40rem !important;
+}
+
 footer {
     position: relative;
     display: flex;
