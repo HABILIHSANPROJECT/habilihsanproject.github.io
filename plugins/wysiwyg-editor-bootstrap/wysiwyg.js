@@ -243,8 +243,8 @@
 
                         if(elem[0] === 'mode') { // Editor mode switcher
 
-                            var editorButton = _this._buildTollbarButton('mode', 'editor', "fa fa-eye", null, "Editor");
-                            var sourceButton = _this._buildTollbarButton('mode', 'source', "fa fa-code", null, "Source");
+                            var editorButton = _this._buildTollbarButton('mode', 'editor', "mdi mdi-eye", null, "Editor");
+                            var sourceButton = _this._buildTollbarButton('mode', 'source', "mdi mdi-code", null, "Source");
 
                             if(_this._config.mode == 'editor')
                                 editorButton.addClass('active');
@@ -256,11 +256,11 @@
 
                         } else if(elem[0] === 'operations') { // Operations editor controls
 
-                            $toolbar.append(_this._buildTollbarButton('operations', 'undo', "fa fa-reply", null, "Undo"));
-                            $toolbar.append(_this._buildTollbarButton('operations', 'rendo', "fa fa-share", null, "Rendo"));
-                            $toolbar.append(_this._buildTollbarButton('operations', 'cut', "fa fa-cut", null, "Cut"));
-                            $toolbar.append(_this._buildTollbarButton('operations', 'copy', "fa fa-copy", null, "Copy"));
-                            $toolbar.append(_this._buildTollbarButton('operations', 'paste', "fa fa-clipboard", null, "Paste"));
+                            $toolbar.append(_this._buildTollbarButton('operations', 'undo', "mdi mdi-reply", null, "Undo"));
+                            $toolbar.append(_this._buildTollbarButton('operations', 'rendo', "mdi mdi-share", null, "Rendo"));
+                            $toolbar.append(_this._buildTollbarButton('operations', 'cut', "mdi mdi-cut", null, "Cut"));
+                            $toolbar.append(_this._buildTollbarButton('operations', 'copy', "mdi mdi-copy", null, "Copy"));
+                            $toolbar.append(_this._buildTollbarButton('operations', 'paste', "mdi mdi-clipboard", null, "Paste"));
 
                         } else if(elem[0] === 'styles') { // Editor mode switcher
 
@@ -296,111 +296,111 @@
                         } else if(elem[0] === 'text') { // Text decoration
 
                             if(elem[1].indexOf('bold', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'bold', "fa fa-bold", null, "Bold"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'bold', "mdi mdi-bold", null, "Bold"));
 
                             if(elem[1].indexOf('italic', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'italic', "fa fa-italic", null, "Italic"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'italic', "mdi mdi-italic", null, "Italic"));
 
                             if(elem[1].indexOf('underline', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'underline', "fa fa-underline", null, "Underline"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'underline', "mdi mdi-underline", null, "Underline"));
 
                             if(elem[1].indexOf('strike', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'strike', "fa fa-strikethrough", null, "Striked text"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'strike', "mdi mdi-strikethrough", null, "Striked text"));
 
                             if(elem[1].indexOf('subscript', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'subscript', "fa fa-subscript", null, "Subscript"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'subscript', "mdi mdi-subscript", null, "Subscript"));
 
                             if(elem[1].indexOf('superscript', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'superscript', "fa fa-superscript", null, "Superscript"));
+                                $toolbar.append(_this._buildTollbarButton('text', 'superscript', "mdi mdi-superscript", null, "Superscript"));
 
                             if(elem[1].indexOf('bg-color', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'font-color', "fa fa-font", null, "Font color", _this._buildColorPalette(_this._config.colorPalette, "font-color", null)));
+                                $toolbar.append(_this._buildTollbarButton('text', 'font-color', "mdi mdi-font", null, "Font color", _this._buildColorPalette(_this._config.colorPalette, "font-color", null)));
 
                             if(elem[1].indexOf('bg-color', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('text', 'bg-color', "fa fa-paint-brush", null, "Background color", _this._buildColorPalette(_this._config.colorPalette, "bg-color", true)));
+                                $toolbar.append(_this._buildTollbarButton('text', 'bg-color', "mdi mdi-paint-brush", null, "Background color", _this._buildColorPalette(_this._config.colorPalette, "bg-color", true)));
 
                         } else if(elem[0] === 'align') { // Text aligment
 
                             if(elem[1].indexOf('left', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('align', 'left', "fa fa-align-left", null, "Align left", null));
+                                $toolbar.append(_this._buildTollbarButton('align', 'left', "mdi mdi-align-left", null, "Align left", null));
 
                             if(elem[1].indexOf('center', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('align', 'center', "fa fa-align-center", null, "Align center", null));
+                                $toolbar.append(_this._buildTollbarButton('align', 'center', "mdi mdi-align-center", null, "Align center", null));
 
                             if(elem[1].indexOf('right', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('align', 'right', "fa fa-align-right", null, "Align right", null));
+                                $toolbar.append(_this._buildTollbarButton('align', 'right', "mdi mdi-align-right", null, "Align right", null));
 
                             if(elem[1].indexOf('justify', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('align', 'justify', "fa fa-align-justify", null, "Justify content", null));
+                                $toolbar.append(_this._buildTollbarButton('align', 'justify', "mdi mdi-align-justify", null, "Justify content", null));
 
                         } else if(elem[0] === 'lists') { // Lists && outdent
 
                             if(elem[1].indexOf('unordered', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('lists', 'unordered', "fa fa-list-ul", null, "Unordered list"));
+                                $toolbar.append(_this._buildTollbarButton('lists', 'unordered', "mdi mdi-list-ul", null, "Unordered list"));
 
                             if(elem[1].indexOf('ordered', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('lists', 'ordered', "fa fa-list-ol", null, "Ordered list"));
+                                $toolbar.append(_this._buildTollbarButton('lists', 'ordered', "mdi mdi-list-ol", null, "Ordered list"));
 
                             if(elem[1].indexOf('indent', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('lists', 'indent', "fa fa-indent", null, "Indent"));
+                                $toolbar.append(_this._buildTollbarButton('lists', 'indent', "mdi mdi-indent", null, "Indent"));
 
                             if(elem[1].indexOf('outdent', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('lists', 'outdent', "fa fa-outdent", null, "Outdent"));
+                                $toolbar.append(_this._buildTollbarButton('lists', 'outdent', "mdi mdi-outdent", null, "Outdent"));
 
                         } else if(elem[0] === 'components') { // Components
 
                             if(elem[1].indexOf('table', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('components', 'table', "fa fa-table", null, "Insert table", _this._buildTableGrid()));
+                                $toolbar.append(_this._buildTollbarButton('components', 'table', "mdi mdi-table", null, "Insert table", _this._buildTableGrid()));
 
                             if(elem[1].indexOf('chart', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('components', 'chart', "fa fa-pie-chart", null, "Add chart"));
+                                $toolbar.append(_this._buildTollbarButton('components', 'chart', "mdi mdi-pie-chart", null, "Add chart"));
 
                         } else if(elem[0] === 'intervals') { // Text properties
 
                             if(elem[1].indexOf('line-height', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('interval', 'line-height', "fa fa-text-height", null, "Lines interval", _this._buildLineHeightList()));
+                                $toolbar.append(_this._buildTollbarButton('interval', 'line-height', "mdi mdi-text-height", null, "Lines interval", _this._buildLineHeightList()));
 
                             if(elem[1].indexOf('letter-spacing', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('interval', 'letter-spacing', "fa fa-text-width", null, "Letter spacing", _this._buildLetterSpacingList()));
+                                $toolbar.append(_this._buildTollbarButton('interval', 'letter-spacing', "mdi mdi-text-width", null, "Letter spacing", _this._buildLetterSpacingList()));
 
                         } else if(elem[0] === 'insert') { // Inserts
 
                             if(elem[1].indexOf('emoji', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'emoji', "fa fa-smile fa-smile-o", null, "Add emoji", _this._buildEmojiList()));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'emoji', "mdi mdi-smile fa-smile-o", null, "Add emoji", _this._buildEmojiList()));
 
                             if(elem[1].indexOf('link', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'link', "fa fa-link", null, "Add URL", _this._buildUrlForm('link')));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'link', "mdi mdi-link", null, "Add URL", _this._buildUrlForm('link')));
 
                             if(elem[1].indexOf('image', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'image', "fa fa-image", null, "Add image", _this._buildUrlForm('image')));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'image', "mdi mdi-image", null, "Add image", _this._buildUrlForm('image')));
 
                             if(elem[1].indexOf('video', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'video', "fa fa-video-camera fa-video", null, "Add video", _this._buildUrlForm('video')));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'video', "mdi mdi-video-camera fa-video", null, "Add video", _this._buildUrlForm('video')));
 
                             if(elem[1].indexOf('symbol', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'symbol', "fa fa-hashtag", null, "Add symbol", _this._buildSymbolsList()));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'symbol', "mdi mdi-hashtag", null, "Add symbol", _this._buildSymbolsList()));
 
                             if(elem[1].indexOf('bookmark', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('insert', 'bookmark', "fa fa-bookmark", null, "Add bookmark"));
+                                $toolbar.append(_this._buildTollbarButton('insert', 'bookmark', "mdi mdi-bookmark", null, "Add bookmark"));
 
                         } else if(elem[0] === 'special') { // Inserts
 
                             if(elem[1].indexOf('print', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('special', 'print', "fa fa-print", null, "Print"));
+                                $toolbar.append(_this._buildTollbarButton('special', 'print', "mdi mdi-print", null, "Print"));
 
                             if(elem[1].indexOf('clean', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('special', 'clean', "fa fa-eraser", null, "Erase style"));
+                                $toolbar.append(_this._buildTollbarButton('special', 'clean', "mdi mdi-eraser", null, "Erase style"));
 
                             if(elem[1].indexOf('visual', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('special', 'visual', "fa fa-solar-panel", null, "Visual blocks"));
+                                $toolbar.append(_this._buildTollbarButton('special', 'visual', "mdi mdi-solar-panel", null, "Visual blocks"));
 
                             if(elem[1].indexOf('unformat', 0) !== -1)
-                                $toolbar.append(_this._buildTollbarButton('special', 'unformat', "fa fa-trash-o fa-trash-alt", null, "Clear HTML"));
+                                $toolbar.append(_this._buildTollbarButton('special', 'unformat', "mdi mdi-trash-o fa-trash-alt", null, "Clear HTML"));
 
                         } else if(elem[0] === 'fullscreen') { // Fullscreen mode
 
                             $toolbar.addClass('pull-right');
-                            $toolbar.append(_this._buildTollbarButton('fullscreen', true, "fa fa-arrows-alt", null, "Fullscreen mode"));
+                            $toolbar.append(_this._buildTollbarButton('fullscreen', true, "mdi mdi-arrows-alt", null, "Fullscreen mode"));
 
                         }
 
@@ -1210,7 +1210,7 @@
                     }
                 },
                 _buildTollbarButton: {
-                    value: function buildTollbarButton(action, value, icon, hotkey, tooltip, content) {
+                    value: function buildTollbarButton(action, value, icon, hotkey, content) {
 
                         var _this = this;
                         var selection = _this._selection;
@@ -1224,15 +1224,6 @@
 
                         if (hotkey)
                             $button.attr('data-hotkey', hotkey);
-
-                        if (tooltip) {
-                            $button.tooltip({
-                                html: true,
-                                placement: 'top',
-                                container: 'body',
-                                title: _this._translate(tooltip.toString().trim())
-                            });
-                        }
 
                         if (content) {
                             $button.popover({
@@ -1330,7 +1321,7 @@
                     }
                 },
                 _buildTollbarDropdown: {
-                    value: function buildTollbarDropdown(action, list, label, tooltip) {
+                    value: function buildTollbarDropdown(action, list, label) {
 
                         var $dropdown = $('<div class="dropdown" />');
                         var $dropdownBtn = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" />');
@@ -1393,14 +1384,6 @@
                             $dropdownBtn.text('Dropdown ');
 
                         $dropdownBtn.append('<b class="caret" />');
-
-                        if (tooltip) {
-                            $dropdownBtn.tooltip({
-                                html: true,
-                                placement: 'top',
-                                title: this._translate(tooltip.toString().trim())
-                            });
-                        }
 
                         $dropdown.append($dropdownBtn);
                         $dropdown.append($dropdownMenu);
