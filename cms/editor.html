@@ -71,9 +71,9 @@
             console.log(data)
             let json = JSON.stringify(data)
             json.reports.push({
-                "id": json.reports.length + 1,
-                "title": $("#titles").val(),
-                "content": $("#editor").val()
+                "id": "" + json.reports.length + 1,
+                "title": "" + $("#titles").val(),
+                "content": +"" + $("#editor").val()
             })
             console.log(JSON.parse(JSON.stringify(json)))
         })
