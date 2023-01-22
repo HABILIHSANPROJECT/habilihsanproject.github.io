@@ -68,8 +68,8 @@
         fetch("../databases/articles.json")
         .then(response => response.json())
         .then(data =>  {
-            let json = JSON.parse(data)
-            console.LOG(json)
+            let json = JSON.parse(JSON.stringify(data))
+            console.log(json)
             json.reports.push({
                 "id": "" + json.reports.length + 1,
                 "title": "" + $("#titles").val(),
