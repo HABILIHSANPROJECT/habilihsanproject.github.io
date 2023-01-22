@@ -70,8 +70,8 @@
         .then(data =>  {
             let json = JSON.parse(JSON.stringify(data))
             console.log(json)
-            json.reports.push({
-                "id": "" + json.reports.length + 1,
+            json.push({
+                "id": "" + json.length + 1,
                 "title": "" + $("#titles").val(),
                 "content": +"" + $("#editor").val()
             })
