@@ -64,20 +64,21 @@
             preview.html(editor.val())
         })
     })
-    let article = { title: null, content: null, thumbnail: null }
     function submit(){
         article.title = $("#titles").val()
         article.content = $("#editor").val()
         var input = {
-            "url": "../databases/articles.json",
-            "method": "PUT",
-            "contentType": "application/json",
-            "data": JSON.stringify(article)
+            url: "../databases/articles.json",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(article)
         }
         $.ajax(input).done(function(response){
             console.log(response)
         })
     }
+    let article = JSON.parse(fetch("../databases/navbar.json"))
+    console.log(article)
 </script>
 
 <style>
