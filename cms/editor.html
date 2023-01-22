@@ -77,8 +77,12 @@
             console.log(response)
         })
     }
-    let article = JSON.parse(fetch("../databases/articles.json"))
-    console.log(article)
+    fetch("../databases/articles.json")
+        .then(response => response.json())
+        .then(data =>  {
+            let json = JSON.stringify(data)
+            console.log(json)
+        })
 </script>
 
 <style>
