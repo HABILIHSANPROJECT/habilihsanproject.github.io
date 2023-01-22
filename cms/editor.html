@@ -70,10 +70,8 @@
         article.content = $("#editor").val()
         var input = {
             "url": "../databases/articles.json",
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json"
-            },
+            "method": "PUT",
+            "contentType": "application/json",
             "data": JSON.stringify(article)
         }
         $.ajax(input).done(function(response){
