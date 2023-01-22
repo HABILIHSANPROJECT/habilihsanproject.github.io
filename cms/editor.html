@@ -18,8 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
+<div id="navbar"></div>
 <body>
-    <div id="navbar"></div>
     <section class="container-fluid">
         <div class="p-5 justify-content-evenly">
             <h1><span class="mdi mdi-code-tags"></span> Editor</h1>
@@ -50,7 +50,7 @@
 <script src="../plugins/script.js"></script>
 <script>
     $.get("../plugins/navbar.html", function(data){
-            $("#navbar").replaceWith(data);
+            $("#navbar").replaceWith(data)
         })
     jQuery(function($) {
         var titles = $("#titles"), title = $("#title")
