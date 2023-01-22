@@ -5,7 +5,7 @@
   <title>habilihsanproject</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width = device-width, initial-scale = 1">
-  <link href="./plugins/style.css" rel="stylesheet">
+  <link href="/plugins/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -23,7 +23,7 @@
   <section id="carousel" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active" id="stone">
-        <img src="./assets/background.jpg" class="d-block w-100 filter">
+        <img src="/assets/background.jpg" class="d-block w-100 filter">
         <div class="carousel-caption d-md-block project">
           <h1>nebula project</h1>
           <b>MARCH 1ST, 2023</b>
@@ -35,13 +35,13 @@
 
 <footer>
   <p>©2023</p>
-  <img id="footer" class="white" src="./assets/powered.png">
+  <img id="footer" class="white" src="/assets/powered.png">
 </footer>
 
 </html>
 
 <script>
-  $.get("./plugins/navbar.html", function(data){
+  $.get("/plugins/navbar.html", function(data){
             $("#navbar").replaceWith(data);
         })
   function theme() {
@@ -162,7 +162,8 @@
 
 <script>
 // NAVBAR UPDATE
-//{ "title": "PROJECT", "to": "./pages/project.html" },
-//{ "title": "PORTOFOLIO", "to": "./portofolio.html" },
-//{ "title": "ABOUT ME", "to": "./about-me.html" }
+//{ "title": "ARTICLE", "to": "https://habilihsanproject.github.io/articles/" },
+//{ "title": "PROJECT", "to": "https://habilihsanproject.github.io/pages/projects/" },
+//{ "title": "PORTOFOLIO", "to": "https://habilihsanproject.github.io/pages/portofolio" },
+//{ "title": "ABOUT ME", "to": "https://habilihsanproject.github.io/pages/about" }
 </script>

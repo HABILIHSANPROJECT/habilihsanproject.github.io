@@ -22,10 +22,19 @@
     <div id="navbar"></div>
     <section class="container-fluid">
         <div class="p-5 justify-content-evenly">
-            <h1><span class="mdi mdi-code-tags"></span> HTML Editor</h1>
+            <h1><span class="mdi mdi-code-tags"></span> Editor</h1>
             <div class="d-lg-flex">
-                <textarea id="editor"></textarea>
-                <div id="preview" class="preview"></div>
+                <div class="editor">
+                    <input id="titles">
+                    <span class="mdi mdi-upload submit" onclick="submit()"></span>
+                    <span class="mdi mdi-image submit"></span>
+                    <textarea id="editor"></textarea>
+                </div>
+                <div class="vr"></div>
+                <div class="preview">
+                    <h1 id="title" class="title"></h1>
+                    <div id="preview"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -44,32 +53,64 @@
             $("#navbar").replaceWith(data);
         })
     jQuery(function($) {
-        var editor = $('#editor'), preview = $('#preview')
+        var titles = $("#titles"), title = $("#title")
+        titles.keyup(function(e) {
+            title.html(titles.val())
+        })
+    })
+    jQuery(function($) {
+        var editor = $("#editor"), preview = $("#preview")
         editor.keyup(function(e) {
             preview.html(editor.val())
         })
     })
+    let article = { id: null, title: null, content: null, thumbnail: null }
+    function submit(){
+        article.title = $("#titles").val()
+        article.content = $("#editor").val()
+        console.log(article)
+    }
 </script>
 
 <style>
-    textarea{
-        width: 50%;
-        margin: 20px 10px 0 0;
+    input{
+        width: 85%;
         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
         color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        border: 1px solid;
+        margin-bottom: 10px;
+        font-size: larger;
+    }
+    textarea{
+        width: 100%;
+        margin-top: 10px;
+        background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        border: 1px solid;
         font-family: 'Courier New', Courier, monospace;
         font-size: small;
         height: 30rem
     }
-    .icon{
-        padding: 0 10px;
-        font-size: large;
+    .title{
+        margin-bottom: 20px;
+    }
+    .editor{
+        width: 50%;
+        margin: 20px 20px 0 0;
     }
     .preview{
         width: 50%;
-        margin: 20px 0 0 10px;
+        margin: 20px 0 0 20px;
+        word-wrap: break-word;
     }
-    .active{
-        color: var(--bs-heading-color,inherit);
+    .submit{
+        float: right;
+        font-size: larger;
+        margin-left: auto;
+        color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+        margin: 0 10px;
+    }
+    .submit:hover{
+        filter: contrast(100);
     }
 </style>

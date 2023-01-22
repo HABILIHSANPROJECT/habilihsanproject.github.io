@@ -1,3 +1,4 @@
+// THEME
 let html = document.getElementsByTagName("html")[0].dataset.bsTheme
 let set = document.getElementById("setTheme").classList
 let logo = document.getElementById("logo").classList
@@ -43,11 +44,12 @@ if (getTheme == "true") {
 } else {
     localStorage.clear()
 }
+// NAVBAR
 let navbar_list = [
-    { title: "HOME", to: "#" },
-    { title: "PROJECT", to: "./project.html" },
-    { title: "PORTOFOLIO", to: "./portofolio.html" },
-    { title: "ABOUT", to: "./about.html" }
+    { title: "ARTICLE", to: "../pages/articles/index.html" },
+    { title: "PROJECT", to: "../pages/index.html" },
+    { title: "PORTOFOLIO", to: "../pages/portofolio.html" },
+    { title: "ABOUT", to: "../pages/about.html" }
 ]
 let navbarList = document.querySelector("#navbarList")
 let navbarLink = document.getElementById("navbarLink")

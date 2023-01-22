@@ -5,7 +5,7 @@
   <title>PORTOFOLIO</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width = device-width, initial-scale = 1">
-  <link href="../plugins/style.css" rel="stylesheet">
+  <link href="../../plugins/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -21,8 +21,8 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a id="logo" class="navbar-brand logo white" href="#">
-        <img src="../assets/logo.png" />
-        <img style="width: 50px;" src="../assets/title.png" />
+        <img src="../../assets/logo.png" />
+        <img style="width: 50px;" src="../../assets/title.png" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,15 @@
 
 <footer>
   <p>©2023</p>
-  <img id="footer" class="white" src="../assets/powered.png">
+  <img id="footer" class="white" src="../../assets/powered.png">
 </footer>
 
 </html>
 
-<script src="../plugins/script.js"></script>
+<script src="../../plugins/script.js"></script>
 <script>
   let articles = [{ title: null, date: null, publlisher: null, link: null }]
-  fetch("../databases/portofolio.json")
+  fetch("../../databases/portofolio.json")
     .then(response => response.json())
     .then(data => {
       achievements = data.achievement
