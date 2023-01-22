@@ -1,5 +1,6 @@
 <html>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="contain">
           <a id="logo" class="navbar-brand logo white" href="#">
             <img src="/assets/logo.png" />
             <img style="width: 50px;" src="/assets/title.png" />
@@ -15,6 +16,7 @@
               <span id="setTheme" class="mdi mdi-weather-night white"></span>
             </button>
           </div>
+        </div>
     </nav>
 </html>
 
@@ -41,3 +43,19 @@
   document.getElementById("navbarLinkHOME").classList.add("active")
   })
 </script>
+
+<style>
+  .contain {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
