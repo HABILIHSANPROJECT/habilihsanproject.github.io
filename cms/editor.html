@@ -71,11 +71,22 @@
             let json = JSON.parse(JSON.stringify(data))
             console.log(json)
             json.push({
-                "id": "" + json.length + 1,
-                "title": "" + $("#titles").val(),
-                "content": +"" + $("#editor").val()
+                "id": Math(Number(json.length) + 1),
+                "title": $("#titles").val(),
+                "content": $("#editor").val()
             })
             console.log(JSON.parse(JSON.stringify(json)))
+        })
+        $.ajax({
+            url: "../databases/articles.json",
+            dataType: "json",
+            success: function(response) {
+                let article = JSON.parse(JSON.stringify(response))
+                article.id = Math(Number(json.length) + 1)
+                article.title = $("#titles").val()
+                article.content = $("#editor").val()
+                article.push("success");
+            }
         })
     }
 </script>
