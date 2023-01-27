@@ -18,7 +18,7 @@ function darkTheme() {
     document.getElementById("footer").classList.replace("dark", "light")
 }
 function setTheme() {
-    if (html == "dark") {
+    if (html === "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
         lightTheme()
         localStorage.setItem("theme", "undefined")
