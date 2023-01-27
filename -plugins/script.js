@@ -4,7 +4,7 @@ $.get("/-plugins/navbar.html", function(data){
 })
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
-var getTheme = localStorage.getItem("themes")
+var getTheme = localStorage.getItem("theme")
 function lightTheme() {
     document.getElementById("setTheme").classList.replace("mdi-weather-night", "mdi-weather-sunny")
     document.getElementById("setTheme").classList.replace("light", "dark")
