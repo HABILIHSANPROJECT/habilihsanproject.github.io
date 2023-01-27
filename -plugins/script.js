@@ -2,6 +2,17 @@ $.get("/-plugins/navbar.html", function(data){
     $("#navbar").replaceWith(data);
 })
 // THEME
+var getTheme = localStorage.getItem("themes")
+if (getTheme == "true") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
+    if (localStorage.getItem("theme") == "dark") {
+        darkTheme()
+    } else {
+        lightTheme()
+    }
+} else {
+    localStorage.clear()
+}
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
 function lightTheme() {
     document.getElementById("setTheme").classList.add("mdi-weather-sunny")
@@ -32,17 +43,6 @@ function setTheme() {
         document.getElementById("hibi").classList.add("white")
         darkTheme()
     }
-}
-var getTheme = localStorage.getItem("themes")
-if (getTheme == "true") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
-    if (localStorage.getItem("theme") == "dark") {
-        darkTheme()
-    } else {
-        lightTheme()
-    }
-} else {
-    localStorage.clear()
 }
 /* NAVBAR
 let navbar_list = [
