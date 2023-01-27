@@ -67,6 +67,9 @@
 
 <script src="/plugins/script.js"></script>
 <script>
+  $.get("/plugins/navbar.html", function(data){
+            $("#navbar").replaceWith(data);
+        })
   let getTheme = localStorage.getItem("themes")
   if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
