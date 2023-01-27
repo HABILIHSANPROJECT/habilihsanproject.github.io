@@ -42,12 +42,6 @@
 
 <script src="/-plugins/script.js"></script>
 <script>
-  var getTheme = localStorage.getItem("themes")
-  if (getTheme == "true") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
-} else {
-    localStorage.clear()
-}
   // STONE ANIMATION //
   const stone = data => {
     const stoneTemplate = document.createElement("template")
