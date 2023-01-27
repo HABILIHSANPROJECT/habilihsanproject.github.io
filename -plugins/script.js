@@ -21,16 +21,19 @@ function setTheme() {
     if (data == "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
+        document.getElementById("hibi").classList.replace("dark", "light")
         localStorage.setItem("theme", "undefined")
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         darkTheme()
+        document.getElementById("hibi").classList.replace("light", "dark")
         localStorage.setItem("theme", "dark")
     }
 }
-window.onload() = function() {
-    var getTheme = localStorage.getItem("theme")
-  if (getTheme == "dark") {
+addEventListener("load", (event) => {
+    console.log(event)
+var getTheme = localStorage.getItem("theme")
+if (getTheme == "dark") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     document.getElementById("hibi").classList.replace("light", "dark")
     darkTheme()
@@ -41,7 +44,7 @@ window.onload() = function() {
 } else {
     localStorage.clear()
 }
-}
+})
 /* NAVBAR
 let navbar_list = [
     { title: "ARTICLE", to: "../pages/articles/index.html" },
