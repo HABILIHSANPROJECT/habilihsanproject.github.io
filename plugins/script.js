@@ -44,7 +44,7 @@ if (getTheme == "true") {
 } else {
     localStorage.clear()
 }
-// NAVBAR
+/* NAVBAR
 let navbar_list = [
     { title: "ARTICLE", to: "../pages/articles/index.html" },
     { title: "PROJECT", to: "../pages/index.html" },
@@ -68,3 +68,4 @@ for (i in navbar_list) {
 let title = document.getElementsByTagName("title")[0]
 document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
 title.innerHTML = `habilihsanproject | ${title.innerText}`
+*/
