@@ -17,7 +17,7 @@ function darkTheme() {
     document.getElementById("logo").classList.replace("dark", "light")
     document.getElementById("footer").classList.replace("dark", "light")
 }
-if (html == "dark") {
+if (html === "dark") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     darkTheme()
 } else {
@@ -25,7 +25,7 @@ if (html == "dark") {
     lightTheme()
 }
 function setTheme() {
-    if (html == "dark") {
+    if (html === "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
         localStorage.setItem("theme", "undefined")
