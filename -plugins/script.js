@@ -3,6 +3,20 @@ $.get("/-plugins/navbar.html", function(data){
 })
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
+function lightTheme() {
+    document.getElementById("setTheme").classList.add("mdi-weather-sunny")
+    document.getElementById("setTheme").classList.remove("mdi-weather-night")
+    document.getElementById("setTheme").classList.remove("white")
+    document.getElementById("logo").classList.remove("white")
+    document.getElementById("footer").classList.remove("white")
+}
+function darkTheme() {
+    document.getElementById("setTheme").classList.add("mdi-weather-night")
+    document.getElementById("setTheme").classList.remove("mdi-weather-sunny")
+    document.getElementById("setTheme").classList.add("white")
+    document.getElementById("logo").classList.add("white")
+    document.getElementById("footer").classList.add("white")
+}
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
     if (data === "dark") {
@@ -10,38 +24,22 @@ function setTheme() {
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "undefined")
         document.getElementById("hibi").classList.remove("white")
-        document.getElementById("setTheme").classList.add("mdi-weather-sunny")
-        document.getElementById("setTheme").classList.remove("mdi-weather-night")
-        document.getElementById("setTheme").classList.remove("white")
-        document.getElementById("logo").classList.remove("white")
-        document.getElementById("footer").classList.remove("white")
+        lightTheme()
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "dark")
         document.getElementById("hibi").classList.add("white")
-        document.getElementById("setTheme").classList.add("mdi-weather-night")
-        document.getElementById("setTheme").classList.remove("mdi-weather-sunny")
-        document.getElementById("setTheme").classList.add("white")
-        document.getElementById("logo").classList.add("white")
-        document.getElementById("footer").classList.add("white")
+        darkTheme()
     }
 }
 var getTheme = localStorage.getItem("themes")
 if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
     if (localStorage.getItem("theme") == "dark") {
-        document.getElementById("setTheme").classList.add("mdi-weather-night")
-        document.getElementById("setTheme").classList.remove("mdi-weather-sunny")
-        document.getElementById("setTheme").classList.add("white")
-        document.getElementById("logo").classList.add("white")
-        document.getElementById("footer").classList.add("white")
+        darkTheme()
     } else {
-        document.getElementById("setTheme").classList.add("mdi-weather-sunny")
-        document.getElementById("setTheme").classList.remove("mdi-weather-night")
-        document.getElementById("setTheme").classList.remove("white")
-        document.getElementById("logo").classList.remove("white")
-        document.getElementById("footer").classList.remove("white")
+        lightTheme()
     }
 } else {
     localStorage.clear
