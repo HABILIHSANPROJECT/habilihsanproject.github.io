@@ -1,3 +1,21 @@
+// NAVBAR
+$.get("/-plugins/navbar.html", function(data){
+    $("#navbar").replaceWith(data);
+})
+// THEME
+var html = document.getElementsByTagName("html")[0].dataset.bsTheme
+function lightTheme() {
+    document.getElementById("setTheme").classList.replace("mdi-weather-night", "mdi-weather-sunny")
+    document.getElementById("setTheme").classList.replace("light", "dark")
+    document.getElementById("logo").classList.replace("light", "dark")
+    document.getElementById("footer").classList.replace("light", "dark")
+}
+function darkTheme() {
+    document.getElementById("setTheme").classList.replace("mdi-weather-sunny", "mdi-weather-night")
+    document.getElementById("setTheme").classList.replace("dark", "light")
+    document.getElementById("logo").classList.replace("dark", "light")
+    document.getElementById("footer").classList.replace("dark", "light")
+}
 var getTheme = localStorage.getItem("themes")
 if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
@@ -9,39 +27,19 @@ if (getTheme == "true") {
 } else {
     localStorage.clear()
 }
-// NAVBAR
-$.get("/-plugins/navbar.html", function(data){
-    $("#navbar").replaceWith(data);
-})
-// THEME
-var html = document.getElementsByTagName("html")[0].dataset.bsTheme
-function lightTheme() {
-    document.getElementById("setTheme").classList.add("mdi-weather-sunny")
-    document.getElementById("setTheme").classList.remove("mdi-weather-night")
-    document.getElementById("setTheme").classList.remove("white")
-    document.getElementById("logo").classList.remove("white")
-    document.getElementById("footer").classList.remove("white")
-}
-function darkTheme() {
-    document.getElementById("setTheme").classList.add("mdi-weather-night")
-    document.getElementById("setTheme").classList.remove("mdi-weather-sunny")
-    document.getElementById("setTheme").classList.add("white")
-    document.getElementById("logo").classList.add("white")
-    document.getElementById("footer").classList.add("white")
-}
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
     if (data === "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "undefined")
-        document.getElementById("hibi").classList.remove("white")
+        document.getElementById("hibi").classList.replace("light", "dark")
         lightTheme()
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "dark")
-        document.getElementById("hibi").classList.add("white")
+        document.getElementById("hibi").classList.replace("dark", "light")
         darkTheme()
     }
 }

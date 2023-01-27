@@ -39,8 +39,12 @@ h1 {
     margin-bottom: 5px;
 }
 
-.white {
+.light {
     filter: invert(1);
+}
+
+.dark {
+    filter: invert(0);
 }
 
 .theme {

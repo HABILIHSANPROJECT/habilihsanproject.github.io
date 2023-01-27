@@ -54,14 +54,14 @@
                   <a href="https://www.youtube.com/@habilihsanproject/"><span class="mdi mdi-youtube contact"></span></a>
               </div>
           </div>
-          <img class="img-fluid ava white" id="hibi" src="/-assets/hibi.png">
+          <img class="img-fluid ava light" id="hibi" src="/-assets/hibi.png">
       </div>
   </section>
 </body>
 
 <footer>
   <p>©2023</p>
-  <img id="footer" class="white" src="/-assets/powered.png">
+  <img id="footer" class="light" src="/-assets/powered.png">
 </footer>
 
 </html>
@@ -72,9 +72,9 @@
   if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
     if (localStorage.getItem("theme") == "dark") {
-      document.getElementById("hibi").classList.add("white")
+      document.getElementById("hibi").classList.replace("dark", "light")
     } else {
-      document.getElementById("hibi").classList.remove("white")
+      document.getElementById("hibi").classList.replace("light", "dark")
     }
 } else {
     localStorage.clear()
