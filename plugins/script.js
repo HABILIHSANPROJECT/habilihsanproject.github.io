@@ -3,10 +3,10 @@ $.get("/plugins/navbar.html", function(data){
 })
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
-var set = document.getElementById("setTheme").classList
-var logo = document.getElementById("logo").classList
-var footer = document.getElementById("footer").classList
 function lightTheme() {
+    let set = document.getElementById("setTheme").classList
+    let logo = document.getElementById("logo").classList
+    let footer = document.getElementById("footer").classList
     set.add("mdi-weather-sunny")
     set.remove("mdi-weather-night")
     set.remove("white")
@@ -14,6 +14,9 @@ function lightTheme() {
     footer.remove("white")
 }
 function darkTheme() {
+    let set = document.getElementById("setTheme").classList
+    let logo = document.getElementById("logo").classList
+    let footer = document.getElementById("footer").classList
     set.add("mdi-weather-night")
     set.remove("mdi-weather-sunny")
     set.add("white")
@@ -45,7 +48,7 @@ if (getTheme == "true") {
         lightTheme()
     }
 } else {
-    localStorage.clear()
+    localStorage.clear
 }
 /* NAVBAR
 let navbar_list = [
