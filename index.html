@@ -42,14 +42,11 @@
 
 <script src="/plugins/script.js"></script>
 <script>
-  $.get("./plugins/navbar.html", function(data){
-            $("#navbar").replaceWith(data);
-        })
   // STONE ANIMATION //
   const stone = data => {
     const stoneTemplate = document.createElement("template")
     stoneTemplate.innerHTML =
-    `<img src="./assets/stone.png" class="stone" id="stoneItem">`
+    `<img src="/assets/stone.png" class="stone" id="stoneItem">`
     .trim()
     return stoneTemplate.content.firstChild
   }

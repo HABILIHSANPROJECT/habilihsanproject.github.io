@@ -1,3 +1,6 @@
+$.get("/plugins/navbar.html", function(data){
+    $("#navbar").replaceWith(data);
+})
 // THEME
 let html = document.getElementsByTagName("html")[0].dataset.bsTheme
 let set = document.getElementById("setTheme").classList
