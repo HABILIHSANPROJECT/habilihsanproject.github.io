@@ -6,6 +6,12 @@
     font-family: Montserrat;
     src: url("/-assets/fonts/Montserrat-Bold.ttf");
 }
+#setTheme {
+    color: var(--bs-body-color);
+}
+#setTheme:hover {
+    filter: contrast(100);
+}
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 50px !important;
