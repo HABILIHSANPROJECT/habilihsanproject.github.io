@@ -21,26 +21,26 @@ function setTheme() {
     if (data == "dark") {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
-        document.getElementById("hibi").classList.replace("dark", "light")
         localStorage.setItem("theme", "undefined")
+        document.getElementById("hibi").classList.replace("light", "dark")
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         darkTheme()
-        document.getElementById("hibi").classList.replace("light", "dark")
         localStorage.setItem("theme", "dark")
+        document.getElementById("hibi").classList.replace("dark", "light")
     }
 }
 addEventListener("load", (event) => {
     console.log(event)
 var getTheme = localStorage.getItem("theme")
 if (getTheme == "dark") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-    document.getElementById("hibi").classList.replace("light", "dark")
     darkTheme()
-} else if (getTheme == "undefined") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     document.getElementById("hibi").classList.replace("dark", "light")
+} else if (getTheme == "undefined") {
     lightTheme()
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    document.getElementById("hibi").classList.replace("light", "dark")
 } else {
     localStorage.clear()
 }
