@@ -1,4 +1,4 @@
-$.get("/plugins/navbar.html", function(data){
+$.get("/.plugins/navbar.html", function(data){
     $("#navbar").replaceWith(data);
 })
 // THEME

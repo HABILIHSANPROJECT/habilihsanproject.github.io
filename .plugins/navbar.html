@@ -1,8 +1,8 @@
 <html>
     <nav class="navbar navbar-expand-lg bg-body-tertiary contain">
           <a id="logo" class="navbar-brand logo white" href="https://habilihsanproject.github.io/">
-            <img src="/assets/logo.png" />
-            <img style="width: 50px;" src="/assets/title.png" />
+            <img src="/.assets/logo.png" />
+            <img style="width: 50px;" src="/.assets/title.png" />
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
 </html>
 
 <script>
-  fetch("/databases/navbar.json")
+  fetch("/.databases/navbar.json")
     .then(response => response.json())
     .then(data => {
       let navbar_list = data
