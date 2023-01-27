@@ -28,6 +28,20 @@ function setTheme() {
         localStorage.setItem("theme", "dark")
     }
 }
+window.onload() = function() {
+    var getTheme = localStorage.getItem("theme")
+  if (getTheme == "dark") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
+    document.getElementById("hibi").classList.replace("light", "dark")
+    darkTheme()
+} else if (getTheme == "undefined") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    document.getElementById("hibi").classList.replace("dark", "light")
+    lightTheme()
+} else {
+    localStorage.clear()
+}
+}
 /* NAVBAR
 let navbar_list = [
     { title: "ARTICLE", to: "../pages/articles/index.html" },
