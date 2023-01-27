@@ -4,6 +4,7 @@ $.get("/-plugins/navbar.html", function(data){
 })
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
+var getTheme = localStorage.getItem("themes")
 function lightTheme() {
     document.getElementById("setTheme").classList.replace("mdi-weather-night", "mdi-weather-sunny")
     document.getElementById("setTheme").classList.replace("light", "dark")
@@ -16,30 +17,28 @@ function darkTheme() {
     document.getElementById("logo").classList.replace("dark", "light")
     document.getElementById("footer").classList.replace("dark", "light")
 }
-var getTheme = localStorage.getItem("themes")
-if (getTheme == "true") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
-    if (localStorage.getItem("theme") === "dark") {
-        darkTheme()
-    } else {
-        lightTheme()
-    }
+if (html == "dark") {
+    darkTheme()
 } else {
-    localStorage.clear()
+    lightTheme()
 }
 function setTheme() {
-    let data = document.getElementsByTagName("html")[0].dataset.bsTheme
-    if (data === "dark") {
-        document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
-        localStorage.setItem("themes", "true")
-        localStorage.setItem("theme", "undefined")
+    if (html == "dark") {
         lightTheme()
+        localStorage.setItem("theme", "undefined")
+        document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
     } else {
-        document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-        localStorage.setItem("themes", "true")
-        localStorage.setItem("theme", "dark")
         darkTheme()
+        localStorage.setItem("theme", "dark")
+        document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     }
+}
+if (getTheme == "dark") {
+    darkTheme()
+} else if (getTheme == "undefined") {
+    lightTheme()
+} else {
+    localStorage.clear()
 }
 /* NAVBAR
 let navbar_list = [
