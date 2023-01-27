@@ -68,7 +68,7 @@
 
 <script src="/plugins/script.js"></script>
 <script>
-  let getTheme = localStorage.getItem("themes")
+  var getTheme = localStorage.getItem("themes")
   if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
     if (localStorage.getItem("theme") == "dark") {
