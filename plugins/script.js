@@ -4,24 +4,18 @@ $.get("/plugins/navbar.html", function(data){
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
 function lightTheme() {
-    let set = document.getElementById("setTheme").classList
-    let logo = document.getElementById("logo").classList
-    let footer = document.getElementById("footer").classList
-    set.add("mdi-weather-sunny")
-    set.remove("mdi-weather-night")
-    set.remove("white")
-    logo.remove("white")
-    footer.remove("white")
+    document.getElementById("setTheme").classList.add("mdi-weather-sunny")
+    document.getElementById("setTheme").classList.remove("mdi-weather-night")
+    document.getElementById("setTheme").classList.remove("white")
+    document.getElementById("logo").classList.remove("white")
+    document.getElementById("footer").classList.remove("white")
 }
 function darkTheme() {
-    let set = document.getElementById("setTheme").classList
-    let logo = document.getElementById("logo").classList
-    let footer = document.getElementById("footer").classList
-    set.add("mdi-weather-night")
-    set.remove("mdi-weather-sunny")
-    set.add("white")
-    logo.add("white")
-    footer.add("white")
+    document.getElementById("setTheme").classList.add("mdi-weather-night")
+    document.getElementById("setTheme").classList.remove("mdi-weather-sunny")
+    document.getElementById("setTheme").classList.add("white")
+    document.getElementById("logo").classList.add("white")
+    document.getElementById("footer").classList.add("white")
 }
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
