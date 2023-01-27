@@ -41,7 +41,6 @@ h1 {
 
 .white {
     filter: invert(1);
-    color: var(--bs-body-color);
 }
 
 .theme {
