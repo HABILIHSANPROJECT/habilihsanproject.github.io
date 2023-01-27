@@ -1,6 +1,6 @@
 <html>
     <nav class="navbar navbar-expand-lg bg-body-tertiary contain">
-          <a id="logo" class="navbar-brand logo white" href="#">
+          <a id="logo" class="navbar-brand logo white" href="https://habilihsanproject.github.io/">
             <img src="/assets/logo.png" />
             <img style="width: 50px;" src="/assets/title.png" />
           </a>
@@ -22,7 +22,6 @@
   fetch("/databases/navbar.json")
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       let navbar_list = data
       let navbarList = document.querySelector("#navbarList")
       let navbarLink = document.getElementById("navbarLink")
@@ -38,14 +37,15 @@
   for (i in navbar_list) {
     navbarList.append(navbar(0))
   }
-  document.getElementById("navbarLinkHOME").classList.add("active")
+  let title = document.getElementsByTagName("title")[0]
+  document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
+  title.innerHTML = `habilihsanproject | ${title.innerText}`
   })
 </script>
 
 <style>
   .contain{
     display: flex;
-    flex-wrap: inherit;
     align-items: center;
     justify-content: space-between;
     --bs-gutter-x: 1.5rem;

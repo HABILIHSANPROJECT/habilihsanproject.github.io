@@ -36,7 +36,7 @@ function setTheme() {
         darkTheme()
     }
 }
-let getTheme = localStorage.getItem("themes")
+/*let getTheme = localStorage.getItem("themes")
 if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
     if (localStorage.getItem("theme") == "dark") {
@@ -46,7 +46,7 @@ if (getTheme == "true") {
     }
 } else {
     localStorage.clear()
-}
+} */
 /* NAVBAR
 let navbar_list = [
     { title: "ARTICLE", to: "../pages/articles/index.html" },
