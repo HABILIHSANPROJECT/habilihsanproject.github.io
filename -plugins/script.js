@@ -4,7 +4,6 @@ $.get("/-plugins/navbar.html", function(data){
 })
 // THEME
 var html = document.getElementsByTagName("html")[0].dataset.bsTheme
-var getTheme = localStorage.getItem("theme")
 function lightTheme() {
     document.getElementById("setTheme").classList.replace("mdi-weather-night", "mdi-weather-sunny")
     document.getElementById("setTheme").classList.replace("light", "dark")
@@ -28,15 +27,6 @@ function setTheme() {
         darkTheme()
         localStorage.setItem("theme", "dark")
     }
-}
-if (getTheme == "dark") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-    darkTheme()
-} else if (getTheme == "undefined") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
-    lightTheme()
-} else {
-    localStorage.clear()
 }
 /* NAVBAR
 let navbar_list = [
