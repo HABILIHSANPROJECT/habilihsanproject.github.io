@@ -19,7 +19,7 @@ function darkTheme() {
 var getTheme = localStorage.getItem("themes")
 if (getTheme == "true") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = localStorage.getItem("theme")
-    if (localStorage.getItem("theme") == "dark") {
+    if (localStorage.getItem("theme") === "dark") {
         darkTheme()
     } else {
         lightTheme()
@@ -33,13 +33,11 @@ function setTheme() {
         document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "undefined")
-        document.getElementById("hibi").classList.replace("light", "dark")
         lightTheme()
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         localStorage.setItem("themes", "true")
         localStorage.setItem("theme", "dark")
-        document.getElementById("hibi").classList.replace("dark", "light")
         darkTheme()
     }
 }
