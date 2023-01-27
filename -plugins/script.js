@@ -42,7 +42,7 @@ if (getTheme == "true") {
         lightTheme()
     }
 } else {
-    localStorage.clear
+    localStorage.clear()
 }
 /* NAVBAR
 let navbar_list = [
