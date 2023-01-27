@@ -17,16 +17,16 @@ function darkTheme() {
     document.getElementById("logo").classList.replace("dark", "light")
     document.getElementById("footer").classList.replace("dark", "light")
 }
-if (html === "dark") {
+if (html == "dark") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     darkTheme()
 } else {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
     lightTheme()
 }
 function setTheme() {
-    if (html === "dark") {
-        document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    if (html == "dark") {
+        document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
         lightTheme()
         localStorage.setItem("theme", "undefined")
     } else {
@@ -39,7 +39,7 @@ if (getTheme == "dark") {
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     darkTheme()
 } else if (getTheme == "undefined") {
-    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+    document.getElementsByTagName("html")[0].dataset.bsTheme = undefined
     lightTheme()
 } else {
     localStorage.clear()
