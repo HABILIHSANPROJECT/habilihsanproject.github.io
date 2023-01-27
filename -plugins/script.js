@@ -18,24 +18,28 @@ function darkTheme() {
     document.getElementById("footer").classList.replace("dark", "light")
 }
 if (html == "dark") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     darkTheme()
 } else {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
     lightTheme()
 }
 function setTheme() {
     if (html == "dark") {
+        document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
         localStorage.setItem("theme", "undefined")
-        document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
     } else {
+        document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         darkTheme()
         localStorage.setItem("theme", "dark")
-        document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     }
 }
 if (getTheme == "dark") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
     darkTheme()
 } else if (getTheme == "undefined") {
+    document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
     lightTheme()
 } else {
     localStorage.clear()
