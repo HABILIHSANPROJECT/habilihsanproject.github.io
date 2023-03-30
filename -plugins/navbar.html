@@ -21,7 +21,8 @@
 <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
 <script src="/-plugins/firebase.js" type="modul"></script>
 <script>
-  var dataRef = database.ref("https://habilihsanproject13.firebaseio.com/").child("navbar");
+import { database } from "/-plugins/firebase.js"
+var dataRef = database.ref("https://habilihsanproject13.firebaseio.com/").child("navbar");
 dataRef.on('value', function(snapshot) {
   console.log(snapshot.val());
 });
