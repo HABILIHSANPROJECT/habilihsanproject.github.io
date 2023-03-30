@@ -18,7 +18,14 @@
     </nav>
 </html>
 
+<script src="/-plugins/firebase.js"></script>
 <script>
+  var database = firebase.database()
+  var dataRef = database.ref("https://habilihsanproject13.firebaseio.com/").child("navbar");
+dataRef.on('value', function(snapshot) {
+  console.log(snapshot.val());
+});
+
   fetch("https://habilihsanproject13.firebaseio.com/navbar")
     .then(response => response.json())
     .then(data => {
