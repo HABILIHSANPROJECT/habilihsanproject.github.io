@@ -1,5 +1,3 @@
-import firebase from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyDSDIWEIdJuA2Z3tVC8fIS8eFvRG8HkXwQ",
     authDomain: "habilihsanproject13.firebaseapp.com",
