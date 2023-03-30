@@ -1,10 +1,10 @@
 @font-face {
     font-family: habilihsanproject;
-    src: url("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/.assets/fonts/habilihsanproject.ttf");
+    src: url("/-assets/fonts/habilihsanproject.ttf");
 }
 @font-face {
     font-family: Montserrat;
-    src: url("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/.assets/fonts/Montserrat-Bold.ttf");
+    src: url("/-assets/fonts/Montserrat-Bold.ttf");
 }
 #setTheme {
     color: var(--bs-body-color);
