@@ -23,8 +23,8 @@
 <script type="module">
   import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
   import { database } from "https://habilihsanproject.github.io/-plugins/firebase.js"
-  const navbar = ref(database)
-  get(child(navbar, "navbar")).then((snapshot) => {
+  const DB = ref(database)
+  get(child(DB, "navbar")).then((snapshot) => {
     if (snapshot.exists()) {
 
       let navbar_list = snapshot.val()
