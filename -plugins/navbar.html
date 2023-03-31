@@ -22,17 +22,10 @@
 <script src="../-plugins/firebase.js" type="module"></script>
 <script type="module">
   import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
-  const db = ref(JSON.parse(localStorage.getItem("navbar")))
+  const db = ref(JSON.parse(localStorage.getItem("database")))
   get(child(db, "navbar")).then((snapshot) => {
     if (snapshot.exists()) {
-      localStorage.setItem("navbar", snapshot.val())
-    } else {
-      console.log("No data available")
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
-  let navbar_list = localStorage.getItem("navbar")
+      let navbar_list = snapshot.val()
   let navbarList = document.querySelector("#navbarList")
   let navbarLink = document.getElementById("navbarLink")
   const navbar = data => {
@@ -50,6 +43,13 @@
   let title = document.getElementsByTagName("title")[0]
   document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
   title.innerHTML = `habilihsanproject | ${title.innerText}`
+    } else {
+      console.log("No data available")
+    }
+  }).catch((error) => {
+    console.error(error)
+  })
+ 
 </script>
 
 <style>
