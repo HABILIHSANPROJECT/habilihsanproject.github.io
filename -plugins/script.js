@@ -34,8 +34,7 @@ function setTheme() {
         }
     }
 }
-addEventListener("load", (event) => {
-    console.log(event)
+addEventListener("load", () => {
 var getTheme = localStorage.getItem("theme")
 if (getTheme == "dark") {
     darkTheme()
@@ -50,7 +49,7 @@ if (getTheme == "dark") {
         document.getElementById("hibi").classList.replace("light", "dark")
     }
 } else {
-    localStorage.clear()
+    localStorage.clear("theme")
 }
 })
 /* NAVBAR
