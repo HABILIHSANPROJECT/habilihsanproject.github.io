@@ -18,7 +18,9 @@
     </nav>
 </html>
 
-<script src="./firebase.js" type="module"></script>
+<script src="./firebase.js" type="module">
+  import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js"
+</script>
 <script>
   const dbRef = ref(database);
 get(child(dbRef, `navbar`)).then((snapshot) => {
