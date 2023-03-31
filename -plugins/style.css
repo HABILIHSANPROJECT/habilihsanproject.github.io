@@ -74,3 +74,6 @@ footer img {
 footer p {
     margin: 0 !important;
 }
+.navbar-collapse {
+    z-index: 100;
+}
