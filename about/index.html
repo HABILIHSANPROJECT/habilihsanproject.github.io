@@ -67,7 +67,39 @@
 </html>
 
 <script src="/-plugins/script.js"></script>
-<script>
+<script type="module">
+  import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
+  import { database } from "../-plugins/firebase.js"
+  const navbar = ref(database)
+  get(child(navbar, "navbar")).then((snapshot) => {
+    if (snapshot.exists()) {
+
+      let navbar_list = snapshot.val()
+  console.log(navbar_list)
+  let navbarList = document.querySelector("#navbarList")
+  let navbarLink = document.getElementById("navbarLink")
+  const navbar = data => {
+    const template = document.createElement("template")
+    template.innerHTML =
+      `<li class="nav-item navItem" id="navbarItem">
+      <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
+      </li>`
+        .trim()
+    return template.content.firstChild
+  }
+  for (i in navbar_list) {
+    navbarList.append(navbar(0))
+  }
+  let title = document.getElementsByTagName("title")[0]
+  document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
+  title.innerHTML = `habilihsanproject | ${title.innerText}`
+
+    } else {
+      console.log("No data available")
+    }
+  }).catch((error) => {
+    console.error(error)
+  })
 </script>
 
 <style>
