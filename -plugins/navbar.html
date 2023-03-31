@@ -20,8 +20,15 @@
 </html>
 
 <script src="../-plugins/firebase.js" type="module"></script>
-<script>
-  let navbar_list = JSON.parse(localStorage.getItem("navbar"))
+<script type="module">
+  import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
+  import { database } from "../-plugins/firebase.js"
+  const navbar = ref(database)
+  get(child(navbar, "navbar")).then((snapshot) => {
+    if (snapshot.exists()) {
+
+      let navbar_list = snapshot.val()
+  console.log(navbar_list)
   let navbarList = document.querySelector("#navbarList")
   let navbarLink = document.getElementById("navbarLink")
   const navbar = data => {
@@ -39,6 +46,13 @@
   let title = document.getElementsByTagName("title")[0]
   document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
   title.innerHTML = `habilihsanproject | ${title.innerText}`
+
+    } else {
+      console.log("No data available")
+    }
+  }).catch((error) => {
+    console.error(error)
+  })
 </script>
 
 <style>

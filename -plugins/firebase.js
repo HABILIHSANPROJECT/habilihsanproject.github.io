@@ -20,18 +20,6 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-let app = initializeApp(firebaseConfig)
-let analytics = getAnalytics(app)
-let database = getDatabase(app)
-
-// Navbar
-const navbar = ref(database)
-  get(child(navbar, "navbar")).then((snapshot) => {
-    if (snapshot.exists()) {
-      localStorage.setItem("navbar", JSON.stringify(snapshot.val()))
-    } else {
-      console.log("No data available")
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
+const app = initializeApp(firebaseConfig)
+export const analytics = getAnalytics(app)
+export const database = getDatabase(app)
