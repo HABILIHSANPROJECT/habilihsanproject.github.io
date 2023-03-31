@@ -1,24 +1,38 @@
 <html>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary contain">
-          <a id="logo" class="navbar-brand logo light" href="https://habilihsanproject.github.io/">
-            <img src="/-assets/logo.png" />
-            <img style="width: 50px;" src="/-assets/title.png" />
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="navbarList">
-            </ul>
-            <button onclick="setTheme()" class="theme">
-              <span id="setTheme" class="mdi mdi-weather-night"></span>
-            </button>
-          </div>
-    </nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary contain">
+  <a id="logo" class="navbar-brand logo light" href="https://habilihsanproject.github.io/">
+    <img src="/-assets/logo.png" />
+    <img style="width: 50px;" src="/-assets/title.png" />
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" id="navbarList">
+    </ul>
+    <button onclick="setTheme()" class="theme">
+      <span id="setTheme" class="mdi mdi-weather-night"></span>
+    </button>
+  </div>
+</nav>
+
 </html>
 
 <script src="../-plugins/firebase.js" type="module"></script>
+<script type="module">
+  import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
+  const dbRef = ref(database)
+  get(child(dbRef, `navbar`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val())
+    } else {
+      console.log("No data available")
+    }
+  }).catch((error) => {
+    console.error(error)
+  })
+</script>
 <script>
   fetch("blob:null/13d69e2e-0af3-4be3-90e7-193616188a04")
     .then(response => response.json())
@@ -27,25 +41,25 @@
       let navbarList = document.querySelector("#navbarList")
       let navbarLink = document.getElementById("navbarLink")
       const navbar = data => {
-      const template = document.createElement("template")
-      template.innerHTML =
-      `<li class="nav-item navItem" id="navbarItem">
+        const template = document.createElement("template")
+        template.innerHTML =
+          `<li class="nav-item navItem" id="navbarItem">
       <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
       </li>`
-      .trim()
-      return template.content.firstChild
-  }
-  for (i in navbar_list) {
-    navbarList.append(navbar(0))
-  }
-  let title = document.getElementsByTagName("title")[0]
-  document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
-  title.innerHTML = `habilihsanproject | ${title.innerText}`
-  })
+            .trim()
+        return template.content.firstChild
+      }
+      for (i in navbar_list) {
+        navbarList.append(navbar(0))
+      }
+      let title = document.getElementsByTagName("title")[0]
+      document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
+      title.innerHTML = `habilihsanproject | ${title.innerText}`
+    })
 </script>
 
 <style>
-  .contain{
+  .contain {
     display: flex;
     align-items: center;
     justify-content: space-between;

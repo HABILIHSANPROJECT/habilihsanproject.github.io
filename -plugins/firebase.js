@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js"
-import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,14 +23,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const database = getDatabase(app)
-
-const dbRef = ref(database)
-get(child(dbRef, `navbar`)).then((snapshot) => {
-  if (snapshot.exists()) {
-    console.log(snapshot.val())
-  } else {
-    console.log("No data available")
-  }
-}).catch((error) => {
-  console.error(error)
-})
