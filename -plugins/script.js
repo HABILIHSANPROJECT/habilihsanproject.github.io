@@ -22,12 +22,16 @@ function setTheme() {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
         localStorage.setItem("theme", "undefined")
-        document.getElementById("hibi").classList.replace("light", "dark")
+        if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+            document.getElementById("hibi").classList.replace("light", "dark")
+        }
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         darkTheme()
         localStorage.setItem("theme", "dark")
-        document.getElementById("hibi").classList.replace("dark", "light")
+        if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+            document.getElementById("hibi").classList.replace("dark", "light")
+        }
     }
 }
 addEventListener("load", (event) => {
