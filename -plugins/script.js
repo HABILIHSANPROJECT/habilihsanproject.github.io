@@ -40,11 +40,15 @@ var getTheme = localStorage.getItem("theme")
 if (getTheme == "dark") {
     darkTheme()
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-    document.getElementById("hibi").classList.replace("dark", "light")
+    if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+        document.getElementById("hibi").classList.replace("dark", "light")
+    }
 } else if (getTheme == "undefined") {
     lightTheme()
     document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
-    document.getElementById("hibi").classList.replace("light", "dark")
+    if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+        document.getElementById("hibi").classList.replace("light", "dark")
+    }
 } else {
     localStorage.clear()
 }
