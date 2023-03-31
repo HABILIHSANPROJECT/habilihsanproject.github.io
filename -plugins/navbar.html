@@ -20,42 +20,26 @@
 </html>
 
 <script src="../-plugins/firebase.js" type="module"></script>
-<script type="module">
-  import { ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
-  const dbRef = ref(window.database)
-  get(child(dbRef, `navbar`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val())
-    } else {
-      console.log("No data available")
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
-</script>
 <script>
-  fetch("")
-    .then(response => response.json())
-    .then(data => {
-      let navbar_list = data
-      let navbarList = document.querySelector("#navbarList")
-      let navbarLink = document.getElementById("navbarLink")
-      const navbar = data => {
-        const template = document.createElement("template")
-        template.innerHTML =
-          `<li class="nav-item navItem" id="navbarItem">
+
+  let navbar_list = localStorage.getItem("navbar")
+  let navbarList = document.querySelector("#navbarList")
+  let navbarLink = document.getElementById("navbarLink")
+  const navbar = data => {
+    const template = document.createElement("template")
+    template.innerHTML =
+      `<li class="nav-item navItem" id="navbarItem">
       <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
       </li>`
-            .trim()
-        return template.content.firstChild
-      }
-      for (i in navbar_list) {
-        navbarList.append(navbar(0))
-      }
-      let title = document.getElementsByTagName("title")[0]
-      document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
-      title.innerHTML = `habilihsanproject | ${title.innerText}`
-    })
+        .trim()
+    return template.content.firstChild
+  }
+  for (i in navbar_list) {
+    navbarList.append(navbar(0))
+  }
+  let title = document.getElementsByTagName("title")[0]
+  document.getElementById(`navbarLink${title.innerText}`).classList.add("active")
+  title.innerHTML = `habilihsanproject | ${title.innerText}`
 </script>
 
 <style>

@@ -49,7 +49,7 @@ if (getTheme == "dark") {
         document.getElementById("hibi").classList.replace("light", "dark")
     }
 } else {
-    localStorage.clear()
+    localStorage.removeItem("theme")
 }
 })
 /* NAVBAR
