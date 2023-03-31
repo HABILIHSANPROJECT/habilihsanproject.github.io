@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js"
-import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,14 +24,4 @@ let app = initializeApp(firebaseConfig)
 let analytics = getAnalytics(app)
 let database = getDatabase(app)
 
-// Navbar
-const navbar = ref(database)
-  get(child(navbar, "navbar")).then((snapshot) => {
-    if (snapshot.exists()) {
-      localStorage.setItem("navbar", snapshot.val())
-    } else {
-      console.log("No data available")
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
+localStorage.setItem("database", JSON.stringify(database))
