@@ -21,5 +21,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let app = initializeApp(firebaseConfig)
-let analytics = getAnalytics(app)
-let database = getDatabase(app)
+window.analytics = getAnalytics(app)
+window.database = getDatabase(app)
