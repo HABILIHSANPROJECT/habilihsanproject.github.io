@@ -20,7 +20,6 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
-const database = getDatabase(app)
-localStorage.setItem("data", database)
+let app = initializeApp(firebaseConfig)
+let analytics = getAnalytics(app)
+let database = getDatabase(app)
