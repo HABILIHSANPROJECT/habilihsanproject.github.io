@@ -26,7 +26,7 @@
   const DB = ref(database)
   get(child(DB, "navbar")).then((snapshot) => {
     if (snapshot.exists()) {
-
+      let i
       let navbar_list = snapshot.val()
   console.log(navbar_list)
   let navbarList = document.querySelector("#navbarList")
@@ -41,7 +41,7 @@
         .trim()
     return template.content.firstChild
   }
-  for (let i in navbar_list) {
+  for (i in navbar_list) {
     navbarList.append(navbar(0))
   }
   let title = document.getElementsByTagName("title")[0]
