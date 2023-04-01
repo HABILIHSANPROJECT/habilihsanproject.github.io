@@ -28,12 +28,10 @@
     if (snapshot.exists()) {
       let i
       let navbar_list = snapshot.val()
-  console.log(navbar_list)
   let navbarList = document.querySelector("#navbarList")
   let navbarLink = document.getElementById("navbarLink")
   const navbar = data => {
     const template = document.createElement("template")
-    console.log(navbar_list[0].title, i)
     template.innerHTML =
       `<li class="nav-item navItem" id="navbarItem">
       <a class="nav-link" id="navbarLink${navbar_list[i].title}" aria-current="page" href="${navbar_list[i].to}">${navbar_list[i].title}</a>
