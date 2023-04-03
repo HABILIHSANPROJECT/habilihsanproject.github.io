@@ -1,5 +1,7 @@
 var canvas = document.getElementById("gameArea");
 var c = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 var ship = {
     img: new Image(),
