@@ -399,7 +399,7 @@ function drawMenu() {
 
     c.fillStyle = "#ffffff";
     c.font = "30px Delicious Handrawn";
-    c.fillText("by HIBIKUN", canvas.width - 200, canvas.height - 70);
+    c.fillText("by HIBIKUN", canvas.width - 400, canvas.height - 70);
 
 }
 
