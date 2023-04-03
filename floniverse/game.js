@@ -130,7 +130,7 @@ canvas.addEventListener('mousemove', menuButtonHover, false);
 canvas.addEventListener('mousedown', onButtonClick, false);
 //canvas.addEventListener('mouseup', shipStopFire, false);
 
-canvas.addEventListener('touchmove', shipSetPos, false);
+canvas.addEventListener('touchmove', shipSetPosTouch, false);
 canvas.addEventListener('touchmove', menuButtonHover, false);
 //canvas.addEventListener('touchend', shipStartFire, false);
 canvas.addEventListener('touchstart', onButtonClick, false);
@@ -480,6 +480,26 @@ function shipSetPos(ev) {
 
     }
 }
+
+function shipSetPosTouch(ev) {
+    if (playing) {
+        ev.preventDefault();
+        var mouseY = ev.touches[0].clientY - canvas.offsetTop - (ship.height / 2);
+        var mouseX = ev.touches[0].clientX - canvas.offsetLeft - (ship.width / 2);
+
+        if (mouseX > 0 && mouseX < canvas.width / 3) {
+            ship.x = mouseX;
+            drawShip();
+        }
+
+        if (mouseY >= UIHeight && mouseY < canvas.height - 32) {
+            ship.y = mouseY;
+            drawShip();
+        }
+
+    }
+}
+
 
 
 function shipStartFire() {
