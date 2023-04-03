@@ -151,7 +151,7 @@ function onButtonClick(ev) {
         var mouseX = ev.clientX - rect.left;
         var mouseY = ev.clientY - rect.top;
 
-        if (mouseY >= 285 && mouseY <= 355 && mouseX >= 550 && mouseX <= 760) {
+        if (mouseY >= 285 && mouseY <= 355 && mouseX >= window.innerWidth/2.7 && mouseX <= 760) {
             menu = false;
             playing = true;
 
@@ -173,7 +173,7 @@ function onButtonClick(ev) {
         var mouseX = ev.clientX - rect.left;
         var mouseY = ev.clientY - rect.top;
 
-        if (mouseY >= 285 && mouseY <= 355 && mouseX >= 550 && mouseX <= 760) {
+        if (mouseY >= 285 && mouseY <= 355 && mouseX >= window.innerWidth/2.7 && mouseX <= 760) {
             playAgain();
         }
 
@@ -187,7 +187,7 @@ function menuButtonHover(ev) {
         var mouseX = ev.clientX - rect.left;
         var mouseY = ev.clientY - rect.top;
 
-        if (mouseY >= 285 && mouseY <= 355 && mouseX >= 550 && mouseX <= 760) {
+        if (mouseY >= 285 && mouseY <= 355 && mouseX >= window.innerWidth/2.7 && mouseX <= 760) {
             hover = true;
         } else {
             hover = false;
@@ -199,7 +199,7 @@ function menuButtonHover(ev) {
         var mouseX = ev.clientX - rect.left;
         var mouseY = ev.clientY - rect.top;
 
-        if (mouseY >= 285 && mouseY <= 355 && mouseX >= 550 && mouseX <= 760) {
+        if (mouseY >= 285 && mouseY <= 355 && mouseX >= window.innerWidth/2.7 && mouseX <= 760) {
             hover = true;
         } else {
             hover = false;
@@ -251,25 +251,25 @@ function playGame() {
             playing = false;
             c.fillStyle = "green";
             c.font = "100px Delicious Handrawn";
-            c.fillText("You Won!", 480, 250);
+            c.fillText("You Won!", window.innerWidth/3, 250);
             c.lineWidth = 3;
             c.strokeStyle = "white";
-            c.strokeText("You Won!", 480, 250);
+            c.strokeText("You Won!", window.innerWidth/3, 250);
             c.font = "50px Delicious Handrawn";
-            c.fillText(`Your Score: ${score.toString()}`, 550, 450);
+            c.fillText(`Your Score: ${score.toString()}`, window.innerWidth/3, 450);
             c.lineWidth = 1;
             c.strokeStyle = "white";
-            c.strokeText(`Your Score: ${score.toString()}`, 550, 450);
+            c.strokeText(`Your Score: ${score.toString()}`, window.innerWidth/3, 450);
             if (!hover) {
-                c.drawImage(splat, 550, 285, 210, 70);
+                c.drawImage(splat, window.innerWidth/2.7, 285, 210, 70);
                 c.fillStyle = "#fff";
                 c.font = "30px Delicious Handrawn";
-                c.fillText("Play Again", 600, 330);
+                c.fillText("Play Again", window.innerWidth/2.5, 330);
             } else {
-                c.drawImage(splatWhite, 550, 285, 210, 70);
+                c.drawImage(splatWhite, window.innerWidth/2.7, 285, 210, 70);
                 c.fillStyle = "purple";
                 c.font = "30px Delicious Handrawn";
-                c.fillText("Play Again", 600, 330);
+                c.fillText("Play Again", window.innerWidth/2.5, 330);
             }
         }
 
@@ -277,26 +277,26 @@ function playGame() {
             playing = false;
             c.fillStyle = "red";
             c.font = "100px Delicious Handrawn";
-            c.fillText("Game Over!", 470, 250);
+            c.fillText("Game Over!", window.innerWidth/3, 250);
             c.lineWidth = 3;
             c.strokeStyle = "white";
-            c.strokeText("Game Over!", 470, 250);
+            c.strokeText("Game Over!", window.innerWidth/3, 250);
             c.font = "50px Delicious Handrawn";
-            c.fillText(`Your Score: ${score.toString()}`, 550, 450);
+            c.fillText(`Your Score: ${score.toString()}`, window.innerWidth/3, 450);
             c.lineWidth = 1;
             c.strokeStyle = "white";
-            c.strokeText(`Your Score: ${score.toString()}`, 550, 450);
+            c.strokeText(`Your Score: ${score.toString()}`, window.innerWidth/3, 450);
 
             if (!hover) {
-                c.drawImage(splat, 550, 285, 210, 70);
+                c.drawImage(splat, window.innerWidth/2.7, 285, 210, 70);
                 c.fillStyle = "#fff";
                 c.font = "30px Delicious Handrawn";
-                c.fillText("Play Again", 600, 330);
+                c.fillText("Play Again", window.innerWidth/2.5, 330);
             } else {
-                c.drawImage(splatWhite, 550, 285, 210, 70);
+                c.drawImage(splatWhite, window.innerWidth/2.7, 285, 210, 70);
                 c.fillStyle = "purple";
                 c.font = "30px Delicious Handrawn";
-                c.fillText("Play Again", 600, 330);
+                c.fillText("Play Again", window.innerWidth/2.5, 330);
             }
         }
     }
@@ -370,24 +370,23 @@ function drawMenu() {
 
     c.fillStyle = "#fff";
     c.font = "100px Delicious Handrawn";
-    c.fillText("Floniverse Adventure", 330, 250);
+    c.fillText("Floniverse Adventure", window.innerWidth/5, 250);
     c.lineWidth = 3;
     c.strokeStyle = "purple";
-    c.strokeText("Floniverse Adventure", 330, 250);
+    c.strokeText("Floniverse Adventure", window.innerWidth/5, 250);
 
 
     if (!hover) {
-        c.drawImage(splat, 550, 285, 210, 70);
+        c.drawImage(splat, window.innerWidth/2.7, 285, 210, 70);
         c.fillStyle = "#fff";
         c.font = "30px Delicious Handrawn";
-        c.fillText("Play Game", 600, 330);
+        c.fillText("Play Game", window.innerWidth/2.5, 330);
     } else {
-        c.drawImage(splatWhite, 550, 285, 210, 70);
+        c.drawImage(splatWhite, window.innerWidth/2.7, 285, 210, 70);
         c.fillStyle = "purple";
         c.font = "30px Delicious Handrawn";
-        c.fillText("Play Game", 600, 330);
+        c.fillText("Play Game", window.innerWidth/2.5, 330);
     }
-
     if (sound) {
         c.drawImage(soundImg.on, 55, canvas.height - 95, 40, 40);
     } else {
