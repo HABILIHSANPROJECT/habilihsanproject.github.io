@@ -84,7 +84,7 @@ splat.src = "/floniverse/assets/splat.png"
 splatWhite.src = "/floniverse/assets/splat_white.png"
 background.src = "/floniverse/assets/background.png"
 backgroundMenu.src = "/floniverse/assets/background_menu.png"
-flora.src = "/flonivers/assets/flora.png"
+flora.src = "/floniverse/assets/flora.png"
 
 var UIHeight = 50;
 
@@ -856,3 +856,9 @@ function checkBoss() {
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+  });
