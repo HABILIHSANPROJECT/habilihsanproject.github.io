@@ -440,7 +440,7 @@ function drawUI() {
 
     c.fillStyle = "#000000";
     c.font = "40px Delicious Handrawn";
-    c.fillText(`Score: ${score.toString()}`, canvas.width - 70, 37);
+    c.fillText(`Score: ${score.toString()}`, canvas.width - 200, 37);
 
     if (killCounter >= 51) {
         var bossHP = 0;
@@ -452,7 +452,7 @@ function drawUI() {
 
         c.fillStyle = "#be646c";
         c.font = "40px Delicious Handrawn";
-        c.fillText("Boss HP: " + bossHP, canvas.width - 100, 37);
+        c.fillText("Boss HP: " + bossHP, canvas.width - 400, 37);
     }
 
 }
