@@ -1,7 +1,5 @@
 var canvas = document.getElementById("gameArea");
 var c = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
 var ship = {
     img: new Image(),
@@ -128,6 +126,12 @@ canvas.addEventListener('mousemove', shipSetPos, false);
 canvas.addEventListener('mousemove', menuButtonHover, false);
 //canvas.addEventListener('mousedown', shipStartFire, false);
 canvas.addEventListener('mousedown', onButtonClick, false);
+//canvas.addEventListener('mouseup', shipStopFire, false);
+
+canvas.addEventListener('touchmove', shipSetPos, false);
+canvas.addEventListener('touchmove', menuButtonHover, false);
+//canvas.addEventListener('mousedown', shipStartFire, false);
+canvas.addEventListener('touchstart', onButtonClick, false);
 //canvas.addEventListener('mouseup', shipStopFire, false);
 
 var requestAnimationFrame = window.requestAnimationFrame ||
