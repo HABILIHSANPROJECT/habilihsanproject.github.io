@@ -49,6 +49,7 @@ var splat = new Image()
 var splatWhite = new Image()
 var background = new Image()
 var backgroundMenu = new Image()
+var flora = new Image()
 
 var bullet = { height: 5, width: 15 };
 
@@ -83,6 +84,7 @@ splat.src = "/floniverse/assets/splat.png"
 splatWhite.src = "/floniverse/assets/splat_white.png"
 background.src = "/floniverse/assets/background.png"
 backgroundMenu.src = "/floniverse/assets/background_menu.png"
+flora.src = "/flonivers/assets/flora.png"
 
 var UIHeight = 50;
 
@@ -374,6 +376,8 @@ function drawMenu() {
     c.lineWidth = 3;
     c.strokeStyle = "purple";
     c.strokeText("Floniverse Adventure", window.innerWidth/5, 250);
+
+    c.drawImage(flora, canvas.width - 400, canvas.height - 500, 500, 500)
 
 
     if (!hover) {
@@ -856,4 +860,5 @@ function randomInt(min, max) {
 window.addEventListener('resize', function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    c.fillRect(0, 0, canvas.width, canvas.height);
   });
