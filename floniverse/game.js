@@ -377,7 +377,7 @@ function drawMenu() {
     c.strokeStyle = "purple";
     c.strokeText("Floniverse Adventure", window.innerWidth/5, 250);
 
-    c.drawImage(flora, canvas.width - 400, canvas.height - 400, 500, 500)
+    c.drawImage(flora, canvas.width - 400, canvas.height - 300, 500, 500)
 
 
     if (!hover) {
