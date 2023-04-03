@@ -860,5 +860,4 @@ function randomInt(min, max) {
 window.addEventListener('resize', function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    c.fillRect(0, 0, canvas.width, canvas.height);
   });
