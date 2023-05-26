@@ -1,0 +1,1 @@
+﻿positionForPages[18]={page:18,positions:[{word:"Untuk SMA/MA Kelas XI",left:0.676285,top:0.914823,width:0.226245,height:0.017845},{word:"e-LKPD Termodinamika Kelas XI SMA/MA",left:0.085964,top:0.040964,width:0.395444,height:0.017844},{word:"LATIHAN EVALUASI",left:0.279816,top:0.095509,width:0.437209,height:0.041578}]};
