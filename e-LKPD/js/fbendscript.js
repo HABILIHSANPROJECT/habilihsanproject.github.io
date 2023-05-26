@@ -1,4 +1,4 @@
 ﻿function actionHtmlWindow(str) {
-	new ActionHtmlWindow(str);
+ var a =	new ActionHtmlWindow(str); return a;
 }
 

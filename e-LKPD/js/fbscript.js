@@ -140,19 +140,7 @@ var hasBasicHtmlVersion=true;
 var callback = function (e){ 
     //Only execute if SWFObject embed was successful
   if(!e.success || !e.ref){ //	alert("No Flash Supported");
-    if(hasMobileVersion){
-    	var pageIndex=getURLParam('pageIndex');
-		  if(!pageIndex){
-		      window.location = "mobile/index.html"+(window.location.hash?window.location.hash:'');
-		   }else{
-		   		window.location = "mobile/index.html#p="+pageIndex;
-		  	}
-	 		
-		}else if(hasBasicHtmlVersion){
-			 window.location ='files/basic-html/index.html';
-		}else{
-			document.write("Sorry,need flash player. <a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player<\/a> it's possible to <a id='linkSEO' href='files/basic-html/index.html'>view a simplified version of the book on any device</a>, or you can view the mobile version <a href='mobile/index.html'> here </a>" ); 
-		} 
+		document.write("<div style='font-family:arial;font-size:14px;padding:50px;background-color:#e5e5e5;color:#666666;position:absolute;width:500px; left:50%; top:50%; transform:translate(-50%,-50%);'><h2 style='color:#333333;margin-top:0;font-size:1.8em'>Sorry , need flash player. </h2><a style='color:#1155cc;' href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player<\/a> it's possible to <a id='linkSEO' style='color:#1155cc;line-height:1.6em;' href='files/basic-html/index.html'>view a simplified version of the book on any device</a>, or you can view the mobile version <a href='mobile/index.html' style='color:#1155cc'> here </a></div>" ); 
     return false; 
   }  
 };
@@ -173,7 +161,7 @@ function detectAndGoVersion(loadType){
       pageIndex=-1;
    }
 	if(BR.isMobile){
-		if(hasMobileVersion){
+		if(hasMobileVersion && !isBelowIE8()){
 			
 	 		if(pageIndex!=-1){
 	 			window.location = "mobile/index.html#p="+pageIndex;
@@ -194,6 +182,10 @@ function detectAndGoVersion(loadType){
 	}else{
 		loadType = (window.location.href.match(/^file:/) && swfobject.getFlashPlayerVersion()["major"] >= 24 && hasMobileVersion) ? 2 : loadType;
 		if(loadType==2){
+				if(hasBasicHtmlVersion && isBelowIE8()){
+				 window.location ='files/basic-html/index.html';
+				 return;
+			}
 			if(hasMobileVersion){
 		 		if(pageIndex!=-1){
 		 			window.location = "mobile/index.html#p="+pageIndex;
@@ -213,3 +205,44 @@ function detectAndGoVersion(loadType){
 	}	 
 }
 detectAndGoVersion(2);
+function isBelowIE8(){
+	var $ = window;
+	var sUserAgent = navigator.userAgent.toLowerCase();
+	$.browser = new Object();
+	$.browser.msie = /msie/.test(sUserAgent) || /trident/.test(sUserAgent) || /edge/.test(sUserAgent);
+	$.browser.edge = /edge/.test(sUserAgent);
+	$.browser.version = 0;
+	if($.browser.msie){
+
+		var aIEWithVersion = sUserAgent.match(/msie\s?\d+\.0/);
+		if(aIEWithVersion == null){
+			
+			aIEWithVersion = sUserAgent.match(/trident\/\d+\.0/);
+			if(aIEWithVersion != null && aIEWithVersion.length > 0){
+			
+				var sTridentWithVersion = aIEWithVersion[0];
+				var iVersion = parseInt(sTridentWithVersion.replace("trident/",""));
+				
+				$.browser.version = iVersion + 4;
+			}  else{
+				// edge/12.000
+				aIEWithVersion = sUserAgent.match(/edge\/\d+\.0/);
+				if(aIEWithVersion != null && aIEWithVersion.length > 0){
+				
+					var sTridentWithVersion = aIEWithVersion[0];
+					var iVersion = parseInt(sTridentWithVersion.replace("edge/",""));
+					
+					$.browser.version = iVersion;
+				}
+			}
+		}else{
+			
+			var sIEWithVersion = aIEWithVersion[0];
+			var iVersion = parseInt(sIEWithVersion.replace("msie",""));
+			$.browser.version = iVersion;
+		}
+	}
+	
+	if(!$.browser.edge && $.browser.msie && $.browser.version < 8) return true;
+	return false;
+}
