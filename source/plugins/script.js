@@ -1,5 +1,5 @@
 // NAVBAR
-$.get("/-plugins/navbar.html", function(data){
+$.get("https://habilihsanproject.github.io/source/plugins/navbar.html", function(data){
     $("#navbar").replaceWith(data);
 })
 // THEME
