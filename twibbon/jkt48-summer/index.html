@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+
+<head>
+    <title>JKT48 TWIBBON GENERATOR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link href="source/plugins/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js" integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <section class="container-fluid section">
+        <h1>JKT48 SUMMER TWIBBON</h1>
+        <input type="file">
+        <div class="view">
+            <canvas id="canvas"></canvas>
+            <div class="row">
+                <button id="change">GANTI</button>
+                <button id="download">UNDUH</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+<footer>
+    <p>©2023</p>
+    <img id="footer" class="white" src="source/assets/powered.png">
+</footer>
+
+</html>
+
+<script src="/plugins/script.js"></script>
+<script>
+    $.get("/plugins/navbar.html", function (data) {
+        $("#navbar").replaceWith(data)
+    })
+    jQuery(function ($) {
+        var titles = $("#titles"), title = $("#title")
+        titles.keyup(function (e) {
+            title.html(titles.val())
+        })
+    })
+    jQuery(function ($) {
+        var editor = $("#editor"), preview = $("#preview")
+        editor.keyup(function (e) {
+            preview.html(editor.val())
+        })
+    })
+    var belakang = "https://pbs.twimg.com/media/FzJqdFxWcAA1hCJ?format=jpg&name=large"
+    var frame = "https://pbs.twimg.com/media/FzJqdFxWcAA1hCJ?format=jpg&name=large"
+    var lebar = null; var tinggi = null; var disable = null
+    var canvas = document.getElementById('canvas')
+    canvas.style.background = `url(${frame})`
+    canvas.style.backgroundSize = "cover"
+    if (window.innerWidth > 960) {
+        lebar = window.innerWidth * 0.5
+        tinggi = window.innerWidth * 0.5
+        canvas.width = lebar
+        canvas.height = tinggi
+    } else {
+        lebar = window.innerWidth * 0.9
+        tinggi = window.innerWidth * 0.9
+        canvas.width = lebar
+        canvas.height = tinggi
+    }
+    function download() {
+        var canvas = document.getElementById("canvas")
+        var dataURL = canvas.toDataURL("image/png")
+        var link = document.createElement("a")
+        link.download = "jkt48summerhope.png"
+        link.href = dataURL
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+    function change() {
+        window.location.reload()
+    }
+    function files(event) {
+        if (event == undefined) {
+            window.location.reload()
+        }
+        disable = true
+        var ctx = document.getElementById('canvas')
+        ctx.style.background = "transparent"
+        document.getElementById('change').style.display = "block"
+        document.getElementById('download').style.display = "block"
+        var canvas = new fabric.Canvas('canvas', {
+            width: lebar,
+            height: tinggi,
+        })
+        var background = belakang
+        fabric.Image.fromURL(background, function (back) {
+            back.set({
+                selectable: false,
+                evented: false,
+                hasControls: false,
+                hasBorders: false
+            })
+            // Set objek gambar sebagai latar belakang canvas
+            canvas.setBackgroundImage(back, canvas.renderAll.bind(canvas), {
+                // Atur ukuran gambar agar sesuai dengan ukuran canvas
+                scaleX: canvas.width / back.width,
+                scaleY: canvas.height / back.height,
+            })
+        })
+        var ava = new Image()
+        ava.src = URL.createObjectURL(event)
+        ava.onload = function () {
+            URL.revokeObjectURL(ava.src)
+            var AVA = new fabric.Image(ava)
+            AVA.set({
+                left: 0,
+                top: 0,
+                scaleX: 0.5,
+                scaleY: 0.5,
+                // dan atribut lainnya
+            })
+            canvas.add(AVA)
+            download()
+        }
+    }
+</script>
+
+<style>
+    .section {
+        padding: 50px;
+        text-align: center;
+    }
+</style>
