@@ -12,7 +12,7 @@ axios.get("https://idol48.top/event", header).then(function(response) {
     schedule = response.data.events
     console.log(schedule)
 })
-
+console.log(schedule[0])
 document.addEventListener("DOMContentLoaded", function () {
     const player = videojs("video-player", {
         controls: true,
