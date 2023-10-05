@@ -1,57 +1,35 @@
-const parseSchedule = html => {
-  const schedulesPage = parse(html)
-  const results = []
+axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response) {
+  const scrape = response.data
 
-  const shows = schedulesPage.querySelectorAll('table')[0]
-  for (let i = 1; i < shows.querySelectorAll('tr').length - 1; i += 3) {
-
-    const schedule = shows.querySelectorAll('tr')[i].querySelectorAll('td')[0].structuredText.split('\n')
-    const date = schedule[1]
-    const showTime = schedule[2].replace('Show', '').trim()
-    const teamLogo = shows.querySelectorAll('tr')[i].querySelectorAll('td')[1].querySelector('img').attributes['src']
-    //const unixTime = moment(`${date} ${showTime}`, 'DD.MM.YYYY HH:mm').unix()
-
-    let showName = '';
-    if (teamLogo === '/images/icon.team1.png') {
-      showName = 'fajar sang idola'
-    } else if (teamLogo === '/images/icon.team2.png') {
-      showName = 'saka agari'
-    } else if (teamLogo === '/images/icon.team11.png') {
-      showName = 'pajama drive'
-    } else if (teamLogo === '/images/icon.team5.png') {
-      showName = 'tunas di balik seragam'
-    }
-
-    results.push({
-      date,
-      showTime,
-      showName,
-      unixTime
+  const result = []
+  const parser = new DOMParser()
+  const html = parser.parseFromString(scrape, "text/html")
+  const shows = html.querySelectorAll("table")[0]
+  for (let i = 1; i < shows.querySelectorAll("tr").length - 1; i += 3) {
+    const schedules = shows.querySelectorAll("tr")[i].querySelectorAll("td")[0].querySelectorAll("font")[0]
+    const scheduleNode = schedules.parentNode
+    scheduleNode.removeChild(schedules)
+    const dateNode = scheduleNode.innerText.split(",")
+    const date = dateNode[0] + " / " + dateNode[1]
+    const time = schedules.innerText.slice(0, 10)
+    const setlist = shows.querySelectorAll("tr")[i].querySelectorAll("td")[1].innerText
+    result.push({
+      date, time, setlist
     })
   }
-
-  const membersTable = schedulesPage.querySelectorAll('table')[1];
-  for (let i = 1; i < membersTable.querySelectorAll('tr').length; i++) {
-    index = i - 1;
-    const members = membersTable.querySelectorAll('tr')[i].querySelectorAll('td')[2].structuredText.trim().split(',')
-    results[index].members = members.map(member => {
-      if (member !== '') {
-        return member.trim()
-      }
-    })
-    results[index].members.splice(-1, 1)
+  let show = document.querySelector("#show")
+  const schedule = data => {
+    const template = document.createElement("template")
+    template.innerHTML =
+      `<tr>
+            <td>${result[i].date}</td>
+            <td>${result[i].time}</td>
+            <td>${result[i].setlist}</td>
+          </tr>`
+        .trim()
+    return template.content.firstChild
   }
-  return results
-}
-
-
-
-exports.showScraper = async (req, res) => {
-  try {
-    const schedulesPage = await axios.get('https://jkt48.com/theater/schedule?lang=id')
-    const result = parseSchedule(schedulesPage.data)
-    res.send(result)
-  } catch (e) {
-    console.error(e)
+  for (i in result) {
+    show.append(schedule())
   }
-}
+})

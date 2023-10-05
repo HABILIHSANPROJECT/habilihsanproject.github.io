@@ -11,8 +11,6 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="./index.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 
     <script src="https://unpkg.com/video.js@8.5.2/dist/video.min.js"></script>
@@ -23,10 +21,7 @@
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         crossorigin="anonymous"></script>
     <script src="./index.js"></script>
-    <script type="module" >
-        import showScraper from "./schedule.js"
-        showScraper()
-    </script>
+    <script src="./schedule.js"></script>
 
     <title>JKT48 THEATER STREAMING</title>
     <div class="title">
@@ -42,20 +37,19 @@
                 that supports HTML5 video</p>
         </video>
     </div>
-    <div>
-        <p class="schedule">JADWAL JKT48 THEATER MINGGU INI:</p>
+    <div class="schedule">
+        <p class="title-schedule">JADWAL JKT48 THEATER MINGGU INI:</p>
         <table class="table">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Publication Date</th>
-                    <th>Publisher</th>
-                    <th class="center">Action</th>
-                </tr>
+              <tr>
+                <th>Tanggal</th>
+                <th>Setlist</th>
+                <th>Pukul</th>
+              </tr>
             </thead>
             <tbody id="show">
             </tbody>
-        </table>
+          </table>
     </div>
 </body>
 
