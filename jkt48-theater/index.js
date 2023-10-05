@@ -1,9 +1,13 @@
 
 const schedule = []
 const header = {
-    headers : {
-        apikey: "NGIDOLKAKAK"
-    } }
+    headers: {
+        "Access-Control-Allow-Origin": "https://habilihsanproject.github.io/jkt48-theater/",
+        "Access-Control-Allow-Headers": "apikey",
+        "apikey": "NGIDOLKAKAK"
+    }
+}
+console.log(header)
 axios.get("https://idol48.top/event", header).then(function(response) {
     schedule = response.data.events
     console.log(schedule)
