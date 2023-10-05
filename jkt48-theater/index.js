@@ -2,9 +2,9 @@
 const schedule = []
 const header = {
     headers: {
-        "Access-Control-Allow-Origin": "https://habilihsanproject.github.io/",
-        "Access-Control-Allow-Headers": "apikey",
-        "apikey": "NGIDOLKAKAK"
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "APIKEY",
+        "APIKEY": "NGIDOLKAKAK"
     }
 }
 console.log(header)
