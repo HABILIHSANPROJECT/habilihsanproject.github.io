@@ -2,7 +2,7 @@
 const schedule = []
 const header = {
     headers: {
-        "Access-Control-Allow-Origin": "https://habilihsanproject.github.io/jkt48-theater/",
+        "Access-Control-Allow-Origin": "https://habilihsanproject.github.io/",
         "Access-Control-Allow-Headers": "apikey",
         "apikey": "NGIDOLKAKAK"
     }
