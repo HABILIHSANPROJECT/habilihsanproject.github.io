@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://unpkg.com/video.js@8.5.2/dist/video-js.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="./index.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="https://unpkg.com/video.js@8.5.2/dist/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 
     <title>JKT48 THEATER STREAMING</title>
+    <div class="title">
+        <img style="width: 50%;" src="https://jkt48.com/images/theater.header.jpg">
+        <p class="token">ID: 0000</p>
+    </div>
 </head>
 
 <body>
@@ -20,6 +34,21 @@
             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
                 that supports HTML5 video</p>
         </video>
+    </div>
+    <div>
+        <p class="schedule">JADWAL JKT48 THEATER MINGGU INI:</p>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Publication Date</th>
+                <th>Publisher</th>
+                <th class="center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="show">
+            </tbody>
+          </table>
     </div>
 </body>
 

@@ -1,17 +1,24 @@
 html, body {
-    height: -webkit-fill-available !important;
+    background-image: url("https://pbs.twimg.com/media/E09CSe7UUAEYmpA.jpg:large");
+    background-position: center !important;
     width: -webkit-fill-available !important;
     display: grid !important;
     align-items: center !important;
     justify-items: center !important;
     margin: 0px !important;
-    background-color: black;
+    background-color: black !important;
 }
 
-.player-container, .video-js {
-    width: -webkit-fill-available !important;
-    height: -webkit-fill-available !important;
+.video-js {
+    width: 100% !important;
     text-align: center !important;
+}
+
+.player-container {
+    width: 75% !important;
+    text-align: center !important;
+    border: 1px solid white !important;
+    margin: 20px !important;
 }
 
 .vjs-big-play-button {
@@ -20,4 +27,25 @@ html, body {
     right: 45% !important;
     width: -webkit-fill-available !important;
 }
-  
+
+.title {
+    width: -webkit-fill-available;
+    background-color: #ed2027;
+    display: flex;
+}
+
+.token {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    color: white;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 0 !important;
+}
+
+.schedule {
+    font-size: large;
+    font-weight: bolder;
+    color: white;
+}
