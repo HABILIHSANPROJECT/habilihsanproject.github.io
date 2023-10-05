@@ -1,20 +1,3 @@
-
-const schedule = []
-const url = "https://idol48.top/event"
-const header = {
-    headers: {
-        "Access-Control-Allow-Origin": "https://idol48.top/",
-        "Access-Control-Allow-Headers": "APIKEY",
-        "APIKEY": "NGIDOLKAKAK",
-        "Referrer-Policy" : "'no-referrer"
-    }
-}
-console.log(header)
-axios.get(url, header).then(function(response) {
-    schedule = response.data.events
-    console.log(schedule)
-})
-console.log(schedule[0])
 document.addEventListener("DOMContentLoaded", function () {
     const player = videojs("video-player", {
         controls: true,
