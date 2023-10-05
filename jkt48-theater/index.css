@@ -1,0 +1,23 @@
+html, body {
+    height: -webkit-fill-available !important;
+    width: -webkit-fill-available !important;
+    display: grid !important;
+    align-items: center !important;
+    justify-items: center !important;
+    margin: 0px !important;
+    background-color: black;
+}
+
+.player-container, .video-js {
+    width: -webkit-fill-available !important;
+    height: -webkit-fill-available !important;
+    text-align: center !important;
+}
+
+.vjs-big-play-button {
+    top: 50% !important;
+    left: 0 !important;
+    margin-left: 45% !important;
+    margin-right: 45% !important;
+    width: -webkit-fill-available !important;
+}
