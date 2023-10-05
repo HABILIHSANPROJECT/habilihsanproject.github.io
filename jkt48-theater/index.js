@@ -1,6 +1,6 @@
 
 const schedule = []
-const url = "https://idol48.top/"
+const url = "https://idol48.top/event"
 const header = {
     headers: {
         "Access-Control-Allow-Origin": "https://idol48.top/",
