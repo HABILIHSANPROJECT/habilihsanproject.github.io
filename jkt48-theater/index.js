@@ -2,7 +2,7 @@
 const schedule = []
 const header = {
     headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://idol48.top/",
         "Access-Control-Allow-Headers": "APIKEY",
         "APIKEY": "NGIDOLKAKAK"
     }
