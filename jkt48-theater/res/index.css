@@ -1,6 +1,8 @@
 body {
-    background-image: url(https://pbs.twimg.com/media/E09CSe7UUAEYmpA.jpg:large);
+    background-image: url(../res/bg.jpg);
     background-position: center !important;
+    background-repeat: repeat !important;
+    background-size: cover !important;
     width: -webkit-fill-available !important;
     height: 100vh !important;
 }
@@ -14,7 +16,9 @@ body {
     width: 75% !important;
     text-align: center !important;
     border: 1px solid white !important;
-    margin: 20px !important;
+    max-width: 1000px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .vjs-big-play-button {
