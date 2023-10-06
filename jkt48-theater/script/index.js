@@ -1,4 +1,4 @@
-axios.get("https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/").then(function (response) {
+axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
     const firebaseConfig = response.data.data.config
     console.log(firebaseConfig)
     firebase.initializeApp(firebaseConfig)
