@@ -1,12 +1,8 @@
-html, body {
-    background-image: url("https://pbs.twimg.com/media/E09CSe7UUAEYmpA.jpg:large");
+body {
+    background-image: url(https://pbs.twimg.com/media/E09CSe7UUAEYmpA.jpg:large);
     background-position: center !important;
     width: -webkit-fill-available !important;
-    display: grid !important;
-    align-items: center !important;
-    justify-items: center !important;
-    margin: 0px !important;
-    background-color: black !important;
+    height: 100vh !important;
 }
 
 .video-js {
@@ -32,7 +28,6 @@ html, body {
     width: -webkit-fill-available;
     background-color: #ed2027;
     display: flex;
-    padding: 10px;
 }
 
 .token {
@@ -45,10 +40,15 @@ html, body {
     margin-bottom: 0 !important;
 }
 
-.schedule {
+.contain {
     background-color: white;
     width: -webkit-fill-available;
     padding: 20px;
+    height: 100%;
+    max-width: 1000px !important;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .title-schedule {
@@ -76,21 +76,25 @@ html, body {
 }
 
 .logo img {
-    width: 50%;
+    max-width: 300px !important;
+    width: 100%;
+    padding: 10px;
 }
 
 .authBtn {
-    margin-left: auto;
+    margin: 20px;
     align-items: center;
     display: flex;
 }
 
 .auth {
-    padding: 30px;
-    margin: 30px;
+    padding: 20px;
+    margin-top: 30px;
     background-color: white;
-    width: 50%;
-    height: -webkit-fill-available;
+    max-width: 1000px !important;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .authBtn {
@@ -113,8 +117,14 @@ html, body {
     margin-bottom: 0 !important;
 }
 
-.payment {
+.form {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.title-form {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 0;
 }
