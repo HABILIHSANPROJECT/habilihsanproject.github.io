@@ -32,6 +32,7 @@ html, body {
     width: -webkit-fill-available;
     background-color: #ed2027;
     display: flex;
+    padding: 10px;
 }
 
 .token {
@@ -63,4 +64,44 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+.logo {
+    width: 30%;
+    height: 50%;
+    margin-left: 0px !important;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.authBtn {
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+}
+
+.auth {
+    padding: 30px;
+    margin: 30px;
+    background-color: white;
+    width: 50%;
+    height: -webkit-fill-available;
+}
+
+.authBtn {
+    margin-left: 10px;
+}
+
+.welcome {
+    font-size: medium;
+    text-align: center;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
 }

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link href="./res/index.css" rel="stylesheet">
+    <link href="../res/index.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 
@@ -25,51 +25,24 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
-    <script src="https://habilihsanproject.github.io/source/plugins/firebase.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-    <script src="./script/index.js"></script>
-    <script src="./script/schedule.js"></script>
+    <script src="../script/firebase.js"></script>
+    <script src="../script/player.js"></script>
 
     <title>JKT48 THEATER STREAMING</title>
     <div class="title">
         <img class="logo" src="https://jkt48.com/images/theater.header.jpg">
-        <a href="./page/signup.html" class="btn btn-success authBtn" role="button" id="login-btn">Sign Up</a>
-        <a href="./page/login.html" class="btn btn-primary authBtn" role="button" id="signup-btn">Log In</a>
-        <button class="btn btn-danger authBtn" id="logout-btn" style="display: none;">Logout</button>
+        <button class="btn btn-danger authBtn" id="logout-btn">Logout</button>
     </div>
 </head>
 
 <body>
-    <div class="schedule">
-        <p class="welcome">
-            Selamat datang di JKT48 THEATER STREAMING, <br>
-            disini kamu bisa menonton tayangan streaming setlist JKT48. <br>
-            Hanya dengan sekali login dan melakukan pembelian tiket dibawah ini.
-        </p><br>
-        <p class="title-schedule">JADWAL JKT48 THEATER MINGGU INI:</p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Setlist</th>
-                    <th>Pukul</th>
-                    <th>Tiket</th>
-                </tr>
-            </thead>
-            <tbody id="show">
-            </tbody>
-        </table><br>
-        <p class="title-schedule">MEMBER YANG PERFORM MINGGU INI:</p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Setlist</th>
-                    <th>Member</th>
-                </tr>
-            </thead>
-            <tbody id="member">
-            </tbody>
-        </table>
+    <div class="player-container" id="player">
+        <video id="video-player" class="video-js vjs-default-skin" controls>
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
+                that supports HTML5 video</p>
+        </video>
     </div>
 </body>
 
