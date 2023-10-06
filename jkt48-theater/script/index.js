@@ -1,5 +1,6 @@
 axios.get("https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/").then(function (response) {
     const firebaseConfig = response.data.data.config
+    console.log(firebaseConfig)
     firebase.initializeApp(firebaseConfig)
     firebase.analytics()
 
