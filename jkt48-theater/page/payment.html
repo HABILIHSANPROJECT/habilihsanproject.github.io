@@ -14,17 +14,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 
-    <script src="https://unpkg.com/video.js@8.5.2/dist/video.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-    <script src="../script/player.js"></script>
+    <script src="../script/payment.js"></script>
 
     <title>JKT48 THEATER STREAMING</title>
     <div class="title">
@@ -34,11 +28,19 @@
 </head>
 
 <body>
-    <div class="player-container" id="player">
-        <video id="video-player" class="video-js vjs-default-skin" controls>
-            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
-                that supports HTML5 video</p>
-        </video>
+    <div class="schedule">
+        <p class="title-schedule" style="font-size: large;">Show yang bisa dibeli saat ini:</p>
+        <p id="setlist" class="perform"></p>
+        <p id="date" class="perform"></p>
+        <p id="time" class="perform"></p>
+        <br>
+        <form id="login-form" class="payment">
+            Email:
+            <input class="form-control" type="email" id="email" placeholder="Email" disabled><br>
+            Harga:
+            <input class="form-control" type="email" id="email" placeholder="Rp 10.000" disabled><br>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Beli</button>
+        </form>
     </div>
 </body>
 

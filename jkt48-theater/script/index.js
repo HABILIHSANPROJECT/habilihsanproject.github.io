@@ -1,6 +1,5 @@
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
-    const firebaseConfig = response.data.data.config
-    console.log(firebaseConfig)
+    const firebaseConfig = response.data
     firebase.initializeApp(firebaseConfig)
     firebase.analytics()
 
@@ -11,15 +10,13 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
             const logoutBtn = document.getElementById("logout-btn")
             const signupBtn = document.getElementById("signup-btn")
             const loginBtn = document.getElementById("login-btn")
+            const link = document.getElementById("link")
 
             signupBtn.style.display = "none"
             loginBtn.style.display = "none"
             logoutBtn.style.display = "block"
+            link.style.display = "block"
 
-            const link = document.querySelectorAll("a#link")
-            for (let i = 0; i < link.length; i++) {
-                link[i].classList.remove("disabled")
-            }
             // Function untuk menampilkan pesan error
             function showError(message) {
                 alert(message)
@@ -37,11 +34,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         signupBtn.style.display = "block"
                         loginBtn.style.display = "block"
                         logoutBtn.style.display = "none"
-
-                        const link = document.querySelectorAll("a#link")
-                        for (let i = 0; i < link.length; i++) {
-                            link[i].classList.add("disabled")
-                        }
+                        link.style.display = "none"
                     })
                     .catch((error) => {
                         showError(error.message)

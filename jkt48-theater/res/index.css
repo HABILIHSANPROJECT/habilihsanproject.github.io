@@ -54,12 +54,10 @@ html, body {
 .title-schedule {
     font-size: x-large;
     font-weight: bolder;
-    color: black;
     text-align: center;
 }
 
 .table {
-    color: black;
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -71,12 +69,14 @@ html, body {
 }
 
 .logo {
-    width: 30%;
-    height: 50%;
     margin-left: 0px !important;
     margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    display: grid;
+    align-content: center;
+}
+
+.logo img {
+    width: 50%;
 }
 
 .authBtn {
@@ -104,4 +104,17 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
+}
+
+.perform {
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.payment {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }

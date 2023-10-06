@@ -33,7 +33,6 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
             <td>${resultShow[i].date}</td>
             <td>${resultShow[i].setlist}</td>
             <td>${resultShow[i].time}</td>
-            <td><a href="./page/player.html" class="btn btn-primary disabled" id="link">LINK</a></td>
           </tr>`
         .trim()
     return template1.content.firstChild
