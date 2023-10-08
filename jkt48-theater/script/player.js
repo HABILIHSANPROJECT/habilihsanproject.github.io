@@ -11,17 +11,17 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
     firebase.initializeApp(firebaseConfig)
     firebase.analytics()
 
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            console.log(user.email)
-            email = user.email
+    //firebase.auth().onAuthStateChanged((user) => {
+        //if (user) {
+            //console.log(user.email)
+            //email = user.email
             // User logged in already or has just logged in.
             const logoutBtn = document.getElementById("logout-btn")
             const tokenInput = document.getElementById("token")
             const submit = document.getElementById("submit")
 
             $(document).ready(function () {
-                document.getElementById("email").value = user.email
+                //document.getElementById("email").value = user.email
                 $("#myModal").modal("show")
 
                 const database = firebase.database()
@@ -84,11 +84,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     })
             })
 
-        } else {
-            location.reload()
+        //} else {
+         //   location.reload()
             // User not logged in or has just logged out.
-        }
-    })
+        //}
+    //})
 })
 
 axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response) {
