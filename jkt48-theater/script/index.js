@@ -42,7 +42,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     })
             })
         } else {
-            // User not logged in or has just logged out.
         }
     })
 })

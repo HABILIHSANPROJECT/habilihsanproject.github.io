@@ -48,7 +48,7 @@ body {
     background-color: white;
     width: -webkit-fill-available;
     padding: 20px;
-    height: fit-content;
+    height: -webkit-fill-available;
     max-width: 1000px !important;
     width: 75%;
     margin-left: auto;

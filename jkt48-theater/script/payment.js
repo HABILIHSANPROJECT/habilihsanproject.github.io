@@ -7,7 +7,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
         if (user) {
             let email = document.getElementById("email")
             email.value = user.email
-            let uid = user.uid
             // User logged in already or has just logged in.
             const logoutBtn = document.getElementById("logout-btn")
             // Function untuk menampilkan pesan error
@@ -51,7 +50,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     const body = {
                         "name" : name.value,
                         "email" : email.value,
-                        "amount" : 1000,
+                        "amount" : 10000,
                         "mobile" : phone.value,
                         "redirectUrl" : "https://habilihsanproject.github.io/jkt48-theater/page/player",
                         "description" : "Pembayaran JKT48 Theater"
@@ -85,7 +84,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
             })
         } else {
-            // User not logged in or has just logged out.
         }
     })
 })
