@@ -1,3 +1,12 @@
+let api
+let userData
+let payment
+let tokenData = []
+let tokenPayment = []
+
+let buy = document.getElementById("buy")
+let loading = document.getElementById("loading")
+
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
     const firebaseConfig = response.data
     firebase.initializeApp(firebaseConfig)
@@ -31,59 +40,105 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
             })
 
             const database = firebase.database()
-            const ref = database.ref("payment")
+            const ref = database.ref("/")
             ref.on("value", function (snapshot) {
-                let api = snapshot.val()
-                let form = document.getElementById("payment-form")
-                form.style.display = "block"
+                if (snapshot.exists()) {
+                    let users = Object.values(snapshot.val().token)
+                    for (i = 0; i < users.length; i++) {
+                        if (userMail = users[i].email) {
+                            userData = true
+                            tokenData.push(users[i].link)
+                        } else {
+                            userData = false
+                        }
+                    }
+                    if (userData == false) {
+                        alert("Data anda tidak ditemukan! Silahkan sign up terlebih dulu!")
+                        location.replace("../page/signup.html")
+                    }
 
-                let name = document.getElementById("name")
-                let phone = document.getElementById("phone")
-                form.addEventListener("submit", function (e) {
-                    e.preventDefault()
+                    api = snapshot.val().payment
                     const header = {
                         headers: {
                             "Authorization": `Bearer ${api}`
                         }
                     }
+                    axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
+                        .then(function (response) {
+                            let token = response.data.data
+                            for (i = 0; i < token.length; i++) {
+                                tokenPayment.push(token[i].link)
+                            }
+                            for (i = 0; i < tokenPayment.length; i++) {
+                                if (tokenData[i] = tokenPayment[i]) {
+                                    payment = true
+                                    location.replace("../page/player.html")
+                                } else {
+                                    payment = false
+                                    loading.style.display = "none"
+                                    buy.style.display = "block"
+                                }
+                            }
+                            if (payment == false) {
+                                alert("Data pembelian anda tidak ditemukan! Silahkan beli tiket terlebih dulu!")
+                                location.replace("../page/payment.html")
+                            }
+                        })
 
-                    const body = {
-                        "name" : name.value,
-                        "email" : email.value,
-                        "amount" : 10000,
-                        "mobile" : phone.value,
-                        "redirectUrl" : "https://habilihsanproject.github.io/jkt48-theater/page/player",
-                        "description" : "Pembayaran JKT48 Theater"
+                    let form = document.getElementById("payment-form")
+                    form.style.display = "block"
+
+                    let name = document.getElementById("name")
+                    let phone = document.getElementById("phone")
+                    form.addEventListener("submit", function (e) {
+                        e.preventDefault()
+                        const header = {
+                            headers: {
+                                "Authorization": `Bearer ${api}`
+                            }
                         }
 
-                    axios.post("https://api.mayar.id/hl/v1/payment/create", body, header)
-                        .then(function (response) {
-                            console.log(response)
-                            let a = "https://habilihsanproject.mayar.link/pl/8mg00i5svd"
-                            let b = a.split("/")
-                            let c = b[4]
-                            let post = {
-                                "token" : c,
-                                "email" : email.value,
-                                "name" : name.value,
-                                "mobile" : phone.value
-                            }
-                            let firebaseUrl = "https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/token"
-                            axios.post(`${firebaseUrl}.json`, post)
-                                .then(response => {
-                                    console.log('Data has been posted successfully:', response)
-                                })
-                                .catch(error => {
-                                    console.error('Error posting data:', error)
-                                })
-                            location.replace(response.data.data.link)
-                        }).catch(function (error) {
-                            alert(error)
-                        })
-                })
+                        const body = {
+                            "name": name.value,
+                            "email": email.value,
+                            "amount": 10000,
+                            "mobile": phone.value,
+                            "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
+                            "description": "Pembayaran JKT48 Theater"
+                        }
 
+                        axios.post("https://api.mayar.id/hl/v1/payment/create", body, header)
+                            .then(function (response) {
+                                console.log(response)
+                                let a = "https://habilihsanproject.mayar.link/pl/8mg00i5svd"
+                                let b = a.split("/")
+                                let c = b[4]
+                                let post = {
+                                    "token": c,
+                                    "email": email.value,
+                                    "name": name.value,
+                                    "mobile": phone.value
+                                }
+                                let firebaseUrl = "https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/token"
+                                axios.post(`${firebaseUrl}.json`, post)
+                                    .then(response => {
+                                        console.log('Data has been posted successfully:', response)
+                                    })
+                                    .catch(error => {
+                                        console.error('Error posting data:', error)
+                                    })
+                                location.replace(response.data.data.link)
+                            }).catch(function (error) {
+                                alert(error)
+                            })
+                    })
+                } else {
+                    location.reload()
+                }
             })
+
         } else {
+            location.reload()
         }
     })
 })

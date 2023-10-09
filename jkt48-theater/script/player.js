@@ -76,29 +76,29 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     location.replace("../page/payment.html")
                                 }
                             })
+
+                        link = snapshot.val().src
+                        const player = videojs("video-player", {
+                            controls: true,
+                            autoplay: true,
+                            fluid: true,
+                            html5: {
+                                hls: {
+                                    enableLowInitialPlaylist: true,
+                                }
+                            },
+                            displayCurrentQuality: true
+                        })
+                        player.src({
+                            src: link,
+                            type: "application/x-mpegURL"
+                        })
+                        player.on("error", function (e) {
+                            document.querySelector(".vjs-modal-dialog-content").innerText = "Tidak ada show yang berlangsung saat ini!"
+                        })
                     } else {
                         location.reload()
                     }
-
-                    link = snapshot.val().src
-                    const player = videojs("video-player", {
-                        controls: true,
-                        autoplay: true,
-                        fluid: true,
-                        html5: {
-                            hls: {
-                                enableLowInitialPlaylist: true,
-                            }
-                        },
-                        displayCurrentQuality: true
-                    })
-                    player.src({
-                        src: link,
-                        type: "application/x-mpegURL"
-                    })
-                    player.on("error", function (e) {
-                        document.querySelector(".vjs-modal-dialog-content").innerText = "Tidak ada show yang berlangsung saat ini!"
-                    })
                 })
             })
 

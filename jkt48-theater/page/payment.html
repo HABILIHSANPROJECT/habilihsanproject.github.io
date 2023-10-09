@@ -48,7 +48,11 @@
             <input class="form-control" type="tel" pattern="[0-9]{10,13}" id="phone" placeholder="Phone" required><br>
             Harga:
             <input class="form-control" type="email" id="email" placeholder="Rp 10.000" disabled><br>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Beli</button>
+            <button class="btn btn-primary" type="button" disabled id="loading" style="width: 100%;">
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Loading...</span>
+              </button>
+            <button type="submit" class="btn btn-primary" style="width: 100%; display: none;" id="buy">Beli</button>
         </form>
     </div>
 </body>
