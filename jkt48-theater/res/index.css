@@ -133,3 +133,13 @@ body {
     font-weight: bold;
     margin: 0;
 }
+
+.loading {
+    width: -webkit-fill-available;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+}

@@ -5,7 +5,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-            console.log(user.email)
+            console.log(user.email) 
+
             // User logged in already or has just logged in.
             const logoutBtn = document.getElementById("logout-btn")
             const signupBtn = document.getElementById("signup-btn")

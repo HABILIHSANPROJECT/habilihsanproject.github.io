@@ -31,39 +31,43 @@
     <title>JKT48 THEATER STREAMING</title>
     <div class="title">
         <a href="../index.html" class="logo"><img src="../res/logo.png"></a>
-        <!--button class="btn btn-danger authBtn" id="logout-btn">Log Out</button-->
+        <button class="btn btn-danger authBtn" id="logout-btn">Log Out</button-->
     </div>
 </head>
 
 <body>
-    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <!--div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <!-- Modal Header -->
+                <-- Modal Header ->
                 <div class="modal-header">
                     <p class="modal-title" style="font-size: large; font-weight: bold;">Masukan Token</p>
                 </div>
 
-                <!-- Modal Body -->
+                <-- Modal Body ->
                 <div class="modal-body pb-0">
-                    <!--input class="form-control" id="email" type="text" placeholder="Input Token" disabled autocomplete="off"--><br>
-                    <input class="form-control" type="text" placeholder="Input Token" required autocomplete="off" id="token">
+                    <input class="form-control" id="email" type="text" placeholder="Email" disabled autocomplete="off"><br>
+                    <input class="form-control" id="token" type="text" placeholder="Input Token" required autocomplete="off">
                     <p style="color: red; font-size: x-small;" id="tokenError"></p>
                 </div>
 
-                <!-- Modal Footer -->
+                <-- Modal Footer ->
                 <button class="m-3 btn btn-primary" id="submit">Submit</button>
             </div>
         </div>
-    </div>
+    </div-->
     <div class="player-container" style="display: none;" id="player">
         <video id="video-player" class="video-js vjs-default-skin" controls>
             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
                 that supports HTML5 video</p>
         </video>
-    </div>
+    </div><br>
     <p id="setlist" style="color: white;" class="perform"></p>
-    <p id="date" style="color: white;" class="perform"></p>
+    <p id="date" style="color: white;" class="perform"></p><br>
+    <div class="loading" id="loading">
+        <div class="spinner-border text-light" role="status"></div>
+        <span style="margin-left: 20px;">Memuat Data...</span>
+    </div>
 </body>
 
 </html>
