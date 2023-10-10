@@ -7,6 +7,10 @@ let tokenPayment = []
 let buy = document.getElementById("buy")
 let loading = document.getElementById("loading")
 
+window.addEventListener('contextmenu', function (e) {
+    e.preventDefault()
+})
+
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
     const firebaseConfig = response.data
     firebase.initializeApp(firebaseConfig)
