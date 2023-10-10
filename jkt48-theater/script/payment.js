@@ -16,6 +16,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+            console.log(user.email)
             let email = document.getElementById("email")
             email.value = user.email
             let userMail = user.email
@@ -47,10 +48,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
             ref.on("value", function (snapshot) {
                 if (snapshot.exists()) {
                     let users = Object.values(snapshot.val().token)
-                    for (i = 0; i < users.length; i++) {
+                    for (let i = 0; i < users.length; i++) {
                         if (userMail == users[i].email) {
                             userData = true
                             tokenData.push(users[i].token)
+                        } else {
                         }
                     }
                     if (tokenData == null) {
@@ -67,20 +69,24 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
                         .then(function (response) {
                             let paid = response.data.data
-                            for (i = 0; i < paid.length; i++) {
+                            for (let i = 0; i < paid.length; i++) {
                                 tokenPayment = userMail + ":" + paid[i].link
                                 tokenPaid.push(tokenPayment)
                             }
-                            for (i = 0; i < tokenPaid.length; i++) {
-                                if (tokenData[i] == tokenPaid[i]) {
-                                    payment = true
-                                    location.replace("../page/player.html")
-                                } else {
-                                    payment = false
-                                    let buy = document.getElementById("buy")
-                                    let loading = document.getElementById("loading")
-                                    loading.style.display = "none"
-                                    buy.style.display = "block"
+                            for (let i = 0; i < tokenPaid.length; i++) {
+                                const a = tokenPaid[i]
+                                for (let j = 0; j < tokenData.length; j++) {
+                                    const b = tokenData[j]
+                                    if (a == b) {
+                                        payment = true
+                                        location.replace("../page/player.html")
+                                    } else {
+                                        payment = false
+                                        let buy = document.getElementById("buy")
+                                        let loading = document.getElementById("loading")
+                                        loading.style.display = "none"
+                                        buy.style.display = "block"
+                                    }
                                 }
                             }
                         })
@@ -109,7 +115,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                         axios.post("https://api.mayar.id/hl/v1/payment/create", body, header)
                             .then(function (response) {
-                                console.log(response)
                                 let a = "https://habilihsanproject.mayar.link/pl/8mg00i5svd"
                                 let b = a.split("/")
                                 let c = b[4]

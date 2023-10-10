@@ -1,10 +1,10 @@
 let link
 let api
 let userData
-let payment
-let tokenPaid
+let payments
+let tokenPaid = []
 let tokenData = []
-let tokenPayment = []
+let tokenPayment
 //  let token
 //  let email
 
@@ -38,15 +38,13 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 ref.on("value", function (snapshot) {
                     if (snapshot.exists()) {
                         let users = Object.values(snapshot.val().token)
-                        for (i = 0; i < users.length; i++) {
+                        for (let i = 0; i < users.length; i++) {
                             if (userMail == users[i].email) {
                                 userData = true
                                 tokenData.push(users[i].token)
-                            } else {
-                                userData = false
                             }
                         }
-                        if (userData == false) {
+                        if (tokenData == null) {
                             alert("Data anda tidak ditemukan! Silahkan sign up terlebih dulu!")
                             location.replace("../page/signup.html")
                         }
@@ -60,19 +58,19 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
                             .then(function (response) {
                                 let paid = response.data.data
-                                for (i = 0; i < paid.length; i++) {
-                                    tokenPaid = userMail + ":" + paid[i].link
-                                    tokenPayment.push(tokenPaid)
+                                for (let i = 0; i < paid.length; i++) {
+                                    tokenPayment = userMail + ":" + paid[i].link
+                                    tokenPaid.push(tokenPayment)
                                 }
-                                console.log(tokenData)
-                                console.log(tokenPayment)
-                                for (i = 0; i < tokenPayment.length; i++) {
-                                    if (tokenData[i] == tokenPayment[i]) {
-                                        payment = true
-                                        players.style.display = "block"
-                                        loading.style.display = "none"
-                                    } else {
-                                        payment = false
+                                for (let i = 0; i < tokenPaid.length; i++) {
+                                    const a = tokenPaid[i]
+                                    for (let j = 0; j < tokenData.length; j++) {
+                                        const b = tokenData[j]
+                                        if (a == b) {
+                                            payment = true
+                                            players.style.display = "block"
+                                            loading.style.display = "none"
+                                        }
                                     }
                                 }
                                 if (players.style.display !== "block") {
