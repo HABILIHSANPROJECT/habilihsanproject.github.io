@@ -123,7 +123,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 }
                                 const postDatabase = firebase.database()
                                 const postRef = postDatabase.ref("token")
-                                postRef.set(dataToWrite)
+                                postRef.set(post)
                                     .then(function () {
                                         console.log("Data written successfully.")
                                     })
