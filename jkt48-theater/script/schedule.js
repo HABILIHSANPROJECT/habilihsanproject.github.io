@@ -25,6 +25,8 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
       listMember
     })
   }
+  resultShow.reverse()
+  resultMember.reverse()
   let show = document.querySelector("#show")
   const schedule = data => {
     const template1 = document.createElement("template")
