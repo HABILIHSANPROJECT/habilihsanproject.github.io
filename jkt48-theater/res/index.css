@@ -13,7 +13,7 @@ body {
 }
 
 .player-container {
-    width: 75% !important;
+    width: 80% !important;
     text-align: center !important;
     border: 1px solid white !important;
     max-width: 1000px !important;
@@ -48,7 +48,7 @@ body {
     background-color: white;
     padding: 20px;
     max-width: 1000px !important;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -60,7 +60,7 @@ body {
 }
 
 .table {
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -95,7 +95,7 @@ body {
     margin-top: 30px;
     background-color: white;
     max-width: 1000px !important;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -107,7 +107,7 @@ body {
 .welcome {
     font-size: medium;
     text-align: center;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -121,7 +121,7 @@ body {
 }
 
 .form {
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
