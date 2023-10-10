@@ -35,7 +35,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 showSuccess("Login berhasil!")
             })
             .catch((error) => {
-                showError(error.message)
+                showError("Data kamu tidak ditemukan! Silahkan sign up terlebih dulu!")
+                location.replace("../page/signup.html")
             })
     })
 

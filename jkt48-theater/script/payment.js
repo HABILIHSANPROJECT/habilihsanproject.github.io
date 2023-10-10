@@ -56,7 +56,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         }
                     }
                     if (tokenData == null) {
-                        alert("Data anda tidak ditemukan! Silahkan sign up terlebih dulu!")
+                        alert("Data kamu tidak ditemukan! Silahkan sign up terlebih dulu!")
                         location.replace("../page/signup.html")
                     }
 
