@@ -51,7 +51,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         if (userMail == users[i].email) {
                             userData = true
                             tokenData.push(users[i].token)
-                        } else {
                         }
                     }
                     if (tokenData == null) {
