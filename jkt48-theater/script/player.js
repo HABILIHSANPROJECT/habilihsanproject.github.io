@@ -2,6 +2,7 @@ let link
 let api
 let userData
 let payment
+let tokenPaid
 let tokenData = []
 let tokenPayment = []
 //  let token
@@ -38,9 +39,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     if (snapshot.exists()) {
                         let users = Object.values(snapshot.val().token)
                         for (i = 0; i < users.length; i++) {
-                            if (userMail = users[i].email) {
+                            if (userMail == users[i].email) {
                                 userData = true
-                                tokenData.push(users[i].link)
+                                tokenData.push(users[i].token)
                             } else {
                                 userData = false
                             }
@@ -58,12 +59,15 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         }
                         axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
                             .then(function (response) {
-                                let token = response.data.data
-                                for (i = 0; i < token.length; i++) {
-                                    tokenPayment.push(token[i].link)
+                                let paid = response.data.data
+                                for (i = 0; i < paid.length; i++) {
+                                    tokenPaid = userMail + ":" + paid[i].link
+                                    tokenPayment.push(tokenPaid)
                                 }
+                                console.log(tokenData)
+                                console.log(tokenPayment)
                                 for (i = 0; i < tokenPayment.length; i++) {
-                                    if (tokenData[i] = tokenPayment[i]) {
+                                    if (tokenData[i] == tokenPayment[i]) {
                                         payment = true
                                         players.style.display = "block"
                                         loading.style.display = "none"
@@ -71,7 +75,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         payment = false
                                     }
                                 }
-                                if (payment == false) {
+                                if (players.style.display !== "block") {
                                     alert("Data pembelian anda tidak ditemukan! Silahkan beli tiket terlebih dulu!")
                                     location.replace("../page/payment.html")
                                 }
@@ -124,6 +128,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
             })
 
         } else {
+            location.replace("../index.html")
         }
     })
 })
