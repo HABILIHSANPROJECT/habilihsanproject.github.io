@@ -5,7 +5,7 @@ let payment
 let tokenData = []
 let tokenPaid = []
 
-window.addEventListener('contextmenu', function (e) {
+window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })
 
@@ -121,13 +121,14 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     "mobile": phone.value,
                                     "token": email.value + ":" + "link"
                                 }
-                                let firebaseUrl = "https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/token"
-                                axios.post(`${firebaseUrl}.json`, post)
-                                    .then(response => {
-                                        console.log('Data has been posted successfully:', response)
+                                const postDatabase = firebase.database()
+                                const postRef = postDatabase.ref("token")
+                                postRef.set(dataToWrite)
+                                    .then(function () {
+                                        console.log("Data written successfully.")
                                     })
-                                    .catch(error => {
-                                        console.error('Error posting data:', error)
+                                    .catch(function (error) {
+                                        console.error("Error writing data:", error)
                                     })
                                 location.replace(response.data.data.link)
                             }).catch(function (error) {
