@@ -137,7 +137,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     .catch(error => {
                                         console.error("Error posting data:", error)
                                     })
-                                //location.replace(response.data.data.link)
+                                location.replace(response.data.data.link)
                             }).catch(function (error) {
                                 alert(error)
                             })
