@@ -53,6 +53,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             userData = true
                             tokenData.push(users[i].token)
                         } else {
+                            let buy = document.getElementById("buy")
+                            let loading = document.getElementById("loading")
+                            loading.style.display = "none"
+                            buy.style.display = "block"
                         }
                     }
                     if (tokenData == null) {
@@ -115,7 +119,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                         axios.post("https://api.mayar.id/hl/v1/payment/create", body, header)
                             .then(function (response) {
-                                let a = "https://habilihsanproject.mayar.link/pl/8mg00i5svd"
+                                let a = response.data.data.link
                                 let b = a.split("/")
                                 let c = b[4]
                                 let post = {
@@ -123,18 +127,17 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     "email": email.value,
                                     "name": name.value,
                                     "mobile": phone.value,
-                                    "token": email.value + ":" + "link"
+                                    "token": email.value + ":" + c
                                 }
-                                const postDatabase = firebase.database()
-                                const postRef = postDatabase.ref("token")
-                                postRef.set(post)
-                                    .then(function () {
-                                        console.log("Data written successfully.")
+                                const firebaseUrl = "https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/token"
+                                axios.post(`${firebaseUrl}.json`, post)
+                                    .then(response => {
+                                        console.log("Data has been posted successfully:", response.data)
                                     })
-                                    .catch(function (error) {
-                                        console.error("Error writing data:", error)
+                                    .catch(error => {
+                                        console.error("Error posting data:", error)
                                     })
-                                location.replace(response.data.data.link)
+                                //location.replace(response.data.data.link)
                             }).catch(function (error) {
                                 alert(error)
                             })
