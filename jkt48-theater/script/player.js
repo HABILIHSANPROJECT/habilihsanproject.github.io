@@ -8,7 +8,7 @@ let tokenPayment
 //  let token
 //  let email
 
-window.addEventListener('contextmenu', function (e) {
+window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })
 
@@ -89,14 +89,30 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     enableLowInitialPlaylist: true,
                                 }
                             },
-                            displayCurrentQuality: true
+                            plugins: {
+                                qualityLevels: {}
+                            }
                         })
                         player.src({
-                            src: link,
+                            src: link + "/playlist.m3u8",
                             type: "application/x-mpegURL"
                         })
                         player.on("error", function (e) {
                             document.querySelector(".vjs-modal-dialog-content").innerText = "Tidak ada show yang berlangsung saat ini!"
+                        })
+                        const selectElement = document.getElementById("quality-select")
+                        selectElement.addEventListener("change", function () {
+                            if (selectElement.value == 1) {
+                                player.src({
+                                    src: link + "_source/chunklist.m3u8",
+                                    type: "application/x-mpegURL"
+                                })
+                            } else {
+                                player.src({
+                                    src: link + "_low/chunklist.m3u8",
+                                    type: "application/x-mpegURL"
+                                })
+                            }
                         })
                     } else {
                         location.reload()

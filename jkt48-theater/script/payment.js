@@ -83,6 +83,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     const b = tokenData[j]
                                     if (a == b) {
                                         payment = true
+                                        let fetch = document.getElementById("fetch")
+                                        fetch.style.display = "none"
                                         location.replace("../page/player.html")
                                     } else {
                                         payment = false
