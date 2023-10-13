@@ -104,10 +104,17 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         selectElement.addEventListener("change", function () {
                             if (selectElement.value == 1) {
                                 player.src({
+                                    src: link + "/playlist.m3u8",
+                                    type: "application/x-mpegURL"
+                                })
+                            }
+                            if (selectElement.value == 2) {
+                                player.src({
                                     src: link + "_source/chunklist.m3u8",
                                     type: "application/x-mpegURL"
                                 })
-                            } else {
+                            }
+                            if (selectElement.value == 3) {
                                 player.src({
                                     src: link + "_low/chunklist.m3u8",
                                     type: "application/x-mpegURL"
