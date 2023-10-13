@@ -34,10 +34,37 @@
         <a href="./page/login.html" class="btn btn-primary authBtn" role="button" id="signup-btn">Log In</a>
         <a href="./page/payment.html" class="btn btn-info authBtn" style="display: none; color: white;" id="link">Watch</a>
         <button class="btn btn-danger authBtn" id="logout-btn" style="display: none;">Log Out</button>
+        <button type="button" class="btn btn-light rounded-0 fw-bold" data-bs-toggle="modal" data-bs-target="#myModal">
+            Cara Pembelian
+          </button>
     </div>
 </head>
 
 <body>
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <p class="modal-title fw-bold fs-3">Cara Pembelian</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body pb-0">
+                    <ul>
+                        <li>Silahkan <b>Sign Up</b> jika belum memiliki akun</li>
+                        <li>Jika sudah memiliki akun, silahkan ke menu <b>Log In</b></li>
+                        <li>Lalu ke menu <b>Watch</b> untuk melakukan pembelian tiket</li>
+                        <li>Isi biodata pembelian dan lakukan pembayaran agar dapat mengakses laman Streaming Theater</li>
+                        <li>Jika kamu sudah membeli tiket, maka kamu akan secara otomatis ke laman Streaming Theater</li>
+                    </ul>
+                </div>
+
+                <!-- Modal Footer -->
+            </div>
+        </div>
+    </div>
     <div class="contain">
         <p class="welcome">
             Selamat datang di JKT48 THEATER STREAMING! <br>

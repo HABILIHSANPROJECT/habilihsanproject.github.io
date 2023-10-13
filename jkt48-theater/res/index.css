@@ -140,3 +140,8 @@ body {
     font-weight: bold;
     font-size: x-large;
 }
+
+.spinner-grow {
+    width: 1em !important;
+    height: 1em !important;
+}
