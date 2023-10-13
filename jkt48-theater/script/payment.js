@@ -52,6 +52,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         if (userMail == users[i].email) {
                             userData = true
                             tokenData.push(users[i].token)
+                            let fetch = document.getElementById("fetch")
+                            fetch.style.display = "block"
                         } else {
                             let buy = document.getElementById("buy")
                             let loading = document.getElementById("loading")
@@ -83,11 +85,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     const b = tokenData[j]
                                     if (a == b) {
                                         payment = true
-                                        let fetch = document.getElementById("fetch")
-                                        fetch.style.display = "none"
                                         location.replace("../page/player.html")
                                     } else {
                                         payment = false
+                                        let fetch = document.getElementById("fetch")
+                                        fetch.style.display = "none"
                                         let buy = document.getElementById("buy")
                                         let loading = document.getElementById("loading")
                                         loading.style.display = "none"
