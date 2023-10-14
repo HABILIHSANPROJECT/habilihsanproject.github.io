@@ -56,24 +56,30 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         }
                         axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
                             .then(function (response) {
-                                let paid = response.data.data
-                                for (let i = 0; i < paid.length; i++) {
-                                    tokenPayment = userMail + ":" + paid[i].link
-                                    tokenPaid.push(tokenPayment)
-                                }
-                                for (let i = 0; i < tokenPaid.length; i++) {
-                                    const a = tokenPaid[i]
-                                    for (let j = 0; j < tokenData.length; j++) {
-                                        const b = tokenData[j]
-                                        if (a == b) {
-                                            players.style.display = "block"
-                                            loading.style.display = "none"
-                                        }
-                                    }
-                                }
-                                if (players.style.display !== "block") {
-                                    alert("Data pembelian anda tidak ditemukan! Silahkan beli tiket terlebih dulu!")
-                                    location.replace("../page/payment.html")
+                                let pageCount = response.data.pageCount
+                                for (let z; z < pageCount + 1; z++) {
+                                    axios.get(`https://api.mayar.id/hl/v1/payment?page=${z}&status=paid`, header)
+                                        .then(function (response) {
+                                            let paid = response.data.data
+                                            for (let i = 0; i < paid.length; i++) {
+                                                tokenPayment = userMail + ":" + paid[i].link
+                                                tokenPaid.push(tokenPayment)
+                                            }
+                                            for (let i = 0; i < tokenPaid.length; i++) {
+                                                const a = tokenPaid[i]
+                                                for (let j = 0; j < tokenData.length; j++) {
+                                                    const b = tokenData[j]
+                                                    if (a == b) {
+                                                        players.style.display = "block"
+                                                        loading.style.display = "none"
+                                                    }
+                                                }
+                                            }
+                                            if (players.style.display !== "block") {
+                                                alert("Data pembelian anda tidak ditemukan! Silahkan beli tiket terlebih dulu!")
+                                                location.replace("../page/payment.html")
+                                            }
+                                        })
                                 }
                             })
 
