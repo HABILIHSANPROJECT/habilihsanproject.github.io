@@ -1,7 +1,6 @@
 let link
 let api
 let userData
-let payments
 let tokenPaid = []
 let tokenData = []
 let tokenPayment
@@ -49,7 +48,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             location.replace("../page/signup.html")
                         }
 
-                        api = snapshot.val().payment
+                        api = snapshot.val().config.api
                         const header = {
                             headers: {
                                 "Authorization": `Bearer ${api}`
@@ -67,7 +66,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     for (let j = 0; j < tokenData.length; j++) {
                                         const b = tokenData[j]
                                         if (a == b) {
-                                            payment = true
                                             players.style.display = "block"
                                             loading.style.display = "none"
                                         }
@@ -79,7 +77,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 }
                             })
 
-                        link = snapshot.val().src
+                        link = snapshot.val().config.src
                         const player = videojs("video-player", {
                             controls: true,
                             autoplay: true,

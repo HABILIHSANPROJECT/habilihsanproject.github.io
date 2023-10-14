@@ -1,7 +1,6 @@
 let api
 let tokenPayment
 let userData
-let payment
 let tokenData = []
 let tokenPaid = []
 
@@ -66,7 +65,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         location.replace("../page/signup.html")
                     }
 
-                    api = snapshot.val().payment
+                    api = snapshot.val().config.api
                     const header = {
                         headers: {
                             "Authorization": `Bearer ${api}`
@@ -84,10 +83,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 for (let j = 0; j < tokenData.length; j++) {
                                     const b = tokenData[j]
                                     if (a == b) {
-                                        payment = true
                                         location.replace("../page/player.html")
                                     } else {
-                                        payment = false
                                         let fetch = document.getElementById("fetch")
                                         fetch.style.display = "none"
                                         let buy = document.getElementById("buy")
