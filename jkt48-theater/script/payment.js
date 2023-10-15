@@ -1,6 +1,8 @@
 let api
 let tokenPayment
 let userData
+let pageCount
+let paymentList = []
 let tokenData = []
 let tokenPaid = []
 
@@ -73,26 +75,33 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     }
                     axios.get("https://api.mayar.id/hl/v1/payment?status=paid", header)
                         .then(function (response) {
-                            let paid = response.data.data
-                            for (let i = 0; i < paid.length; i++) {
-                                tokenPayment = userMail + ":" + paid[i].link
-                                tokenPaid.push(tokenPayment)
-                            }
-                            for (let i = 0; i < tokenPaid.length; i++) {
-                                const a = tokenPaid[i]
-                                for (let j = 0; j < tokenData.length; j++) {
-                                    const b = tokenData[j]
-                                    if (a == b) {
-                                        location.replace("../page/player.html")
-                                    } else {
-                                        let fetch = document.getElementById("fetch")
-                                        fetch.style.display = "none"
-                                        let buy = document.getElementById("buy")
-                                        let loading = document.getElementById("loading")
-                                        loading.style.display = "none"
-                                        buy.style.display = "block"
-                                    }
-                                }
+                            pageCount = response.data.pageCount
+                            for (let z = 1; z < pageCount + 1; z++) {
+                                axios.get(`https://api.mayar.id/hl/v1/payment?page=${z}&status=paid`, header)
+                                    .then(function (response) {
+                                        paymentList.push(...response.data.data)
+                                        let paid = paymentList
+                                        for (let i = 0; i < paid.length; i++) {
+                                            tokenPayment = userMail + ":" + paid[i].link
+                                            tokenPaid.push(tokenPayment)
+                                        }
+                                        for (let i = 0; i < tokenPaid.length; i++) {
+                                            const a = tokenPaid[i]
+                                            for (let j = 0; j < tokenData.length; j++) {
+                                                const b = tokenData[j]
+                                                if (a == b) {
+                                                    location.replace("../page/player.html")
+                                                } else {
+                                                    let fetch = document.getElementById("fetch")
+                                                    fetch.style.display = "none"
+                                                    let buy = document.getElementById("buy")
+                                                    let loading = document.getElementById("loading")
+                                                    loading.style.display = "none"
+                                                    buy.style.display = "block"
+                                                }
+                                            }
+                                        }
+                                    })
                             }
                         })
 
@@ -112,6 +121,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         const body = {
                             "name": name.value,
                             "email": email.value,
+                            "mail" : email.value,
                             "amount": 10000,
                             "mobile": phone.value,
                             "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
