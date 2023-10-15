@@ -1,6 +1,7 @@
 let link
 let api
 let userData
+let payment
 let tokenPaid = []
 let tokenData = []
 let tokenPayment
@@ -70,8 +71,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 for (let j = 0; j < tokenData.length; j++) {
                                                     const b = tokenData[j]
                                                     if (a == b) {
-                                                        players.style.display = "block"
-                                                        loading.style.display = "none"
+                                                        payment = true
                                                     }
                                                 }
                                             }
@@ -80,6 +80,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 location.replace("../page/payment.html")
                                             }
                                         })
+                                }
+                                if (payment == true) {
+                                    players.style.display = "block"
+                                    loading.style.display = "none"
                                 }
                             })
 
