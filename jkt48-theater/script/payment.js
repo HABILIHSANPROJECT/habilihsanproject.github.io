@@ -121,8 +121,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         const body = {
                             "name": name.value,
                             "email": email.value,
-                            "mail" : email.value,
-                            "amount": 10000,
+                            "mail": email.value,
+                            "amount": 40000,
                             "mobile": phone.value,
                             "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
                             "description": "Pembayaran JKT48 Theater"
@@ -170,7 +170,9 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
     let setlistNode = document.getElementById("setlist")
     let dateNode = document.getElementById("date")
     let timeNode = document.getElementById("time")
+    let bundling = document.getElementById("bundling")
     const scrape = response.data
+    let show = []
 
     const parser = new DOMParser()
     const html = parser.parseFromString(scrape, "text/html")
@@ -184,9 +186,22 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
         const time = schedules.innerText.slice(0, 10)
         const setlist = shows.querySelectorAll("tr")[i].querySelectorAll("td")[1].innerText
 
-        setlistNode.innerText = setlist
-        dateNode.innerText = date
-        timeNode.innerText = time
-
+        show.push({ date, time, setlist })
+        //dateNode.innerText = date
+        //timeNode.innerText = time
     }
+    const schedule = data => {
+        const template1 = document.createElement("template")
+        template1.innerHTML =
+            `<p id="setlist" class="perform">${show[i].setlist} (${show[i].date})</p>`
+                .trim()
+        return template1.content.firstChild
+    }
+    for (i in show) {
+        setlistNode.append(schedule())
+    }
+    //setlistNode.innerText = setlists[0].setlist
+
+    bundling.innerText = `Pembelian tiket show theater yang tersedia saat ini bersifat bundling (${show.length} show)!`
+
 })
