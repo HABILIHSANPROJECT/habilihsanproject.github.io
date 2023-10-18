@@ -122,7 +122,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             "name": name.value,
                             "email": email.value,
                             "mail": email.value,
-                            "amount": 40000,
+                            "amount": 30000,
                             "mobile": phone.value,
                             "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
                             "description": "Pembayaran JKT48 Theater"
