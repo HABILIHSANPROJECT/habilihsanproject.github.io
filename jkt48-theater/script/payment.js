@@ -183,13 +183,14 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
         scheduleNode.removeChild(schedules)
         const dateText = scheduleNode.innerText.split(",")
         const date = dateText[0] + " / " + dateText[1]
-        const time = schedules.innerText.slice(0, 10)
+        //const time = schedules.innerText.slice(0, 10)
         const setlist = shows.querySelectorAll("tr")[i].querySelectorAll("td")[1].innerText
 
-        show.push({ date, time, setlist })
+        show.push({ date, setlist })
         //dateNode.innerText = date
         //timeNode.innerText = time
     }
+    show.reverse()
     const schedule = data => {
         const template1 = document.createElement("template")
         template1.innerHTML =
