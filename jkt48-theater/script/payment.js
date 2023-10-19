@@ -191,6 +191,7 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
         //timeNode.innerText = time
     }
     show.reverse()
+    /*
     const schedule = data => {
         const template1 = document.createElement("template")
         template1.innerHTML =
@@ -201,7 +202,8 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
     for (i in show) {
         setlistNode.append(schedule())
     }
-    //setlistNode.innerText = setlists[0].setlist
+    */
+    setlistNode.innerText = setlist
 
     //bundling.innerText = `Pembelian tiket show theater yang tersedia saat ini bersifat bundling (${show.length} show)!`
 
