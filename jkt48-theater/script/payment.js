@@ -121,8 +121,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         const body = {
                             "name": name.value,
                             "email": email.value,
-                            "mail": email.value,
-                            "amount": 30000,
+                            "amount": 10000,
                             "mobile": phone.value,
                             "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
                             "description": "Pembayaran JKT48 Theater"
@@ -135,6 +134,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 let c = b[4]
                                 let post = {
                                     "link": c,
+                                    "mail": email.value,
                                     "email": email.value,
                                     "name": name.value,
                                     "mobile": phone.value,
@@ -203,6 +203,6 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
     }
     //setlistNode.innerText = setlists[0].setlist
 
-    bundling.innerText = `Pembelian tiket show theater yang tersedia saat ini bersifat bundling (${show.length} show)!`
+    //bundling.innerText = `Pembelian tiket show theater yang tersedia saat ini bersifat bundling (${show.length} show)!`
 
 })
