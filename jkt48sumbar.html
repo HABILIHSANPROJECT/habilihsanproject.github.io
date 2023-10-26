@@ -17,11 +17,13 @@
 </head>
 
 <body>
-    <img src="./project.jpg" class="index">
-    <div class="fab-container">
-        <button class="btn btn-light fab-button" id="fullscreenButton">
-            <i class="bi bi-arrows-fullscreen"></i>
-        </button>
+    <div class="contain">
+        <img src="./project.png" class="index">
+        <div class="fab-container">
+            <button class="btn btn-light fab-button" id="fullscreenButton">
+                <i class="bi bi-arrows-fullscreen"></i>
+            </button>
+        </div>
     </div>
 </body>
 
@@ -75,13 +77,26 @@
 </script>
 
 <style>
+    html,
     body {
-        margin: 0
+        margin: 0;
+        background-color: red;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .contain {
+        width: -webkit-fill-available;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .index {
         width: -webkit-fill-available;
         height: -webkit-fill-available;
+        margin: 50px;
     }
 
     .fab-container {
