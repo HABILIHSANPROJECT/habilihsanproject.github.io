@@ -28,6 +28,20 @@
 </html>
 
 <script>
+    function lockLandscapeOrientation() {
+        if (screen.orientation && screen.orientation.lock) {
+            // Cek apakah browser mendukung screen.orientation.lock
+            screen.orientation.lock('landscape').then(() => {
+                // Fungsi ini akan dipanggil jika pengaturan orientasi berhasil
+                console.log('Orientasi berhasil diatur ke landscape.')
+            }).catch((error) => {
+                // Fungsi ini akan dipanggil jika pengaturan orientasi gagal
+                console.error('Gagal mengatur orientasi:', error)
+            })
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', lockLandscapeOrientation)
     const fullscreenButton = document.getElementById('fullscreenButton')
 
     let isFullscreen = false
@@ -56,7 +70,7 @@
             }
         }
 
-        isFullscreen = !isFullscreen;
+        isFullscreen = !isFullscreen
     })
 </script>
 
