@@ -1,10 +1,10 @@
 {
-    "apiKey": "AIzaSyA5OTgZTyiC5Nam0gLn14Z0KtebnALadjA",
-    "authDomain": "jkt48-privatemessage.firebaseapp.com",
-    "databaseURL": "https://jkt48-privatemessage-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "projectId": "jkt48-privatemessage",
-    "storageBucket": "jkt48-privatemessage.appspot.com",
-    "messagingSenderId": "123072955641",
-    "appId": "1:123072955641:web:3a9182ce7e0cb0bf0d0e28",
-    "measurementId": "G-535Z38DDNR"
+  "apiKey": "AIzaSyA5OTgZTyiC5Nam0gLn14Z0KtebnALadjA",
+  "authDomain": "jkt48-privatemessage.firebaseapp.com",
+  "databaseURL": "https://jkt48-privatemessage-default-rtdb.asia-southeast1.firebasedatabase.app",
+  "projectId": "jkt48-privatemessage",
+  "storageBucket": "jkt48-privatemessage.appspot.com",
+  "messagingSenderId": "123072955641",
+  "appId": "1:123072955641:web:6938bbf36a110cca0d0e28",
+  "measurementId": "G-X08Y6DRBTY"
   }
