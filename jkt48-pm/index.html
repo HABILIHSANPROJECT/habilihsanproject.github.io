@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="./s/index.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
@@ -23,9 +29,10 @@
         <img style="width: 50%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
     </div>
 </head>
+
 <body>
     <form id="auth">
-        <p class="modal-title">LOG IN</p><br/>
+        <p class="modal-title">LOG IN</p><br />
         <input type="email" class="form-control" id="email" placeholder="Email Address"><br />
         <div class="input-group" style="display: flex;">
             <input type="password" class="form-control" id="password" placeholder="Password">
@@ -34,12 +41,14 @@
             </button>
         </div><br />
         <div style="display: flex">
-            <button type="button" class="btn btn-success" onclick="SIGNUP()" style="margin-right: auto;">Register</a>
-                <button type="button" class="btn btn-primary" onclick="LOGIN()">Login</button>
+            <a href="../jkt48-pm/p/register.html" class="btn btn-success" tabindex="-1"
+                role="button" aria-disabled="true" style="margin-right: auto;">Promotion Code</a>
+            <button id="login" type="button" class="btn btn-primary">Login</button>
         </div>
     </form>
 </body>
 <footer class="footer">
     <span class="copyright badge text-bg-secondary">Powered by <b>JKT48PMMMWWW</b></span>
 </footer>
+
 </html>
