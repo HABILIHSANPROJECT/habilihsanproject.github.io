@@ -1,0 +1,83 @@
+body {
+    background-image: url(https://jkt48.primesse.me/images/top_background.png);
+    background-position: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    border-radius: 20px;
+}
+
+label {
+    margin-top: 10px
+}
+
+form {
+    width: auto;
+    margin: 30px;
+}
+
+.list-group {
+    margin-top: 50px;
+    border-radius: 0 !important;
+}
+
+.list-group-item {
+    margin-bottom: 20px;
+    border-radius: 20px !important;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.date {
+    font-size: xx-small;
+    text-align: right;
+    margin-bottom: 0 !important;
+}
+
+.button {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-size: x-large;
+}
+
+.modal-header {
+    text-align: center !important;
+}
+
+.modal-body {
+    text-align: center !important;
+}
+
+.ava {
+    width: 25%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    margin-top: auto;
+    text-align: center;
+    display: grid;
+}
+
+.copyright {
+    position: fixed;
+    bottom: 0;
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 20px;
+}

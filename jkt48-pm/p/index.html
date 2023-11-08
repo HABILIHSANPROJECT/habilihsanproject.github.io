@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <title>JKT48 PRIVATE MESSAGE</title>
+    <div class="title">
+        <img style="width: 50%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
+    </div>
+</head>
+
+<body>
+    <form id="auth">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group" style="display: flex;">
+            <input type="password" class="form-control" id="password">
+            <button class="btn btn-light" type="button" id="togglePassword">
+                <i class="bi bi-eye-slash" id="toggleIcon"></i>
+            </button>
+        </div>
+        <div style="display: flex; margin-top: 50px;">
+            <button type="button" class="btn btn-primary" onclick="LOGIN()" style="margin-right: auto;">Login</button>
+            <a href="https://jkt48.primesse.me/how-to-get-promotion-code" class="btn btn-success" tabindex="-1"
+                role="button" aria-disabled="true">Promotion Code</a>
+        </div>
+    </form>
+    <form id="items" style="display: none;">
+        <div class="button">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#myModal">Profile</button>
+            <button type="button" class="btn btn-danger" onclick="LOGOUT()" style="margin-left: auto;">Log Out</button>
+
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <p class="modal-title" id="nickName"></p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <div style="display: flex;">
+                                <p style="text-align: left;">First Name</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="firstName"></p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="text-align: left;">Last Name</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="lastName"></p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="text-align: left;">Birth Day</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="birthDay"></p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="text-align: left;">Email</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="mail"></p>
+                            </div>
+                        </div>
+
+                        <!-- Modal Footer -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <select class="form-select" id="member">
+            </select>
+            <button type="button" class="btn btn-primary" onclick="GET()">GET</button>
+        </div>
+        <ul class="list-group" id="chat">
+            <li class="list-group-item" style="display: none;" id="chat-item"></li>
+        </ul>
+    </form>
+    <span class="copyright">Powered by <b>HIBIKUN</b></span>
+</body>
+
+</html>
+
+<script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/aws-cognito-sdk.min.js"></script>
+<script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/amazon-cognito-identity.min.js"></script>
+<script>
+    const list = [
+        {
+            "id": 1,
+            "channelId": "088d90c1-3b17-4a58-ba95-b854ed5d35c9",
+            "name": "Adel"
+        },
+        {
+            "id": 2,
+            "channelId": "4c93270c-8537-4b2c-b46c-6b0075260dcc",
+            "name": "Alya"
+        },
+        {
+            "id": 3,
+            "channelId": "c754a3cb-8fd9-4a6d-a2ef-2ce0b0102513",
+            "name": "Amanda"
+        },
+        {
+            "id": 4,
+            "channelId": "78a539f6-fce1-4ece-bbaa-845729d72703",
+            "name": "Anindya"
+        },
+        {
+            "id": 5,
+            "channelId": "fe8f3fdc-716c-4493-9d8e-a48513067d98",
+            "name": "Ashel"
+        },
+        {
+            "id": 6,
+            "channelId": "d7661b40-994a-4b33-bc37-497bcf8b4c7b",
+            "name": "Callie"
+        },
+        {
+            "id": 7,
+            "channelId": "d09b75cf-688f-417c-9c82-31403ca08913",
+            "name": "Cathy"
+        },
+        {
+            "id": 8,
+            "channelId": "17c5cc3d-cb20-4c9a-b891-9731beb26784",
+            "name": "Chelsea"
+        },
+        {
+            "id": 9,
+            "channelId": "338b8367-9252-4d00-b97f-61d1e120ec82",
+            "name": "Chika"
+        },
+        {
+            "id": 10,
+            "channelId": "cc4f3770-9d89-4e75-8702-8519b704951e",
+            "name": "Christy"
+        },
+        {
+            "id": 11,
+            "channelId": "6b33c444-8d5c-4514-9064-6af9063c34e3",
+            "name": "Cynthia"
+        },
+        {
+            "id": 12,
+            "channelId": "1312bf08-a80e-43dc-a713-b1dcfae94b9e",
+            "name": "Daisy"
+        },
+        {
+            "id": 13,
+            "channelId": "7530c7ec-1ee2-4fa9-9564-bcb736ef9ed2",
+            "name": "Danella"
+        },
+        {
+            "id": 14,
+            "channelId": "26ce02d1-e249-4b22-ab6b-7ff1281e86a3",
+            "name": "Eli"
+        },
+        {
+            "id": 15,
+            "channelId": "545b6df0-c8f3-43a5-82af-5d5ac43521ce",
+            "name": "Elin"
+        },
+        {
+            "id": 16,
+            "channelId": "f77ad3d7-6ee9-4d32-9570-c7bbd1bc94d9",
+            "name": "Ella"
+        },
+        {
+            "id": 17,
+            "channelId": "22203f7b-de32-4830-ae8c-e9b387feb46d",
+            "name": "Feni"
+        },
+        {
+            "id": 18,
+            "channelId": "ee1f606c-9826-49d2-be90-f86a809383fd",
+            "name": "Fiony"
+        },
+        {
+            "id": 19,
+            "channelId": "5c437083-4678-4f29-8eb0-9682d50e559b",
+            "name": "Flora"
+        },
+        {
+            "id": 20,
+            "channelId": "d2b9c7b3-3aea-4a5a-8b6b-e1d65dd545b7",
+            "name": "Freya"
+        },
+        {
+            "id": 21,
+            "channelId": "3e709ac0-6487-4fb7-9fb4-9513354397e7",
+            "name": "Gendis"
+        },
+        {
+            "id": 22,
+            "channelId": "9883c298-1cca-4cd8-b357-5755251b988a",
+            "name": "Gita"
+        },
+        {
+            "id": 23,
+            "channelId": "cbc25ce8-8348-432f-86a1-48398cc96215",
+            "name": "Gracia"
+        },
+        {
+            "id": 24,
+            "channelId": "612830ee-040a-4e53-91bc-2cef83e09297",
+            "name": "Gracie"
+        },
+        {
+            "id": 25,
+            "channelId": "e9b764d9-6f3a-426b-bbb2-a40c16724322",
+            "name": "Greesel"
+        },
+        {
+            "id": 26,
+            "channelId": "c2b0018f-513d-4913-908c-e07024e98ae0",
+            "name": "Indah"
+        },
+        {
+            "id": 27,
+            "channelId": "3eb070cf-4fd7-46bc-9b7c-1042236a6de5",
+            "name": "Indira"
+        },
+        {
+            "id": 28,
+            "channelId": "a213364c-9836-4694-a028-057a0ab8f7cc",
+            "name": "Jeane"
+        },
+        {
+            "id": 29,
+            "channelId": "2b15417b-1943-433e-9840-0ce5c80311bc",
+            "name": "Jessi"
+        },
+        {
+            "id": 30,
+            "channelId": "93a277bd-52f8-4b97-9dfe-45755c34bfc3",
+            "name": "Kathrina"
+        },
+        {
+            "id": 31,
+            "channelId": "742caad3-c0f1-4fc0-8f1e-0a9885f3d853",
+            "name": "Lia"
+        },
+        {
+            "id": 32,
+            "channelId": "b5e55307-d38f-425f-9eb5-8bce0af43f9d",
+            "name": "Lulu"
+        },
+        {
+            "id": 33,
+            "channelId": "fbc727c1-0740-4cf2-a2e4-158d8035b793",
+            "name": "Lyn"
+        },
+        {
+            "id": 34,
+            "channelId": "be46a614-f943-4709-b453-6f87159dc546",
+            "name": "Marsha"
+        },
+        {
+            "id": 35,
+            "channelId": "083c4a05-997f-4350-ab18-e8f2fd0e041d",
+            "name": "Michie"
+        },
+        {
+            "id": 36,
+            "channelId": "9a890c70-a5b0-4a19-95af-adcf6ac7e636",
+            "name": "Muthe"
+        },
+        {
+            "id": 37,
+            "channelId": "46f44141-6cd0-4c1a-8416-238ad8c5260e",
+            "name": "Olla"
+        },
+        {
+            "id": 38,
+            "channelId": "0e97fe5f-c0e8-41ed-b841-789deaeb8db2",
+            "name": "Oniel"
+        },
+        {
+            "id": 39,
+            "channelId": "c24ac78c-5fe3-4fc8-9cee-678c28ac3ede",
+            "name": "Raisha"
+        },
+        {
+            "id": 40,
+            "channelId": "7dc13510-1fa7-42ad-8b9e-b56f3e68c2fb",
+            "name": "Shani"
+        },
+        {
+            "id": 41,
+            "channelId": "3ec1f4ec-4a4b-4b54-952b-3bfdef3ec7d3",
+            "name": "Zee"
+        }
+    ]
+
+    let member = document.querySelector("#member")
+    const member_items = data => {
+        const member_list = document.createElement("template")
+        member_list.innerHTML =
+            `<option value="${list[i].id}">${list[i].name}</option>`
+                .trim()
+        return member_list.content.firstChild
+    }
+    for (i in list) {
+        member.append((member_items(0)))
+    }
+
+    let REFRESH_TOKEN = localStorage.getItem("token")
+
+    let nickName = document.getElementById("nickName")
+    let firstName = document.getElementById("firstName")
+    let lastName = document.getElementById("lastName")
+    let birthDay = document.getElementById("birthDay")
+    let mail = document.getElementById("mail")
+
+    let nn = localStorage.getItem("nn")
+    let fn = localStorage.getItem("fn")
+    let ln = localStorage.getItem("ln")
+    let bd = localStorage.getItem("bd")
+    let em = localStorage.getItem("em")
+
+    if (fn != null) {
+        nickName.innerText = nn
+        firstName.innerText = fn
+        lastName.innerText = ln
+        birthDay.innerText = bd
+        mail.innerText = em
+    }
+
+    let userPoolId = "ap-southeast-1_RoHCv6Ilc"
+    let clientId = "7590jfhebmg1egosilucoot5ak"
+
+    if (REFRESH_TOKEN != null) {
+        document.getElementById("auth").style.display = "none"
+        document.getElementById("items").style.display = "block"
+        const auth_url = "https://cognito-idp.ap-southeast-1.amazonaws.com/"
+        const auth_body = {
+            "ClientId": clientId,
+            "AuthFlow": "REFRESH_TOKEN_AUTH",
+            "AuthParameters": {
+                "REFRESH_TOKEN": REFRESH_TOKEN,
+                "DEVICE_KEY": null
+            }
+        }
+        const auth_headers = {
+            headers: {
+                "Content-Type": "application/x-amz-json-1.1",
+                "X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth"
+            }
+        }
+        axios.post(auth_url, auth_body, auth_headers).then(function (response) {
+            REFRESH_TOKEN = response.data.AuthenticationResult.AccessToken
+        })
+    }
+
+    const profile = document.getElementById('profile')
+    const modal = document.getElementById('modal')
+
+    function LOGIN() {
+        let username = document.getElementById("email").value
+        let password = document.getElementById("password").value
+
+        var authenticationData = {
+            Username: username,
+            Password: password,
+        }
+        var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData)
+        var poolData = {
+            UserPoolId: userPoolId,
+            ClientId: clientId
+        }
+        var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData)
+        var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+        var userData = {
+            Username: username,
+            Pool: userPool
+        }
+        var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+        cognitoUser.authenticateUser(authenticationDetails, {
+            onSuccess: function (result) {
+                let accessToken = result.getAccessToken().getJwtToken()
+                REFRESH_TOKEN = accessToken
+
+                document.getElementById("auth").style.display = "none"
+                document.getElementById("items").style.display = "block"
+                localStorage.setItem("token", accessToken)
+
+                nn = result.idToken.payload.nickname
+                ln = result.idToken.payload.family_name
+                fn = result.idToken.payload.given_name
+                bd = result.idToken.payload.birthdate
+                em = result.idToken.payload.email
+
+                localStorage.setItem("nn", nn)
+                localStorage.setItem("fn", fn)
+                localStorage.setItem("ln", ln)
+                localStorage.setItem("bd", bd)
+                localStorage.setItem("em", em)
+
+                nickName.innerText = nn
+                firstName.innerText = fn
+                lastName.innerText = ln
+                birthDay.innerText = bd
+                mail.innerText = em
+            },
+            onFailure: function (err) {
+                alert(err);
+            }
+        })
+    }
+
+    function GET() {
+        const chat_item = document.querySelector("#chat-item")
+        chat_item.remove()
+        const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
+        const query = `
+            query MessagesByChannelId(
+                $channelId      : ID!
+                $updatedAt      : ModelStringKeyConditionInput
+                $sortDirection  : ModelSortDirection
+                $filter         : ModelMessageFilterInput
+                $limit          : Int
+                $nextToken      : String
+                ) {
+                    messagesByChannelId(
+                        channelId       : $channelId
+                        updatedAt       : $updatedAt
+                        sortDirection   : $sortDirection
+                        filter          : $filter
+                        limit           : $limit
+                        nextToken       : $nextToken
+                        ) {
+                            items {
+                                id, message, status, format, channelId, publishAt, createdAt, updatedAt, userMessagesId, channelMessagesId, owner, author {
+                                    id, email, nickname, profileImage
+                                }
+                            }
+                            nextToken
+                        }
+                    }
+                `
+        //
+        let channelId
+        //
+        if (member.value == 1) { channelId = list[0].channelId }
+        if (member.value == 2) { channelId = list[1].channelId }
+        if (member.value == 3) { channelId = list[2].channelId }
+        if (member.value == 4) { channelId = list[3].channelId }
+        if (member.value == 5) { channelId = list[4].channelId }
+        if (member.value == 6) { channelId = list[5].channelId }
+        if (member.value == 7) { channelId = list[6].channelId }
+        if (member.value == 8) { channelId = list[7].channelId }
+        if (member.value == 9) { channelId = list[8].channelId }
+        if (member.value == 10) { channelId = list[9].channelId }
+        if (member.value == 11) { channelId = list[10].channelId }
+        if (member.value == 12) { channelId = list[11].channelId }
+        if (member.value == 13) { channelId = list[12].channelId }
+        if (member.value == 14) { channelId = list[13].channelId }
+        if (member.value == 15) { channelId = list[14].channelId }
+        if (member.value == 16) { channelId = list[15].channelId }
+        if (member.value == 17) { channelId = list[16].channelId }
+        if (member.value == 18) { channelId = list[17].channelId }
+        if (member.value == 19) { channelId = list[18].channelId }
+        if (member.value == 20) { channelId = list[19].channelId }
+        if (member.value == 21) { channelId = list[20].channelId }
+        if (member.value == 22) { channelId = list[21].channelId }
+        if (member.value == 23) { channelId = list[22].channelId }
+        if (member.value == 24) { channelId = list[23].channelId }
+        if (member.value == 25) { channelId = list[24].channelId }
+        if (member.value == 26) { channelId = list[25].channelId }
+        if (member.value == 27) { channelId = list[26].channelId }
+        if (member.value == 28) { channelId = list[27].channelId }
+        if (member.value == 29) { channelId = list[28].channelId }
+        if (member.value == 30) { channelId = list[29].channelId }
+        if (member.value == 31) { channelId = list[30].channelId }
+        if (member.value == 32) { channelId = list[31].channelId }
+        if (member.value == 33) { channelId = list[32].channelId }
+        if (member.value == 34) { channelId = list[33].channelId }
+        if (member.value == 35) { channelId = list[34].channelId }
+        if (member.value == 36) { channelId = list[35].channelId }
+        if (member.value == 37) { channelId = list[36].channelId }
+        if (member.value == 38) { channelId = list[37].channelId }
+        if (member.value == 39) { channelId = list[38].channelId }
+        if (member.value == 40) { channelId = list[39].channelId }
+        if (member.value == 41) { channelId = list[40].channelId }
+        //
+        const body = {
+            "variables": {
+                "channelId": channelId,
+                "limit": 2147483647
+            },
+            query
+        }
+
+        const header = {
+            headers: {
+                "Authorization": REFRESH_TOKEN,
+            }
+        }
+        axios.post(url, body, header).then(function (response) {
+            const chat_query = document.querySelectorAll("#chat-item")
+            if (chat_query.length > 0) {
+                for (let i = 0; i < chat_query.length; i++) {
+                    chat_query[i].remove()
+                }
+            }
+            const items = response.data.data.messagesByChannelId.items.reverse()
+            const chat_items = data => {
+                const timestamp = items[i].publishAt
+                const date = timestamp.split("T")
+                const time = date[1].split(":")
+                const chat_list = document.createElement("template")
+                if (items[i].format == "text") {
+                    chat_list.innerHTML =
+                        `<li class="list-group-item" id="chat-item">${items[i].message} <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                            .trim()
+                    return chat_list.content.firstChild
+                }
+                if (items[i].format == "image") {
+                    chat_list.innerHTML =
+                        `<li class="list-group-item" id="chat-item"><img src="${items[i].message}" style="width: -webkit-fill-available;"></img> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                            .trim()
+                    return chat_list.content.firstChild
+                }
+                if (items[i].format == "audio") {
+                    chat_list.innerHTML =
+                        `<li class="list-group-item" id="chat-item"><audio controls src="${items[i].message}"></audio> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                            .trim()
+                    return chat_list.content.firstChild
+                }
+            }
+            for (i in items) {
+                chat.append((chat_items(0)))
+            }
+        })
+    }
+
+    function LOGOUT() {
+        localStorage.clear()
+        location.reload()
+    }
+
+    const passwordInput = document.getElementById("password")
+    const toggleIcon = document.getElementById("toggleIcon")
+
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("bi-eye-slash");
+            toggleIcon.classList.add("bi-eye");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("bi-eye");
+            toggleIcon.classList.add("bi-eye-slash");
+        }
+    })
+</script>
+
+<style>
+    body {
+        background-image: url(https://jkt48.primesse.me/images/top_background.png);
+        background-position: center;
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img {
+        border-radius: 20px;
+    }
+
+    label {
+        margin-top: 10px
+    }
+
+    form {
+        width: auto;
+        margin: 50px;
+    }
+
+    .list-group {
+        margin-top: 50px;
+        border-radius: 0 !important;
+    }
+
+    .list-group-item {
+        margin-bottom: 20px;
+        border-radius: 20px !important;
+    }
+
+    .title {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .date {
+        font-size: xx-small;
+        text-align: right;
+        margin-bottom: 0 !important;
+    }
+
+    .button {
+        width: 100%;
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        font-size: x-large;
+    }
+
+    .modal-header {
+        text-align: center !important;
+    }
+
+    .modal-body {
+        text-align: center !important;
+    }
+
+    .ava {
+        width: 25%;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .copyright {
+        text-align: center;
+        display: block;
+    }
+</style>
