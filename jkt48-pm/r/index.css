@@ -115,3 +115,7 @@ form {
     align-self: center;
     justify-self: center;
 }
+
+.alert {
+    opacity: 1 !important;
+}
