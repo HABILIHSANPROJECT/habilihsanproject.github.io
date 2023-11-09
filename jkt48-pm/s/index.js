@@ -35,7 +35,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     })
             })
             const toggleIcon = document.getElementById("toggleIcon")
-            document.getElementById("togglePassword").addEventListener("click", () => {
+            const i = document.getElementById("togglePassword").addEventListener("click", () => {
                 if (passwordInput.type === "password") {
                     passwordInput.type = "text"
                     toggleIcon.classList.remove("bi-eye-slash")
@@ -46,7 +46,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     toggleIcon.classList.add("bi-eye-slash")
                 }
             })
-            if (toggleIcon == null) {
+            if (i === null) {
                 location.reload()
             }
         })
