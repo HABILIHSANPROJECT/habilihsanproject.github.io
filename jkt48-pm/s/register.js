@@ -35,7 +35,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 .then(() => {
                     firebase.auth().onAuthStateChanged((user) => {
                         if (user) {
-                            location.replace("https://habilihsanproject.mayar.link/s/jkt48-private-message")
+                            location.replace("../p/subs.html")
                         } else {
                             location.reload()
                         }
