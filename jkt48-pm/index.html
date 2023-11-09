@@ -26,13 +26,22 @@
 
     <title>JKT48 PRIVATE MESSAGE</title>
     <div class="title">
-        <img style="width: 50%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
+        <a href="./index.html">
+        <img style="width: 30%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
+    </a>
     </div>
 </head>
 
 <body>
-    <form id="auth">
+    <form id="auth" class="alert alert-light mb-5">
         <p class="modal-title">LOG IN</p><br />
+        <div class="alert alert-primary text-center" role="alert">
+            <span class="fw-bold" style="font-size: smaller;">
+                Ini adalah layanan JKT48PMMMWWW dimana kamu bisa mengakses messages, pictures, dan voice notes dari member JKT48 secara berlangganan.
+                Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun.
+                Layanan ini hanya bisa diakses dalam satu perangkat saja.
+            </span>
+        </div>
         <input type="email" class="form-control" id="email" placeholder="Email Address"><br />
         <div class="input-group" style="display: flex;">
             <input type="password" class="form-control" id="password" placeholder="Password">
@@ -41,8 +50,8 @@
             </button>
         </div><br />
         <div style="display: flex">
-            <a href="../jkt48-pm/p/register.html" class="btn btn-success" tabindex="-1"
-                role="button" aria-disabled="true" style="margin-right: auto;">Promotion Code</a>
+            <a href="./p/register.html" class="btn btn-success" tabindex="-1"
+                role="button" aria-disabled="true" style="margin-right: auto;">Register</a>
             <button id="login" type="button" class="btn btn-primary">Login</button>
         </div>
     </form>

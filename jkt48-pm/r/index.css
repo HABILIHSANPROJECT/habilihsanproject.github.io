@@ -16,7 +16,7 @@ label {
 
 form {
     width: auto;
-    margin: 30px;
+    margin-top: 50px;
 }
 
 .list-group {
@@ -81,4 +81,33 @@ form {
     justify-self: center;
     margin-bottom: 20px;
     font-weight: normal;
+}
+
+.payment {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payment iframe{
+    border-radius: 20px;
+    margin: 50px 0 !important;
+}
+
+.empty {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.load {
+    text-align: center;
+    height: 25vw;
+    display: grid;
+}
+
+.load div {
+    align-self: center;
+    justify-self: center;
 }
