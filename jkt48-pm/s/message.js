@@ -2,14 +2,6 @@ let pages
 let customers = []
 let subs = []
 
-axios.get("https://api.ipify.org?format=json").then(function (response) {
-    if (localStorage.getItem("ip") === response.data.ip) {
-
-    } else {
-        alert("Anda sedang menggunakan layanan di perangkat yang lain")
-        location.replace("../index.html")
-    }
-    })
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-pm/r/firebase.json")
     .then(function (response) {
         const firebaseConfig = response.data
@@ -22,7 +14,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 let database = firebase.database()
                 const ref = database.ref("/")
                 ref.on("value", function (snapshot) {
-                    api = snapshot.val().config.api
+                    let api = snapshot.val().config.api
                     let header = {
                         headers: {
                             "Authorization": `Bearer ${api}`
@@ -213,6 +205,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         })
                 })
             } else {
+                location.replace("../index.html")
             }
         })
     })

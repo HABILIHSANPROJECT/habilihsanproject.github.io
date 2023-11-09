@@ -19,8 +19,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     .then(() => {
                         firebase.auth().onAuthStateChanged(function (user) {
                             if (user) {
-                                location.replace("./p/message.html")
+                                location.replace("./p/message.html")                        
                             } else {
+                                location.reload()
                             }
                         })
                         showSuccess("Login berhasil!")

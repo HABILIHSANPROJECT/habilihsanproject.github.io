@@ -19,8 +19,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     .then(() => {
                         firebase.auth().onAuthStateChanged(function (user) {
                             if (user) {
-                                location.replace("../p/subs.html")
+                                location.replace("../p/subs.html")    
                             } else {
+                                location.reload()
                             }
                         })
                         showSuccess("Akun berhasil dibuat!")
@@ -42,7 +43,4 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 }
             })
         })
-    })
-    axios.get("https://api.ipify.org?format=json").then(function (response) {
-        localStorage.setItem("ip",response.data.ip)
     })
