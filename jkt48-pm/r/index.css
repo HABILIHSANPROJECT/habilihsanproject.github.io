@@ -18,6 +18,8 @@ form {
     width: 90% !important;
     margin-top: 50px;
     padding: 20px;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .list-group {
