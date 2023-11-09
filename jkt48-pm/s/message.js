@@ -2,6 +2,9 @@ let pages
 let customers = []
 let subs = []
 
+window.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
+})
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-pm/r/firebase.json")
     .then(function (response) {
         const firebaseConfig = response.data

@@ -1,3 +1,6 @@
+window.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
+})
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-pm/r/firebase.json")
     .then(function (response) {
         const firebaseConfig = response.data
@@ -9,7 +12,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
         window.addEventListener("DOMContentLoaded", () => {
             let emailInput = document.getElementById("email")
-            let passwordInput = document.getElementById("password")
+            let passwordInput = document.getElementById("passwordLogin")
             document.getElementById("login").addEventListener("click", (e) => {
                 e.preventDefault()
                 const email = emailInput.value
@@ -32,6 +35,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     })
             })
             const toggleIcon = document.getElementById("toggleIcon")
+            console.log(toggleIcon)
             document.getElementById("togglePassword").addEventListener("click", () => {
                 if (passwordInput.type === "password") {
                     passwordInput.type = "text"
@@ -45,8 +49,4 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
             })
 
         })
-    })
-
-    axios.get("https://api.ipify.org?format=json").then(function (response) {
-        localStorage.setItem("ip",response.data.ip)
     })
