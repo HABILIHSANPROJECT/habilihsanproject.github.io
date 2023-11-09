@@ -1,9 +1,9 @@
 body {
-    background-image: url(https://jkt48.primesse.me/images/top_background.png);
-    background-position: center;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #eac42a !important;
+    background-position: center !important;
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 img {
@@ -88,7 +88,7 @@ label {
 }
 
 .payment {
-    width: 50%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -118,4 +118,10 @@ label {
 
 .alert {
     opacity: 1 !important;
+}
+
+.items {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
 }

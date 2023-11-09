@@ -1,7 +1,6 @@
 let pages
 let customers = []
 let subs = []
-
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })

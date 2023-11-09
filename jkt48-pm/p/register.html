@@ -32,7 +32,7 @@
     </div>
 </head>
 
-<body>
+<body id="body">
     <div class="form">
         <p class="modal-title">REGISTER</p><br/>
         <div class="alert alert-primary text-center" role="alert">
@@ -41,15 +41,15 @@
                 Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun.
             </span>
         </div>
-        <form id="auth">
-        <input type="email" class="form-control" id="email" placeholder="Email Address"><br />
+        <form id="register">
+        <input id="email-register" type="email" class="form-control" placeholder="Email Address"><br />
         <div class="input-group" style="display: flex;">
-            <input type="password" class="form-control" id="password" placeholder="Password">
-            <button class="btn btn-light" type="button" id="togglePassword">
-                <i class="bi bi-eye-slash" id="toggleIcon"></i>
+            <input id="password-register" type="password" class="form-control" placeholder="Password">
+            <button id="toggle-password-register" class="btn btn-light" type="button">
+                <i id="toggle-icon-register" class="bi bi-eye-slash"></i>
             </button>
         </div><br />
-            <button type="button" class="btn btn-success" id="register"
+            <button type="submit" class="btn btn-success"
                 style="width: 100%;">Register</button>
     </form></div>
     </body>

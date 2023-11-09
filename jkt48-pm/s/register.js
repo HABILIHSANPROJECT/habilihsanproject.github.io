@@ -1,48 +1,52 @@
-window.addEventListener("contextmenu", function (e) {
-    e.preventDefault()
-})
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-pm/r/firebase.json")
-    .then(function (response) {
-        const firebaseConfig = response.data
-        firebase.initializeApp(firebaseConfig)
-        firebase.analytics()
+    .then((r) => {
+        let REGISTER_FORM = document.getElementById("register")
+        let EMAIL_REGISTER = document.getElementById("email-register")
+        let PASSWORD_REGISTER = document.getElementById("password-register")
+        let TOGGLE_ICON_REGISTER = document.getElementById("toggle-icon-register")
+        let TOGGLE_PASSWORD_REGISTER = document.getElementById("toggle-password-register")
 
-        function showError(message) { alert(message) }
-        function showSuccess(message) { alert(message) }
+        let FIREBASE_CONFIG = r.data
+        firebase.initializeApp(FIREBASE_CONFIG)
 
-        window.addEventListener("DOMContentLoaded", () => {
-            let signupEmailInput = document.getElementById("email")
-let signupPasswordInput = document.getElementById("password")
-let toggleIcon = document.getElementById("toggleIcon")
-            document.getElementById("register").addEventListener("click", () => {
-                const email = signupEmailInput.value
-                const password = signupPasswordInput.value
-
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(() => {
-                        firebase.auth().onAuthStateChanged(function (user) {
-                            if (user) {
-                                location.replace("../p/subs.html")
-                            } else {
-                                location.reload()
-                            }
-                        })
-                        showSuccess("Akun berhasil dibuat!")
-                    })
-                    .catch((error) => {
-                        showError("Email kamu sudah terdaftar, gunakan email yang lain!")
-                    })
-            })
-            document.getElementById("togglePassword").addEventListener("click", function () {
-                if (signupPasswordInput.type === "password") {
-                    signupPasswordInput.type = "text";
-                    toggleIcon.classList.remove("bi-eye-slash");
-                    toggleIcon.classList.add("bi-eye");
+        if (TOGGLE_PASSWORD_REGISTER) {
+            TOGGLE_PASSWORD_REGISTER.addEventListener("click", () => {
+                if (PASSWORD_REGISTER.type === "password") {
+                    PASSWORD_REGISTER.type = "text"
+                    TOGGLE_ICON_REGISTER.classList.remove("bi-eye-slash")
+                    TOGGLE_ICON_REGISTER.classList.add("bi-eye")
                 } else {
-                    signupPasswordInput.type = "password";
-                    toggleIcon.classList.remove("bi-eye");
-                    toggleIcon.classList.add("bi-eye-slash");
+                    PASSWORD_REGISTER.type = "password"
+                    TOGGLE_ICON_REGISTER.classList.remove("bi-eye")
+                    TOGGLE_ICON_REGISTER.classList.add("bi-eye-slash")
                 }
             })
+            document.getElementById("body").style.backgroundImage = "url(https://jkt48.primesse.me/images/top_background.png)"
+        } else {
+            location.reload()
+        }
+
+        REGISTER_FORM.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const EMAIL = EMAIL_REGISTER.value
+            const PASSWORD = PASSWORD_REGISTER.value
+
+            firebase.auth().createUserWithEmailAndPassword(EMAIL, PASSWORD)
+                .then(() => {
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            location.replace("../p/subs.html")
+                        } else {
+                            location.reload()
+                        }
+                    })
+                    alert("Akun berhasil dibuat!")
+                })
+                .catch((e) => {
+                    alert("Email kamu sudah terdaftar, gunakan email yang lain!")
+                })
         })
+    })
+    .catch((e) => {
+        location.reload()
     })
