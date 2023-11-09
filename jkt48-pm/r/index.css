@@ -111,3 +111,8 @@ form {
     align-self: center;
     justify-self: center;
 }
+
+.alert {
+    width: 90% !important;
+    padding: 10px !important;
+}
