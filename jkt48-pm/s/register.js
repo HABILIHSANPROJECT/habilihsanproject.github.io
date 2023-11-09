@@ -45,5 +45,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     toggleIcon.classList.add("bi-eye-slash");
                 }
             })
+            if (toggleIcon == null) {
+                location.reload()
+            }
         })
     })
