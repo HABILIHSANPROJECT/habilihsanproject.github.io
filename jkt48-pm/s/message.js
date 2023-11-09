@@ -92,7 +92,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 })
                                                 document.getElementById("get").addEventListener("click", () => {
                                                     const chat_item = document.querySelector("#chat-item")
-                                                    chat_item.remove()
+                                                    if (chat_item) {
+                                                        chat_item.remove()
+                                                    }
                                                     const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
                                                     const query = `
                             query MessagesByChannelId(
@@ -149,7 +151,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                         }
                                                         const items = response.data.data.messagesByChannelId.items.reverse()
                                                         const chat_items = data => {
-                                                            const timestamp = items[i].publishAt
+                                                            const timestamp = items[i].createdAt
                                                             const date = timestamp.split("T")
                                                             const time = date[1].split(":")
                                                             const chat_list = document.createElement("template")
@@ -161,13 +163,13 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             }
                                                             if (items[i].format == "image") {
                                                                 chat_list.innerHTML =
-                                                                    `<li class="list-group-item" id="chat-item"><img src="${items[i].message}" style="width: -webkit-fill-available"></img> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                                                                    `<li class="list-group-item" id="chat-item"><img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
                                                                         .trim()
                                                                 return chat_list.content.firstChild
                                                             }
                                                             if (items[i].format == "audio") {
                                                                 chat_list.innerHTML =
-                                                                    `<li class="list-group-item" id="chat-item"><audio controls src="${items[i].message}"></audio> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                                                                    `<li class="list-group-item" id="chat-item"><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
                                                                         .trim()
                                                                 return chat_list.content.firstChild
                                                             }
