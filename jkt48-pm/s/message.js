@@ -190,7 +190,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     firebase.auth().signOut()
                         .then(() => {
                             showSuccess("Logout berhasil!")
-                            location.replace("../index.html")
+                            location.replace("https://habilihsanproject.github.io/jkt48-pm/")
                         })
                         .catch((error) => {
                             showError(error.message)
@@ -200,14 +200,14 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     firebase.auth().signOut()
                         .then(() => {
                             showSuccess("Logout berhasil!")
-                            location.replace("../index.html")
+                            location.replace("https://habilihsanproject.github.io/jkt48-pm/")
                         })
                         .catch((error) => {
                             showError(error.message)
                         })
                 })
             } else {
-                location.replace("../index.html")
+                location.replace("https://habilihsanproject.github.io/jkt48-pm/")
             }
         })
     })

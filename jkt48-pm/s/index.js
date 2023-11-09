@@ -35,7 +35,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 .then(() => {
                     firebase.auth().onAuthStateChanged((user) => {
                         if (user) {
-                            location.replace("./p/message.html")
+                            location.replace("https://habilihsanproject.github.io/jkt48-pm//p/message")
                         } else {
                             location.reload()
                         }
@@ -44,7 +44,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 })
                 .catch((e) => {
                     alert("Data kamu tidak ditemukan! Silahkan registrasi terlebih dulu!")
-                    location.replace("./p/register.html")
+                    location.replace("https://habilihsanproject.github.io/jkt48-pm//p/register")
                 })
         })
     })
