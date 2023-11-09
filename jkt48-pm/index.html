@@ -27,33 +27,39 @@
     <title>JKT48 PRIVATE MESSAGE</title>
     <div class="title">
         <a href="./index.html">
-        <img style="width: 30%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
-    </a>
+            <img style="width: 30%;"
+                src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
+        </a>
     </div>
 </head>
 
 <body>
-    <form id="auth" class="mb-5">
-        <p class="modal-title">LOG IN</p>
+    <div class="form">
+        <p class="modal-title">LOG IN</p><br/>
         <div class="alert alert-primary text-center" role="alert">
             <span class="fw-bold" style="font-size: smaller;">
-                Ini adalah layanan JKT48PMMMWWW dimana kamu bisa mengakses messages, pictures, dan voice notes dari member JKT48 secara berlangganan.
+                Ini adalah layanan JKT48PMMMWWW dimana kamu bisa mengakses messages, pictures, dan voice notes dari
+                member JKT48 secara berlangganan.
                 Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun.
             </span>
         </div>
-        <input type="email" class="form-control" id="email" placeholder="Email Address" autocomplete="username"><br />
-        <div class="input-group" style="display: flex;">
-            <input type="password" class="form-control" id="passwordLogin" placeholder="Password" autocomplete="current-password">
-            <button class="btn btn-light" type="button" id="togglePassword">
-                <i class="bi bi-eye-slash" id="toggleIcon"></i>
-            </button>
-        </div><br />
-        <div style="display: flex">
-            <a href="./p/register.html" class="btn btn-success" tabindex="-1"
-                role="button" aria-disabled="true" style="margin-right: auto;">Register</a>
-            <button id="login" type="button" class="btn btn-primary">Login</button>
-        </div>
-    </form>
+        <form id="auth">
+            <input type="email" class="form-control" id="email" placeholder="Email Address"
+                autocomplete="username"><br />
+            <div class="input-group" style="display: flex;">
+                <input type="password" class="form-control" id="passwordLogin" placeholder="Password"
+                    autocomplete="current-password">
+                <button class="btn btn-light" type="button" id="togglePassword">
+                    <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                </button>
+            </div><br />
+            <div style="display: flex">
+                <a href="./p/register.html" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true"
+                    style="margin-right: auto;">Register</a>
+                <button id="login" type="button" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
 </body>
 <footer class="footer">
     <span class="copyright badge text-bg-secondary">Powered by <b>JKT48PMMMWWW</b></span>

@@ -33,24 +33,26 @@
 </head>
 
 <body>
-    <form id="auth" class="mb-5">
-        <p class="modal-title">REGISTER</p>
+    <div class="form">
+        <p class="modal-title">REGISTER</p><br/>
         <div class="alert alert-primary text-center" role="alert">
             <span class="fw-bold" style="font-size: smaller;">
                 Ini adalah layanan JKT48PMMMWWW dimana kamu bisa mengakses messages, pictures, dan voice notes dari member JKT48 secara berlangganan.
                 Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun.
             </span>
         </div>
-        <input type="email" class="form-control" id="email" placeholder="Email Address" autocomplete="username"><br />
+        <form id="auth">
+        <input type="email" class="form-control" id="email" placeholder="Email Address"><br />
         <div class="input-group" style="display: flex;">
-            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password">
+            <input type="password" class="form-control" id="password" placeholder="Password">
             <button class="btn btn-light" type="button" id="togglePassword">
                 <i class="bi bi-eye-slash" id="toggleIcon"></i>
             </button>
         </div><br />
             <button type="button" class="btn btn-success" id="register"
                 style="width: 100%;">Register</button>
-    </form>
+    </form></div>
+    </body>
 </body>
 <footer class="footer">
     <span class="copyright badge text-bg-secondary">Powered by <b>JKT48PMMMWWW</b></span>

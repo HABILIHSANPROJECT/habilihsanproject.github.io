@@ -12,9 +12,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
         window.addEventListener("DOMContentLoaded", () => {
             let signupEmailInput = document.getElementById("email")
-            let signupPasswordInput = document.getElementById("password")
-            document.getElementById("register").addEventListener("click", (e) => {
-                e.preventDefault()
+let signupPasswordInput = document.getElementById("password")
+let toggleIcon = document.getElementById("toggleIcon")
+            document.getElementById("register").addEventListener("click", () => {
                 const email = signupEmailInput.value
                 const password = signupPasswordInput.value
 
@@ -22,7 +22,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     .then(() => {
                         firebase.auth().onAuthStateChanged(function (user) {
                             if (user) {
-                                location.replace("../p/subs.html")    
+                                location.replace("../p/subs.html")
                             } else {
                                 location.reload()
                             }
@@ -33,8 +33,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         showError("Email kamu sudah terdaftar, gunakan email yang lain!")
                     })
             })
-            const toggleIcon = document.getElementById("toggleIcon")
-            const i = document.getElementById("togglePassword").addEventListener("click", function () {
+            document.getElementById("togglePassword").addEventListener("click", function () {
                 if (signupPasswordInput.type === "password") {
                     signupPasswordInput.type = "text";
                     toggleIcon.classList.remove("bi-eye-slash");
@@ -45,8 +44,5 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     toggleIcon.classList.add("bi-eye-slash");
                 }
             })
-            if (i === null) {
-                location.reload()
-            }
         })
     })
