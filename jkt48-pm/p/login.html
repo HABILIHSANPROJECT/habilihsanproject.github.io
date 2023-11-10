@@ -13,7 +13,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="../s/register.js"></script>
+    <script src="../s/login.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -26,14 +26,14 @@
             <img style="width: 30%;" src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
         </a>
     </div>
-    
+
 </head>
 
 <body id="body">
 
     <div class="form">
 
-        <p class="modal-title">REGISTER</p><br/>
+        <p class="modal-title">LOG IN</p><br/>
 
         <div class="alert alert-primary text-center" role="alert">
             <span class="fw-bold" style="font-size: smaller;">
@@ -42,20 +42,20 @@
             </span>
         </div>
 
-        <form id="register">
+        <form id="login">
 
-            <input id="email-register" type="email" class="form-control" placeholder="Email Address"><br />
+            <input id="email-login" type="email" class="form-control" placeholder="Email Address"><br />
 
             <div class="input-group" style="display: flex;">
-                <input id="password-register" type="password" class="form-control" placeholder="Password">
-                <button id="toggle-password-register" class="btn btn-light" type="button">
-                    <i id="toggle-icon-register" class="bi bi-eye-slash"></i>
+                <input id="password-login" type="password" class="form-control" placeholder="Password">
+                <button class="btn btn-light" type="button" id="toggle-password-login">
+                    <i class="bi bi-eye-slash" id="toggle-icon-login"></i>
                 </button>
             </div><br />
 
             <div style="display: flex;">
-                <a href="https://habilihsanproject.github.io/jkt48-pm/p/login" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true" style="margin-right: auto;">Log In</a>
-                <button type="submit" class="btn btn-success">Register</button>
+                <a href="https://habilihsanproject.github.io/jkt48-pm/p/register" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" style="margin-right: auto;">Register</a>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
 
         </form>
