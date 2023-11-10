@@ -157,19 +157,19 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             const chat_list = document.createElement("template")
                                                             if (items[i].format == "text") {
                                                                 chat_list.innerHTML =
-                                                                    `<li class="list-group-item" id="chat-item">${items[i].message} <p class="date">${date[0]} ${Number(time[0]) + 7}:${time[1]}</p></li>`
+                                                                    `<li class="list-group-item" id="chat-item">${items[i].message} <p class="date" style="text-align: right;">${date[0]} ${Number(time[0]) + 7}:${time[1]}</p></li>`
                                                                         .trim()
                                                                 return chat_list.content.firstChild
                                                             }
                                                             if (items[i].format == "image") {
                                                                 chat_list.innerHTML =
-                                                                    `<li class="list-group-item" id="chat-item"><img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                                                                    `<li class="list-group-item" id="chat-item"><img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${Number(time[0]) + 7}:${time[1]}</p></div></li>`
                                                                         .trim()
                                                                 return chat_list.content.firstChild
                                                             }
                                                             if (items[i].format == "audio") {
                                                                 chat_list.innerHTML =
-                                                                    `<li class="list-group-item" id="chat-item"><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio> <p class="date">${date[0]} ${time[0]}:${time[1]}</p></li>`
+                                                                    `<li class="list-group-item" id="chat-item"><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${Number(time[0]) + 7}:${time[1]}</p></div></li>`
                                                                         .trim()
                                                                 return chat_list.content.firstChild
                                                             }
