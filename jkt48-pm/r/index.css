@@ -103,12 +103,16 @@ label {
     border-radius: 20px;
     padding: 20px;
     margin-top: 50px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .load {
     text-align: center;
     height: 25vw;
     display: grid;
+    margin-top: 50px;
 }
 
 .load div {
@@ -124,4 +128,5 @@ label {
     width: 90%;
     margin-right: auto;
     margin-left: auto;
+    margin-top: 30px;
 }

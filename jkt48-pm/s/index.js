@@ -49,6 +49,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
                                                 document.getElementById("items").style.display = "block"
                                                 document.getElementById("load").style.display = "none"
+                                                document.getElementById("empty").style.display = "none"
                                                 let list = snapshot.val().member
                                                 let member = document.querySelector("#member")
                                                 const member_items = data => {
