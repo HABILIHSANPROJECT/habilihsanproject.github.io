@@ -1,0 +1,11 @@
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    height: 100%;
+}
+
+.container {
+    min-height: 100%;
+}
