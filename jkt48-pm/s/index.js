@@ -23,11 +23,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             "Authorization": `Bearer ${api}`
                         }
                     }
-                    axios.get("https://api.mayar.id/hl/v1/transactions?type=subscription&status=settled", header)
+                    axios.get("https://api.mayar.id/hl/v1/transactions?type=subscription", header)
                         .then(function (response) {
                             pages = response.data.pageCount
                             for (let z = 1; z < pages + 1; z++) {
-                                axios.get(`https://api.mayar.id/hl/v1/transactions?type=subscription&status=settled&page=${z}`, header)
+                                axios.get(`https://api.mayar.id/hl/v1/transactions?type=subscription&page=${z}`, header)
                                     .then(function (response) {
                                         const paid = response.data.data
                                         paid.forEach(function (obj) {
