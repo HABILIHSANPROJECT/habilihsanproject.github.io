@@ -43,6 +43,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 var y = date.getFullYear()
                                                 var m = date.getMonth() + 1
                                                 var me = date.getMonth() + 2
+                                                if (me === 13) {
+                                                    me = 1
+                                                }
                                                 var d = date.getDate()
                                                 document.getElementById("email").innerHTML = customers[i]
                                                 document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
