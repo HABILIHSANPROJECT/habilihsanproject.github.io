@@ -107,6 +107,20 @@
         hadir.classList.remove("btn-primary")
         kehadiran = "Tidak Hadir"
     }
+    let infoData = document.querySelector("#infoData")
+    let info = data => {
+        const template = document.createElement("template")
+        template.innerHTML =
+            `<tr class="text-center">
+                <td>${database[i].nama}</td>
+                <td>${database[i].tanggal}</td>
+                <td>${database[i].kehadiran}</td>
+                <td>${database[i].waktu}</td>
+                <td>${database[i].catatan}</td>
+            </tr>`
+                .trim()
+        return template.content.firstChild
+    }
     function inputSubmit() {
         waktuKerja = document.getElementById("waktuDatang").value + "-" + document.getElementById("waktuPulang").value
         const inputData = {
@@ -117,20 +131,6 @@
             catatan: document.getElementById("catatan").value
         }
         database.push(inputData)
-        let infoData = document.querySelector("#infoData")
-        const info = data => {
-            const template = document.createElement("template")
-            template.innerHTML =
-                `<tr class="text-center">
-                <td>${database[i].nama}</td>
-                <td>${database[i].tanggal}</td>
-                <td>${database[i].kehadiran}</td>
-                <td>${database[i].waktu}</td>
-                <td>${database[i].catatan}</td>
-            </tr>`
-                    .trim()
-            return template.content.firstChild
-        }
         for (i in database) {
             infoData.append(info())
         }
