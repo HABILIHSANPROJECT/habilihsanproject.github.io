@@ -97,7 +97,6 @@
         tidakHadir.classList.add("btn-outline-danger")
         tidakHadir.classList.remove("btn-danger")
         kehadiran = "Hadir"
-        waktuKerja = document.getElementById("waktuDatang").value + "-" + document.getElementById("waktuPulang").value
     }
     function inputTidakHadir() {
         waktu.style.display = "none"
@@ -107,9 +106,9 @@
         hadir.classList.add("btn-outline-primary")
         hadir.classList.remove("btn-primary")
         kehadiran = "Tidak Hadir"
-        waktuKerja = "-"
     }
     function inputSubmit() {
+        waktuKerja = document.getElementById("waktuDatang").value + "-" + document.getElementById("waktuPulang").value
         const inputData = {
             nama: document.getElementById("nama").value,
             tanggal: document.getElementById("tanggal").value,
