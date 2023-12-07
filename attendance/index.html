@@ -23,7 +23,7 @@
             CEK KEHADIRAN
         </div>
     </nav>
-    <form class="p-5" data-bs-theme="light">
+    <form class="p-2" data-bs-theme="light">
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
             <input type="text" class="form-control" id="nama" placeholder="Nama Anda">
@@ -60,9 +60,9 @@
         <button type="button" id="submit" class="btn btn-primary w-100" onclick="inputSubmit()"
             style="display: none;">Submit</button>
     </form>
-    <div id="data" class="w-100 p-5" style="display: block;">
+    <div id="data" class="w-100 p-2" style="display: block;">
         <button type="button" class="btn btn-success w-100 mb-3" onclick="lihatData()">Lihat Data</button>
-        <table class="table w-100" id="tabel" style="display: none;">
+        <table class="table" id="tabel" style="display: none;">
             <thead>
                 <tr class="text-center">
                     <th>Nama</th>
@@ -111,7 +111,7 @@
     let info = data => {
         const template = document.createElement("template")
         template.innerHTML =
-            `<tr class="text-center">
+            `<tr id="listData" class="text-center">
                 <td>${database[i].nama}</td>
                 <td>${database[i].tanggal}</td>
                 <td>${database[i].kehadiran}</td>
@@ -133,6 +133,10 @@
         database.push(inputData)
         for (i in database) {
             infoData.append(info())
+            const listData = document.querySelectorAll("listData")
+            if (listData) {
+                listData.forEach[i-1].remove()
+            }
         }
     }
     function lihatData() {
