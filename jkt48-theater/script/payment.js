@@ -185,7 +185,6 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
         const date = dateText[0] + " / " + dateText[1]
         //const time = schedules.innerText.slice(0, 10)
         const setlist = shows.querySelectorAll("tr")[i].querySelectorAll("td")[1].innerText
-
         
     setlistNode.innerText = setlist
         show.push({ date, setlist })
@@ -193,6 +192,17 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
         //timeNode.innerText = time
     }
     show.reverse()
+
+const buy = document.getElementById("setlist")
+if (setlist.innerText == "Ingin Bertemu") {
+        console.log("true")
+            const buy = document.getElementById("buy")
+            if (buy) {
+                buy.disabled = true
+                buy.innerText = "Tiket untuk show ini tidak tersedia"
+            }
+        }
+    
     /*
     const schedule = data => {
         const template1 = document.createElement("template")
