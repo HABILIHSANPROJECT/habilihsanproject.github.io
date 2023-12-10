@@ -61,10 +61,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             customers.push(email)
 
                                         })
-                                        console.log(customers)
                                         for (let i = 0; i < customers.length; i++) {
                                             if (user.email == customers[i]) {
-                                                const numDate = paid[i].createdAt
+                                                const numDate = subs[i].createdAt
                                                 var date = new Date(numDate)
                                                 var y = date.getFullYear()
                                                 var m = date.getMonth() + 1
