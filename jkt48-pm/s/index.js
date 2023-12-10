@@ -1,6 +1,5 @@
 let pages
 let customers = []
-let subs = []
 let loadmessage
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
@@ -23,19 +22,46 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             "Authorization": `Bearer ${api}`
                         }
                     }
-                    axios.get("https://api.mayar.id/hl/v1/transactions?type=subscription", header)
+                    let query = `query getSubscriptionPageProxy(
+                                $page: Int,
+                                $pageSize: Int,
+                                $id: ID!,
+                                $sortField: String,
+                                $sortDirection: String) {
+                                    getSubscriptionPageProxy(
+                                        page: $page
+                                        pageSize: $pageSize
+                                        id: $id
+                                        sortField: $sortField
+                                        sortDirection: $sortDirection) {
+                                            items {
+                                                id, status, createdAt, customer {name, email, mobile }
+                                            }
+                                            total
+                                        }
+                                    }`
+                    let body = {
+                        "operationName":"getSubscriptionPageProxy",
+                        "variables": {
+                            "pageSize" :1000,
+                            "page" :1,
+                            "sortDirection": "ASC",
+                            "sortField": "status",
+                            "id": "56deb16f-c577-434c-abdb-88fb0c421e41"
+                        },
+                        query
+                    }
+
+                    axios.post("https://api.mayar.id/www", body, header)
                         .then(function (response) {
-                            pages = response.data.pageCount
-                            for (let z = 1; z < pages + 1; z++) {
-                                axios.get(`https://api.mayar.id/hl/v1/transactions?type=subscription&page=${z}`, header)
-                                    .then(function (response) {
-                                        const paid = response.data.data
-                                        paid.forEach(function (obj) {
+                                        const paid = response.data.data.getSubscriptionPageProxy.items
+                                        const subs = paid.filter(obs => obs.status === "active")
+                                        subs.forEach(function (obj) {
                                             const email = obj.customer.email
-                                            const sub = obj.createdAt
                                             customers.push(email)
-                                            subs.push(sub)
+
                                         })
+                                        console.log(customers)
                                         for (let i = 0; i < customers.length; i++) {
                                             if (user.email == customers[i]) {
                                                 const numDate = paid[i].createdAt
@@ -196,8 +222,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 document.getElementById("load").style.display = "none"
                                             }
                                         }
-                                    })
-                            }
+                                    
+                            
                         })
                 })
                 document.getElementById("exit").addEventListener("click", () => {
