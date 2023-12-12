@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effect Size Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    #valuesContainer {
+      margin-bottom: 20px;
+    }
+
+    .valueInput {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Effect Size Calculator</h1>
+
+  <p>Effect size adalah nilai yang digunakan untuk melihat seberapa besar efek atau perbedaan antara kelompok eksperimen dan kelompok kontrol. Dalam penelitian ini, kita menggunakan rumus Cohen’s untuk menentukan nilai effect size.</p>
+
+  <div id="valuesContainer">
+    <label for="expValues">Nilai Kelas Eksperimen:</label>
+    <div id="expValuesContainer"></div>
+    <button onclick="addValue('expValuesContainer')">Tambah Nilai</button>
+  </div>
+
+  <div id="valuesContainer">
+    <label for="ctrlValues">Nilai Kelas Kontrol:</label>
+    <div id="ctrlValuesContainer"></div>
+    <button onclick="addValue('ctrlValuesContainer')">Tambah Nilai</button>
+  </div>
+
+  <button onclick="calculateEffectSize()">Hitung</button>
+
+  <div id="result">
+    <h2>Hasil:</h2>
+    <p>Rata-rata Kelas Eksperimen: <span id="meanExp"></span></p>
+    <p>Rata-rata Kelas Kontrol: <span id="meanCtrl"></span></p>
+    <p>Nilai Pooled Standard Deviation: <span id="pooledSD"></span></p>
+    <p>Nilai Effect Size (Cohen's d): <span id="effectSize"></span></p>
+  </div>
+
+  <script>
+    function addValue(containerId) {
+      const container = document.getElementById(containerId);
+      const input = document.createElement("input");
+      input.className = "valueInput";
+      input.type = "text";
+      input.placeholder = "Masukkan nilai (pisahkan dengan koma)";
+      container.appendChild(input);
+    }
+
+    function calculateEffectSize() {
+      // Mendapatkan nilai input
+      const expValues = getValues("expValuesContainer");
+      const ctrlValues = getValues("ctrlValuesContainer");
+
+      // Menghitung rata-rata
+      const meanExp = expValues.reduce((acc, val) => acc + val, 0) / expValues.length;
+      const meanCtrl = ctrlValues.reduce((acc, val) => acc + val, 0) / ctrlValues.length;
+
+      // Menghitung pooled standard deviation
+      const expSD = standardDeviation(expValues);
+      const ctrlSD = standardDeviation(ctrlValues);
+      const pooledSD = Math.sqrt(((expValues.length - 1) * expSD**2 + (ctrlValues.length - 1) * ctrlSD**2) / (expValues.length + ctrlValues.length - 2));
+
+      // Menghitung effect size (Cohen's d)
+      const effectSize = (meanExp - meanCtrl) / pooledSD;
+
+      // Menampilkan hasil
+      document.getElementById("meanExp").innerText = meanExp.toFixed(2);
+      document.getElementById("meanCtrl").innerText = meanCtrl.toFixed(2);
+      document.getElementById("pooledSD").innerText = pooledSD.toFixed(2);
+      document.getElementById("effectSize").innerText = effectSize.toFixed(2);
+    }
+
+    function getValues(containerId) {
+      const container = document.getElementById(containerId);
+      const inputElements = container.querySelectorAll(".valueInput");
+      return Array.from(inputElements).map(input => parseFloat(input.value.trim())).filter(value => !isNaN(value));
+    }
+
+    function standardDeviation(values) {
+      const mean = values.reduce((acc, val) => acc + val, 0) / values.length;
+      const variance = values.reduce((acc, val) => acc + (val - mean)**2, 0) / values.length;
+      return Math.sqrt(variance);
+    }
+  </script>
+
+</body>
+</html>
