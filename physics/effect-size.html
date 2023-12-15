@@ -33,7 +33,7 @@
       margin-top: 20px;
     }
 
-    #valuesContainer {
+    .valuesContainer {
       margin-bottom: 20px;
     }
 
@@ -48,16 +48,24 @@
 
   <p>Effect size adalah nilai yang digunakan untuk melihat seberapa besar efek atau perbedaan antara kelompok eksperimen dan kelompok kontrol. Dalam penelitian ini, kita menggunakan rumus Cohen’s untuk menentukan nilai effect size.</p>
 
-  <div id="valuesContainer">
+  <div class="valuesContainer">
     <label for="expValues">Nilai Kelas Eksperimen:</label>
-    <div id="expValuesContainer"></div>
+    <div id="expValuesContainer">
+      <input class="valueInput" type="text" placeholder="Masukkan nilai">
+      <input class="valueInput" type="text" placeholder="Masukkan nilai">
+    </div>
     <button onclick="addValue('expValuesContainer')">Tambah Nilai</button>
+    <button onclick="removeValue('expValuesContainer')">Hapus Nilai Terakhir</button>
   </div>
 
-  <div id="valuesContainer">
+  <div class="valuesContainer">
     <label for="ctrlValues">Nilai Kelas Kontrol:</label>
-    <div id="ctrlValuesContainer"></div>
+    <div id="ctrlValuesContainer">
+      <input class="valueInput" type="text" placeholder="Masukkan nilai">
+      <input class="valueInput" type="text" placeholder="Masukkan nilai">
+    </div>
     <button onclick="addValue('ctrlValuesContainer')">Tambah Nilai</button>
+    <button onclick="removeValue('ctrlValuesContainer')">Hapus Nilai Terakhir</button>
   </div>
 
   <button onclick="calculateEffectSize()">Hitung</button>
@@ -65,7 +73,11 @@
   <div id="result">
     <h2>Hasil:</h2>
     <p>Rata-rata Kelas Eksperimen: <span id="meanExp"></span></p>
+    <p>Standar Deviasi Kelas Eksperimen: <span id="expSD"></span></p>
+    <br/>
     <p>Rata-rata Kelas Kontrol: <span id="meanCtrl"></span></p>
+    <p>Standar Deviasi Kontrol: <span id="ctrlSD"></span></p>
+    <br/>
     <p>Nilai Pooled Standard Deviation: <span id="pooledSD"></span></p>
     <p>Nilai Effect Size (Cohen's d): <span id="effectSize"></span></p>
   </div>
@@ -76,14 +88,27 @@
       const input = document.createElement("input");
       input.className = "valueInput";
       input.type = "text";
-      input.placeholder = "Masukkan nilai (pisahkan dengan koma)";
+      input.placeholder = "Masukkan nilai";
       container.appendChild(input);
+    }
+
+    function removeValue(containerId) {
+      const container = document.getElementById(containerId);
+      const inputElements = container.querySelectorAll(".valueInput");
+      if (inputElements.length > 2) {
+        container.removeChild(inputElements[inputElements.length - 1]);
+      }
     }
 
     function calculateEffectSize() {
       // Mendapatkan nilai input
       const expValues = getValues("expValuesContainer");
       const ctrlValues = getValues("ctrlValuesContainer");
+
+      if (expValues.length < 2 || ctrlValues.length < 2) {
+        alert("Masukkan minimal dua nilai untuk kedua kelompok.");
+        return;
+      }
 
       // Menghitung rata-rata
       const meanExp = expValues.reduce((acc, val) => acc + val, 0) / expValues.length;
@@ -99,7 +124,9 @@
 
       // Menampilkan hasil
       document.getElementById("meanExp").innerText = meanExp.toFixed(2);
+      document.getElementById("expSD").innerText = expSD.toFixed(2);
       document.getElementById("meanCtrl").innerText = meanCtrl.toFixed(2);
+      document.getElementById("ctrlSD").innerText = ctrlSD.toFixed(2);
       document.getElementById("pooledSD").innerText = pooledSD.toFixed(2);
       document.getElementById("effectSize").innerText = effectSize.toFixed(2);
     }
