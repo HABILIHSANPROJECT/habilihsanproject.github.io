@@ -78,6 +78,7 @@
     }
 
     firebase.auth().onAuthStateChanged((user) => {
+        const navbar = document.getElementById("navbar")
         if (user) {
             const logoutNav = `<span class="link-danger ms-5" onclick="logout()">Log Out</span>`
 
@@ -89,17 +90,20 @@
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/submit.html')">Submit Media</span>
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/profil.html')">Profil</span>
                     `
-                    document.getElementById("navbar").innerHTML = kreatorNav + logoutNav
+                    navbar.innerHTML = kreatorNav + logoutNav
                 }
                 if (doc.data().role === "validator") {
                     const validatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/submit.html')">Validasi Media</span>
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/profil.html')">Profil</span>
                     `
-                    document.getElementById("navbar").innerHTML = validatorNav + logoutNav
+                    navbar.innerHTML = validatorNav + logoutNav
                 }
             })
-            document.getElementById("navbar").innerHTML = logoutNav
+            navbar.innerHTML = logoutNav
+        } else {
+            const loginNav = `<span class="link-danger ms-5" onclick="location.replace('./p/login.html')">Log Out</span>`
+            navbar.innerHTML = loginNav
         }
         })
 </script>
