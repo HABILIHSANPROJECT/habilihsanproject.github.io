@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+
+    <link href="../r/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid ms-5 me-5">
+            <span class="navbar-brand fw-bold">Validitech</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ms-auto justify-content-end align-items-center" id="navbar">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <div class="container-fluid p-5 w-75 fill mb-5">
+        <form class="bg-body-tertiary p-5">
+            <h1 class="text-center mb-5">Profil</h1>
+
+            <!-- Header -->
+            <div class="d-flex justify-content-center align-items-center">
+                <div id="profilFoto" class="foto me-5"></div>
+
+                <!-- Keterangan -->
+                <div>
+                    <h1 id="usernameProfil">Loading...</h1>
+                    <span id="namaDepanProfil"></span> <span id="namaBelakangProfil"></span><br />
+                    Role: <span id="roleProfil">Loading...</span><br />
+                    Email: <span id="emailProfil">Loading...</span><br />
+                    ID: <span id="IDProfil">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Edit Profil -->
+            <button id="tombolEditProfil" class="btn btn-primary mt-5 w-100" type="button" onclick="editProfil()">Edit
+                Profil</button>
+            <div id="editProfil" style="display: none;">
+
+                <!-- Nama Lengkap Pengguna -->
+                <div class="d-flex mt-5 mb-3">
+                    <input id="namaDepan" class="form-control me-1" type="text" placeholder="Nama Depan" required>
+                    <input id="namaBelakang" class="form-control ms-1" type="text" placeholder="Nama Belakang" required>
+                </div>
+
+                <!-- Username Pengguna -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">@</span>
+                    <input id="username" class="form-control" type="text" placeholder="Username" required>
+                </div>
+
+                <!-- Email Pengguna -->
+                <input id="email" class="form-control mb-3" type="text" placeholder="Email" required>
+
+                <!-- Role Pengguna -->
+                <select class="form-select mb-3" id="role" required>
+                    <option selected>Pilih Tipe Akun</option>
+                    <option value="validator">Validator</option>
+                    <option value="kreator">Kreator</option>
+                </select>
+
+                <!-- Foto Profil -->
+                <div class="d-flex">
+                    <div class="spinner-grow" id="uploadBar" role="status" style="display: none;"></div>
+                    <label for="#fotoProfil">Foto Profil</label>
+                </div>
+                <input class="form-control mb-3" type="file" accept="image/*" id="fotoProfil">
+
+                <!-- Submit -->
+                <button class="btn btn-primary mt-3 w-100" type="button" onclick="submitEditProfil()">Ganti
+                    Profil</button>
+            </div>
+
+            <!-- Ganti Password -->
+            <button id="tombolGantiPassword" class="btn btn-success mt-3 w-100" type="button"
+                onclick="gantiPassword()">Edit Password</button>
+            <div class="mt-5 mb-5 border-top"></div>
+            <div class="w-100 text-center">
+                <h3 id="konten"></h3>
+                <table class="table">
+                    <thead id="thead"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+
+<br />
+<footer class="bg-body-tertiary p-3 text-center">
+    Habil Ihsan © 2024
+</footer>
+
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<script src="../r/index.js"></script>
+<script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let usernameProfil = document.getElementById("usernameProfil")
+            let namaDepanProfil = document.getElementById("namaDepanProfil")
+            let namaBelakangProfil = document.getElementById("namaBelakangProfil")
+            let emailProfil = document.getElementById("emailProfil")
+            let roleProfil = document.getElementById("roleProfil")
+            let IDProfil = document.getElementById("IDProfil")
+            let profilFoto = document.getElementById("profilFoto")
+
+            let navbar = document.getElementById("navbar")
+            let konten = document.getElementById("konten")
+
+            const logoutNav = `
+            <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+            <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
+            `
+            const databaseRef = firebase.firestore().collection("users").doc(user.uid)
+            databaseRef.get().then((doc) => {
+                usernameProfil.innerText = "@" + doc.data().username
+                namaDepanProfil.innerText = doc.data().firstName
+                namaBelakangProfil.innerText = doc.data().lastName
+                emailProfil.innerText = doc.data().email
+                roleProfil.innerText = doc.data().role
+                IDProfil.innerText = user.uid
+                profilFoto.style.backgroundImage = `url(${doc.data().profilePicture}.jpg)`
+                if (doc.data().role === "kreator") {
+                    const kreatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
+                    `
+                    navbar.innerHTML = kreatorNav + logoutNav
+
+                    const thead = document.getElementById("thead")
+                    const tbody = document.querySelector("#tbody")
+
+                    const postRef = firebase.firestore().collection("posts").doc(user.uid)
+                    postRef.get().then((doc) => {
+                        konten.innerText = "List Media"
+                        const posts = doc.data().post
+
+                        thead.innerHTML = `
+                        <tr>
+                            <th>ID</th>
+                            <th>Judul</th>
+                            <th>Kategori</th>
+                            <th>Aksi</th>    
+                        </tr>`
+
+                        const listKonten = data => {
+                            const template = document.createElement("template")
+                            template.innerHTML =
+                                `<tr>
+                                <td>${posts[i].id}</td>
+                                <td>${posts[i].title}</td>
+                                <td>${posts[i].category}</td>
+                                <td>
+                                    <a target="_blank" href="./post.html?id=${posts[i].id}"><button type="button" class="btn btn-primary">Lihat</button></a>    
+                                </td>
+                                </tr>`
+                                    .trim()
+                            return template.content.firstChild
+                        }
+
+                        for (i in posts) {
+                            tbody.append(listKonten())
+                        }
+
+                    })
+                }
+                if (doc.data().role === "validator") {
+                    const validatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Validasi Media</span>
+                    `
+                    navbar.innerHTML = validatorNav + logoutNav
+                }
+            })
+        }
+    })
+
+    function editProfil() {
+        document.getElementById("tombolEditProfil").style.display = "none"
+        document.getElementById("editProfil").style.display = "inline"
+    }
+
+    function gantiPassword() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                firebase.auth().sendPasswordResetEmail(user.email)
+                    .then(function () {
+                        alert("Cek email untuk mengganti Password!")
+                    })
+                    .catch(function (error) {
+                        console.error(error.message)
+                        alert("Gagal mengganti Password!")
+                    })
+            }
+        })
+    }
+
+    function logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                alert("Logout berhasil!")
+                location.replace("./p/login.html")
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+
+    if (document.getElementById("editProfil")) {
+        function submitEditProfil() {
+            const namaDepan = document.getElementById("namaDepan").value
+            const namaBelakang = document.getElementById("namaBelakang").value
+            const username = document.getElementById("username").value
+            const email = document.getElementById("email").value
+            const role = document.getElementById("role").value
+            const fotoProfil = document.getElementById("fotoProfil")
+            const uploadBar = document.getElementById("uploadBar")
+
+            uploadBar.style.display = "inline"
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    const storageRef = firebase.storage().ref(`fotoProfil/${user.uid}`)
+                    if (fotoProfil.files[0] === undefined) {
+                        user.updateProfile({
+                            displayName: username,
+                            role: role
+                        })
+                        const databaseRef = firebase.firestore().collection("users").doc(user.uid)
+                        databaseRef.update({
+                            firstName: namaDepan,
+                            lastName: namaBelakang,
+                            username: username,
+                            role: role,
+                            email: email
+                        })
+                            .then(() => {
+                                alert("Edit profil berhasil!")
+                                location.reload()
+                            })
+                    } else {
+                        storageRef.put(fotoProfil.files[0], { contentType: "image/jpeg" })
+                            .then((snapshot) => {
+                                snapshot.ref.getDownloadURL()
+                            })
+                            .then((downloadURL) => {
+                                user.updateProfile({
+                                    displayName: username,
+                                    photoURL: downloadURL,
+                                    role: role
+                                })
+                                const databaseRef = firebase.firestore().collection("users").doc(user.uid)
+                                databaseRef.update({
+                                    firstName: namaDepan,
+                                    lastName: namaBelakang,
+                                    username: username,
+                                    role: role,
+                                    email: email,
+                                    profilePicture: downloadURL
+                                })
+                            })
+                            .then(() => {
+                                alert("Edit profil berhasil!")
+                                location.reload()
+                            })
+                            .catch((error) => {
+                                alert("Foto Profil gagal diunggah!\n", error);
+                            })
+
+                    }
+                }
+            })
+        }
+    }
+</script>
