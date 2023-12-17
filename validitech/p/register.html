@@ -159,16 +159,15 @@
                     })
                     .then((downloadURL) => {
                         const databaseRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
-                        databaseRef.set({
+                        return databaseRef.set({
                             firstName: namaDepan,
                             lastName: namaBelakang,
                             username: username,
                             role: role,
                             email: email,
-                            profilePicture: downloadURL,
-                            post: []
+                            profilePicture: downloadURL
                         })
-                        userCredential.user.updateProfile({
+                        return userCredential.user.updateProfile({
                             displayName: username,
                             photoURL: downloadURL,
                             role: role
