@@ -20,7 +20,7 @@
     <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Post</title>
+    <title>Validitech</title>
 
     <link href="./r/index.css" rel="stylesheet">
 </head>
@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('#')" class="navbar-brand fw-bold">Validitech</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,9 +51,12 @@
             Sistem validitas paling inovatif.
         </h3>
         <div class="w-100 text-center mt-5 mb-5">
-            <a href="./p/register.html"><button class="btn btn-primary me-3">Daftar Sekarang!</button></a>
-            <a href="./p/register.html?role=validator"><button class="btn btn-success ms-3">Daftar sebagai Validator</button></a>
+            <a href="./p/register.html"><button class="btn btn-primary mt-2 me-1">Daftar Sekarang!</button></a>
+            <a href="./p/register.html?role=validator"><button class="btn btn-success mt-2 ms-1">Daftar sebagai Validator</button></a>
         </div>
+        <div class="w-100 text-center mt-5 mb-5">
+        <span class="mt-5">Sudah punya akun? <a href="./p/login.html">Log In Disini!</a></span>
+    </div>
     </div>
 </body>
 <footer class="bg-body-tertiary p-3 text-center">
@@ -102,8 +105,6 @@
             })
             navbar.innerHTML = logoutNav
         } else {
-            const loginNav = `<span class="link-danger ms-5" onclick="location.replace('./p/login.html')">Log Out</span>`
-            navbar.innerHTML = loginNav
         }
         })
 </script>
