@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKT48 IDN LIVE</title>
+
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid  ms-5 me-5">
+            <span class="navbar-brand fw-bold"><span class="text-danger">JKT48</span> IDN Live</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-5 w-100 fill">
+        <div class="card" style="width: 20%;">
+            <img class="card-img-top" id="card-image">
+            <div class="card-body">
+              <h5 class="card-title" id="card-title"></h5>
+              <p class="card-text" id="card-text"></p>
+              <a href="#" id="card-button" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const APIKey = "1ccc5bc4-8bb4-414c-b524-92d11a85a818"
+    const token = "eyJraWQiOiJNK01ZYlFaa2dSXC9pU21jU1FhbkNLR2ZZK2swWVNyMWxYTWtSam1BU1RhQT0iLCJhbGciOiJSUzI1NiJ9.eyJjdXN0b206dXVpZCI6IjA2MjkyZmI4LTY5NTMtNGVkYS1iMzY5LWY4YjhkMTE1ZjQxOSIsInN1YiI6ImNiMjViYzliLTk0YTUtNGNiYi05ZWNlLWJiM2ZmMTEzYjM1MCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfc3p0S2ZJNllTIiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjpmYWxzZSwiY29nbml0bzp1c2VybmFtZSI6IjA2MjkyZmI4LTY5NTMtNGVkYS1iMzY5LWY4YjhkMTE1ZjQxOSIsImN1c3RvbTpsYXN0X3NvY21lZF9lbWFpbCI6Img0OGlsaWhzYW5AZ21haWwuY29tIiwib3JpZ2luX2p0aSI6IjNjMWY1ZDVjLWNiMjEtNDY4YS1hODY5LWU1MzJmNDYxYzQzNiIsImF1ZCI6IjZnbmFqMzBvb21odGwwdDNxdGtmcDJ1aXI5IiwiaWRuX2FjY291bnRfdXNlcm5hbWUiOiJoYWItcjdxOSIsImlkZW50aXRpZXMiOlt7InVzZXJJZCI6IjExODA4MzYxNTM4NzkxNDgwNjQ0NiIsInByb3ZpZGVyTmFtZSI6Ikdvb2dsZSIsInByb3ZpZGVyVHlwZSI6Ikdvb2dsZSIsImlzc3VlciI6bnVsbCwicHJpbWFyeSI6ImZhbHNlIiwiZGF0ZUNyZWF0ZWQiOiIxNjczNjAzNjQ2MjM4In1dLCJldmVudF9pZCI6ImY1OTRjY2IyLTI0NTQtNDAyOC1hYzg3LTE5MzRjMDE0N2ZjMCIsImF2YXRhcl91cmwiOiJodHRwczpcL1wvY2RuLmlkbi5tZWRpYVwvaWRuYWNjb3VudFwvYXZhdGFyXC81MDBcL2FjYzQ0NzgwNTNkNGEyZWYyZWRhMzgwMTY4Mzk0MjcwLndlYnA_dj0xNjczNjAzNjc2IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MDI5ODM5ODAsIm5hbWUiOiJIQUJJTCBJSFNBTiIsImN1c3RvbTpsYXN0X3NvY21lZF9uYW1lIjoiSEFCSUwgSUhTQU4iLCJwaG9uZV9udW1iZXIiOiIrNjI4NTE3MTEwMTM0OCIsImV4cCI6MTcwMzA3MDM3OSwiaWF0IjoxNzAyOTgzOTgwLCJqdGkiOiJkOWFmNmFhYi0zMTc1LTQ0OWItYWUyZS1jYzYzMDAxMzg5MjMiLCJlbWFpbCI6Img0OGlsaWhzYW5AZ21haWwuY29tIn0.bYiiD-ieyZYUg-vkF-f-_efOWOd04EX4s6MwHaLzgbDYyMw52wsdRpcU2DsCpU_KVjPQEWWDqo1xRe7l8usHe2dloJWpJGizZDDXn0cBukMRelNe2uiJggu-UFUByZq898cvmZgIC5Jur3z3NyjiXHGlzp8GbGBiqHbhyPBaDVngZjKuoFpkpC1yl36yc8Po988NH7tSW775bonZvxyx3dsn0QpQ_a3__53sJPySLx-AZdScKIwSjxIUfSEXuueLF4SYuvbmounps_mwKctm5MDyG3W5ItWgxEJ_SDePwEceeOIwQiPtn6l19IYE7dLUV1gUhwZmYOaLrj5U2ZBkag"
+    const headers = {
+        headers: {
+            "Authorization": `Bearer ${APIKey}`,
+            "X-Api-Key": APIKey
+        }
+    }
+    axios.get("https://www.idn.app/mobile-api/v3/profile/livestreams?uuid=85482779-8b59-4995-a600-f8a4230c29d8", headers)
+    .then(response => {
+        console.log(response.data)
+    })
+</script>
