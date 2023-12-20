@@ -87,6 +87,7 @@
         return null
     }
     
+    let uidParam = GetParam(urlParam, "uid")
     let idParam = GetParam(urlParam, "id")
     firebase.auth().onAuthStateChanged((user) => {
         const judul = document.getElementById("judul")
@@ -96,8 +97,11 @@
         const kategori = document.getElementById("kategori")
         const tipe = document.getElementById("tipe")
         const desc = document.getElementById("deskripsi")
+
+        let navbar = document.getElementById("navbar")
+
         if (user) {
-            const databaseRef = firebase.firestore().collection("posts").doc(user.uid)
+            const databaseRef = firebase.firestore().collection("posts").doc(uidParam)
             databaseRef.get().then((doc) => {
                 const posts = doc.data().post
                 const post = posts.find(item => item.id === Number(idParam))
@@ -109,6 +113,22 @@
                 kategori.innerText = post.category
                 tipe.innerText = post.type
                 desc.innerText = post.desc
+            })
+            const usersRef = firebase.firestore().collection("users").doc(user.uid)
+            usersRef.get().then((doc) => {
+                const logoutNav = `
+                <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+                <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
+                `
+                navbar.innerHTML = logoutNav
+                if (doc.data().role === "kreator") {
+                    const kreatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
+                    `
+
+                    navbar.innerHTML = kreatorNav + logoutNav
+                }
             })
         }
     })

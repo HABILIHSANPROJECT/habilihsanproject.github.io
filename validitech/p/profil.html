@@ -53,6 +53,7 @@
                     <h1 id="usernameProfil">Loading...</h1>
                     <span id="namaDepanProfil"></span> <span id="namaBelakangProfil"></span><br />
                     Role: <span id="roleProfil">Loading...</span><br />
+                    No. Telp: <span id="telProfil">Loading...</span><br />
                     Email: <span id="emailProfil">Loading...</span><br />
                     ID: <span id="IDProfil">Loading...</span>
                 </div>
@@ -78,6 +79,9 @@
                 <!-- Email Pengguna -->
                 <input id="email" class="form-control mb-3" type="text" placeholder="Email" required>
 
+                <!-- No. Telepon -->
+                <input id="tel" class="form-control mb-3" type="tel" placeholder="No. Telepon/Whatsapp" required>
+
                 <!-- Role Pengguna -->
                 <select class="form-select mb-3" id="role" required>
                     <option selected>Pilih Tipe Akun</option>
@@ -101,6 +105,8 @@
             <button id="tombolGantiPassword" class="btn btn-success mt-3 w-100" type="button"
                 onclick="gantiPassword()">Edit Password</button>
             <div class="mt-5 mb-5 border-top"></div>
+
+            <!-- Konten -->
             <div class="w-100 text-center">
                 <h3 id="konten"></h3>
                 <table class="table">
@@ -131,6 +137,7 @@
             let namaDepanProfil = document.getElementById("namaDepanProfil")
             let namaBelakangProfil = document.getElementById("namaBelakangProfil")
             let emailProfil = document.getElementById("emailProfil")
+            let telProfil = document.getElementById("telProfil")
             let roleProfil = document.getElementById("roleProfil")
             let IDProfil = document.getElementById("IDProfil")
             let profilFoto = document.getElementById("profilFoto")
@@ -148,6 +155,7 @@
                 namaDepanProfil.innerText = doc.data().firstName
                 namaBelakangProfil.innerText = doc.data().lastName
                 emailProfil.innerText = doc.data().email
+                telProfil.innerText = doc.data().tel
                 roleProfil.innerText = doc.data().role
                 IDProfil.innerText = user.uid
                 profilFoto.style.backgroundImage = `url(${doc.data().profilePicture}.jpg)`
@@ -168,9 +176,9 @@
 
                         thead.innerHTML = `
                         <tr>
-                            <th>ID</th>
                             <th>Judul</th>
                             <th>Kategori</th>
+                            <th>Tipe</th>
                             <th>Aksi</th>    
                         </tr>`
 
@@ -178,11 +186,11 @@
                             const template = document.createElement("template")
                             template.innerHTML =
                                 `<tr>
-                                <td>${posts[i].id}</td>
                                 <td>${posts[i].title}</td>
                                 <td>${posts[i].category}</td>
+                                <td>${posts[i].type}</td>
                                 <td>
-                                    <a target="_blank" href="./post.html?id=${posts[i].id}"><button type="button" class="btn btn-primary">Lihat</button></a>    
+                                    <a target="_blank" href="./post.html?uid=${user.uid}&id=${posts[i].id}"><button type="button" class="btn btn-primary">Lihat</button></a>    
                                 </td>
                                 </tr>`
                                     .trim()
@@ -197,7 +205,7 @@
                 }
                 if (doc.data().role === "validator") {
                     const validatorNav = `
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Validasi Media</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
                     `
                     navbar.innerHTML = validatorNav + logoutNav
                 }
@@ -242,6 +250,7 @@
             const namaBelakang = document.getElementById("namaBelakang").value
             const username = document.getElementById("username").value
             const email = document.getElementById("email").value
+            const tel = document.getElementById("tel").value
             const role = document.getElementById("role").value
             const fotoProfil = document.getElementById("fotoProfil")
             const uploadBar = document.getElementById("uploadBar")
@@ -257,11 +266,12 @@
                             role: role
                         })
                         const databaseRef = firebase.firestore().collection("users").doc(user.uid)
-                        databaseRef.update({
+                        return databaseRef.update({
                             firstName: namaDepan,
                             lastName: namaBelakang,
                             username: username,
                             role: role,
+                            tel: tel,
                             email: email
                         })
                             .then(() => {
@@ -280,12 +290,13 @@
                                     role: role
                                 })
                                 const databaseRef = firebase.firestore().collection("users").doc(user.uid)
-                                databaseRef.update({
+                                return databaseRef.update({
                                     firstName: namaDepan,
                                     lastName: namaBelakang,
                                     username: username,
                                     role: role,
                                     email: email,
+                                    tel: tel,
                                     profilePicture: downloadURL
                                 })
                             })
