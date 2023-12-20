@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIBI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid  ms-5 me-5">
+            <span class="navbar-brand fw-bold">hibi.<span class="text-success">ai</span></span>
+        </div>
+    </nav>
+    <div class="container-fluid p-5 w-100">
+        <div id="log" class="w-100 border rounded p-3"></div>
+        <div class="input-group mt-3">
+            <input type="text" class="form-control" id="input" placeholder="tanya hibi">
+            <button class="btn btn-success" onclick="send()">
+                <i class="mdi mdi-send"></i>
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+<script>
+    const api = "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"
+    const log = document.getElementById("log")
+    const input = document.getElementById("input")
+
+    function appendLog(sender, message, color) {
+        const logMessage = data => {
+            const template = document.createElement("template")
+            template.innerHTML = `<p><strong class="text-${color}">${sender}:</strong> ${message}</p>`.trim()
+            return template.content.firstChild
+        }
+        log.append(logMessage())
+    }
+
+    function send() {
+        const message = input.value
+        appendLog("kamu", message, "body")
+        getResponse(message)
+    }
+
+    function getResponse(message) {
+        const url = "https://api.openai.com/v1/engines/ada/completions"
+        const header = {
+            headers: {
+                "Authorization": `Bearer ${api}`,
+                "Content-Type": "application/json",
+            }
+        }
+        const data = JSON.stringify({
+            prompt: message,
+            max_tokens: 150,
+        })
+        axios.post(url, data, header)
+            .then(function (response) {
+                const BOTresponse = response.data.choices[0].text.trim()
+                appendLog("hibi", BOTresponse, "success")
+            })
+            .catch(function (error) {
+                console.error("Error:", error)
+                appendLog("hibi", error.response.data.error.message, "danger")
+            })
+    }
+</script>
