@@ -38,41 +38,21 @@
     const log = document.getElementById("log")
     const input = document.getElementById("input")
 
-    function appendLog(sender, message, color) {
-        const logMessage = data => {
-            const template = document.createElement("template")
-            template.innerHTML = `<p><strong class="text-${color}">${sender}:</strong> ${message}</p>`.trim()
-            return template.content.firstChild
+    async function chatWithGPT(input) {
+        try {
+            const apiUrl = "https://example.com/chatgpt-api"
+
+            const response = await axios.post(apiUrl, {
+                userInput: input,
+            })
+
+            console.log(response.data)
+        } catch (error) {
+            console.error("Error:", error.message)
         }
-        log.append(logMessage())
     }
 
     function send() {
-        const message = input.value
-        appendLog("kamu", message, "body")
-        getResponse(message)
-    }
-
-    function getResponse(message) {
-        const url = "https://api.openai.com/v1/engines/ada/completions"
-        const header = {
-            headers: {
-                "Authorization": `Bearer ${api}`,
-                "Content-Type": "application/json",
-            }
-        }
-        const data = JSON.stringify({
-            prompt: message,
-            max_tokens: 150,
-        })
-        axios.post(url, data, header)
-            .then(function (response) {
-                const BOTresponse = response.data.choices[0].text.trim()
-                appendLog("hibi", BOTresponse, "success")
-            })
-            .catch(function (error) {
-                console.error("Error:", error)
-                appendLog("hibi", error.response.data.error.message, "danger")
-            })
+        chatWithGPT(input)
     }
 </script>
