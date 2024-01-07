@@ -87,6 +87,11 @@
                 <option value="kreator">Kreator</option>
             </select>
 
+            <div id="instansi" style="display: none;">
+                <label>Instansi</label>
+                <input id="affiliation" class="form-control mb-3" type="text" placeholder="Instansi" required>
+            </div>
+            
             <!-- Foto Profil -->
             <div class="d-flex">
                 <div class="spinner-grow" id="uploadBar" role="status" style="display: none;"></div>
@@ -135,11 +140,18 @@
     }
     
     let roleParam = GetParam(urlParam, "role")
+    let instansi = document.getElementById("instansi")
     const role = document.getElementById("role")
     role.value = roleParam
     if (role.value === "validator") {
         role.disabled = true
+        instansi.style.display = "inline"
     }
+    role.addEventListener("change", function () {
+        if (role.value === "validator") {
+            instansi.style.display = "inline"
+        }
+    })
 
     function registrasi() {
         const namaDepan = document.getElementById("namaDepan").value
@@ -150,10 +162,9 @@
         const password = document.getElementById("password").value
         const konfirmasiPassword = document.getElementById("konfirmasiPassword").value
         const role = document.getElementById("role").value
+        const affiliation = document.getElementById("affiliation").value
         const fotoProfil = document.getElementById("fotoProfil")
         const uploadBar = document.getElementById("uploadBar")
-
-        uploadBar.style.display = "inline"
 
         if (password !== konfirmasiPassword) {
             alert("Konfirmasi password tidak cocok!")
@@ -174,6 +185,7 @@
                             lastName: namaBelakang,
                             username: username,
                             role: role,
+                            affiliation: affiliation,
                             email: email,
                             tel: tel,
                             profilePicture: downloadURL
@@ -183,6 +195,7 @@
                             photoURL: downloadURL,
                             role: role
                         })
+                        uploadBar.style.display = "inline"
                     })
                     .then(() => {
                         alert("Pendaftaran berhasil!")

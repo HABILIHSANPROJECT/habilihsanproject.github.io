@@ -55,6 +55,11 @@
             <div class="mt-3 border-top"></div>
             <div id="deskripsi" class="mt-3" style="text-align: justify;"></div>
         </form>
+        <form class="bg-body-tertiary p-5 mt-3">
+            <h3>Lembar Instrumen Validiasi Media Pembelajaran Interaktif</h3>
+            <div class="mt-3 mb-3 border-top"></div>
+            <object id="validasi"></object>
+        </form>
     </div>
 </body>
 <br />
@@ -78,7 +83,7 @@
         }
         const paramString = url.slice(index + 1)
         const paramArray = paramString.split("&")
-        for (let i=0; i<paramArray.length; i++) {
+        for (let i = 0; i < paramArray.length; i++) {
             const params = paramArray[i].split("=")
             if (params[0] === param) {
                 return params[1]
@@ -86,7 +91,7 @@
         }
         return null
     }
-    
+
     let uidParam = GetParam(urlParam, "uid")
     let idParam = GetParam(urlParam, "id")
     firebase.auth().onAuthStateChanged((user) => {
@@ -97,6 +102,7 @@
         const kategori = document.getElementById("kategori")
         const tipe = document.getElementById("tipe")
         const desc = document.getElementById("deskripsi")
+        const validasi = document.getElementById("validasi")
 
         let navbar = document.getElementById("navbar")
 
@@ -107,12 +113,16 @@
                 const post = posts.find(item => item.id === Number(idParam))
                 judul.innerText = post.title
                 frame.data = post.media
-                frame.style.height = 3*frame.clientHeight + "px"
+                frame.style.height = 3 * frame.clientHeight + "px"
                 namaPemilik.innerText = post.name
                 emailPemilik.innerText = post.email
                 kategori.innerText = post.category
                 tipe.innerText = post.type
                 desc.innerText = post.desc
+
+                validasi.data = post.validation
+                validasi.style.width = "100%"
+                validasi.style.height = 3 * frame.clientHeight + "px"
             })
             const usersRef = firebase.firestore().collection("users").doc(user.uid)
             usersRef.get().then((doc) => {
@@ -132,5 +142,4 @@
             })
         }
     })
-    
 </script>

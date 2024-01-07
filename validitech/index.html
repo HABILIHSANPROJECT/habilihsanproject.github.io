@@ -105,6 +105,10 @@
             })
             navbar.innerHTML = logoutNav
         } else {
+            navbar.innerHTML = `
+            <span type="button" class="link-light ms-5" onclick="location.replace('./p/register.html')">Register</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./p/login.html')">Login</span>
+            `
         }
         })
 </script>

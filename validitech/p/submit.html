@@ -68,8 +68,8 @@
             <label for="#fileMedia">Upload Media</label>
             <input id="fileMedia" class="form-control mb-3" type="file" placeholder="Upload Media" disabled required>
 
-            <label for="#linkMedia">Masukan Link Validasi</label>
-            <input id="linkMedia" class="form-control mb-3" type="url" placeholder="Masukan Link Google Form, dll" required>
+            <label for="#linkValidasi">Masukan Link Validasi</label>
+            <input id="linkValidasi" class="form-control mb-3" type="url" placeholder="Masukan Link Google Form, dll" required>
 
             <div class="d-flex mt-5" style="display: none !important;" id="loadSubmit">
                 <div class="spinner-grow me-3" id="uploadBar" role="status"></div>
@@ -102,6 +102,7 @@
 
     let fileMedia = document.getElementById("fileMedia")
     let linkMedia = document.getElementById("linkMedia")
+    let linkValidasi = document.getElementById("linkValidasi")
     let loadSubmit = document.getElementById("loadSubmit")
 
     type.addEventListener("change", function () {
@@ -164,6 +165,7 @@
                     category: category.value,
                     type: type.value,
                     media: linkMedia.value,
+                    validation: linkValidasi.value,
                     uid: uid
                 }
                 let arrayLinkPost = []
@@ -215,6 +217,7 @@
                             category: category.value,
                             type: type.value,
                             media: downloadURL,
+                            validation: linkValidasi.value,
                             uid: uid
                         }
                         let arrayFilePost = []

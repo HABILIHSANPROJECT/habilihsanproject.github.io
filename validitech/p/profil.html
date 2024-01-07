@@ -150,7 +150,7 @@
             <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
             `
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
-            databaseRef.get().then((doc) => {
+            databaseRef.get().then((doc) => {  
                 usernameProfil.innerText = "@" + doc.data().username
                 namaDepanProfil.innerText = doc.data().firstName
                 namaBelakangProfil.innerText = doc.data().lastName
@@ -171,7 +171,8 @@
 
                     const postRef = firebase.firestore().collection("posts").doc(user.uid)
                     postRef.get().then((doc) => {
-                        konten.innerText = "List Media"
+                        if (doc.exist) {
+                            konten.innerText = "List Media"
                         const posts = doc.data().post
 
                         thead.innerHTML = `
@@ -200,6 +201,7 @@
                         for (i in posts) {
                             tbody.append(listKonten())
                         }
+                        }
 
                     })
                 }
@@ -216,6 +218,22 @@
     function editProfil() {
         document.getElementById("tombolEditProfil").style.display = "none"
         document.getElementById("editProfil").style.display = "inline"
+
+        let namaDepan = document.getElementById("namaDepan")
+            let namaBelakang = document.getElementById("namaBelakang")
+            let username = document.getElementById("username")
+            let email = document.getElementById("email")
+            let tel = document.getElementById("tel")
+            let role = document.getElementById("role")
+        const databaseRef = firebase.firestore().collection("users").doc(IDProfil.innerText)
+            databaseRef.get().then((doc) => {
+                namaDepan.value = doc.data().firstName
+                namaBelakang.value = doc.data().lastName
+                username.value = doc.data().username
+                email.value = doc.data().email
+                tel.value = doc.data().tel
+                role.value = doc.data().role
+            })
     }
 
     function gantiPassword() {
@@ -246,15 +264,8 @@
 
     if (document.getElementById("editProfil")) {
         function submitEditProfil() {
-            const namaDepan = document.getElementById("namaDepan").value
-            const namaBelakang = document.getElementById("namaBelakang").value
-            const username = document.getElementById("username").value
-            const email = document.getElementById("email").value
-            const tel = document.getElementById("tel").value
-            const role = document.getElementById("role").value
-            const fotoProfil = document.getElementById("fotoProfil")
-            const uploadBar = document.getElementById("uploadBar")
-
+            let fotoProfil = document.getElementById("fotoProfil")
+            let uploadBar = document.getElementById("uploadBar")
             uploadBar.style.display = "inline"
 
             firebase.auth().onAuthStateChanged((user) => {
@@ -267,12 +278,12 @@
                         })
                         const databaseRef = firebase.firestore().collection("users").doc(user.uid)
                         return databaseRef.update({
-                            firstName: namaDepan,
-                            lastName: namaBelakang,
-                            username: username,
-                            role: role,
-                            tel: tel,
-                            email: email
+                            firstName: namaDepan.value,
+                            lastName: namaBelakang.value,
+                            username: username.value,
+                            role: role.value,
+                            tel: tel.value,
+                            email: email.value
                         })
                             .then(() => {
                                 alert("Edit profil berhasil!")
@@ -291,12 +302,12 @@
                                 })
                                 const databaseRef = firebase.firestore().collection("users").doc(user.uid)
                                 return databaseRef.update({
-                                    firstName: namaDepan,
-                                    lastName: namaBelakang,
-                                    username: username,
-                                    role: role,
-                                    email: email,
-                                    tel: tel,
+                                    firstName: namaDepan.value,
+                                    lastName: namaBelakang.value,
+                                    username: username.value,
+                                    role: role.value,
+                                    email: email.value,
+                                    tel: tel.value,
                                     profilePicture: downloadURL
                                 })
                             })

@@ -57,6 +57,9 @@
             <button class="btn btn-primary mt-2 w-100" type="button" onclick="login()">Log In</button>
 
             <div class="w-100 text-center mt-5">
+                Lupa password? <a href="#" onclick="changePassword()">Ganti Password!</a>
+            </div>
+            <div class="w-100 text-center">
                 Belum punya akun? <a href="./register.html">Daftar Sekarang!</a>
             </div>
         </form>
@@ -76,6 +79,19 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 <script src="../r/index.js"></script>
 <script>
+    function changePassword() {
+        const emailaccount = prompt("Masukan email:")
+            firebase.auth().sendPasswordResetEmail(emailaccount)
+                .then(function () {
+                    // Email reset password berhasil dikirim
+                    alert("Email reset password berhasil dikirim. Cek email sekarang!")
+                })
+                .catch(function (error) {
+                    // Handle error di sini
+                    alert("Gagal mengirim email reset password:", error.message)
+                })
+    }
+
     function login() {
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
