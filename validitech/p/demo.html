@@ -2,7 +2,6 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -42,7 +41,6 @@
     <!-- Container -->
     <div class="container-fluid p-5 w-100 fill">
         <h1 class="text-center mb-5">Cara Pemakaian</h1>
-        <h3 class="text-left mb-3 mt-5">Log In</h3>
         <div class="d-flex w-75 mb-5 ms-auto me-auto">
             <div class="card w-50 me-2">
                 <img src="../r/demo/0.png" class="card-img-top">
@@ -147,6 +145,60 @@
             </div>
         </div>
     </div>
+
+    <footer class="bg-body-tertiary p-3 text-center">
+        Validitech © 2024
+    </footer>
 </body>
 
 </html>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<script src="../r/index.js"></script>
+<script>
+    function logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                alert("Logout berhasil!")
+                location.replace("./login.html")
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+
+    firebase.auth().onAuthStateChanged((user) => {
+        let navbar = document.getElementById("navbar")
+        
+        if (user) {
+            const usersRef = firebase.firestore().collection("users").doc(user.uid)
+            usersRef.get().then((doc) => {
+                const logoutNav = `
+            <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./demo.html')">Cara Pemakaian</span>
+            <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
+            `
+
+                navbar.innerHTML = logoutNav
+                if (doc.data().role === "validator") {
+                    const validatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
+                    `
+
+                    navbar.innerHTML = validatorNav + logoutNav
+                }
+                if (doc.data().role === "kreator") {
+                    const kreatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
+                    `
+
+                    navbar.innerHTML = kreatorNav + logoutNav
+                }
+            })
+        }
+        })
+</script>

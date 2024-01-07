@@ -83,7 +83,11 @@
     firebase.auth().onAuthStateChanged((user) => {
         const navbar = document.getElementById("navbar")
         if (user) {
-            const logoutNav = `<span class="link-danger ms-5" onclick="logout()">Log Out</span>`
+            const logoutNav = `
+            <span type="button" class="link-light ms-5" onclick="location.replace('./p/profil.html')">Profil</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./p/demo.html')">Cara Pemakaian</span>
+            <span class="link-danger ms-5" onclick="logout()">Log Out</span>
+            `
 
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
             databaseRef.get().then((doc) => {
@@ -91,14 +95,13 @@
                     const kreatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelValidator.html')">List Validator</span>
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/submit.html')">Submit Media</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./p/profil.html')">Profil</span>
+                    
                     `
                     navbar.innerHTML = kreatorNav + logoutNav
                 }
                 if (doc.data().role === "validator") {
                     const validatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelMedia.html')">Validasi Media</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./p/profil.html')">Profil</span>
                     `
                     navbar.innerHTML = validatorNav + logoutNav
                 }
@@ -108,6 +111,7 @@
             navbar.innerHTML = `
             <span type="button" class="link-light ms-5" onclick="location.replace('./p/register.html')">Register</span>
             <span type="button" class="link-light ms-5" onclick="location.replace('./p/login.html')">Login</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./p/demo.html')">Cara Pemakaian</span>
             `
         }
         })

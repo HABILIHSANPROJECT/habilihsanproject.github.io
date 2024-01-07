@@ -124,7 +124,11 @@
         if (user) {
             localStorage.setItem("uid", user.uid)
 
-            const logoutNav = `<span class="link-danger ms-5" onclick="logout()">Log Out</span>`
+            const logoutNav = `
+            <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./demo.html')">Cara Pemakaian</span>
+            <span class="link-danger ms-5" onclick="logout()">Log Out</span>
+            `
 
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
             databaseRef.get().then((doc) => {
@@ -134,14 +138,12 @@
                     const kreatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
                     <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
                     `
                     navbar.innerHTML = kreatorNav + logoutNav
                 }
                 if (doc.data().role === "validator") {
                     const validatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
                     `
                     navbar.innerHTML = validatorNav + logoutNav
                 }

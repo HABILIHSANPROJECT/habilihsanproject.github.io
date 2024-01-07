@@ -63,7 +63,9 @@
     </div>
 
 </body>
-
+<footer class="bg-body-tertiary p-3 text-center">
+    Validitech © 2024
+</footer>
 </html>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -82,6 +84,7 @@
             usersRef.get().then((doc) => {
                 const logoutNav = `
             <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./demo.html')">Cara Pemakaian</span>
             <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
             `
 

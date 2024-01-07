@@ -147,6 +147,7 @@
 
             const logoutNav = `
             <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
+            <span type="button" class="link-light ms-5" onclick="location.replace('./demo.html')">Cara Pemakaian</span>
             <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
             `
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
