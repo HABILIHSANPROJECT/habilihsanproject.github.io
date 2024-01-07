@@ -1,0 +1,29 @@
+body {
+    height: -webkit-fill-available;
+}
+
+.fill {
+    height: 100%;
+}
+
+.foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: top;
+    background-image: url("https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg");
+}
+
+.landing {
+    background-image: url("https://media.istockphoto.com/id/1435226158/photo/circuit-board-background-computer-data-technology-artificial-intelligence.webp?b=1&s=170667a&w=0&k=20&c=d-gHg6uCV5JEaKJCpxhJ01Ab19m032daRC8vDo8NzDI=");
+    background-blend-mode: overlay;
+    background-size: cover;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
