@@ -122,14 +122,14 @@
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-            pemilik.value = user.displayName
-            email.value = user.email
             localStorage.setItem("uid", user.uid)
 
             const logoutNav = `<span class="link-danger ms-5" onclick="logout()">Log Out</span>`
 
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
             databaseRef.get().then((doc) => {
+                pemilik.value = doc.data().username
+                email.value = user.email
                 if (doc.data().role === "kreator") {
                     const kreatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
@@ -156,8 +156,14 @@
         loadSubmit.style.display = "flex !important"
         if (type.value === "link") {
             databaseRef.get().then((doc) => {
+                let ids
+                        if (doc.exists) {
+                            ids = doc.data().post.length
+                        } else {
+                            ids = 0
+                        }
                 let newLinkPost = {
-                    id: Number(doc.data().post.length),
+                    id: Number(ids),
                     name: pemilik.value,
                     email: email.value,
                     title: title.value,
@@ -208,8 +214,14 @@
                 })
                 .then((downloadURL) => {
                     databaseRef.get().then((doc) => {
+                        let ids
+                        if (doc.exists) {
+                            ids = doc.data().post.length
+                        } else {
+                            ids = 0
+                        }
                         let newFilePost = {
-                            id: Number(doc.data().post.length),
+                            id: Number(ids),
                             name: pemilik.value,
                             email: email.value,
                             title: title.value,
@@ -253,4 +265,15 @@
                 })
         }
     })
+
+    function logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                alert("Logout berhasil!")
+                location.replace("./login.html")
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
 </script>

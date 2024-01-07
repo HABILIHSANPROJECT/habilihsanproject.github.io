@@ -55,7 +55,7 @@
             <div class="mt-3 border-top"></div>
             <div id="deskripsi" class="mt-3" style="text-align: justify;"></div>
         </form>
-        <form class="bg-body-tertiary p-5 mt-3">
+        <form id="validator" class="bg-body-tertiary p-5 mt-3" style="display: none;">
             <h3>Lembar Instrumen Validiasi Media Pembelajaran Interaktif</h3>
             <div class="mt-3 mb-3 border-top"></div>
             <object id="validasi"></object>
@@ -92,6 +92,16 @@
         return null
     }
 
+    function logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                alert("Logout berhasil!")
+                location.replace("./login.html")
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
     let uidParam = GetParam(urlParam, "uid")
     let idParam = GetParam(urlParam, "id")
     firebase.auth().onAuthStateChanged((user) => {
@@ -138,6 +148,15 @@
                     `
 
                     navbar.innerHTML = kreatorNav + logoutNav
+                    document.getElementById("validator").style.display = "none"
+                }
+                if (doc.data().role === "validator") {
+                    const validatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
+                    `
+
+                    navbar.innerHTML = validatorNav + logoutNav
+                    document.getElementById("validator").style.display = "block"
                 }
             })
         }

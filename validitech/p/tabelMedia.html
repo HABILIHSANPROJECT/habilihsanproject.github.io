@@ -78,12 +78,31 @@
 
         const tbody = document.querySelector("#tbody")
         if (user) {
-            const logoutNav = `
+            const usersRef = firebase.firestore().collection("users").doc(user.uid)
+            usersRef.get().then((doc) => {
+                const logoutNav = `
             <span type="button" class="link-light ms-5" onclick="location.replace('./profil.html')">Profil</span>
             <span type="button" class="link-danger ms-5" onclick="logout()">Log Out</span>
             `
 
-            navbar.innerHTML = logoutNav
+                navbar.innerHTML = logoutNav
+                if (doc.data().role === "validator") {
+                    const validatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
+                    `
+
+                    navbar.innerHTML = validatorNav + logoutNav
+                }
+                if (doc.data().role === "kreator") {
+                    const kreatorNav = `
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
+                    `
+
+                    navbar.innerHTML = kreatorNav + logoutNav
+                }
+            })
+
             const databaseRef = firebase.firestore().collection("posts")
             databaseRef.get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -92,7 +111,7 @@
                     const listKonten = data => {
                         const template = document.createElement("template")
                         template.innerHTML =
-                        `<tr>
+                            `<tr>
                                 <td>${posts[i].title}</td>
                                 <td>@${posts[i].name}</td>
                                 <td>${posts[i].category}</td>
@@ -105,12 +124,24 @@
                         return template.content.firstChild
                     }
                     for (i in posts) {
-                            tbody.append(listKonten())
-                        }
+                        tbody.append(listKonten())
+                    }
                 })
 
             })
+
         }
 
     })
+
+    function logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                alert("Logout berhasil!")
+                location.replace("./login.html")
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
 </script>
