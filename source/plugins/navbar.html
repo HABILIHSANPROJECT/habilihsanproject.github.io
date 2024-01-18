@@ -8,13 +8,13 @@
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <button onclick="setTheme()" class="theme">
-    <span id="setTheme" class="mdi mdi-weather-night"></span>
-  </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav" id="navbarList">
     </ul>
   </div>
+  <button onclick="setTheme()" class="theme">
+    <span id="setTheme" class="mdi mdi-weather-night"></span>
+  </button>
 </nav>
 
 </html>
@@ -63,15 +63,15 @@ let Footer = document.getElementById("footer").classList
 
 function lightTheme() {
     SetTheme.replace("mdi-weather-night", "mdi-weather-sunny")
-    SetTheme.classList.replace("light", "dark")
+    SetTheme.replace("light", "dark")
     Logo.replace("light", "dark")
     Footer.replace("light", "dark")
 }
 function darkTheme() {
     SetTheme.replace("mdi-weather-sunny", "mdi-weather-night")
-    SetTheme.classList.replace("dark", "light")
+    SetTheme.replace("dark", "light")
     Logo.replace("dark", "light")
-    Footer.classList.replace("dark", "light")
+    Footer.replace("dark", "light")
 }
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
