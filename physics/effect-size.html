@@ -1,148 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Effect Size Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Kalkulator Efek Size
+    </title>
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
 
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-    }
-
-    #result {
-      margin-top: 20px;
-    }
-
-    .valuesContainer {
-      margin-bottom: 20px;
-    }
-
-    .valueInput {
-      margin-bottom: 10px;
-    }
-  </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+
 <body>
+    <div class="p-1">
+        <h1 class="text-center">Kalkulator Efek Size</h1>
+        <div class="border-top mt-3 mb-3"></div>
+        <div class="d-flex">
+            <div class="me-1 p-3">
+                <nav class="nav nav-pills flex-column" id="navigasi">
+                    <button type="button" class="nav-link active" data-target="beranda">Beranda</button>
+                    <button type="button" class="nav-link" data-target="persamaan1">Persamaan 1</button>
+                    <button type="button" class="nav-link" data-target="persamaan2">Persamaan 2</button>
+                    <button type="button" class="nav-link" data-target="persamaan3">Persamaan 3</button>
+                    <!-- button type="button" class="nav-link" data-target="persamaan4">Persamaan 4</button>
+                    <button type="button" class="nav-link" data-target="persamaan5">Persamaan 5</button-->
+                </nav>
+            </div>
+            <div class="w-75 ms-1 p-3">
 
-  <h1>Effect Size Calculator</h1>
+                <!-- Beranda -->
+                <div id="beranda">
+                    <p style="text-align: justify;">
+                        Dalam statistik, Efek Size adalah nilai yang mengukur kekuatan hubungan antara dua variabel
+                        dalam suatu populasi, atau perkiraan kuantitas tersebut berdasarkan sampel. Hal ini dapat
+                        merujuk pada nilai statistik yang dihitung dari sampel data, nilai parameter untuk populasi
+                        hipotetis, atau persamaan yang mengoperasionalkan bagaimana statistik atau parameter
+                        menghasilkan nilai Efek Size. Contoh Efek Size mencakup korelasi antara dua variabel, koefisien
+                        regresi dalam suatu regresi, perbedaan rata-rata, atau risiko terjadinya peristiwa tertentu
+                        (seperti serangan jantung). Efek Size melengkapi pengujian hipotesis statistik, dan memainkan
+                        peran penting dalam analisis kekuatan, perencanaan ukuran sampel, dan meta-analisis. Kelompok
+                        metode analisis data mengenai Efek Size disebut sebagai statistik estimasi.<br /><br />
+                        Efek Size merupakan komponen penting ketika mengevaluasi kekuatan klaim statistik, dan merupakan
+                        item pertama (besarnya) dalam kriteria MAGIC. Standar deviasi dari Efek Size sangat penting,
+                        karena ini menunjukkan seberapa besar ketidakpastian yang disertakan dalam pengukuran. Deviasi
+                        standar yang terlalu besar akan membuat pengukuran hampir tidak berarti. Dalam meta-analisis,
+                        yang tujuannya adalah untuk menggabungkan beberapa Efek Size, ketidakpastian Efek Size digunakan
+                        untuk menimbang Efek Size, sehingga penelitian yang besar dianggap lebih penting daripada
+                        penelitian yang kecil. Ketidakpastian dalam Efek Size dihitung secara berbeda untuk setiap jenis
+                        Efek Size, namun umumnya hanya memerlukan mengetahui ukuran sampel penelitian (N), atau jumlah
+                        observasi (n) di setiap kelompok.<br /><br />
+                        Pelaporan besaran dampak atau estimasinya (estimasi efek [EE], estimasi dampak) dianggap sebagai
+                        praktik yang baik ketika menyajikan temuan penelitian empiris di banyak bidang. Pelaporan
+                        besaran dampak memudahkan penafsiran pentingnya suatu hasil penelitian, berbeda dengan
+                        signifikansi statistiknya. Efek Size sangat menonjol dalam ilmu sosial dan penelitian medis
+                        (yang mana Efek Size pengobatan merupakan hal yang penting).<br /><br />
+                        Efek Size dapat diukur secara relatif atau absolut. Dalam ukuran dampak relatif, dua kelompok
+                        dibandingkan secara langsung satu sama lain, misalnya dalam rasio odds dan risiko relatif. Untuk
+                        Efek Size absolut, nilai absolut yang lebih besar selalu menunjukkan efek yang lebih kuat.
+                        Banyak jenis pengukuran yang dapat dinyatakan sebagai absolut atau relatif, dan keduanya dapat
+                        digunakan bersama-sama karena menyampaikan informasi yang berbeda. Sebuah gugus tugas terkemuka
+                        di komunitas riset psikologi membuat rekomendasi berikut:<br /><br />
+                        <i>Selalu hadirkan Efek Size untuk hasil utama... Jika satuan pengukuran bermakna pada tingkat
+                            praktis (misalnya, jumlah rokok yang dihisap per hari), maka kita biasanya lebih memilih
+                            ukuran yang tidak terstandarisasi (koefisien regresi atau perbedaan rata-rata) daripada
+                            ukuran yang terstandarisasi. (r atau d).</i><br />
+                    </p>
+                </div>
 
-  <p>Effect size adalah nilai yang digunakan untuk melihat seberapa besar efek atau perbedaan antara kelompok eksperimen dan kelompok kontrol. Dalam penelitian ini, kita menggunakan rumus Cohen’s untuk menentukan nilai effect size.</p>
+                <!-- Persamaan 1 -->
+                <div id="persamaan1" style="display: none;">
+                    <h3 class="mb-4 text-center">Rata-Rata Statistik dalam Satu Kelompok</h3>
+                    <h1 id="math" class="mb-5 text-center">\(ES=\frac{\bar{x_{post}}-\bar{x_{pre}}}{SD_{pre}}\)</h1>
+                    <div class="d-flex">
+                        <div class="w-50 me-2">
+                            <label>Masukan Nilai Pre Test:</label><br />
+                            <div id="kontainerPreTest">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPreTest)">Tambah
+                                    Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPreTest)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="w-50 ms-2">
+                            <label>Masukan Nilai Post Test:</label><br />
+                            <div id="kontainerPostTest">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPostTest)">Tambah Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPostTest)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm w-100 mt-3 mb-3" onclick="hitungPersamaan1()">Hitung</button>
+                    <div id="hasil1"></div>
+                </div>
 
-  <div class="valuesContainer">
-    <label for="expValues">Nilai Kelas Eksperimen:</label>
-    <div id="expValuesContainer">
-      <input class="valueInput" type="text" placeholder="Masukkan nilai">
-      <input class="valueInput" type="text" placeholder="Masukkan nilai">
+                <!-- Persamaan 2 -->
+                <div id="persamaan2" style="display: none;">
+                    <h3 class="mb-4 text-center">
+                        Rata-Rata Statistik dalam Tiap Kelompok<br />
+                        (Hanya Dua Kelompok Post Test saja)
+                    </h3>
+                    <h1 id="math" class="mb-5 text-center">\(ES=\frac{\bar{x_E}-\bar{x_C}}{SD_C}\)</h1>
+                    <div class="d-flex">
+                        <div class="me-2">
+                            <label>Masukan Nilai Pre Test<br />(Kelas Kontrol):</label><br />
+                            <div id="kontainerPreTestKontrol">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPreTestKontrol)">Tambah
+                                    Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPreTestKontrol)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2 me-2">
+                            <label>Masukan Nilai Post Test<br />(Kelas Kontrol):</label><br />
+                            <div id="kontainerPostTestKontrol">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPostTestKontrol)">Tambah Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPostTestKontrol)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2 me-2">
+                            <label>Masukan Nilai Pre Test<br />(Kelas Eksperimen):</label><br />
+                            <div id="kontainerPreTestEksperimen">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPreTestEksperimen)">Tambah
+                                    Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPreTestEksperimen)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2">
+                            <label>Masukan Nilai Post Test<br />(Kelas Eksperimen):</label><br />
+                            <div id="kontainerPostTestEksperimen">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPostTestEksperimen)">Tambah Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPostTestEksperimen)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm w-100 mt-3 mb-3" onclick="hitungPersamaan2()">Hitung</button>
+                    <div id="hasil2"></div>
+                </div>
+
+                <!-- Persamaan 3 -->
+                <div id="persamaan3" style="display: none;">
+                    <h3 class="mb-4 text-center">
+                        Rata-Rata Statistik dalam Tiap Kelompok<br />
+                        (Hanya Dua Kelompok Post Test saja)
+                    </h3>
+                    <h1 id="math" class="mb-5 text-center">\(ES=\frac{(\bar{x_{post}}-\bar{x_{pre}})E-(\bar{x_{post}}-\bar{x_{pre}})C}{SD_{pre}}\)</h1>
+                    <div class="d-flex">
+                        <div class="me-2">
+                            <label>Masukan Nilai Pre Test<br />(Kelas Kontrol):</label><br />
+                            <div id="kontainerPreTestKontrol_">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPreTestKontrol_)">Tambah
+                                    Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPreTestKontrol_)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2 me-2">
+                            <label>Masukan Nilai Post Test<br />(Kelas Kontrol):</label><br />
+                            <div id="kontainerPostTestKontrol_">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPostTestKontrol_)">Tambah Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPostTestKontrol_)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2 me-2">
+                            <label>Masukan Nilai Pre Test<br />(Kelas Eksperimen):</label><br />
+                            <div id="kontainerPreTestEksperimen_">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPreTestEksperimen_)">Tambah
+                                    Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPreTestEksperimen_)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                        <div class="ms-2">
+                            <label>Masukan Nilai Post Test<br />(Kelas Eksperimen):</label><br />
+                            <div id="kontainerPostTestEksperimen_">
+                                <input type="number" class="w-100 mb-2">
+                                <input type="number" class="w-100 mb-2">
+                            </div>
+                            <div class="d-flex mb-3">
+                                <button class="btn btn-success btn-sm w-50 me-1"
+                                    onclick="tambahSampel(kontainerPostTestEksperimen_)">Tambah Sampel</button>
+                                <button class="btn btn-danger btn-sm w-50 ms-1"
+                                    onclick="hapusSampel(kontainerPostTestEksperimen_)">Kurangi
+                                    Sampel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm w-100 mt-3 mb-3" onclick="hitungPersamaan3()">Hitung</button>
+                    <div id="hasil3"></div>
+
+                </div>
+
+                <!-- Persamaan 4 -->
+                <div id="persamaan4" style="display: none;">
+                </div>
+                <div id="persamaan5" style="display: none;">
+                </div>
+            </div>
+        </div>
     </div>
-    <button onclick="addValue('expValuesContainer')">Tambah Nilai</button>
-    <button onclick="removeValue('expValuesContainer')">Hapus Nilai Terakhir</button>
-  </div>
-
-  <div class="valuesContainer">
-    <label for="ctrlValues">Nilai Kelas Kontrol:</label>
-    <div id="ctrlValuesContainer">
-      <input class="valueInput" type="text" placeholder="Masukkan nilai">
-      <input class="valueInput" type="text" placeholder="Masukkan nilai">
-    </div>
-    <button onclick="addValue('ctrlValuesContainer')">Tambah Nilai</button>
-    <button onclick="removeValue('ctrlValuesContainer')">Hapus Nilai Terakhir</button>
-  </div>
-
-  <button onclick="calculateEffectSize()">Hitung</button>
-
-  <div id="result">
-    <h2>Hasil:</h2>
-    <p>Rata-rata Kelas Eksperimen: <span id="meanExp"></span></p>
-    <p>Standar Deviasi Kelas Eksperimen: <span id="expSD"></span></p>
-    <br/>
-    <p>Rata-rata Kelas Kontrol: <span id="meanCtrl"></span></p>
-    <p>Standar Deviasi Kontrol: <span id="ctrlSD"></span></p>
-    <br/>
-    <p>Nilai Pooled Standard Deviation: <span id="pooledSD"></span></p>
-    <p>Nilai Effect Size (Cohen's d): <span id="effectSize"></span></p>
-  </div>
-
-  <script>
-    function addValue(containerId) {
-      const container = document.getElementById(containerId);
-      const input = document.createElement("input");
-      input.className = "valueInput";
-      input.type = "text";
-      input.placeholder = "Masukkan nilai";
-      container.appendChild(input);
-    }
-
-    function removeValue(containerId) {
-      const container = document.getElementById(containerId);
-      const inputElements = container.querySelectorAll(".valueInput");
-      if (inputElements.length > 2) {
-        container.removeChild(inputElements[inputElements.length - 1]);
-      }
-    }
-
-    function calculateEffectSize() {
-      // Mendapatkan nilai input
-      const expValues = getValues("expValuesContainer");
-      const ctrlValues = getValues("ctrlValuesContainer");
-
-      if (expValues.length < 2 || ctrlValues.length < 2) {
-        alert("Masukkan minimal dua nilai untuk kedua kelompok.");
-        return;
-      }
-
-      // Menghitung rata-rata
-      const meanExp = expValues.reduce((acc, val) => acc + val, 0) / expValues.length;
-      const meanCtrl = ctrlValues.reduce((acc, val) => acc + val, 0) / ctrlValues.length;
-
-      // Menghitung pooled standard deviation
-      const expSD = standardDeviation(expValues);
-      const ctrlSD = standardDeviation(ctrlValues);
-      const pooledSD = Math.sqrt(((expValues.length - 1) * expSD**2 + (ctrlValues.length - 1) * ctrlSD**2) / (expValues.length + ctrlValues.length - 2));
-
-      // Menghitung effect size (Cohen's d)
-      const effectSize = (meanExp - meanCtrl) / pooledSD;
-
-      // Menampilkan hasil
-      document.getElementById("meanExp").innerText = meanExp.toFixed(2);
-      document.getElementById("expSD").innerText = expSD.toFixed(2);
-      document.getElementById("meanCtrl").innerText = meanCtrl.toFixed(2);
-      document.getElementById("ctrlSD").innerText = ctrlSD.toFixed(2);
-      document.getElementById("pooledSD").innerText = pooledSD.toFixed(2);
-      document.getElementById("effectSize").innerText = effectSize.toFixed(2);
-    }
-
-    function getValues(containerId) {
-      const container = document.getElementById(containerId);
-      const inputElements = container.querySelectorAll(".valueInput");
-      return Array.from(inputElements).map(input => parseFloat(input.value.trim())).filter(value => !isNaN(value));
-    }
-
-    function standardDeviation(values) {
-      const mean = values.reduce((acc, val) => acc + val, 0) / values.length;
-      const variance = values.reduce((acc, val) => acc + (val - mean)**2, 0) / values.length;
-      return Math.sqrt(variance);
-    }
-  </script>
-
 </body>
+
 </html>
+
+<script>
+    const navigasi = document.getElementById("navigasi")
+    const elemen = {
+        beranda: document.getElementById("beranda"),
+        persamaan1: document.getElementById("persamaan1"),
+        persamaan2: document.getElementById("persamaan2"),
+        persamaan3: document.getElementById("persamaan3"),
+        persamaan4: document.getElementById("persamaan4"),
+        persamaan5: document.getElementById("persamaan5")
+    }
+
+    navigasi.addEventListener("click", (e) => {
+        const id = e.target.dataset.target
+        if (id) {
+            navigasi.querySelectorAll(".nav-link").forEach((nav) => {
+                nav.classList.remove("active")
+            })
+            e.target.classList.add("active")
+            for (i in elemen) {
+                elemen[i].style.display = "none"
+            }
+            elemen[id].style.display = "block"
+        }
+    })
+
+    function tambahSampel(kontainer) {
+        const input = document.createElement("input")
+        input.className = "w-100 mb-2"
+        input.type = "number"
+        kontainer.appendChild(input)
+    }
+
+    function hapusSampel(kontainer) {
+        const inputs = kontainer.querySelectorAll(".w-100")
+        if (inputs.length > 2) {
+            kontainer.removeChild(inputs[inputs.length - 1])
+        }
+    }
+
+    function jumlahNilai(kontainer) {
+        const inputs = kontainer.querySelectorAll(".w-100")
+        return Array.from(inputs).map(input => parseFloat(input.value.trim())).filter(value => !isNaN(value))
+    }
+
+    function standarDeviasi(nilai) {
+        const mean = nilai.reduce((acc, val) => acc + val, 0) / nilai.length
+        const variasi = nilai.reduce((acc, val) => acc + (val - mean) ** 2, 0) / nilai.length
+        return Math.sqrt(variasi)
+    }
+
+    function hitungPersamaan1() {
+        const preTest = jumlahNilai(kontainerPreTest)
+        const postTest = jumlahNilai(kontainerPostTest)
+
+        if (preTest.length < 2 || postTest.length < 2) {
+            alert("Masukan minimal dua nilai untuk setiap test!")
+            return
+        }
+
+        const meanPreTest = preTest.reduce((acc, val) => acc + val, 0) / preTest.length
+        const meanPostTest = postTest.reduce((acc, val) => acc + val, 0) / postTest.length
+
+        const sdPreTest = standarDeviasi(preTest)
+        const sdPostTest = standarDeviasi(postTest)
+
+        const efekSize = (meanPostTest - meanPreTest) / sdPreTest
+
+        const hasil = document.getElementById("hasil1")
+        hasil.innerHTML = `
+            <label>Rata-Rata Nilai Pre Test: <b>${meanPreTest.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Post Test: <b>${meanPostTest.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Standar Deviasi Nilai Pre Test: <b>${sdPreTest.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Post Test: <b>${sdPostTest.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Nilai Efek Size: <b>${efekSize.toFixed(2)}</b></label><br />
+        `
+    }
+
+    function hitungPersamaan2() {
+        const preTestKontrol = jumlahNilai(kontainerPreTestKontrol)
+        const postTestKontrol = jumlahNilai(kontainerPostTestKontrol)
+        const preTestEksperimen = jumlahNilai(kontainerPreTestEksperimen)
+        const postTestEksperimen = jumlahNilai(kontainerPostTestEksperimen)
+
+        if (preTestKontrol.length < 2 || postTestKontrol.length < 2 || preTestEksperimen.length < 2 || postTestEksperimen.length < 2) {
+            alert("Masukan minimal dua nilai untuk setiap test!")
+            return
+        }
+
+        const meanPreTestKontrol = preTestKontrol.reduce((acc, val) => acc + val, 0) / preTestKontrol.length
+        const meanPostTestKontrol = postTestKontrol.reduce((acc, val) => acc + val, 0) / postTestKontrol.length
+        const meanPreTestEksperimen = preTestEksperimen.reduce((acc, val) => acc + val, 0) / preTestEksperimen.length
+        const meanPostTestEksperimen = postTestEksperimen.reduce((acc, val) => acc + val, 0) / postTestEksperimen.length
+
+        const sdPreTestKontrol = standarDeviasi(preTestKontrol)
+        const sdPostTestKontrol = standarDeviasi(postTestKontrol)
+        const sdPreTestEksperimen = standarDeviasi(preTestEksperimen)
+        const sdPostTestEksperimen = standarDeviasi(postTestEksperimen)
+
+        const efekSize = (meanPostTestEksperimen - meanPostTestKontrol) / sdPostTestKontrol
+        const hasil = document.getElementById("hasil2")
+        hasil.innerHTML = `
+            <label>Rata-Rata Nilai Pre Test (Kelas Kontrol): <b>${meanPreTestKontrol.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Post Test (Kelas Kontrol): <b>${meanPostTestKontrol.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Pre Test (Kelas Eksperimen): <b>${meanPreTestEksperimen.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Post Test (Kelas Eksperimen): <b>${meanPostTestEksperimen.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Standar Deviasi Nilai Pre Test (Kelas Kontrol): <b>${sdPreTestKontrol.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Post Test (Kelas Kontrol): <b>${sdPostTestKontrol.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Pre Test (Kelas Eksperimen): <b>${sdPreTestEksperimen.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Post Test (Kelas Eksperimen): <b>${sdPostTestEksperimen.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Nilai Efek Size: <b>${efekSize.toFixed(2)}</b></label><br />
+        `
+    }
+
+    function hitungPersamaan3() {
+        const preTestKontrol = jumlahNilai(kontainerPreTestKontrol_)
+        const postTestKontrol = jumlahNilai(kontainerPostTestKontrol_)
+        const preTestEksperimen = jumlahNilai(kontainerPreTestEksperimen_)
+        const postTestEksperimen = jumlahNilai(kontainerPostTestEksperimen_)
+
+        if (preTestKontrol.length < 2 || postTestKontrol.length < 2 || preTestEksperimen.length < 2 || postTestEksperimen.length < 2) {
+            alert("Masukan minimal dua nilai untuk setiap test!")
+            return
+        }
+
+        const meanPreTestKontrol = preTestKontrol.reduce((acc, val) => acc + val, 0) / preTestKontrol.length
+        const meanPostTestKontrol = postTestKontrol.reduce((acc, val) => acc + val, 0) / postTestKontrol.length
+        const meanPreTestEksperimen = preTestEksperimen.reduce((acc, val) => acc + val, 0) / preTestEksperimen.length
+        const meanPostTestEksperimen = postTestEksperimen.reduce((acc, val) => acc + val, 0) / postTestEksperimen.length
+
+        const sdPreTestKontrol = standarDeviasi(preTestKontrol)
+        const sdPostTestKontrol = standarDeviasi(postTestKontrol)
+        const sdPreTestEksperimen = standarDeviasi(preTestEksperimen)
+        const sdPostTestEksperimen = standarDeviasi(postTestEksperimen)
+
+        const efekSize = ((meanPostTestEksperimen - meanPreTestEksperimen) - (meanPostTestKontrol - meanPreTestKontrol)) / ((sdPreTestKontrol + sdPreTestEksperimen + sdPostTestKontrol) / 3)
+        const hasil = document.getElementById("hasil3")
+        hasil.innerHTML = `
+            <label>Rata-Rata Nilai Pre Test (Kelas Kontrol): <b>${meanPreTestKontrol.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Post Test (Kelas Kontrol): <b>${meanPostTestKontrol.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Pre Test (Kelas Eksperimen): <b>${meanPreTestEksperimen.toFixed(2)}</b></label><br />
+            <label>Rata-Rata Nilai Post Test (Kelas Eksperimen): <b>${meanPostTestEksperimen.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Standar Deviasi Nilai Pre Test (Kelas Kontrol): <b>${sdPreTestKontrol.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Post Test (Kelas Kontrol): <b>${sdPostTestKontrol.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Pre Test (Kelas Eksperimen): <b>${sdPreTestEksperimen.toFixed(2)}</b></label><br />
+            <label>Standar Deviasi Nilai Post Test (Kelas Eksperimen): <b>${sdPostTestEksperimen.toFixed(2)}</b></label><br />
+            <br/>
+            <label>Nilai Efek Size: <b>${efekSize.toFixed(2)}</b></label><br />
+        `
+    }
+
+    MathJax = {
+        tex2jax: {
+            inlineMath: [["$", "$"], ["\\(", "\\)"]],
+            displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            processEscapes: true
+        },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+    }
+</script>
