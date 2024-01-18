@@ -1,20 +1,25 @@
 // NAVBAR
 $.get("https://habilihsanproject.github.io/source/plugins/navbar.html", function(data){
-    $("#navbar").replaceWith(data);
+    $("#navbar").replaceWith(data)
 })
 // THEME
-var html = document.getElementsByTagName("html")[0].dataset.bsTheme
+let html = document.getElementsByTagName("html")[0].dataset.bsTheme
+
+let SetTheme = document.getElementById("setTheme").classList
+let Logo = document.getElementById("logo").classList
+let Footer = document.getElementById("footer").classList
+
 function lightTheme() {
-    document.getElementById("setTheme").classList.replace("mdi-weather-night", "mdi-weather-sunny")
-    document.getElementById("setTheme").classList.replace("light", "dark")
-    document.getElementById("logo").classList.replace("light", "dark")
-    document.getElementById("footer").classList.replace("light", "dark")
+    SetTheme.replace("mdi-weather-night", "mdi-weather-sunny")
+    SetTheme.classList.replace("light", "dark")
+    Logo.replace("light", "dark")
+    Footer.replace("light", "dark")
 }
 function darkTheme() {
-    document.getElementById("setTheme").classList.replace("mdi-weather-sunny", "mdi-weather-night")
-    document.getElementById("setTheme").classList.replace("dark", "light")
-    document.getElementById("logo").classList.replace("dark", "light")
-    document.getElementById("footer").classList.replace("dark", "light")
+    SetTheme.replace("mdi-weather-sunny", "mdi-weather-night")
+    SetTheme.classList.replace("dark", "light")
+    Logo.replace("dark", "light")
+    Footer.classList.replace("dark", "light")
 }
 function setTheme() {
     let data = document.getElementsByTagName("html")[0].dataset.bsTheme
@@ -22,14 +27,14 @@ function setTheme() {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
         lightTheme()
         localStorage.setItem("theme", "undefined")
-        if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+        if (document.getElementById("hibi")) {
             document.getElementById("hibi").classList.replace("light", "dark")
         }
     } else {
         document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
         darkTheme()
         localStorage.setItem("theme", "dark")
-        if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+        if (document.getElementById("hibi")) {
             document.getElementById("hibi").classList.replace("dark", "light")
         }
     }
@@ -39,13 +44,13 @@ var getTheme = localStorage.getItem("theme")
 if (getTheme == "dark") {
     darkTheme()
     document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-    if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+    if (document.getElementById("hibi")) {
         document.getElementById("hibi").classList.replace("dark", "light")
     }
 } else if (getTheme == "undefined") {
     lightTheme()
     document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
-    if (document.getElementsByTagName("title")[0].innerText == "ABOUT") {
+    if (document.getElementById("hibi")) {
         document.getElementById("hibi").classList.replace("light", "dark")
     }
 } else {
