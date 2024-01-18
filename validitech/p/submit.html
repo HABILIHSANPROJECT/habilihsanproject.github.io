@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,14 +42,14 @@
     <!-- Container -->
     <div class="container-fluid p-5 w-100 fill mb-5">
         <form class="bg-body-tertiary p-5">
-            <h1 class="text-center mb-5">Submit Media</h1>
+            <h1 class="text-center mb-5">Submit Produk</h1>
 
             <div class="d-flex mb-3">
                 <input id="nama" class="form-control me-3" type="text" disabled>
                 <input id="email" class="form-control ms-3" type="text" disabled>
             </div>
-            <input id="judul" class="form-control mb-3" type="text" placeholder="Judul Media" required>
-            <textarea id="deskripsi" class="form-control mb-3" type="text" placeholder="Deskripsi Media" rows="5"
+            <input id="judul" class="form-control mb-3" type="text" placeholder="Judul Produk" required>
+            <textarea id="deskripsi" class="form-control mb-3" type="text" placeholder="Deskripsi Produk" rows="5"
                 required></textarea>
             <div class="d-flex mb-3">
                 <select class="form-select me-3" id="kategori" required>
@@ -58,18 +58,32 @@
                     <option value="media">Media Pembelajaran</option>
                 </select>
                 <select class="form-select ms-3" id="tipe" required>
-                    <option selected>Pilih Tipe Media</option>
+                    <option selected>Pilih Tipe Produk</option>
                     <option value="file">File</option>
                     <option value="link">Link URL</option>
                 </select>
             </div>
-            <label for="#linkMedia">Masukan Link Media</label>
+            <label for="#linkMedia">Masukan Link Produk</label>
             <input id="linkMedia" class="form-control mb-3" type="url" placeholder="Masukkan Link" disabled required>
-            <label for="#fileMedia">Upload Media</label>
+            <label for="#fileMedia">Upload Produk</label>
             <input id="fileMedia" class="form-control mb-3" type="file" placeholder="Upload Media" disabled required>
 
-            <label for="#linkValidasi">Masukan Link Validasi</label>
-            <input id="linkValidasi" class="form-control mb-3" type="url" placeholder="Masukan Link Google Form, dll" required>
+            <label>Validator yang dipilih: <i id="listValidator"></i></label>
+            <div class="w-100 mt-5 table-responsive">
+                <label class="text-left">Pilih Validator</label>
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Instansi</th>
+                            <th>Email</th>
+                            <th>Pilih</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
 
             <div class="d-flex mt-5" style="display: none !important;" id="loadSubmit">
                 <div class="spinner-grow me-3" id="uploadBar" role="status"></div>
@@ -82,7 +96,7 @@
 
 <br />
 <footer class="bg-body-tertiary p-3 text-center">
-    Validitech © 2024
+    Valisics © 2024
 </footer>
 
 </html>
@@ -137,7 +151,7 @@
                 if (doc.data().role === "kreator") {
                     const kreatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./tabelValidator.html')">List Validator</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Media</span>
+                    <span type="button" class="link-light ms-5" onclick="location.replace('./submit.html')">Submit Produk</span>
                     `
                     navbar.innerHTML = kreatorNav + logoutNav
                 }
@@ -150,71 +164,60 @@
             })
             navbar.innerHTML = logoutNav
         }
+        else {
+        alert("Kamu belum login!")
+        location.replace("../index.html")
+    }
     })
 
-    let uid = localStorage.getItem("uid")
-    const databaseRef = firebase.firestore().collection("posts").doc(uid)
-    document.getElementById("submisi").addEventListener("click", function () {
-        loadSubmit.style.display = "flex !important"
-        if (type.value === "link") {
-            databaseRef.get().then((doc) => {
-                let ids
-                        if (doc.exists) {
-                            ids = doc.data().post.length
-                        } else {
-                            ids = 0
-                        }
-                let newLinkPost = {
-                    id: Number(ids),
-                    name: pemilik.value,
-                    email: email.value,
-                    title: title.value,
-                    desc: desc.value,
-                    category: category.value,
-                    type: type.value,
-                    media: linkMedia.value,
-                    validation: linkValidasi.value,
-                    uid: uid
-                }
-                let arrayLinkPost = []
-                if (doc.exists) {
-                    arrayLinkPost = doc.data().post
-                    arrayLinkPost.push(newLinkPost)
-                    databaseRef.update({ post: arrayLinkPost})
-                        .then(() => {
-                            alert("Berhasil!")
-                            localStorage.removeItem("uid")
-                            location.reload()
-                        })
-                        .catch((error) => {
-                            alert("Gagal submit\n", error)
-                            localStorage.removeItem("uid")
-                            location.reload()
-                        })
-                }
-                arrayLinkPost.push(newLinkPost)
-                databaseRef.set({ post: arrayLinkPost })
-                    .then(() => {
-                        alert("Berhasil!")
-                        localStorage.removeItem("uid")
-                        location.reload()
-                    })
-                    .catch((error) => {
-                        alert("Gagal submit\n", error)
-                        localStorage.removeItem("uid")
-                        location.reload()
-                    })
-            })
+    let validator = []
+    const validatorRef = firebase.firestore().collection("users").where("role", "==", "validator")
+    validatorRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            validator.push(doc.data())
+        })
 
+        const listKonten = data => {
+            const template = document.createElement("template")
+            template.innerHTML =
+                `<tr>
+                                <td><div class="foto avatar" style="background-image: url(${validator[i].profilePicture});"></div></td>
+                                <td>${validator[i].firstName} ${validator[i].lastName}</td>
+                                <td>${validator[i].affiliation}</td>
+                                <td><a href="mailto:${validator[i].email}" class="text-body">${validator[i].email}</a></td>
+                                <td><input class="form-check-input" type="checkbox" id="validatorcheck" name="${validator[i].username}" value='${" " + validator[i].firstName + " " + validator[i].lastName}'></td>
+                                </tr>`
+                    .trim()
+            return template.content.firstChild
+        }
+        for (i in validator) {
+            tbody.append(listKonten())
         }
 
-        if (type.value === "file") {
-            const storageRef = firebase.storage().ref(`media/${localStorage.getItem("uid")}/${fileMedia.files[0].name}`)
-            storageRef.put(fileMedia.files[0])
-                .then((snapshot) => {
-                    return snapshot.ref.getDownloadURL()
-                })
-                .then((downloadURL) => {
+        let checkboxValues = []
+        let validatorChecked = document.querySelectorAll('input[id="validatorcheck"]')
+        let listValidator = document.getElementById("listValidator")
+
+        validatorChecked.forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    checkboxValues.push(checkbox.value)
+                    listValidator.innerText = checkboxValues
+                } else {
+                    checkboxValues.splice(checkboxValues.indexOf(checkbox.name), 1)
+                    listValidator.innerText = checkboxValues
+                }
+            })
+        })
+
+        let uid = localStorage.getItem("uid")
+        const databaseRef = firebase.firestore().collection("posts").doc(uid)
+        document.getElementById("submisi").addEventListener("click", function () {
+            loadSubmit.style.display = "flex !important"
+            if (listValidator.innerText === "") {
+                alert("Validator belum dipilih!")
+            } else {
+                if (type.value === "link") {
                     databaseRef.get().then((doc) => {
                         let ids
                         if (doc.exists) {
@@ -222,7 +225,10 @@
                         } else {
                             ids = 0
                         }
-                        let newFilePost = {
+                        if (checkboxValues = []) {
+                            alert("Validator belum dipilih")
+                        }
+                        let newLinkPost = {
                             id: Number(ids),
                             name: pemilik.value,
                             email: email.value,
@@ -230,49 +236,111 @@
                             desc: desc.value,
                             category: category.value,
                             type: type.value,
-                            media: downloadURL,
-                            validation: linkValidasi.value,
-                            uid: uid
+                            media: linkMedia.value,
+                            uid: uid,
+                            validator: checkboxValues,
+                            value: ""
                         }
-                        let arrayFilePost = []
+                        let arrayLinkPost = []
                         if (doc.exists) {
-                            arrayFilePost = doc.data().post
-                            arrayFilePost.push(newFilePost)
-                            databaseRef.update({post: arrayFilePost})
+                            arrayLinkPost = doc.data().post
+                            arrayLinkPost.push(newLinkPost)
+                            databaseRef.update({ post: arrayLinkPost })
                                 .then(() => {
-                                    alert("Berhasil!")
+                                    alert("Berhasil! Silahkan cek produk di Profil!")
                                     localStorage.removeItem("uid")
                                     location.reload()
                                 })
                                 .catch((error) => {
                                     alert("Gagal submit\n", error)
                                     localStorage.removeItem("uid")
-                                    //location.reload()
+                                    location.reload()
                                 })
                         }
-                        arrayFilePost.push(newFilePost)
-                        databaseRef.set({ post: arrayFilePost })
+                        arrayLinkPost.push(newLinkPost)
+                        databaseRef.set({ post: arrayLinkPost })
                             .then(() => {
-                                alert("Berhasil!")
+                                alert("Berhasil! Silahkan cek produk di Profil!")
                                 localStorage.removeItem("uid")
                                 location.reload()
                             })
                             .catch((error) => {
                                 alert("Gagal submit\n", error)
                                 localStorage.removeItem("uid")
-                                //location.reload()
+                                location.reload()
                             })
                     })
 
-                })
-        }
+                }
+
+                if (type.value === "file") {
+                    const storageRef = firebase.storage().ref(`media/${localStorage.getItem("uid")}/${fileMedia.files[0].name}`)
+                    storageRef.put(fileMedia.files[0])
+                        .then((snapshot) => {
+                            return snapshot.ref.getDownloadURL()
+                        })
+                        .then((downloadURL) => {
+                            databaseRef.get().then((doc) => {
+                                let ids
+                                if (doc.exists) {
+                                    ids = doc.data().post.length
+                                } else {
+                                    ids = 0
+                                }
+                                let newFilePost = {
+                                    id: Number(ids),
+                                    name: pemilik.value,
+                                    email: email.value,
+                                    title: title.value,
+                                    desc: desc.value,
+                                    category: category.value,
+                                    type: type.value,
+                                    media: downloadURL,
+                                    uid: uid,
+                                    validator: checkboxValues,
+                                    value: ""
+                                }
+                                let arrayFilePost = []
+                                if (doc.exists) {
+                                    arrayFilePost = doc.data().post
+                                    arrayFilePost.push(newFilePost)
+                                    databaseRef.update({ post: arrayFilePost })
+                                        .then(() => {
+                                            alert("Berhasil! Silahkan cek produk di Profil!")
+                                            localStorage.removeItem("uid")
+                                            location.reload()
+                                        })
+                                        .catch((error) => {
+                                            alert("Gagal submit\n", error)
+                                            localStorage.removeItem("uid")
+                                            //location.reload()
+                                        })
+                                }
+                                arrayFilePost.push(newFilePost)
+                                databaseRef.set({ post: arrayFilePost })
+                                    .then(() => {
+                                        alert("Berhasil! Silahkan cek produk di Profil!")
+                                        localStorage.removeItem("uid")
+                                        location.reload()
+                                    })
+                                    .catch((error) => {
+                                        alert("Gagal submit\n", error)
+                                        localStorage.removeItem("uid")
+                                        //location.reload()
+                                    })
+                            })
+
+                        })
+                }
+            }
+        })
     })
 
     function logout() {
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./login.html")
+                location.replace("../index.html")
             })
             .catch((error) => {
                 alert(error.message)

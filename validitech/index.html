@@ -20,7 +20,7 @@
     <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validitech</title>
+    <title>Valisics</title>
 
     <link href="./r/index.css" rel="stylesheet">
 </head>
@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span onclick="location.replace('#')" class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('#')" class="navbar-brand fw-bold">Valisics</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,25 +42,21 @@
     <!-- Container -->
     <div class="container-fluid p-5 w-100 fill mb-5">
         <h1 class="text-center mt-5 mb-5">
-            Selamat Datang di Validitech! <br/>
-            Wadah untuk produk pembelajaran yang butuh validasi.
+            Selamat Datang di Valisics! <br/>
+            Wadah Validasi Terpercaya Departemen Fisika FMIPA <br/>
+            Universitas Negeri Padang
         </h1>
-        <h3 class="text-center mt-5 mb-5">
-            Dapatkan validasi dari pakar produk pembelajaran dengan mudah. <br/>
-            Dengan indikator validasi yang telah disesuaikan. <br />
-            Sistem validitas paling inovatif.
-        </h3>
         <div class="w-100 text-center mt-5 mb-5">
-            <a href="./p/register.html"><button class="btn btn-primary mt-2 me-1">Daftar Sekarang!</button></a>
-            <a href="./p/register.html?role=validator"><button class="btn btn-success mt-2 ms-1">Daftar sebagai Validator</button></a>
+            <a href="./p/login-kreator.html"><button class="btn btn-primary mt-2 me-1">Masuk sebagai Kreator</button></a>
+            <a href="./p/login-validator.html"><button class="btn btn-success mt-2 ms-1">Masuk sebagai Validator</button></a>
         </div>
         <div class="w-100 text-center mt-5 mb-5">
-        <span class="mt-5">Sudah punya akun? <a href="./p/login.html">Log In Disini!</a></span>
+        <span class="mt-5">Belum punya akun? <a href="./p/register.html">Daftar Disini!</a></span>
     </div>
     </div>
 </body>
 <footer class="bg-body-tertiary p-3 text-center">
-    Validitech © 2024
+    Valisics © 2024
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -73,7 +69,7 @@
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./p/login.html")
+                location.replace("#")
             })
             .catch((error) => {
                 alert(error.message)
@@ -92,27 +88,28 @@
             const databaseRef = firebase.firestore().collection("users").doc(user.uid)
             databaseRef.get().then((doc) => {
                 if (doc.data().role === "kreator") {
-                    const kreatorNav = `
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelValidator.html')">List Validator</span>
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./p/submit.html')">Submit Media</span>
+                    //const kreatorNav = `
+                    //<span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelValidator.html')">List Validator</span>
+                    //<span type="button" class="link-light ms-5" onclick="location.replace('./p/submit.html')">Submit Media</span>
                     
-                    `
-                    navbar.innerHTML = kreatorNav + logoutNav
+                    //`
+                    //navbar.innerHTML = kreatorNav + logoutNav
                 }
                 if (doc.data().role === "validator") {
-                    const validatorNav = `
-                    <span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelMedia.html')">Validasi Media</span>
-                    `
-                    navbar.innerHTML = validatorNav + logoutNav
+                    //const validatorNav = `
+                    //<span type="button" class="link-light ms-5" onclick="location.replace('./p/tabelMedia.html')">Validasi Media</span>
+                    //`
+                    //navbar.innerHTML = validatorNav + logoutNav
                 }
             })
             navbar.innerHTML = logoutNav
         } else {
             navbar.innerHTML = `
-            <span type="button" class="link-light ms-5" onclick="location.replace('./p/register.html')">Register</span>
-            <span type="button" class="link-light ms-5" onclick="location.replace('./p/login.html')">Login</span>
+            
             <span type="button" class="link-light ms-5" onclick="location.replace('./p/demo.html')">Cara Pemakaian</span>
             `
         }
+        //<span type="button" class="link-light ms-5" onclick="location.replace('./p/register.html')">Register</span>
+        //<span type="button" class="link-light ms-5" onclick="location.replace('./p/login.html')">Login</span>
         })
 </script>

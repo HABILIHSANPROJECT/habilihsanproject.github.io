@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid  ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
         </div>
     </nav>
 
@@ -81,11 +81,13 @@
             </div>
 
             <!-- Role Pengguna -->
+            <div style="display: none;">
             <label for="#role">Tipe Akun</label>
             <select class="form-select mb-3" id="role" required>
                 <option value="validator">Validator</option>
                 <option value="kreator">Kreator</option>
             </select>
+            </div>
 
             <div id="instansi" style="display: none;">
                 <label>Instansi</label>
@@ -94,7 +96,7 @@
             
             <!-- Foto Profil -->
             <div class="d-flex">
-                <div class="spinner-grow" id="uploadBar" role="status" style="display: none;"></div>
+                <div class="spinner-grow me-3" id="uploadBar" role="status" style="display: none;"></div>
                 <label for="#fotoProfil">Foto Profil</label>
             </div>
             <input class="form-control mb-3" type="file" accept="image/*" id="fotoProfil">
@@ -111,7 +113,7 @@
 
 <br />
 <footer class="bg-body-tertiary p-3 text-center">
-    Validitech © 2024
+    Valisics © 2024
 </footer>
 
 </html>
@@ -161,7 +163,7 @@
         const tel = document.getElementById("tel").value
         const password = document.getElementById("password").value
         const konfirmasiPassword = document.getElementById("konfirmasiPassword").value
-        const role = document.getElementById("role").value
+        //const role = document.getElementById("role").value
         const affiliation = document.getElementById("affiliation").value
         const fotoProfil = document.getElementById("fotoProfil")
         const uploadBar = document.getElementById("uploadBar")
@@ -184,7 +186,7 @@
                             firstName: namaDepan,
                             lastName: namaBelakang,
                             username: username,
-                            role: role,
+                            role: "kreator",
                             affiliation: affiliation,
                             email: email,
                             tel: tel,
@@ -193,7 +195,7 @@
                         return userCredential.user.updateProfile({
                             displayName: username,
                             photoURL: downloadURL,
-                            role: role
+                            role: "kreator"
                         })
                         uploadBar.style.display = "inline"
                     })

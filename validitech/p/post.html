@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,23 +48,29 @@
                 <span class="w-50">Username: @<b id="namaPemilik"></b></span>
                 <span class="w-50">Tipe: <b id="tipe"></b></span>
             </div>
-            <div class="d-flex mt-1">
+            <div class="d-flex mt-1 mb-1">
                 <span class="w-50">Kategori: <b id="kategori"></b></span>
                 <span class="w-50">Email: <b id="emailPemilik"></b></span>
             </div>
+            <span class="w-50">Validator: <b id="validatorList"></b></span>
             <div class="mt-3 border-top"></div>
             <div id="deskripsi" class="mt-3" style="text-align: justify;"></div>
+            <div id="nilaiValidator"></div>
+            
+            <div id="valid"></div>
         </form>
         <form id="validator" class="bg-body-tertiary p-5 mt-3" style="display: none;">
-            <h3>Lembar Instrumen Validiasi Media Pembelajaran Interaktif</h3>
+            <h3>Lembar Instrumen Validiasi Produk</h3>
             <div class="mt-3 mb-3 border-top"></div>
-            <object id="validasi"></object>
+            <div id="indikator"></div>
+            <button class="btn btn-primary w-100 mt-2" type="button" id="submisi">Submit</button>
+            <div id="nilai"></div>
         </form>
     </div>
 </body>
 <br />
 <footer class="bg-body-tertiary p-3 text-center">
-    Validitech © 2024
+    Valisics © 2024
 </footer>
 
 </html>
@@ -96,12 +102,13 @@
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./login.html")
+                location.replace("../index.html")
             })
             .catch((error) => {
                 alert(error.message)
             })
     }
+
     let uidParam = GetParam(urlParam, "uid")
     let idParam = GetParam(urlParam, "id")
     firebase.auth().onAuthStateChanged((user) => {
@@ -112,7 +119,7 @@
         const kategori = document.getElementById("kategori")
         const tipe = document.getElementById("tipe")
         const desc = document.getElementById("deskripsi")
-        const validasi = document.getElementById("validasi")
+        const validatorList = document.getElementById("validatorList")
 
         let navbar = document.getElementById("navbar")
 
@@ -130,9 +137,7 @@
                 tipe.innerText = post.type
                 desc.innerText = post.desc
 
-                validasi.data = post.validation
-                validasi.style.width = "100%"
-                validasi.style.height = 3 * frame.clientHeight + "px"
+                validatorList.innerText = String(post.validator)
             })
             const usersRef = firebase.firestore().collection("users").doc(user.uid)
             usersRef.get().then((doc) => {
@@ -150,7 +155,105 @@
 
                     navbar.innerHTML = kreatorNav + logoutNav
                     document.getElementById("validator").style.display = "none"
+
+                    const nilaiRef = firebase.firestore().collection("values").doc(uidParam)
+                    nilaiRef.get().then((doc) => {
+                        const nilaiValidator = document.getElementById("nilaiValidator")
+                        const dataValidasi = doc.data().value
+                        let valid = document.getElementById("valid")
+                    const validNilai = ((Number(dataValidasi[0].values.total0.value) + Number(dataValidasi[0].values.total1.value) + Number(dataValidasi[0].values.total2.value) + Number(dataValidasi[0].values.total3.value)) - 39)/40
+                        if (validNilai < 0.4) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Kurang Valid</h3>`
+                        }
+
+                        if (validNilai > 0.4 && validNilai < 0.8) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Cukup Valid</h3>`
+                        }
+                        
+                        if (validNilai > 0.8) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Valid</h3>`
+                        }
+                        const listNilai = data => {
+                            const template = document.createElement("template")
+                        template.innerHTML =
+                            `<div>
+                            <h6>Jumlah Skor</h6>
+                        <label>${dataValidasi[i].values.total0.key}: <b>${dataValidasi[i].values.total0.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total1.key}: <b>${dataValidasi[i].values.total1.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total2.key}: <b>${dataValidasi[i].values.total2.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total3.key}: <b>${dataValidasi[i].values.total3.value}</b></label><br/>
+                        <br/>
+                        <h6>Rata-Rata Skor</h6>
+                        <label>${dataValidasi[i].values.mean0.key}: <b>${dataValidasi[i].values.mean0.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean1.key}: <b>${dataValidasi[i].values.mean1.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean2.key}: <b>${dataValidasi[i].values.mean2.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean3.key}: <b>${dataValidasi[i].values.mean3.value}</b></label><br/>
+                            </div>`
+                                .trim()
+                        return template.content.firstChild
+                    }
+                    for (i in dataValidasi) {
+                        nilaiValidator.append(listNilai())
+                        }
+                        
+                    })
+
                 }
+
+                const nilaiRef = firebase.firestore().collection("values").doc(uidParam)
+                    nilaiRef.get().then((doc) => {
+                        const nilaiValidator = document.getElementById("nilaiValidator")
+                        const dataValidasi = doc.data().value
+                        let valid = document.getElementById("valid")
+                    const validNilai = ((Number(dataValidasi[0].values.total0.value) + Number(dataValidasi[0].values.total1.value) + Number(dataValidasi[0].values.total2.value) + Number(dataValidasi[0].values.total3.value)) - 39)/40
+                        if (validNilai < 0.4) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Kurang Valid</h3>`
+                        }
+
+                        if (validNilai > 0.4 && validNilai < 0.8) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Cukup Valid</h3>`
+                        }
+                        
+                        if (validNilai > 0.8) {
+                            valid.innerHTML = `<br/>
+                            <h3>Skor: <b>${validNilai.toFixed(2)}</b></h3>
+                            <h3>Produk Valid</h3>`
+                        }
+                        const listNilai = data => {
+                            const template = document.createElement("template")
+                        template.innerHTML =
+                            `<div>
+                            <h6>Jumlah Skor</h6>
+                        <label>${dataValidasi[i].values.total0.key}: <b>${dataValidasi[i].values.total0.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total1.key}: <b>${dataValidasi[i].values.total1.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total2.key}: <b>${dataValidasi[i].values.total2.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.total3.key}: <b>${dataValidasi[i].values.total3.value}</b></label><br/>
+                        <br/>
+                        <h6>Rata-Rata Skor</h6>
+                        <label>${dataValidasi[i].values.mean0.key}: <b>${dataValidasi[i].values.mean0.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean1.key}: <b>${dataValidasi[i].values.mean1.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean2.key}: <b>${dataValidasi[i].values.mean2.value}</b></label><br/>
+                        <label>${dataValidasi[i].values.mean3.key}: <b>${dataValidasi[i].values.mean3.value}</b></label><br/>
+                            </div>`
+                                .trim()
+                        return template.content.firstChild
+                    }
+                    for (i in dataValidasi) {
+                        nilaiValidator.append(listNilai())
+                        }
+                        
+                    })
+
                 if (doc.data().role === "validator") {
                     const validatorNav = `
                     <span type="button" class="link-light ms-5" onclick="location.replace('./tabelMedia.html')">Validasi Media</span>
@@ -160,6 +263,269 @@
                     document.getElementById("validator").style.display = "block"
                 }
             })
+
+            const validasiRef = firebase.firestore().collection("validation").doc("data")
+            validasiRef.get().then((doc) => {
+                let indikatorData = Object.keys(doc.data())
+                let soalData = Object.values(doc.data())
+                let indikator = document.querySelector("#indikator")
+                const listIndikator = data => {
+                    const template = document.createElement("template")
+                    template.innerHTML = `
+                            <div class="mb-5">
+                            <h3 class="me-3">${indikatorData[i]}</h3>
+                            <table class="table">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th rowspan="2">Butir Penilaian</th>
+                                        <th colspan="5">Nilai</th>
+                                    </tr>
+                                    <tr>
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="soal-${i}">
+                                </tbody>
+                            </table>
+                            </div>`
+                        .trim()
+                    return template.content.firstChild
+                }
+                for (i in indikatorData) {
+                    indikator.append(listIndikator())
+                }
+
+                let soal0 = document.querySelector(`#soal-0`)
+                let value0 = []
+                const listSoal0 = (i, data) => {
+                    const item0 = soalData[0].map(item => [item])
+                    const template = document.createElement("template")
+                    template.innerHTML = `
+                            <tr>
+                                <td>${item0[i]}</th>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[0] + "-" + i}" id="${indikatorData[0] + "-nilai1-" + i})}" value="1"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[0] + "-" + i}" id="${indikatorData[0] + "-nilai2-" + i})}" value="2"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[0] + "-" + i}" id="${indikatorData[0] + "-nilai3-" + i})}" value="3"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[0] + "-" + i}" id="${indikatorData[0] + "-nilai4-" + i})}" value="4"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[0] + "-" + i}" id="${indikatorData[0] + "-nilai5-" + i})}" value="5"></td>
+                            </tr>`
+                        .trim()
+                    const row = template.content.firstChild
+
+                    row.querySelectorAll("input[type=radio]").forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            value0[i] = {
+                                id: i,
+                                indikator: indikatorData[0],
+                                value: radio.value
+                            }
+                        })
+                    })
+                    return row
+                }
+                for (i in soalData[0]) {
+                    soal0.append(listSoal0(i, soalData))
+                }
+
+                let soal1 = document.querySelector(`#soal-1`)
+                let value1 = []
+                const listSoal1 = (i, data) => {
+                    const item1 = soalData[1].map(item => [item])
+                    const template = document.createElement("template")
+                    template.innerHTML = `
+                            <tr>
+                                <td>${item1[i]}</th>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[1] + "-" + i}" id="${indikatorData[1] + "-nilai1-" + i})}" value="1"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[1] + "-" + i}" id="${indikatorData[1] + "-nilai2-" + i})}" value="2"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[1] + "-" + i}" id="${indikatorData[1] + "-nilai3-" + i})}" value="3"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[1] + "-" + i}" id="${indikatorData[1] + "-nilai4-" + i})}" value="4"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[1] + "-" + i}" id="${indikatorData[1] + "-nilai5-" + i})}" value="5"></td>
+                            </tr>`
+                        .trim()
+                    const row = template.content.firstChild
+
+                    row.querySelectorAll("input[type=radio]").forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            value1[i] = {
+                                id: i,
+                                indikator: indikatorData[1],
+                                value: radio.value
+                            }
+                        })
+                    })
+                    return row
+                }
+                for (i in soalData[1]) {
+                    soal1.append(listSoal1(i, soalData))
+                }
+
+                let soal2 = document.querySelector(`#soal-2`)
+                let value2 = []
+                const listSoal2 = (i, data) => {
+                    const item2 = soalData[2].map(item => [item])
+                    const template = document.createElement("template")
+                    template.innerHTML = `
+                            <tr>
+                                <td>${item2[i]}</th>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[2] + "-" + i}" id="${indikatorData[2] + "-nilai1-" + i})}" value="1"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[2] + "-" + i}" id="${indikatorData[2] + "-nilai2-" + i})}" value="2"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[2] + "-" + i}" id="${indikatorData[2] + "-nilai3-" + i})}" value="3"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[2] + "-" + i}" id="${indikatorData[2] + "-nilai4-" + i})}" value="4"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[2] + "-" + i}" id="${indikatorData[2] + "-nilai5-" + i})}" value="5"></td>
+                            </tr>`
+                        .trim()
+                    const row = template.content.firstChild
+
+                    row.querySelectorAll("input[type=radio]").forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            value2[i] = {
+                                id: i,
+                                indikator: indikatorData[2],
+                                value: radio.value
+                            }
+                        })
+                    })
+                    return row
+                }
+                for (i in soalData[2]) {
+                    soal2.append(listSoal2(i, soalData))
+                }
+
+                let soal3 = document.querySelector(`#soal-3`)
+                let value3 = []
+                const listSoal3 = (i, data) => {
+                    const item3 = soalData[3].map(item => [item])
+                    const template = document.createElement("template")
+                    template.innerHTML = `
+                            <tr>
+                                <td>${item3[i]}</th>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[3] + "-" + i}" id="${indikatorData[3] + "-nilai1-" + i})}" value="1"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[3] + "-" + i}" id="${indikatorData[3] + "-nilai2-" + i})}" value="2"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[3] + "-" + i}" id="${indikatorData[3] + "-nilai3-" + i})}" value="3"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[3] + "-" + i}" id="${indikatorData[3] + "-nilai4-" + i})}" value="4"></td>
+                                <td><input required class="form-check-input" type="radio" name="${indikatorData[3] + "-" + i}" id="${indikatorData[3] + "-nilai5-" + i})}" value="5"></td>
+                            </tr>`
+                        .trim()
+                    const row = template.content.firstChild
+
+                    row.querySelectorAll("input[type=radio]").forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            value3[i] = {
+                                id: i,
+                                indikator: indikatorData[3],
+                                value: radio.value
+                            }
+                        })
+                    })
+                    return row
+                }
+                for (i in soalData[3]) {
+                    soal3.append(listSoal3(i, soalData))
+                }
+
+                let nilai = document.getElementById("nilai")
+                
+                let submit = document.getElementById("submisi")
+                let check = document.querySelectorAll('input[type="checkbox"]')
+                let checked = document.querySelectorAll('input[type="checkbox"]:checked')
+
+                submit.addEventListener("click", () => {
+                    let empty0 = String(value0)
+                    let empty1 = String(value1)
+                    let empty2 = String(value2)
+                    let empty3 = String(value3)
+                    if (empty0 === "" || empty1 === "" || empty2 === "" || empty3 === "") {
+                        alert("Isi form validasi terlebih dahulu")
+                    } else {
+                        const calculateAverage = (valuesArray) => {
+                            let sum = 0
+                            valuesArray.forEach((value) => {
+                                sum += parseInt(value.value, 10)
+                            })
+                            const average = sum / valuesArray.length
+                            return average
+                        }
+                        const averageSoal0 = calculateAverage(value0)
+                        const averageSoal1 = calculateAverage(value1)
+                        const averageSoal2 = calculateAverage(value2)
+                        const averageSoal3 = calculateAverage(value3)
+
+
+                        nilai.innerHTML = `<br/>
+                        <h3>Jumlah Skor</h3>
+                        <label>${indikatorData[0]}: <b>${averageSoal0 * value0.length}</b></label><br/>
+                        <label>${indikatorData[1]}: <b>${averageSoal1 * value1.length}</b></label><br/>
+                        <label>${indikatorData[2]}: <b>${averageSoal2 * value2.length}</b></label><br/>
+                        <label>${indikatorData[3]}: <b>${averageSoal3 * value3.length}</b></label><br/>
+                        <br/>
+                        <h3>Rata-Rata Skor</h3>
+                        <label>${indikatorData[0]}: <b>${averageSoal0.toFixed(2)}</b></label><br/>
+                        <label>${indikatorData[1]}: <b>${averageSoal1.toFixed(2)}</b></label><br/>
+                        <label>${indikatorData[2]}: <b>${averageSoal2.toFixed(2)}</b></label><br/>
+                        <label>${indikatorData[3]}: <b>${averageSoal3.toFixed(2)}</b></label><br/>
+                        `
+
+
+                        const value = {
+                            id: idParam,
+                            validator: user.uid,
+                            values: { 
+                                mean0: {
+                                    key: indikatorData[0],
+                                    value: averageSoal0.toFixed(2)
+                                },
+                                mean1: {
+                                    key: indikatorData[1],
+                                    value: averageSoal1.toFixed(2)
+                                },
+                                mean2: {
+                                    key: indikatorData[2],
+                                    value: averageSoal2.toFixed(2)
+                                },
+                                mean3: {
+                                    key: indikatorData[3],
+                                    value: averageSoal0.toFixed(2)
+                                },
+                                total0: {
+                                    key: indikatorData[0],
+                                    value: (averageSoal0 * value0.length).toFixed()
+                                },
+                                total1: {
+                                    key: indikatorData[1],
+                                    value: (averageSoal1 * value1.length).toFixed()
+                                },
+                                total2: {
+                                    key: indikatorData[2],
+                                    value: (averageSoal2 * value2.length).toFixed()
+                                },
+                                total3: {
+                                    key: indikatorData[3],
+                                    value: (averageSoal3 * value3.length).toFixed()
+                                }
+                            }
+                        }
+                        const nilaiRef = firebase.firestore().collection("values").doc(uidParam)
+                        nilaiRef.set({value : [value]})
+                            .then(() => {
+                                alert("Data telah direkap!");
+                            })
+                            .catch((error) => {
+                                alert("Error updating document: ", error)
+                            })
+                
+                    
+                    }
+               })
+            })
         }
+        else {
+        alert("Kamu belum login!")
+        location.replace("../index.html")
+    }
     })
+        
 </script>

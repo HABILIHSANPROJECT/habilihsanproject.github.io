@@ -30,12 +30,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Validitech</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
+            <!--button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ms-auto justify-content-end align-items-center" id="navbar">
-            </div>
+            </div-->
         </div>
     </nav>
 
@@ -106,7 +106,9 @@
             databaseRef.get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     validator.push(doc.data())
-                    const listKonten = data => {
+                    
+                })
+                const listKonten = data => {
                         const template = document.createElement("template")
                         template.innerHTML =
                             `<tr>
@@ -122,18 +124,20 @@
                     for (i in validator) {
                             tbody.append(listKonten())
                         }
-                })
 
             })
         }
-
+        else {
+        alert("Kamu belum login!")
+        location.replace("../index.html")
+    }
     })
 
     function logout() {
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./login.html")
+                location.replace("../index.html")
             })
             .catch((error) => {
                 alert(error.message)

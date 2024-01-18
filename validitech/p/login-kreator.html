@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid  ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Kelompok 1</span>
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,7 +54,7 @@
             </div>
 
             <!-- Submit -->
-            <button class="btn btn-primary mt-2 w-100" type="button" onclick="login()">Log In</button>
+            <button class="btn btn-primary mt-2 w-100" type="button" onclick="login()"><div class="spinner-grow me-3" id="load" role="status" style="display: none;"></div>Log In</button>
 
             <div class="w-100 text-center mt-5">
                 Lupa password? <a href="#" onclick="changePassword()">Ganti Password!</a>
@@ -68,7 +68,7 @@
 
 <br />
 <footer class="bg-body-tertiary p-3 text-center">
-    Kelompok 1 © 2024
+    Valisics © 2024
 </footer>
 
 </html>
@@ -81,25 +81,39 @@
 <script>
     function changePassword() {
         const emailaccount = prompt("Masukan email:")
-            firebase.auth().sendPasswordResetEmail(emailaccount)
-                .then(function () {
-                    // Email reset password berhasil dikirim
-                    alert("Email reset password berhasil dikirim. Cek email sekarang!")
-                })
-                .catch(function (error) {
-                    // Handle error di sini
-                    alert("Gagal mengirim email reset password:", error.message)
-                })
+        firebase.auth().sendPasswordResetEmail(emailaccount)
+            .then(function () {
+                // Email reset password berhasil dikirim
+                alert("Email reset password berhasil dikirim. Cek email sekarang!")
+            })
+            .catch(function (error) {
+                // Handle error di sini
+                alert("Gagal mengirim email reset password:", error.message)
+            })
     }
 
+    let load = document.getElementById("load")
     function login() {
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
+        load.style.display = "inline-block"
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) => {
-                alert("Login berhasil! Selamat datang!", user)
-                location.replace("./profil.html")
+                load.style.display = "none"
+                const databaseRef = firebase.firestore().collection("users").doc(user.user.uid)
+                databaseRef.get().then((doc) => {
+                    let role = doc.data().role
+                    if (role === "kreator") {
+                        location.replace("./profil.html")
+                    } else {
+                        alert("Kamu bukan Kreator", user)
+                        firebase.auth().signOut()
+                        location.replace("../index.html")
+                    }
+
+
+                })
             })
             .catch((error) => {
                 const errorCode = error.code
@@ -126,7 +140,7 @@
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./login.html")
+                location.replace("../index.html")
             })
             .catch((error) => {
                 alert(error.message)

@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ms-5 me-5">
-            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Validitech</span>
+            <span onclick="location.replace('../index.html')" class="navbar-brand fw-bold">Valisics</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,7 +64,7 @@
 
 </body>
 <footer class="bg-body-tertiary p-3 text-center">
-    Validitech © 2024
+    Valisics © 2024
 </footer>
 </html>
 
@@ -134,14 +134,17 @@
             })
 
         }
-
+        else {
+        alert("Kamu belum login!")
+        location.replace("../index.html")
+    }
     })
 
     function logout() {
         firebase.auth().signOut()
             .then(() => {
                 alert("Logout berhasil!")
-                location.replace("./login.html")
+                location.replace("../index.html")
             })
             .catch((error) => {
                 alert(error.message)
