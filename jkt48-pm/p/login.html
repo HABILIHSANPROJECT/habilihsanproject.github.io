@@ -40,11 +40,11 @@
         <p class="modal-title">LOG IN</p><br/>
 
         <div class="alert alert-primary text-center" role="alert">
-            <span class="fw-bold" style="font-size: smaller;">
+            <p class="fw-bold" style="font-size: smaller;">
                 Ini adalah layanan JKT48PMMMWWW dimana kamu bisa mengakses messages, pictures, dan voice notes dari member JKT48 secara berlangganan.
-                Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun. <br/><button type="button" class="mt-2 w-100 btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                <span style="color: red;">Layanan ini tidak menyediakan notifikasi pesan masuk ataupun ucapan ulang tahun.</span><button type="button" class="mt-2 w-100 btn btn-outline-primary btn-sm" data-bs-toggle="modal"
                 data-bs-target="#myModal">Lihat Demo</button>
-            </span>
+            </p>
         </div>
         <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <form id="login">
+        <form id="login" class="me-5">
 
             <input id="email-login" type="email" class="form-control" placeholder="Email Address"><br />
 
@@ -75,9 +75,9 @@
 
             <div style="display: flex;">
                 <a href="https://habilihsanproject.github.io/jkt48-pm/p/register" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" style="margin-right: auto;">Register</a>
+                <button type="button" class="btn btn-warning" onclick="changePassword()" style="margin-right: auto;">Ganti Password</button>
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
-
         </form>
 
     </div>
@@ -89,3 +89,17 @@
 </footer>
 
 </html>
+<script>
+    function changePassword() {
+            const emailaccount = prompt("Masukan email:")
+            firebase.auth().sendPasswordResetEmail(emailaccount)
+                .then(function () {
+                    // Email reset password berhasil dikirim
+                    alert("Email reset password berhasil dikirim. Cek email sekarang!")
+                })
+                .catch(function (error) {
+                    // Handle error di sini
+                    alert("Gagal mengirim email reset password:", error.message)
+                })
+        }
+</script>
