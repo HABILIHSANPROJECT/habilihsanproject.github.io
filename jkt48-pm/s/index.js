@@ -436,7 +436,7 @@ const customers = []
                                 }
 
                                 const nextToken = response.data.data.messagesByChannelId.items.nextToken
-                                if (nextToken) {
+                                if (nextToken != null) {
                                     document.getElementById("next").style.display = "block"
                                     document.getElementById("next").addEventListener("click", () => {
                                         const chat_item = document.querySelector("#chat-item")
