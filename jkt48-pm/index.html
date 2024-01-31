@@ -92,7 +92,16 @@
             <button type="button" class="btn btn-primary" id="get">GET</button>
         </div>
 
-        <button class="btn btn-success mt-3 mb-3" id="next" style="display: none;">Next Page ></button>
+        <div id="loadChat" class="load" style="display: none;">
+            <div class="alert alert-primary">
+        <div class="spinner-border" role="status"></div>
+        <span class="modal-title ms-3">Memuat Data...</span><br/>
+    </div>
+</div>
+
+        <ul class="list-group" id="chatNext">
+            <li class="list-group-item" style="display: none;" id="chat-item-next"></li>
+        </ul>
 
         <ul class="list-group" id="chat">
             <li class="list-group-item" style="display: none;" id="chat-item"></li>
