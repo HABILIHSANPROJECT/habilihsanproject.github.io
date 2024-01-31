@@ -435,7 +435,7 @@ const customers = []
                                     chat.append((chat_items(0)))
                                 }
 
-                                const nextToken = response.data.data.messagesByChannelId.items.nextToken
+                                const nextToken = response.data.data.messagesByChannelId.nextToken
                                 if (nextToken != null) {
                                     document.getElementById("next").style.display = "block"
                                     document.getElementById("next").addEventListener("click", () => {
