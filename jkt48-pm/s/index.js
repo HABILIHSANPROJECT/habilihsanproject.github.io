@@ -293,8 +293,8 @@ const customers = []
                         }
                         var d = date.getDate()
                         document.getElementById("email").innerHTML = customers[i]
-                        document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
-                        document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
+                        //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
+                        //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
                         document.getElementById("items").style.display = "block"
                         document.getElementById("load").style.display = "none"
                         document.getElementById("empty").style.display = "none"
