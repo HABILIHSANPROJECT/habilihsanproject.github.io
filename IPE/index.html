@@ -389,9 +389,9 @@
 
     // Chart
     function grafisData() {
-        const pemilih01 = localStorage.getItem("data01")
-        const pemilih02 = localStorage.getItem("data02")
-        const pemilih03 = localStorage.getItem("data03")
+        const pemilih01 = Number(localStorage.getItem("data01")-1)
+        const pemilih02 = Number(localStorage.getItem("data02")-1)
+        const pemilih03 = Number(localStorage.getItem("data03")-1)
 
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
