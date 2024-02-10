@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPE2024</title>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Fetch Data -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid ms-5 me-5">
+            <a href="#" class="navbar-brand fw-bold text-danger mb-0">IPE<span class="text-body">2024</span></a>
+            <button id="tema" onclick="aturTema()" class="btn text-body mdi mdi-weather-night"></button>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <form class="p-5">
+        <div id="pemilih" class="mb-3 text-center w-100"></div>
+
+        <div class="alert alert-info" style="text-align: justify;">
+            Selamat datang di IPE2024 (Indonesian Presidential Election 2024), tempat di mana Anda dapat menjelajahi spekulasi hasil suara pemilihan presiden Indonesia tahun 2024. Harap diingat, semua informasi yang disajikan di sini hanya bersifat opini dan analisis, bukan prediksi resmi. Kami mengharapkan Anda untuk menggunakan informasi ini dengan bijak dan untuk kepentingan informasi dan hiburan semata.
+        </div>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="row text-center">
+            <h1 class="text-center mb-3">Kotak Pilihan</h1>
+            <div class="col-md-4">
+                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon01">
+                    <div class="d-flex">
+                        <img src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
+                            class="foto-capres w-50">
+                        <img src="https://framerusercontent.com/images/CAS8PIX2K6bHflQw4xJohFYwpYo.webp"
+                            class="foto-cawapres w-50">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title fs-4 fw-bold">Anies Baswedan &<br/>Muhaimin Iskandar</p>
+                        <p class="card-text">Calon Presiden No. 01</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon02">
+                    <div class="d-flex">
+                        <img src="https://framerusercontent.com/images/dwzSLTtnVy63Kk8oqLwNQjk6GoE.webp"
+                            class="foto-capres w-50">
+                        <img src="https://framerusercontent.com/images/qJZW5XYulQcj5AM1YWp4BRmA.webp"
+                            class="foto-cawapres w-50">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title fs-4 fw-bold">Prabowo Subianto &<br/>Gibran Rakabuming</p>
+                        <p class="card-text">Calon Presiden No. 02</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon03">
+                    <div class="d-flex">
+                        <img src="https://framerusercontent.com/images/DTjFPFr3sp9pNXGVibTRH6Kk.webp"
+                            class="foto-capres w-50">
+                        <img src="https://framerusercontent.com/images/u8aFsm0ZEUKNYoTPtMXEu7mZ0dQ.webp"
+                            class="foto-cawapres w-50">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title fs-4 fw-bold">Ganjar Pranowo &<br/>Mahfud MD</p>
+                        <p class="card-text">Calon Presiden No. 03</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="w-100 text-center">
+            <h1 class="mb-3">Perolehan Pilihan</h1>
+            <div class="w-50 ms-auto me-auto">
+                <canvas id="grafik"></canvas>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+
+<script src="./database.js"></script>
+<script>
+    // Theme
+    let SetTheme = document.getElementById("tema").classList
+    function aturTema() {
+        let data = document.getElementsByTagName("html")[0].dataset.bsTheme
+        if (data == "dark") {
+            document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+            SetTheme.replace("mdi-weather-night", "mdi-weather-sunny")
+            localStorage.setItem("theme", "undefined")
+        } else {
+            document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
+            SetTheme.replace("mdi-weather-sunny", "mdi-weather-night")
+            localStorage.setItem("theme", "dark")
+        }
+    }
+
+    // Database
+    
+
+    // Voter Address
+    axios.get("https://api.ipify.org?format=json")
+        .then(res => {
+            const pemilih = document.getElementById("pemilih")
+            pemilih.innerHTML = `<span>No. Pemilih:<b class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span>`
+        })
+
+    // Vote
+    let Paslon01 = document.getElementById("paslon01")
+    Paslon01.addEventListener("click", () => {
+        
+    })
+
+    let Paslon02 = document.getElementById("paslon02")
+    Paslon02.addEventListener("click", () => {
+        
+    })
+
+    let Paslon03 = document.getElementById("paslon03")
+    Paslon03.addEventListener("click", () => {
+        
+    })
+    
+    // Chart
+    let Pasangan01 = 33
+    let Pasangan02 = 33
+    let Pasangan03 = 33
+
+    const labels = ["Anies Baswedan & Muhaimin Iskandar", "Prabowo Subianto & Gibran Rakabuming", "Ganjar Pranowo & Mahfud MD"]
+    const data = [Pasangan01, Pasangan02, Pasangan03]
+    const ctx = document.getElementById("grafik").getContext("2d")
+    new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Data",
+                    data: data,
+                    backgroundColor: [
+                        "rgba(150, 150, 150, 0.3)",
+                        "rgba(0, 145, 245, 0.3)",
+                        "rgba(200, 50, 50, 0.3)"
+                    ],
+                    borderColor: [
+                        "rgba(150, 150, 150, 1)",
+                        "rgba(0, 145, 245, 1)",
+                        "rgba(200, 50, 50, 1)"
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        })
+</script>
+
+<style>
+    .foto-capres {
+        border-top-left-radius: var(--bs-card-inner-border-radius)
+    }
+
+    .foto-cawapres {
+        border-top-right-radius: var(--bs-card-inner-border-radius)
+    }
+
+    .alert {
+        opacity: 1;
+    }
+</style>
