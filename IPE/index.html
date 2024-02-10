@@ -393,11 +393,11 @@
         const pemilih02 = localStorage.getItem("data02")
         const pemilih03 = localStorage.getItem("data03")
 
-        const labels = ["Anies Baswedan & Muhaimin Iskandar", "Prabowo Subianto & Gibran Rakabuming", "Ganjar Pranowo & Mahfud MD"]
+        const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
         const ctx = document.getElementById("grafik").getContext("2d")
         new Chart(ctx, {
-            type: "pie",
+            type: "bar",
             data: {
                 labels: labels,
                 datasets: [{
@@ -415,6 +415,15 @@
                     ],
                     borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
         })
     }
@@ -435,7 +444,7 @@
         opacity: 1;
     }
 
-    .btn:disabled {
+    .btn:disabled, .btn:hover {
         border: 0;
     }
 
