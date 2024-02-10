@@ -37,74 +37,170 @@
     </nav>
 
     <!-- Container -->
-    <form class="p-5">
+    <div class="p-5">
         <div id="pemilih" class="mb-3 text-center w-100"></div>
 
         <div class="alert alert-info" style="text-align: justify;">
-            Selamat datang di IPE2024 (Indonesian Presidential Election 2024), tempat di mana Anda dapat menjelajahi spekulasi hasil suara pemilihan presiden Indonesia tahun 2024. Harap diingat, semua informasi yang disajikan di sini hanya bersifat opini dan analisis, bukan prediksi resmi. Kami mengharapkan Anda untuk menggunakan informasi ini dengan bijak dan untuk kepentingan informasi dan hiburan semata.
+            Selamat datang di IPE2024 (Indonesian Presidential Election 2024), tempat di mana Anda dapat menjelajahi
+            spekulasi hasil suara pemilihan presiden Indonesia tahun 2024. Harap diingat, semua informasi yang disajikan
+            di sini hanya bersifat opini dan analisis, bukan prediksi resmi. Kami mengharapkan Anda untuk menggunakan
+            informasi ini dengan bijak dan untuk kepentingan informasi dan hiburan semata.
         </div>
 
         <div class="mt-5 mb-5 border-top"></div>
 
-        <div class="row text-center">
+        <section id="pilihan" class="row text-center">
             <h1 class="text-center mb-3">Kotak Pilihan</h1>
+
             <div class="col-md-4">
-                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon01">
-                    <div class="d-flex">
-                        <img src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
-                            class="foto-capres w-50">
-                        <img src="https://framerusercontent.com/images/CAS8PIX2K6bHflQw4xJohFYwpYo.webp"
-                            class="foto-cawapres w-50">
+                <button type="button" id="card01" class="btn" data-bs-toggle="modal" data-bs-target="#modal01">
+                    <div class="card w-100 ms-1 me-1 mb-3 text-body">
+                        <div class="d-flex">
+                            <img src="https://framerusercontent.com/images/EeXC5h6iOkyHcbWs7ui6Lcf3kNM.webp"
+                                class="foto-capres w-50">
+                            <img src="https://framerusercontent.com/images/CAS8PIX2K6bHflQw4xJohFYwpYo.webp"
+                                class="foto-cawapres w-50">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title fs-4 fw-bold">Anies Baswedan &<br />Muhaimin Iskandar</p>
+                            <p class="card-text">Calon Presiden No. 01</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-title fs-4 fw-bold">Anies Baswedan &<br/>Muhaimin Iskandar</p>
-                        <p class="card-text">Calon Presiden No. 01</p>
+            </div>
+            </button>
+            <div class="modal fade" id="modal01">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 01?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control" id="sentimen01" rows="3"
+                                placeholder="Saya memilih Paslon 01 karena..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
+                                Jadi</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01">Pilih 01</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon02">
-                    <div class="d-flex">
-                        <img src="https://framerusercontent.com/images/dwzSLTtnVy63Kk8oqLwNQjk6GoE.webp"
-                            class="foto-capres w-50">
-                        <img src="https://framerusercontent.com/images/qJZW5XYulQcj5AM1YWp4BRmA.webp"
-                            class="foto-cawapres w-50">
+                <button type="button" id="card02" class="btn" data-bs-toggle="modal" data-bs-target="#modal02">
+                    <div class="card w-100 ms-1 me-1 mb-3 text-body">
+                        <div class="d-flex">
+                            <img src="https://framerusercontent.com/images/dwzSLTtnVy63Kk8oqLwNQjk6GoE.webp"
+                                class="foto-capres w-50">
+                            <img src="https://framerusercontent.com/images/qJZW5XYulQcj5AM1YWp4BRmA.webp"
+                                class="foto-cawapres w-50">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title fs-4 fw-bold">Prabowo Subianto &<br />Gibran Rakabuming</p>
+                            <p class="card-text">Calon Presiden No. 02</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-title fs-4 fw-bold">Prabowo Subianto &<br/>Gibran Rakabuming</p>
-                        <p class="card-text">Calon Presiden No. 02</p>
+            </div>
+            </button>
+            <div class="modal fade" id="modal02">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 02?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control" id="sentimen02" rows="3"
+                                placeholder="Saya memilih Paslon 02 karena..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
+                                Jadi</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02">Pilih 02</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card w-100 ms-1 me-1 mb-3" type="button" id="paslon03">
-                    <div class="d-flex">
-                        <img src="https://framerusercontent.com/images/DTjFPFr3sp9pNXGVibTRH6Kk.webp"
-                            class="foto-capres w-50">
-                        <img src="https://framerusercontent.com/images/u8aFsm0ZEUKNYoTPtMXEu7mZ0dQ.webp"
-                            class="foto-cawapres w-50">
+                <button type="button" id="card03" class="btn" data-bs-toggle="modal" data-bs-target="#modal03">
+                    <div class="card w-100 ms-1 me-1 mb-3 text-body">
+                        <div class="d-flex">
+                            <img src="https://framerusercontent.com/images/DTjFPFr3sp9pNXGVibTRH6Kk.webp"
+                                class="foto-capres w-50">
+                            <img src="https://framerusercontent.com/images/u8aFsm0ZEUKNYoTPtMXEu7mZ0dQ.webp"
+                                class="foto-cawapres w-50">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title fs-4 fw-bold">Ganjar Pranowo &<br />Mahfud MD</p>
+                            <p class="card-text">Calon Presiden No. 03</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-title fs-4 fw-bold">Ganjar Pranowo &<br/>Mahfud MD</p>
-                        <p class="card-text">Calon Presiden No. 03</p>
+            </div>
+            </button>
+            <div class="modal fade" id="modal03">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 03?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control" id="sentimen03" rows="3"
+                                placeholder="Saya memilih Paslon 03 karena..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
+                                Jadi</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03">Pilih 03</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </section>
 
         <div class="mt-5 mb-5 border-top"></div>
 
-        <div class="w-100 text-center">
+        <section id="perolehan" class="w-100 text-center mb-5">
             <h1 class="mb-3">Perolehan Pilihan</h1>
             <div class="w-50 ms-auto me-auto">
                 <canvas id="grafik"></canvas>
             </div>
-        </div>
-    </form>
+        </section>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <section id="alasan" class="row text-center mb-5">
+            <h1 class="mb-3">Alasan Pemilih</h1>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Anies Baswedan &<br />Muhaimin Iskandar</h5>
+                    <ul class="list-group list-group-flush mt-3" id="list01"></ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Prabowo Subianto &<br />Gibran Rakabuming</h5>
+                    <ul class="list-group list-group-flush mt-3" id="list02"></ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Ganjar Pranowo &<br />Mahfud MD</h5>
+                    <ul class="list-group list-group-flush mt-3" id="list03"></ul>
+                </div>
+            </div>
+        </section>
+    </div>
 </body>
+
+<footer class="bg-body-tertiary p-3 text-center">
+    habilihsanproject © 2024
+</footer>
 
 </html>
 
@@ -126,40 +222,181 @@
     }
 
     // Database
-    
+    let IPpemilih = []
+    function dataPemilihan() {
+        const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
+        data01.get().then((doc) => {
+            const pemilih = doc.data().data
+            localStorage.setItem("data01", pemilih.length)
+
+            for (let i = 0; i < pemilih.length; i++) {
+                IPpemilih.push(pemilih[i].ip)
+            }
+
+            const sentimen = pemilih.map(item => item.sentimen)
+            const list = document.querySelector("#list01")
+            const datanya = data => {
+                const template = document.createElement("template")
+                template.innerHTML =
+                    `<li class="list-group-item">${sentimen[i]}</li>`
+                        .trim()
+                return template.content.firstChild
+            }
+            for (i in sentimen) {
+                list.append(datanya())
+            }
+        })
+        const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
+        data02.get().then((doc) => {
+            const pemilih = doc.data().data
+            localStorage.setItem("data02", pemilih.length)
+
+            for (let i = 0; i < pemilih.length; i++) {
+                IPpemilih.push(pemilih[i].ip)
+            }
+
+            const sentimen = pemilih.map(item => item.sentimen)
+            const list = document.querySelector("#list02")
+            const datanya = data => {
+                const template = document.createElement("template")
+                template.innerHTML =
+                    `<li class="list-group-item">${sentimen[i]}</li>`
+                        .trim()
+                return template.content.firstChild
+            }
+            for (i in sentimen) {
+                list.append(datanya())
+            }
+        })
+        const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
+        data03.get().then((doc) => {
+            const pemilih = doc.data().data
+            localStorage.setItem("data03", pemilih.length)
+
+            for (let i = 0; i < pemilih.length; i++) {
+                IPpemilih.push(pemilih[i].ip)
+            }
+
+            const sentimen = pemilih.map(item => item.sentimen)
+            const list = document.querySelector("#list03")
+            const datanya = data => {
+                const template = document.createElement("template")
+                template.innerHTML =
+                    `<li class="list-group-item">${sentimen[i]}</li>`
+                        .trim()
+                return template.content.firstChild
+            }
+            for (i in sentimen) {
+                list.append(datanya())
+            }
+        })
+
+        setTimeout(grafisData, 1000)
+    }
 
     // Voter Address
     axios.get("https://api.ipify.org?format=json")
         .then(res => {
             const pemilih = document.getElementById("pemilih")
-            pemilih.innerHTML = `<span>No. Pemilih:<b class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span>`
+            pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
+                                <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
+            localStorage.setItem("ip", res.data.ip)
+
+            const ip = localStorage.getItem("ip")
+            for (let i = 0; i < IPpemilih.length; i++) {
+                if (ip == IPpemilih[i]) {
+                    document.getElementById("card01").disabled = true
+                    document.getElementById("card02").disabled = true
+                    document.getElementById("card03").disabled = true
+                    document.getElementById("note").style.display = "block"
+                    document.getElementById("ip").classList.replace("text-bg-secondary", "text-bg-success")
+                }
+            }
         })
 
     // Vote
     let Paslon01 = document.getElementById("paslon01")
     Paslon01.addEventListener("click", () => {
-        
+        let vote = []
+        const sentimen01 = document.getElementById("sentimen01")
+
+        const ip = localStorage.getItem("ip")
+        const sentimen = sentimen01.value
+
+        const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
+        data01.get().then((doc) => {
+            const voting = {
+                ip: ip,
+                sentimen: sentimen
+            }
+            vote = doc.data().data
+            vote.push(voting)
+            data01.update({ data: vote })
+                .then(() => {
+                    alert("Terimakasih sudah memilih!")
+                    location.reload()
+                })
+        })
     })
 
     let Paslon02 = document.getElementById("paslon02")
     Paslon02.addEventListener("click", () => {
-        
+        let vote = []
+        const sentimen02 = document.getElementById("sentimen02")
+
+        const ip = localStorage.getItem("ip")
+        const sentimen = sentimen02.value
+
+        const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
+        data02.get().then((doc) => {
+            const voting = {
+                ip: ip,
+                sentimen: sentimen
+            }
+            vote = doc.data().data
+            vote.push(voting)
+            data02.update({ data: vote })
+                .then(() => {
+                    alert("Terimakasih sudah memilih!")
+                    location.reload()
+                })
+        })
     })
 
     let Paslon03 = document.getElementById("paslon03")
     Paslon03.addEventListener("click", () => {
-        
-    })
-    
-    // Chart
-    let Pasangan01 = 33
-    let Pasangan02 = 33
-    let Pasangan03 = 33
+        let vote = []
+        const sentimen03 = document.getElementById("sentimen03")
 
-    const labels = ["Anies Baswedan & Muhaimin Iskandar", "Prabowo Subianto & Gibran Rakabuming", "Ganjar Pranowo & Mahfud MD"]
-    const data = [Pasangan01, Pasangan02, Pasangan03]
-    const ctx = document.getElementById("grafik").getContext("2d")
-    new Chart(ctx, {
+        const ip = localStorage.getItem("ip")
+        const sentimen = sentimen03.value
+
+        const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
+        data03.get().then((doc) => {
+            const voting = {
+                ip: ip,
+                sentimen: sentimen
+            }
+            vote = doc.data().data
+            vote.push(voting)
+            data03.update({ data: vote })
+                .then(() => {
+                    alert("Terimakasih sudah memilih!")
+                    location.reload()
+                })
+        })
+    })
+
+    // Chart
+    function grafisData() {
+        const pemilih01 = localStorage.getItem("data01")
+        const pemilih02 = localStorage.getItem("data02")
+        const pemilih03 = localStorage.getItem("data03")
+
+        const labels = ["Anies Baswedan & Muhaimin Iskandar", "Prabowo Subianto & Gibran Rakabuming", "Ganjar Pranowo & Mahfud MD"]
+        const data = [pemilih01, pemilih02, pemilih03]
+        const ctx = document.getElementById("grafik").getContext("2d")
+        new Chart(ctx, {
             type: "pie",
             data: {
                 labels: labels,
@@ -180,6 +417,9 @@
                 }]
             }
         })
+    }
+
+    dataPemilihan()
 </script>
 
 <style>
@@ -193,5 +433,15 @@
 
     .alert {
         opacity: 1;
+    }
+
+    .btn:disabled {
+        border: 0;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: -webkit-fill-available;
     }
 </style>
