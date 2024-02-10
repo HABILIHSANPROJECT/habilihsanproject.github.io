@@ -37,7 +37,7 @@
     </nav>
 
     <!-- Container -->
-    <div class="p-5 w-75 ms-auto me-auto">
+    <div class="w-100 ms-auto me-auto">
         <div id="pemilih" class="mb-3 text-center w-100"></div>
 
         <div class="alert alert-info" style="text-align: justify;">
@@ -389,9 +389,9 @@
 
     // Chart
     function grafisData() {
-        const pemilih01 = Number(localStorage.getItem("data01")-1)
-        const pemilih02 = Number(localStorage.getItem("data02")-1)
-        const pemilih03 = Number(localStorage.getItem("data03")-1)
+        const pemilih01 = Number(localStorage.getItem("data01") - 1)
+        const pemilih02 = Number(localStorage.getItem("data02") - 1)
+        const pemilih03 = Number(localStorage.getItem("data03") - 1)
 
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
@@ -444,7 +444,8 @@
         opacity: 1;
     }
 
-    .btn:disabled, .btn:hover {
+    .btn:disabled,
+    .btn:hover {
         border: 0;
     }
 
@@ -452,5 +453,11 @@
         position: fixed;
         bottom: 0;
         width: -webkit-fill-available;
+    }
+
+    body {
+        max-width: 720px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 </style>
