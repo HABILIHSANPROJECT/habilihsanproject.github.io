@@ -159,6 +159,13 @@
                     </form>
                 </div>
             </div>
+
+            <div class="alert alert-info w-50 mt-3 ms-auto me-auto">
+                <p class="mb-0">Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</p>
+                <a href="https://bijakmemilih.id/" target="_blank">
+                    <img class="w-25 bijakmemilih" id="bijakmemilih" src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
+                </a>
+            </div>
         </section>
 
         <div class="mt-5 mb-5 border-top"></div>
@@ -207,16 +214,20 @@
 <script src="./database.js"></script>
 <script>
     // Theme
-    let SetTheme = document.getElementById("tema").classList
+    let tema = document.getElementById("tema").classList
+    let bijakmemilih = document.getElementById("bijakmemilih").classList
     function aturTema() {
         let data = document.getElementsByTagName("html")[0].dataset.bsTheme
         if (data == "dark") {
             document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
-            SetTheme.replace("mdi-weather-night", "mdi-weather-sunny")
+            tema.replace("mdi-weather-night", "mdi-weather-sunny")
+            bijakmemilih.remove("bijakmemilih")
             localStorage.setItem("theme", "undefined")
-        } else {
+        }
+        if (data == "undefined") {
             document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
-            SetTheme.replace("mdi-weather-sunny", "mdi-weather-night")
+            tema.replace("mdi-weather-sunny", "mdi-weather-night")
+            bijakmemilih.add("bijakmemilih")
             localStorage.setItem("theme", "dark")
         }
     }
@@ -453,6 +464,10 @@
     .btn:disabled,
     .btn:hover {
         border: 0;
+    }
+
+    .bijakmemilih {
+        filter: invert(1);
     }
 
     footer {
