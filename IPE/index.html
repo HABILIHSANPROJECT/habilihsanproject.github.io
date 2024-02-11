@@ -70,21 +70,21 @@
             </button>
             <div class="modal fade" id="modal01">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <form class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 01?</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <textarea class="form-control" id="sentimen01" rows="3"
-                                placeholder="Saya memilih Paslon 01 karena..."></textarea>
+                                placeholder="Saya memilih Paslon 01 karena..." required></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01">Pilih 01</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon01">Pilih 01</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -99,28 +99,28 @@
                         </div>
                         <div class="card-body">
                             <p class="card-title fs-4 fw-bold">Prabowo Subianto &<br />Gibran Rakabuming</p>
-                            <p class="card-text">Calon Presiden dan Wakil Presiden  No. 02</p>
+                            <p class="card-text">Calon Presiden dan Wakil Presiden No. 02</p>
                         </div>
                     </div>
             </div>
             </button>
             <div class="modal fade" id="modal02">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <form class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 02?</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <textarea class="form-control" id="sentimen02" rows="3"
-                                placeholder="Saya memilih Paslon 02 karena..."></textarea>
+                                placeholder="Saya memilih Paslon 02 karena..." required></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02">Pilih 02</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon02">Pilih 02</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -135,28 +135,28 @@
                         </div>
                         <div class="card-body">
                             <p class="card-title fs-4 fw-bold">Ganjar Pranowo &<br />Mahfud MD</p>
-                            <p class="card-text">Calon Presiden dan Wakil Presiden  No. 03</p>
+                            <p class="card-text">Calon Presiden dan Wakil Presiden No. 03</p>
                         </div>
                     </div>
             </div>
             </button>
             <div class="modal fade" id="modal03">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <form class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Kenapa Pilih Paslon 03?</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <textarea class="form-control" id="sentimen03" rows="3"
-                                placeholder="Saya memilih Paslon 03 karena..."></textarea>
+                                placeholder="Saya memilih Paslon 03 karena..." required></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03">Pilih 03</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon03">Pilih 03</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -316,7 +316,7 @@
 
     // Vote
     let Paslon01 = document.getElementById("paslon01")
-    Paslon01.addEventListener("click", () => {
+    Paslon01.addEventListener("submit", () => {
         let vote = []
         const sentimen01 = document.getElementById("sentimen01")
 
@@ -340,7 +340,7 @@
     })
 
     let Paslon02 = document.getElementById("paslon02")
-    Paslon02.addEventListener("click", () => {
+    Paslon02.addEventListener("submit", () => {
         let vote = []
         const sentimen02 = document.getElementById("sentimen02")
 
@@ -364,7 +364,7 @@
     })
 
     let Paslon03 = document.getElementById("paslon03")
-    Paslon03.addEventListener("click", () => {
+    Paslon03.addEventListener("submit", () => {
         let vote = []
         const sentimen03 = document.getElementById("sentimen03")
 
@@ -389,9 +389,11 @@
 
     // Chart
     function grafisData() {
-        const pemilih01 = Number(localStorage.getItem("data01") - 1)
-        const pemilih02 = Number(localStorage.getItem("data02") - 1)
-        const pemilih03 = Number(localStorage.getItem("data03") - 1)
+        const pemilih01 = Number((localStorage.getItem("data01") - 1)*100 / (IPpemilih.length - 1))
+        const pemilih02 = Number((localStorage.getItem("data02") - 1)*100 / (IPpemilih.length - 1))
+        const pemilih03 = Number((localStorage.getItem("data03") - 1)*100 / (IPpemilih.length - 1))
+
+        console.log(pemilih01)
 
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
@@ -418,11 +420,15 @@
             },
             options: {
                 scales: {
-                    yAxes: [{
+                    yAxes: {
+                        beginAtZero: true,
+                        max: 100,
                         ticks: {
-                            beginAtZero: true
+                            callback: function (value) {
+                                return value + '%'
+                            }
                         }
-                    }]
+                    }
                 }
             }
         })
