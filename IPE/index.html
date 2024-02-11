@@ -259,6 +259,9 @@
             for (i in sentimen) {
                 list.append(datanya())
             }
+
+            const x0 = document.getElementById("list01")
+            x0.children[0].remove()
         })
         const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
         data02.get().then((doc) => {
@@ -281,6 +284,9 @@
             for (i in sentimen) {
                 list.append(datanya())
             }
+
+            const x0 = document.getElementById("list02")
+            x0.children[0].remove()
         })
         const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
         data03.get().then((doc) => {
@@ -303,6 +309,9 @@
             for (i in sentimen) {
                 list.append(datanya())
             }
+
+            const x0 = document.getElementById("list03")
+            x0.children[0].remove()
         })
 
         setTimeout(grafisData, 1000)
@@ -422,8 +431,6 @@
         const pemilih02 = Number((localStorage.getItem("data02") - 1) * 100 / (IPpemilih.length - 1))
         const pemilih03 = Number((localStorage.getItem("data03") - 1) * 100 / (IPpemilih.length - 1))
 
-        console.log(pemilih01)
-
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
         const ctx = document.getElementById("grafik").getContext("2d")
@@ -464,6 +471,7 @@
     }
 
     dataPemilihan()
+
 </script>
 
 <style>
