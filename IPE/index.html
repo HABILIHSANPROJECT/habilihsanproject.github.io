@@ -335,14 +335,17 @@
     // Voter Address
     axios.get("https://api.ipify.org?format=json")
         .then(res => {
+            const ip = res.data.ip
+            const oktatIP = ip.split(".")
+
             const pemilih = document.getElementById("pemilih")
             pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
-            localStorage.setItem("ip", res.data.ip)
+            localStorage.setItem("ip", oktatIP[3])
 
-            const ip = localStorage.getItem("ip")
+            const ipvote = localStorage.getItem("ip")
             for (let i = 0; i < IPpemilih.length; i++) {
-                if (Number(ip) == Number(IPpemilih[i])) {
+                if (ipvote == IPpemilih[i]) {
                     document.getElementById("card01").disabled = true
                     document.getElementById("card02").disabled = true
                     document.getElementById("card03").disabled = true
@@ -369,7 +372,7 @@
         const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
         data01.get().then((doc) => {
             const voting = {
-                ip: Number(ip),
+                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -377,7 +380,6 @@
             data01.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
-                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
@@ -399,7 +401,7 @@
         const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
         data02.get().then((doc) => {
             const voting = {
-                ip: Number(ip),
+                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -407,7 +409,6 @@
             data02.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
-                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
@@ -429,7 +430,7 @@
         const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
         data03.get().then((doc) => {
             const voting = {
-                ip: Number(ip),
+                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -437,7 +438,6 @@
             data03.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
-                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
