@@ -8,3 +8,4 @@ const konfigurasi = {
 }
 
 firebase.initializeApp(konfigurasi)
+firebase.analytics()
