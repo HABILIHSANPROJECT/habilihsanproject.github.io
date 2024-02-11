@@ -342,7 +342,7 @@
 
             const ip = localStorage.getItem("ip")
             for (let i = 0; i < IPpemilih.length; i++) {
-                if (ip == IPpemilih[i]) {
+                if (Number(ip) == Number(IPpemilih[i])) {
                     document.getElementById("card01").disabled = true
                     document.getElementById("card02").disabled = true
                     document.getElementById("card03").disabled = true
@@ -369,7 +369,7 @@
         const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
         data01.get().then((doc) => {
             const voting = {
-                ip: ip,
+                ip: Number(ip),
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -377,6 +377,7 @@
             data01.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
+                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
@@ -398,7 +399,7 @@
         const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
         data02.get().then((doc) => {
             const voting = {
-                ip: ip,
+                ip: Number(ip),
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -406,6 +407,7 @@
             data02.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
+                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
@@ -427,7 +429,7 @@
         const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
         data03.get().then((doc) => {
             const voting = {
-                ip: ip,
+                ip: Number(ip),
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -435,6 +437,7 @@
             data03.update({ data: vote })
                 .then(() => {
                     alert("Terimakasih sudah memilih!")
+                    localStorage.removeItem("ip")
                     location.reload()
                 })
         })
