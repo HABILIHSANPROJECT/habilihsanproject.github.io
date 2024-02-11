@@ -160,11 +160,14 @@
                 </div>
             </div>
 
-            <div class="alert alert-info w-50 mt-3 ms-auto me-auto">
-                <p class="mb-0">Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</p>
-                <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank">
-                    <img class="w-25 bijakmemilih" id="bijakmemilih" src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
-                </a>
+            <div class="mt-3 text-center">
+                <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
+                
+                    <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
+                        <img width="200px" class="bijakmemilih" id="bijakmemilih"
+                            src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
+                    </a>
+                
             </div>
         </section>
 
@@ -400,9 +403,9 @@
 
     // Chart
     function grafisData() {
-        const pemilih01 = Number((localStorage.getItem("data01") - 1)*100 / (IPpemilih.length - 1))
-        const pemilih02 = Number((localStorage.getItem("data02") - 1)*100 / (IPpemilih.length - 1))
-        const pemilih03 = Number((localStorage.getItem("data03") - 1)*100 / (IPpemilih.length - 1))
+        const pemilih01 = Number((localStorage.getItem("data01") - 1) * 100 / (IPpemilih.length - 1))
+        const pemilih02 = Number((localStorage.getItem("data02") - 1) * 100 / (IPpemilih.length - 1))
+        const pemilih03 = Number((localStorage.getItem("data03") - 1) * 100 / (IPpemilih.length - 1))
 
         console.log(pemilih01)
 
