@@ -337,11 +337,12 @@
         .then(res => {
             const ip = res.data.ip
             const oktatIP = ip.split(".")
+            const id = `${oktatIP[2]}.${oktatIP[3]}`
 
             const pemilih = document.getElementById("pemilih")
             pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
-            localStorage.setItem("ip", oktatIP[3])
+            localStorage.setItem("ip", id)
 
             const ipvote = localStorage.getItem("ip")
             for (let i = 0; i < IPpemilih.length; i++) {
