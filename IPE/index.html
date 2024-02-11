@@ -82,7 +82,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon01">Pilih 01</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>Pilih 01</button>
                         </div>
                     </form>
                 </div>
@@ -118,7 +118,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon02">Pilih 02</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>Pilih 02</button>
                         </div>
                     </form>
                 </div>
@@ -154,7 +154,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon03">Pilih 03</button>
+                            <button type="submit" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>Pilih 03</button>
                         </div>
                     </form>
                 </div>
@@ -162,12 +162,12 @@
 
             <div class="mt-3 text-center">
                 <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
-                
-                    <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
-                        <img width="200px" class="bijakmemilih" id="bijakmemilih"
-                            src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
-                    </a>
-                
+
+                <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
+                    <img width="200px" class="bijakmemilih" id="bijakmemilih"
+                        src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
+                </a>
+
             </div>
         </section>
 
@@ -330,9 +330,14 @@
 
     // Vote
     let Paslon01 = document.getElementById("paslon01")
-    Paslon01.addEventListener("submit", () => {
+    let sentimen01 = document.getElementById("sentimen01")
+
+        sentimen01.addEventListener("change", function () {
+           Paslon01.disabled = false;
+        })
+
+    Paslon01.addEventListener("click", () => {
         let vote = []
-        const sentimen01 = document.getElementById("sentimen01")
 
         const ip = localStorage.getItem("ip")
         const sentimen = sentimen01.value
@@ -354,9 +359,14 @@
     })
 
     let Paslon02 = document.getElementById("paslon02")
-    Paslon02.addEventListener("submit", () => {
+    let sentimen02 = document.getElementById("sentimen02")
+
+        sentimen02.addEventListener("change", function () {
+            Paslon02.disabled = false;
+        })
+    
+    Paslon02.addEventListener("click", () => {
         let vote = []
-        const sentimen02 = document.getElementById("sentimen02")
 
         const ip = localStorage.getItem("ip")
         const sentimen = sentimen02.value
@@ -378,9 +388,14 @@
     })
 
     let Paslon03 = document.getElementById("paslon03")
-    Paslon03.addEventListener("submit", () => {
+    let sentimen03 = document.getElementById("sentimen03")
+
+        sentimen03.addEventListener("change", function () {
+            Paslon03.disabled = false;
+        })
+
+    Paslon03.addEventListener("click", () => {
         let vote = []
-        const sentimen03 = document.getElementById("sentimen03")
 
         const ip = localStorage.getItem("ip")
         const sentimen = sentimen03.value
