@@ -180,7 +180,7 @@
             </a>
 
         </div>
-        
+
         <div class="mt-5 mb-5 border-top"></div>
 
         <section id="perolehan" class="w-100 text-center mb-5">
@@ -253,7 +253,7 @@
     }
 
     // Database
-    let IPpemilih = []
+    let jumlahPemilih = []
     function dataPemilihan() {
         const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
         data01.get().then((doc) => {
@@ -261,7 +261,7 @@
             localStorage.setItem("data01", pemilih.length)
 
             for (let i = 0; i < pemilih.length; i++) {
-                IPpemilih.push(pemilih[i].ip)
+                jumlahPemilih.push(pemilih[i])
             }
 
             const sentimen = pemilih.map(item => item.sentimen)
@@ -286,7 +286,7 @@
             localStorage.setItem("data02", pemilih.length)
 
             for (let i = 0; i < pemilih.length; i++) {
-                IPpemilih.push(pemilih[i].ip)
+                jumlahPemilih.push(pemilih[i])
             }
 
             const sentimen = pemilih.map(item => item.sentimen)
@@ -311,7 +311,7 @@
             localStorage.setItem("data03", pemilih.length)
 
             for (let i = 0; i < pemilih.length; i++) {
-                IPpemilih.push(pemilih[i].ip)
+                jumlahPemilih.push(pemilih[i])
             }
 
             const sentimen = pemilih.map(item => item.sentimen)
@@ -345,7 +345,7 @@
             localStorage.setItem("ip", ip)
 
             const ipvote = localStorage.getItem("ip")
-            if (ipvote == IPpemilih[i]) {
+            if (ipvote == res.data.ip) {
                 document.getElementById("card01").disabled = true
                 document.getElementById("card02").disabled = true
                 document.getElementById("card03").disabled = true
@@ -435,9 +435,9 @@
 
     // Chart
     function grafisData() {
-        const pemilih01 = Number((localStorage.getItem("data01") - 1) * 100 / (IPpemilih.length - 1))
-        const pemilih02 = Number((localStorage.getItem("data02") - 1) * 100 / (IPpemilih.length - 1))
-        const pemilih03 = Number((localStorage.getItem("data03") - 1) * 100 / (IPpemilih.length - 1))
+        const pemilih01 = Number((localStorage.getItem("data01") - 1) * 100 / (jumlahPemilih.length - 1))
+        const pemilih02 = Number((localStorage.getItem("data02") - 1) * 100 / (jumlahPemilih.length - 1))
+        const pemilih03 = Number((localStorage.getItem("data03") - 1) * 100 / (jumlahPemilih.length - 1))
 
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [pemilih01, pemilih02, pemilih03]
