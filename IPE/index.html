@@ -87,8 +87,9 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>Pilih
-                                01</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>
+                                <a class="ads" href="#" target="_blank">Pilih 01</a>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -124,8 +125,9 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>Pilih
-                                02</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>
+                                <a class="ads" href="#" target="_blank">Pilih 02</a>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -161,8 +163,9 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>Pilih
-                                03</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>
+                                <a class="ads" href="#" target="_blank">Pilih 03</a>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -365,6 +368,13 @@
     }
 
     // Vote
+    let link = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+    let tombol = document.querySelectorAll(".ads")
+
+    for (let i = 0; i < link.length; i++) {
+        tombol[i].attributes[3].value = link[i].attributes[3].value
+    }
+
     let Paslon01 = document.getElementById("paslon01")
     let sentimen01 = document.getElementById("sentimen01")
 
