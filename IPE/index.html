@@ -344,17 +344,20 @@
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
             localStorage.setItem("ip", ip)
             localStorage.setItem("id", `ID-${ip}`)
-
-            const ipvote = localStorage.getItem("ip")
-            const idvote = localStorage.getItem("id")
-            if (idvote == `ID-${ipvote}`) {
-                document.getElementById("card01").disabled = true
-                document.getElementById("card02").disabled = true
-                document.getElementById("card03").disabled = true
-                document.getElementById("note").style.display = "block"
-                document.getElementById("ip").classList.replace("text-bg-secondary", "text-bg-success")
-            }
         })
+
+    // Voted
+    function telahMemilh() {
+        const ipvote = localStorage.getItem("ip")
+        const idvote = localStorage.getItem("id")
+        if (idvote == `ID-${ipvote}`) {
+            document.getElementById("card01").disabled = true
+            document.getElementById("card02").disabled = true
+            document.getElementById("card03").disabled = true
+            document.getElementById("note").style.display = "block"
+            document.getElementById("ip").classList.replace("text-bg-secondary", "text-bg-success")
+        }
+    }
 
     // Vote
     let Paslon01 = document.getElementById("paslon01")
@@ -377,6 +380,7 @@
             vote.push(voting)
             data01.update({ data: vote })
                 .then(() => {
+                    telahMemilh()
                     alert("Terimakasih sudah memilih!")
                     location.reload()
                 })
@@ -403,6 +407,7 @@
             vote.push(voting)
             data02.update({ data: vote })
                 .then(() => {
+                    telahMemilh()
                     alert("Terimakasih sudah memilih!")
                     location.reload()
                 })
@@ -429,6 +434,7 @@
             vote.push(voting)
             data03.update({ data: vote })
                 .then(() => {
+                    telahMemilh()
                     alert("Terimakasih sudah memilih!")
                     location.reload()
                 })
