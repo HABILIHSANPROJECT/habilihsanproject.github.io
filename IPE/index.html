@@ -185,7 +185,7 @@
 
         <section id="perolehan" class="w-100 text-center mb-5">
             <h1 class="mb-3">Perolehan Pilihan</h1>
-            <div style="width: 90%;" class="ms-auto me-auto">
+            <div style="width: 80%;" class="ms-auto me-auto">
                 <canvas id="grafik"></canvas>
             </div>
         </section>
@@ -343,9 +343,11 @@
             pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
             localStorage.setItem("ip", ip)
+            localStorage.setItem("id", `ID-${ip}`)
 
             const ipvote = localStorage.getItem("ip")
-            if (ipvote == res.data.ip) {
+            const idvote = localStorage.getItem("id")
+            if (idvote == `ID-${ipvote}`) {
                 document.getElementById("card01").disabled = true
                 document.getElementById("card02").disabled = true
                 document.getElementById("card03").disabled = true
