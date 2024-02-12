@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -86,7 +86,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>Pilih 01</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>Pilih
+                                01</button>
                         </div>
                     </form>
                 </div>
@@ -122,7 +123,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>Pilih 02</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>Pilih
+                                02</button>
                         </div>
                     </form>
                 </div>
@@ -158,23 +160,27 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>Pilih 03</button>
+                            <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>Pilih
+                                03</button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="mt-3 text-center">
-                <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
-
-                <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
-                    <img width="200px" class="bijakmemilih" id="bijakmemilih"
-                        src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
-                </a>
-
-            </div>
         </section>
 
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="mt-3 text-center">
+            <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
+
+            <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
+                <img width="200px" class="bijakmemilih" id="bijakmemilih"
+                    src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
+            </a>
+
+        </div>
+        
         <div class="mt-5 mb-5 border-top"></div>
 
         <section id="perolehan" class="w-100 text-center mb-5">
@@ -183,10 +189,6 @@
                 <canvas id="grafik"></canvas>
             </div>
         </section>
-
-        <div class="mt-5 mb-5 border-top"></div>
-
-        <div id="SC_TBlock_883308"></div>
 
         <div class="mt-5 mb-5 border-top"></div>
 
@@ -228,8 +230,8 @@
         id: 883308,
         domain: "n.ads1-adnow.com",
     });
-    </script>
-    <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" async></script>
+</script>
+<script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" async></script>
 <script>
     // Theme
     let tema = document.getElementById("tema").classList
@@ -336,23 +338,19 @@
     axios.get("https://api.ipify.org?format=json")
         .then(res => {
             const ip = res.data.ip
-            const oktatIP = ip.split(".")
-            const id = `${oktatIP[2]}.${oktatIP[3]}`
 
             const pemilih = document.getElementById("pemilih")
             pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
-            localStorage.setItem("ip", id)
+            localStorage.setItem("ip", ip)
 
             const ipvote = localStorage.getItem("ip")
-            for (let i = 0; i < IPpemilih.length; i++) {
-                if (ipvote == IPpemilih[i]) {
-                    document.getElementById("card01").disabled = true
-                    document.getElementById("card02").disabled = true
-                    document.getElementById("card03").disabled = true
-                    document.getElementById("note").style.display = "block"
-                    document.getElementById("ip").classList.replace("text-bg-secondary", "text-bg-success")
-                }
+            if (ipvote == IPpemilih[i]) {
+                document.getElementById("card01").disabled = true
+                document.getElementById("card02").disabled = true
+                document.getElementById("card03").disabled = true
+                document.getElementById("note").style.display = "block"
+                document.getElementById("ip").classList.replace("text-bg-secondary", "text-bg-success")
             }
         })
 
@@ -360,20 +358,17 @@
     let Paslon01 = document.getElementById("paslon01")
     let sentimen01 = document.getElementById("sentimen01")
 
-        sentimen01.addEventListener("change", function () {
-           Paslon01.disabled = false;
-        })
+    sentimen01.addEventListener("change", function () {
+        Paslon01.disabled = false;
+    })
 
     Paslon01.addEventListener("click", () => {
         let vote = []
-
-        const ip = localStorage.getItem("ip")
         const sentimen = sentimen01.value
 
         const data01 = firebase.firestore().collection("IPE2024").doc("paslon01")
         data01.get().then((doc) => {
             const voting = {
-                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -389,20 +384,17 @@
     let Paslon02 = document.getElementById("paslon02")
     let sentimen02 = document.getElementById("sentimen02")
 
-        sentimen02.addEventListener("change", function () {
-            Paslon02.disabled = false;
-        })
-    
+    sentimen02.addEventListener("change", function () {
+        Paslon02.disabled = false;
+    })
+
     Paslon02.addEventListener("click", () => {
         let vote = []
-
-        const ip = localStorage.getItem("ip")
         const sentimen = sentimen02.value
 
         const data02 = firebase.firestore().collection("IPE2024").doc("paslon02")
         data02.get().then((doc) => {
             const voting = {
-                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
@@ -418,20 +410,17 @@
     let Paslon03 = document.getElementById("paslon03")
     let sentimen03 = document.getElementById("sentimen03")
 
-        sentimen03.addEventListener("change", function () {
-            Paslon03.disabled = false;
-        })
+    sentimen03.addEventListener("change", function () {
+        Paslon03.disabled = false;
+    })
 
     Paslon03.addEventListener("click", () => {
         let vote = []
-
-        const ip = localStorage.getItem("ip")
         const sentimen = sentimen03.value
 
         const data03 = firebase.firestore().collection("IPE2024").doc("paslon03")
         data03.get().then((doc) => {
             const voting = {
-                ip: ip,
                 sentimen: sentimen
             }
             vote = doc.data().data
