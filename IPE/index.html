@@ -29,7 +29,8 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
         crossorigin="anonymous"></script>
-    <script async="async" data-cfasync="false" src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
+    <script async="async" data-cfasync="false"
+        src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
 </head>
 
 <body>
@@ -86,10 +87,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
-                                Jadi</button>
+                                Jadi</button><a class="ads" href="#" target="_blank"></a>
                             <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>
-                                <a class="ads" href="#" target="_blank">Pilih 01</a>
-                            </button>
+                                Pilih 01
+                            </button></a>
                         </div>
                     </form>
                 </div>
@@ -124,10 +125,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
-                                Jadi</button>
+                                Jadi</button><a class="ads" href="#" target="_blank"></a>
                             <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>
-                                <a class="ads" href="#" target="_blank">Pilih 02</a>
-                            </button>
+                                Pilih 02
+                            </button></a>
                         </div>
                     </form>
                 </div>
@@ -163,9 +164,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
+                            <a class="ads" href="#" target="_blank"></a>
                             <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>
-                                <a class="ads" href="#" target="_blank">Pilih 03</a>
-                            </button>
+                                Pilih 03
+                            </button></a>
                         </div>
                     </form>
                 </div>
@@ -368,18 +370,17 @@
     }
 
     // Vote
-    let link = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
-    let tombol = document.querySelectorAll(".ads")
-
-    for (let i = 0; i < link.length; i++) {
-        tombol[i].attributes[3].value = link[i].attributes[3].value
-    }
-
     let Paslon01 = document.getElementById("paslon01")
     let sentimen01 = document.getElementById("sentimen01")
 
     sentimen01.addEventListener("change", function () {
-        Paslon01.disabled = false;
+        Paslon01.disabled = false
+        let link = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+        let tombol = document.querySelectorAll(".ads")
+
+        for (let i = 0; i < link.length; i++) {
+            tombol[i].attributes[3].value = link[i].attributes[3].value
+        }
     })
 
     Paslon01.addEventListener("click", () => {
@@ -406,7 +407,13 @@
     let sentimen02 = document.getElementById("sentimen02")
 
     sentimen02.addEventListener("change", function () {
-        Paslon02.disabled = false;
+        Paslon02.disabled = false
+        let link = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+        let tombol = document.querySelectorAll(".ads")
+
+        for (let i = 0; i < link.length; i++) {
+            tombol[i].attributes[3].value = link[i].attributes[3].value
+        }
     })
 
     Paslon02.addEventListener("click", () => {
@@ -433,7 +440,13 @@
     let sentimen03 = document.getElementById("sentimen03")
 
     sentimen03.addEventListener("change", function () {
-        Paslon03.disabled = false;
+        Paslon03.disabled = false
+        let link = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+        let tombol = document.querySelectorAll(".ads")
+
+        for (let i = 0; i < link.length; i++) {
+            tombol[i].attributes[3].value = link[i].attributes[3].value
+        }
     })
 
     Paslon03.addEventListener("click", () => {
@@ -509,7 +522,7 @@
     let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
     for (let i = 0; i < adsText.length; i++) {
         const caption = adsText[i].innerHTML.toLowerCase()
-        const block = ["judi","slot","gacor","bet", "deposit"]
+        const block = ["judi", "slot", "gacor", "bet", "deposit"]
         const split = caption.split(/\s+/)
         block.forEach((larang) => {
             const index = split.indexOf(larang)
@@ -519,7 +532,7 @@
                 adsPic[i].style.backgroundImage = "url(https://framerusercontent.com/images/DEiJuuVj5kx31lEhUXzjQlxtRhk.webp?scale-down-to=320)"
                 adsText[i].innerHTML = "Masih bingung sama Pemilu? Yuk kunjungi Bijak Memilih"
             }
-        } )
+        })
     }
 </script>
 
@@ -543,6 +556,10 @@
 
     .bijakmemilih {
         filter: invert(1);
+    }
+
+    .ads {
+        text-decoration: none;
     }
 
     footer {
