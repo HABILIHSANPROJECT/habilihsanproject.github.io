@@ -88,7 +88,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow" href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
+                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow"
+                                href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
                                 <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon01" disabled>
                                     Pilih 01
                                 </button>
@@ -128,7 +129,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow" href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
+                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow"
+                                href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
                                 <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon02" disabled>
                                     Pilih 02
                                 </button>
@@ -168,7 +170,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Gak
                                 Jadi</button>
-                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow" href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
+                            <a class="container-447c775022427997699b9223051cb580__link" target="_blank" rel="nofollow"
+                                href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525">
                                 <button type="button" class="btn btn-sm btn-primary ms-auto" id="paslon03" disabled>
                                     Pilih 03
                                 </button>
@@ -230,9 +233,10 @@
                 </div>
             </div>
         </section>
-        
+
         <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
-            <img alt="banner" class="w-100 mb-5" src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
+            <img alt="banner" class="w-100 mb-5"
+                src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
         </a>
     </div>
 </body>
@@ -351,6 +355,7 @@
         })
 
         setTimeout(grafisData, 1000)
+        setTimeout(iklan, 10000)
     }
 
     // Voter Address
@@ -508,22 +513,24 @@
     dataPemilihan()
 
     // Ads
-    let adsLink = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
-    let adsPic = document.querySelectorAll(".container-447c775022427997699b9223051cb580__img")
-    let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
-    for (let i = 0; i < adsText.length; i++) {
-        const caption = adsText[i].innerHTML.toLowerCase()
-        const block = ["judi", "slot", "gacor", "bet", "deposit"]
-        const split = caption.split(/\s+/)
-        block.forEach((larang) => {
-            const index = split.indexOf(larang)
-            if (index !== -1) {
-                document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")[0].attributes[3].value = "#"
-                adsLink[i].attributes[3].value = "https://www.bijakmemilih.id/"
-                adsPic[i].style.backgroundImage = "url(https://framerusercontent.com/images/DEiJuuVj5kx31lEhUXzjQlxtRhk.webp?scale-down-to=320)"
-                adsText[i].innerHTML = "Masih bingung sama Pemilu? Yuk kunjungi Bijak Memilih"
-            }
-        })
+    function iklan() {
+        let adsLink = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+        let adsPic = document.querySelectorAll(".container-447c775022427997699b9223051cb580__img")
+        let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
+        for (let i = 0; i < adsText.length; i++) {
+            const caption = adsText[i].innerHTML.toLowerCase()
+            const block = ["judi", "slot", "gacor", "bet", "deposit"]
+            const split = caption.split(/\s+/)
+            block.forEach((larang) => {
+                const index = split.indexOf(larang)
+                if (index !== -1) {
+                    document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")[0].attributes[3].value = "#"
+                    adsLink[i].attributes[3].value = "https://www.bijakmemilih.id/"
+                    adsPic[i].style.backgroundImage = "url(https://framerusercontent.com/images/DEiJuuVj5kx31lEhUXzjQlxtRhk.webp?scale-down-to=320)"
+                    adsText[i].innerHTML = "Masih bingung sama Pemilu? Yuk kunjungi Bijak Memilih"
+                }
+            })
+        }
     }
 </script>
 
