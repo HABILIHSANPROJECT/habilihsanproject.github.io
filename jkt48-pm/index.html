@@ -104,6 +104,9 @@
 
         <div class="ads mt-3 mb-3" id="container-447c775022427997699b9223051cb580"></div>
 
+        <ul class="list-group" id="chatNext">
+            <li class="list-group-item" style="display: none;" id="chat-item-next"></li>
+        </ul>
         <ul class="list-group" id="chat">
             <li class="list-group-item" style="display: none;" id="chat-item"></li>
         </ul>
@@ -134,7 +137,7 @@
     let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
     for (let i = 0; i < adsText.length; i++) {
         const caption = adsText[i].innerHTML.toLowerCase()
-        const block = ["judi","slot","gacor","bet", "deposit"]
+        const block = ["judi","slot","gacor","bet", "deposit", "perjudian"]
         const split = caption.split(/\s+/)
         block.forEach((larang) => {
             const index = split.indexOf(larang)
