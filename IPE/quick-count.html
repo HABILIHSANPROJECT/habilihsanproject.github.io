@@ -71,6 +71,7 @@
                             <h1 id="suara03" style="color: rgba(200, 50, 50, 1)">00.00%</h5>
                         </div>
                     </div>
+                    <h3 class="mt-3 mb-3">Total Suara Masuk: <b id="total"></b></h3>
                 </section>
             </div>
         </section>
@@ -144,6 +145,8 @@
     // Chart
     axios.get("https://ipe2024-default-rtdb.asia-southeast1.firebasedatabase.app./quick-count.json")
     .then((res) => {
+        const total = res.data.total
+        document.getElementById("total").innerText = `${total.toFixed(2)}%`
 
         const suara01 = res.data.paslon01
         const suara02 = res.data.paslon02
