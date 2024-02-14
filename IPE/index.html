@@ -210,7 +210,7 @@
 
         <div class="mt-5 mb-5 border-top"></div>
 
-        <section id="alasan" class="row text-center mb-5">
+        <section id="alasan" class="row text-center mb-3">
             <h1 class="mb-3">Alasan Pemilih</h1>
             <div class="col-md-4">
                 <div class="card p-3 ms-1 me-1 mb-3">
@@ -234,10 +234,12 @@
             </div>
         </section>
 
-        <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
-            <img alt="banner" class="w-100 mb-5"
-                src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
-        </a>
+        <div class="w-100 mb-5 text-center">
+            <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
+                <img alt="banner" class="w-75 ms-auto me-auto"
+                    src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
+            </a>
+        </div>
     </div>
 </body>
 
@@ -364,10 +366,10 @@
             const ip = res.data.ip
 
             const pemilih = document.getElementById("pemilih")
-            pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
+            /* pemilih.innerHTML = `<span>No. Pemilih:<b id="ip" class="ms-3 badge rounded-pill text-bg-secondary">${res.data.ip}</b></span><br/>
                                 <span id="note" style="display: none;">Kamu sudah memilih, semoga pilihanmu menang ya!</span>`
             localStorage.setItem("ip", ip)
-            localStorage.setItem("id", `ID-${ip}`)
+            localStorage.setItem("id", `ID-${ip}`) */
         })
 
     // Voted
@@ -519,7 +521,7 @@
         let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
         for (let i = 0; i < adsText.length; i++) {
             const caption = adsText[i].innerHTML.toLowerCase()
-            const block = ["judi", "slot", "gacor", "bet", "deposit"]
+            const block = ["judi", "slot", "gacor", "bet", "deposit", "slots"]
             const split = caption.split(/\s+/)
             block.forEach((larang) => {
                 const index = split.indexOf(larang)
