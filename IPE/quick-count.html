@@ -27,10 +27,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
+    <!--script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
         crossorigin="anonymous"></script>
     <script async="async" data-cfasync="false"
-        src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
+        src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script-->
 </head>
 
 <body>
@@ -137,6 +137,17 @@
     }
 
     // Chart
+    let body = {"data":{"id":""}}
+    axios.post("https://us-central1-kp24-fd486.cloudfunctions.net/hierarchy2", body)
+    .then((res) => {
+        for (i = 11; i < 100; i++) {
+            const suara01 = res.data.result.aggregated
+            const paslon01 = suara01.i[0].pas1
+            console.log(paslon01)
+        }
+        
+    })
+
     const hasil = firebase.firestore().collection("IPE2024").doc("quick-count")
     hasil.get().then((doc) => {
         const suara01 = doc.data().paslon01
