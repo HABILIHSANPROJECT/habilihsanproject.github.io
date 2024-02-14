@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPE2024</title>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Fetch Data -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
+        crossorigin="anonymous"></script>
+    <script async="async" data-cfasync="false"
+        src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <div class="container-fluid ms-5 me-5">
+            <a href="#" class="navbar-brand fs-3 fw-bold text-danger mb-0">IPE<span class="text-body">2024</span></a>
+            <button id="tema" onclick="aturTema()" class="btn text-body mdi mdi-weather-night"></button>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <div class="ms-3 me-3 p-3">
+
+        <section id="perolehan" class="w-100 text-center mb-5">
+            <h1 class="mb-3">Quick Count</h1>
+            <div class="ms-auto me-auto">
+                <canvas id="grafik"></canvas>
+                <section id="paslon" class="row text-center mb-3">
+                    <div class="col-md-4">
+                        <div class="card p-3 ms-1 me-1 mb-3">
+                            <img src="https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-01.png" width="50" height="50" class="rounded mb-3 ms-auto me-auto">
+                            <h5>Anies Baswedan &<br />Muhaimin Iskandar</h5>
+                            <h1 id="suara01" style="color: rgba(0, 145, 245, 1)">00.00%</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 ms-1 me-1 mb-3">
+                            <img src="https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-02.png" width="50" height="50" class="rounded mb-3 ms-auto me-auto">
+                            <h5>Prabowo Subianto &<br />Gibran Rakabuming</h5>
+                            <h1 id="suara02" style="color: rgba(255, 165, 0, 1)">00.00%</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 ms-1 me-1 mb-3">
+                            <img src="https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-03.png" width="50" height="50" class="rounded mb-3 ms-auto me-auto">
+                            <h5>Ganjar Pranowo &<br />Mahfud MD</h5>
+                            <h1 id="suara03" style="color: rgba(200, 50, 50, 1)">00.00%</h5>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="w-100 mb-5 text-center">
+            <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
+                <img alt="banner" class="w-75"
+                    src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
+            </a>
+        </div>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="mt-3 text-center">
+            <span>Hasil suara dikumpulkan berdasarkan data</span><br />
+
+            <div class="w-50 ms-auto me-auto">
+                <img width="200px" id="kawalpemilu"
+                    src="https://kawalpemilu.org/assets/apple-touch-icon.png">
+                    <h1>KawalPemilu <span class="text-danger">2024</span></h1>
+            </div>
+
+        </div>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="w-75 ms-auto me-auto " id="container-447c775022427997699b9223051cb580"></div>
+
+        <div class="mt-5 mb-3 border-top"></div>
+
+        
+    </div>
+</body>
+
+<footer class="bg-body-tertiary p-3 text-center">
+    habilihsanproject © 2024
+</footer>
+
+</html>
+
+<script type="text/javascript">
+    (sc_adv_out = window.sc_adv_out || []).push({
+        id: 883308,
+        domain: "n.ads1-adnow.com",
+    });
+</script>
+<script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" async></script>
+<script>
+    // Theme
+    let tema = document.getElementById("tema").classList
+    function aturTema() {
+        let data = document.getElementsByTagName("html")[0].dataset.bsTheme
+        if (data == "dark") {
+            document.getElementsByTagName("html")[0].dataset.bsTheme = "undefined"
+            tema.replace("mdi-weather-night", "mdi-weather-sunny")
+            localStorage.setItem("theme", "undefined")
+        }
+        if (data == "undefined") {
+            document.getElementsByTagName("html")[0].dataset.bsTheme = "dark"
+            tema.replace("mdi-weather-sunny", "mdi-weather-night")
+            localStorage.setItem("theme", "dark")
+        }
+    }
+
+    // Chart
+    axios.get("https://kawalpemilu.org/h").then((res) => {
+        const pemilu = res.data
+
+        const parser = new DOMParser()
+        const html = parser.parseFromString(scrape, "text/html")
+        const suara01 = html.querySelectorAll("span")[252].innerText
+        const suara02 = html.querySelectorAll("span")[254].innerText
+        const suara03 = html.querySelectorAll("span")[256].innerText
+
+        document.getElementById("suara01").innerText = suara01
+        document.getElementById("suara02").innerText = suara02
+        document.getElementById("suara03").innerText = suara03
+        
+        const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
+        const data = [suara01, suara02, suara03]
+        const ctx = document.getElementById("grafik").getContext("2d")
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Data",
+                    data: data,
+                    backgroundColor: [
+                        "rgba(0, 145, 245, 0.3)",
+                        "rgba(255, 185, 0, 0.3)",
+                        "rgba(200, 50, 50, 0.3)"
+                    ],
+                    borderColor: [
+                        "rgba(0, 145, 245, 1)",
+                        "rgba(255, 185, 0, 1)",
+                        "rgba(200, 50, 50, 1)"
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function (value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                }
+
+            }
+        })
+    })
+
+    // Ads
+    function iklan() {
+        let adsLink = document.querySelectorAll(".container-447c775022427997699b9223051cb580__link")
+        let adsPic = document.querySelectorAll(".container-447c775022427997699b9223051cb580__img")
+        let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
+        for (let i = 0; i < adsText.length; i++) {
+            const caption = adsText[i].innerHTML.toLowerCase()
+            const block = ["judi", "slot", "gacor", "bet", "deposit", "slots", "parlay", "bola", "petir", "jackpot"]
+            const split = caption.split(/\s+/)
+            block.forEach((larang) => {
+                const index = split.indexOf(larang)
+                if (index !== -1) {
+                    adsLink[i].attributes[3].value = "https://www.bijakmemilih.id/"
+                    adsPic[i].style.backgroundImage = "url(https://framerusercontent.com/images/DEiJuuVj5kx31lEhUXzjQlxtRhk.webp?scale-down-to=320)"
+                    adsPic[i].style.backgroundColor = "gray"
+                    adsText[i].innerHTML = "Masih bingung sama Pemilu? Yuk kunjungi Bijak Memilih"
+                }
+            })
+        }
+    }
+</script>
+
+<style>
+    .foto-capres {
+        border-top-left-radius: var(--bs-card-inner-border-radius)
+    }
+
+    .foto-cawapres {
+        border-top-right-radius: var(--bs-card-inner-border-radius)
+    }
+
+    .alert {
+        opacity: 1;
+    }
+
+    .btn:disabled,
+    .btn:hover {
+        border: 0;
+    }
+
+    .bijakmemilih {
+        filter: invert(1);
+    }
+
+    .ads {
+        text-decoration: none;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: -webkit-fill-available;
+    }
+</style>

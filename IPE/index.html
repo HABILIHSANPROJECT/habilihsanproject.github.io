@@ -38,6 +38,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
         <div class="container-fluid ms-5 me-5">
             <a href="#" class="navbar-brand fs-3 fw-bold text-danger mb-0">IPE<span class="text-body">2024</span></a>
+            <a href="./quick-count.html" class="mb-0 ms-auto text-body no-underline me-3">Quick Count</a>
             <button id="tema" onclick="aturTema()" class="btn text-body mdi mdi-weather-night"></button>
         </div>
     </nav>
@@ -239,7 +240,7 @@
 
         <div class="w-100 mb-5 text-center">
             <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
-                <img alt="banner" class="w-100"
+                <img alt="banner" class="w-75"
                     src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
             </a>
         </div>
@@ -360,7 +361,7 @@
         })
 
         setTimeout(grafisData, 1000)
-        setTimeout(iklan, 10000)
+        setTimeout(iklan, 5000)
     }
 
     // Voter Address
@@ -490,12 +491,12 @@
                     data: data,
                     backgroundColor: [
                         "rgba(0, 145, 245, 0.3)",
-                        "rgba(255, 185, 0, 0.3)",
+                        "rgba(255, 165, 0, 0.3)",
                         "rgba(200, 50, 50, 0.3)"
                     ],
                     borderColor: [
                         "rgba(0, 145, 245, 1)",
-                        "rgba(255, 185, 0, 1)",
+                        "rgba(255, 165, 0, 1)",
                         "rgba(200, 50, 50, 1)"
                     ],
                     borderWidth: 1
@@ -566,6 +567,10 @@
 
     .ads {
         text-decoration: none;
+    }
+
+    .no-underline {
+        text-decoration: none !important;
     }
 
     footer {
