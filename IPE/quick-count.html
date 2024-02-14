@@ -97,13 +97,13 @@
         <div class="w-100 mb-5 text-center">
             <script type="text/javascript">
                 atOptions = {
-                    'key' : 'e5ed8309a7df23b456c80760b4671bee',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/e5ed8309a7df23b456c80760b4671bee/invoke.js"></scr' + 'ipt>');
+                    "key" : "e5ed8309a7df23b456c80760b4671bee",
+                    "format" : "iframe",
+                    "height" : 90,
+                    "width" : "-webkit-fill-available",
+                    "params" : {}
+                }
+                document.write(`<scr` + `ipt type="text/javascript" src="//www.topcreativeformat.com/e5ed8309a7df23b456c80760b4671bee/invoke.js"></scr` + `ipt>`)
             </script>
         </div>
         
@@ -183,7 +183,7 @@
                         max: 100,
                         ticks: {
                             callback: function (value) {
-                                return value + '%'
+                                return value + "%"
                             }
                         }
                     }
@@ -242,6 +242,10 @@
 
     .ads {
         text-decoration: none;
+    }
+
+    iframe {
+        width: -webkit-fill-available !important;
     }
 
     footer {
