@@ -137,22 +137,12 @@
     }
 
     // Chart
-    let body = {"data":{"id":""}}
-    axios.post("https://us-central1-kp24-fd486.cloudfunctions.net/hierarchy2", body)
+    axios.get("https://ipe2024-default-rtdb.asia-southeast1.firebasedatabase.app./quick-count.json")
     .then((res) => {
-        for (i = 11; i < 100; i++) {
-            const suara01 = res.data.result.aggregated
-            const paslon01 = suara01.i[0].pas1
-            console.log(paslon01)
-        }
-        
-    })
 
-    const hasil = firebase.firestore().collection("IPE2024").doc("quick-count")
-    hasil.get().then((doc) => {
-        const suara01 = doc.data().paslon01
-        const suara02 = doc.data().paslon02
-        const suara03 = doc.data().paslon03
+        const suara01 = res.data.paslon01
+        const suara02 = res.data.paslon01
+        const suara03 = res.data.paslon01
 
         document.getElementById("suara01").innerText = `${suara01}%`
         document.getElementById("suara02").innerText = `${suara02}%`
@@ -196,6 +186,7 @@
 
             }
         })
+        
     })
 
     // Ads
