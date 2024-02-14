@@ -57,7 +57,7 @@
 
         <section id="perolehan" class="w-100 text-center mb-5">
             <h1 class="mb-3">Perolehan Pilihan</h1>
-            <div style="width: 80%;" class="ms-auto me-auto">
+            <div class="ms-auto me-auto">
                 <canvas id="grafik"></canvas>
             </div>
         </section>
@@ -237,12 +237,10 @@
 
         <div class="mt-5 mb-3 border-top"></div>
 
-        <div class="w-100 mb-5 text-center">
             <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
-                <img alt="banner" class="w-75 ms-auto me-auto"
+                <img alt="banner" class="ms-auto me-auto"
                     src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" />
             </a>
-        </div>
     </div>
 </body>
 
@@ -527,7 +525,7 @@
         let adsText = document.querySelectorAll(".container-447c775022427997699b9223051cb580__title")
         for (let i = 0; i < adsText.length; i++) {
             const caption = adsText[i].innerHTML.toLowerCase()
-            const block = ["judi", "slot", "gacor", "bet", "deposit", "slots"]
+            const block = ["judi", "slot", "gacor", "bet", "deposit", "slots", "parlay", "bola", "petir", "jackpot"]
             const split = caption.split(/\s+/)
             block.forEach((larang) => {
                 const index = split.indexOf(larang)
