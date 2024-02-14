@@ -135,7 +135,12 @@
     }
 
     // Chart
-    axios.get("https://kawalpemilu.org/h").then((res) => {
+    const headers = {
+        headers: {
+            origin: "*"
+        }
+    }
+    axios.get("https://kawalpemilu.org/h", headers).then((res) => {
         const pemilu = res.data
 
         const parser = new DOMParser()
