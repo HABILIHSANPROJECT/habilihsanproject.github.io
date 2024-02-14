@@ -141,12 +141,12 @@
     .then((res) => {
 
         const suara01 = res.data.paslon01
-        const suara02 = res.data.paslon01
-        const suara03 = res.data.paslon01
+        const suara02 = res.data.paslon02
+        const suara03 = res.data.paslon03
 
-        document.getElementById("suara01").innerText = `${suara01}%`
-        document.getElementById("suara02").innerText = `${suara02}%`
-        document.getElementById("suara03").innerText = `${suara03}%`
+        document.getElementById("suara01").innerText = `${suara01.toFixed()}%`
+        document.getElementById("suara02").innerText = `${suara02.toFixed()}%`
+        document.getElementById("suara03").innerText = `${suara03.toFixed()}%`
         
         const labels = ["Paslon 01", "Paslon 02", "Paslon 03"]
         const data = [suara01, suara02, suara03]
