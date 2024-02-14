@@ -23,6 +23,9 @@
     <!-- Fetch Data -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
         crossorigin="anonymous"></script>
@@ -117,6 +120,8 @@
     });
 </script>
 <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" async></script>
+
+<script src="./database.js"></script>
 <script>
     // Theme
     let tema = document.getElementById("tema").classList
@@ -135,19 +140,11 @@
     }
 
     // Chart
-    const headers = {
-        headers: {
-            origin: "*"
-        }
-    }
-    axios.get("https://kawalpemilu.org/h", headers).then((res) => {
-        const pemilu = res.data
-
-        const parser = new DOMParser()
-        const html = parser.parseFromString(scrape, "text/html")
-        const suara01 = html.querySelectorAll("span")[252].innerText
-        const suara02 = html.querySelectorAll("span")[254].innerText
-        const suara03 = html.querySelectorAll("span")[256].innerText
+    const hasil = firebase.firestore().collection("IPE2024").doc("quick-count")
+    hasil.get().then((doc) => {
+        const suara01 = doc.data().paslon01
+        const suara02 = doc.data().paslon02
+        const suara03 = doc.data().paslon03
 
         document.getElementById("suara01").innerText = suara01
         document.getElementById("suara02").innerText = suara02
