@@ -55,7 +55,14 @@
 
         <div class="mt-5 mb-5 border-top"></div>
 
-        <section id="pilihan" class="row text-center">
+        <section id="perolehan" class="w-100 text-center mb-5">
+            <h1 class="mb-3">Perolehan Pilihan</h1>
+            <div style="width: 80%;" class="ms-auto me-auto">
+                <canvas id="grafik"></canvas>
+            </div>
+        </section>
+
+        <!--section id="pilihan" class="row text-center">
             <h1 class="text-center mb-3">Kotak Pilihan</h1>
 
             <div class="col-md-4">
@@ -181,32 +188,7 @@
                 </div>
             </div>
 
-        </section>
-
-        <div class="mt-5 mb-5 border-top"></div>
-
-        <div class="mt-3 text-center">
-            <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
-
-            <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
-                <img width="200px" class="bijakmemilih" id="bijakmemilih"
-                    src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
-            </a>
-
-        </div>
-
-        <div class="mt-5 mb-5 border-top"></div>
-
-        <section id="perolehan" class="w-100 text-center mb-5">
-            <h1 class="mb-3">Perolehan Pilihan</h1>
-            <div style="width: 80%;" class="ms-auto me-auto">
-                <canvas id="grafik"></canvas>
-            </div>
-        </section>
-
-        <div class="mt-5 mb-5 border-top"></div>
-
-        <div id="container-447c775022427997699b9223051cb580"></div>
+        </section-->
 
         <div class="mt-5 mb-5 border-top"></div>
 
@@ -233,6 +215,24 @@
                 </div>
             </div>
         </section>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div class="mt-3 text-center">
+            <span>Yuk kenalan lebih dalam sama ketiga Paslon dan melek politik bersama</span><br />
+
+            <a href="https://www.bijakmemilih.id/profil-kandidat" target="_blank" class="w-50">
+                <img width="200px" class="bijakmemilih" id="bijakmemilih"
+                    src="https://framerusercontent.com/images/g243IrDgkcrmrzEKfhhXv58gO8.png">
+            </a>
+
+        </div>
+
+        <div class="mt-5 mb-5 border-top"></div>
+
+        <div id="w-75 ms-auto me-auto container-447c775022427997699b9223051cb580"></div>
+
+        <div class="mt-5 mb-5 border-top"></div>
 
         <div class="w-100 mb-5 text-center">
             <a href="https://beta.publishers.adsterra.com/referral/PxaJdqU9md">
@@ -484,13 +484,13 @@
                     label: "Data",
                     data: data,
                     backgroundColor: [
-                        "rgba(150, 150, 150, 0.3)",
                         "rgba(0, 145, 245, 0.3)",
+                        "rgba(255, 185, 0, 0.3)",
                         "rgba(200, 50, 50, 0.3)"
                     ],
                     borderColor: [
-                        "rgba(150, 150, 150, 1)",
                         "rgba(0, 145, 245, 1)",
+                        "rgba(255, 185, 0, 1)",
                         "rgba(200, 50, 50, 1)"
                     ],
                     borderWidth: 1
@@ -507,7 +507,29 @@
                             }
                         }
                     }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            generateLabels: function (chart) {
+                                var labels = chart.data.labels
+                                var images = ["https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-01.png", "https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-02.png", "https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-03.png"]
+
+                                return labels.map(function (label, index) {
+                                    return {
+                                        text: label,
+                                        image: {
+                                            src: images[index],
+                                            width: 20,
+                                            height: 20
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
                 }
+
             }
         })
     }
