@@ -509,26 +509,6 @@
                             }
                         }
                     }
-                },
-                plugins: {
-                    afterDraw: (chart) => {
-                        const ctx = chart.ctx
-                        const xAxis = chart.scales['x']
-                        const yAxis = chart.scales['y']
-
-                        const images = ["https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-01.png", "https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-02.png", "https://preview-kly.akamaized.net/liputan6/pemilu-2024/capres-03.png"]
-
-                        chart.data.labels.forEach( (label, index) => {
-                            const x = xAxis.getPixelForTick(index)
-                            const y = yAxis.bottom + 10
-                            const img = new Image()
-                            img.src = images[index]
-                            img.onload = () => {
-                                ctx.drawImage(img, x - img.width / 2, y)
-                            }
-                        })
-                    }
-
                 }
             }
          })
