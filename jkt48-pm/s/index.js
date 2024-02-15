@@ -4,6 +4,17 @@ window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })
 
+document.getElementById("exits").addEventListener("click", () => {
+    firebase.auth().signOut()
+        .then(() => {
+            showSuccess("Logout berhasil!")
+            location.replace("https://habilihsanproject.github.io/jkt48-pm/p/login")
+        })
+        .catch((error) => {
+            showError(error.message)
+        })
+})
+
 axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-pm/r/firebase.json")
     .then(function (response) {
         const firebaseConfig = response.data
@@ -654,16 +665,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                 })
                 document.getElementById("exit").addEventListener("click", () => {
-                    firebase.auth().signOut()
-                        .then(() => {
-                            showSuccess("Logout berhasil!")
-                            location.replace("https://habilihsanproject.github.io/jkt48-pm/p/login")
-                        })
-                        .catch((error) => {
-                            showError(error.message)
-                        })
-                })
-                document.getElementById("exits").addEventListener("click", () => {
                     firebase.auth().signOut()
                         .then(() => {
                             showSuccess("Logout berhasil!")
