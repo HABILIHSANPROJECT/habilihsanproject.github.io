@@ -140,3 +140,7 @@ label {
     border-radius: 20px !important;
     border: 1px solid gray !important;
 }
+
+iframe {
+    width: -webkit-fill-available !important;
+}
