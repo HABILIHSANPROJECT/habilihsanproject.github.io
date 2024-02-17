@@ -127,9 +127,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 customers.push(email)
 
                             })
-                            console.log(customers)
                             for (let i = 0; i < customers.length; i++) {
                                 if (user.email == customers[i]) {
+                                    console.log("CONFIRMED")
                                     const numDate = subs[i].createdAt
                                     var date = new Date(numDate)
                                     var y = date.getFullYear()
@@ -410,7 +410,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                             const customers = []
                             const paid = response.data.data.getMembershipTierPage.items[0].membershipCustomer
-                            console.log(paid)
                             const subs = paid.filter(obs => obs.status === "active")
                             subs.forEach(function (obj) {
                                 const email = obj.customer.email
@@ -419,6 +418,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             })
                             for (let i = 0; i < customers.length; i++) {
                                 if (user.email == customers[i]) {
+                                    console.log("CONFIRMED")
                                     const numDate = subs[i].createdAt
                                     var date = new Date(numDate)
                                     var y = date.getFullYear()
