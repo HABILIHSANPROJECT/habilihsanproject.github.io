@@ -385,9 +385,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     })
                                 }
-                                if (document.getElementById("items").style.display === "none") {
-                                    document.getElementById("empty").style.display = "block"
-                                    document.getElementById("load").style.display = "none"
+                                if (document.getElementById("items")) {
+                                    if (document.getElementById("items").style.display === "none") {
+                                        document.getElementById("empty").style.display = "block"
+                                        document.getElementById("load").style.display = "none"
+                                    }
                                 }
 
 
@@ -671,9 +673,11 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         
                                     })
                                 }
-                                if (document.getElementById("items").style.display === "none") {
-                                    document.getElementById("empty").style.display = "block"
-                                    document.getElementById("load").style.display = "none"
+                                if (document.getElementById("items")) {
+                                    if (document.getElementById("items").style.display === "none") {
+                                        document.getElementById("empty").style.display = "block"
+                                        document.getElementById("load").style.display = "none"
+                                    }
                                 }
                             }
                         })
