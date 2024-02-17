@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <!-- Framework -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         crossorigin="anonymous"></script>
+
+
+    <!-- Fetch Data -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/aws-cognito-sdk.min.js"></script>
     <script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/amazon-cognito-identity.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -20,11 +24,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="./s/index.js"></script>
 
+    <!-- Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
         crossorigin="anonymous"></script>
     <script async="async" data-cfasync="false"
         src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
+    <script type='text/javascript' src='//pl22517162.profitablegatecpm.com/ff/7c/4d/ff7c4d9bafb3ea36c5bf3bd4812d08a5.js'></script>
+    <script src="./s/ads.js"></script>
 
+    <!-- Style -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
@@ -39,19 +47,16 @@
                 src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
         </a>
     </div>
-
-    <script type='text/javascript' src='//pl22517162.profitablegatecpm.com/ff/7c/4d/ff7c4d9bafb3ea36c5bf3bd4812d08a5.js'></script>
-    <script src="./s/ads.js"></script>
 </head>
 
 <body style="background-image: url(https://jkt48.primesse.me/images/top_background.png)">
-    <form id="load" class="load">
+    <section id="load" class="load">
         <div class="alert alert-primary">
             <div class="spinner-border" role="status"></div>
             <span class="modal-title ms-3">Memuat Data...</span><br />
         </div>
-    </form>
-    <form id="items" class="items" style="display: none;">
+    </section>
+    <section id="items" class="items" style="display: none;">
         <div class="button">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#myModal">Profile</button>
@@ -125,8 +130,8 @@
         </ul>
 
         <div class="ads mt-3 mb-3" id="container-447c775022427997699b9223051cb580"></div>
-    </form>
-    <form id="empty" class="empty" style="display: none;">
+    </section>
+    <section id="empty" class="empty" style="display: none;">
         <p class="modal-title">Data Tidak Ditemukan!</p><br />
         <p class="modal-body mb-3">
             Mohon maaf! Kami tidak dapat menemukan data berlangganan kamu.<br />
@@ -137,8 +142,9 @@
             <a href="https://habilihsanproject.github.io/jkt48-pm/p/subs" class="btn btn-success" tabindex="-1"
                 role="button" aria-disabled="true">Langganan</a>
         </div>
-    </form>
+    </section>
 </body>
+
 <footer class="footer">
     <span class="copyright badge text-bg-secondary">Powered by <b>JKT48PMMMWWW</b></span>
 </footer>

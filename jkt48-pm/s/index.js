@@ -1,5 +1,6 @@
 let pages
 let loadmessage
+
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })
@@ -126,6 +127,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 customers.push(email)
 
                             })
+                            console.log(customers)
                             for (let i = 0; i < customers.length; i++) {
                                 if (user.email == customers[i]) {
                                     const numDate = subs[i].createdAt
@@ -137,12 +139,15 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         me = 1
                                     }
                                     var d = date.getDate()
-                                    document.getElementById("email").innerHTML = customers[i]
-                                    //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
-                                    //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
-                                    document.getElementById("items").style.display = "block"
-                                    document.getElementById("load").style.display = "none"
-                                    document.getElementById("empty").style.display = "none"
+                                    if (document.getElementById("items")) {
+                                        document.getElementById("email").innerHTML = customers[i]
+                                        //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
+                                        //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
+                                        document.getElementById("items").style.display = "block"
+                                        document.getElementById("load").style.display = "none"
+                                        document.getElementById("empty").style.display = "none"
+                                    }
+                                    
                                     let list = snapshot.val().member
                                     let member = document.querySelector("#member")
                                     const member_items = data => {
@@ -423,12 +428,14 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         me = 1
                                     }
                                     var d = date.getDate()
-                                    document.getElementById("email").innerHTML = customers[i]
-                                    //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
-                                    //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
-                                    document.getElementById("items").style.display = "block"
-                                    document.getElementById("load").style.display = "none"
-                                    document.getElementById("empty").style.display = "none"
+                                    if (document.getElementById("items")) {
+                                        document.getElementById("email").innerHTML = customers[i]
+                                        //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
+                                        //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
+                                        document.getElementById("items").style.display = "block"
+                                        document.getElementById("load").style.display = "none"
+                                        document.getElementById("empty").style.display = "none"
+                                    }
                                     let list = snapshot.val().member
                                     let member = document.querySelector("#member")
                                     const member_items = data => {
