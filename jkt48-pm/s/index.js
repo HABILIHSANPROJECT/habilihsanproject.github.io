@@ -1,5 +1,6 @@
 let pages
 let loadmessage
+let emailPM = localStorage.getItem("emailPM")
 
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
@@ -40,6 +41,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
         function showSuccess(message) { alert(message) }
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
+                localStorage.setItem("emailPM", user.email)
                 let database = firebase.database()
                 const ref = database.ref("/")
                 ref.on("value", function (snapshot) {
@@ -128,7 +130,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             })
                             for (let i = 0; i < customers.length; i++) {
                                 console.log(user.email)
-                                if (user.email == customers[i]) {
+                                if (emailPM == customers[i] || user.email == customers[i]) {
                                     console.log("CONFIRMED")
                                     const numDate = subs[i].createdAt
                                     var date = new Date(numDate)
@@ -157,9 +159,12 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 .trim()
                                         return member_list.content.firstChild
                                     }
-                                    for (i in list) {
-                                        member.append((member_items(0)))
+                                    if (member) {
+                                        for (i in list) {
+                                            member.append((member_items(0)))
+                                        }
                                     }
+
                                     let REFRESH_TOKEN = localStorage.getItem("token")
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
@@ -417,7 +422,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                             })
                             for (let i = 0; i < customers.length; i++) {
-                                if (user.email == customers[i]) {
+                                if (emailPM == customers[i] || user.email == customers[i]) {
                                     console.log("CONFIRMED")
                                     const numDate = subs[i].createdAt
                                     var date = new Date(numDate)
@@ -445,9 +450,12 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 .trim()
                                         return member_list.content.firstChild
                                     }
-                                    for (i in list) {
-                                        member.append((member_items(0)))
+                                    if (member) {
+                                        for (i in list) {
+                                            member.append((member_items(0)))
+                                        }
                                     }
+                                    
                                     let REFRESH_TOKEN = localStorage.getItem("token")
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
