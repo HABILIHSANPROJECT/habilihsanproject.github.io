@@ -118,7 +118,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                     axios.post("https://api.mayar.id/www", body, header)
                         .then(function (response) {
-
                             const customers = []
                             const paid = response.data.data.getSubscriptionPageProxy.items
                             const subs = paid.filter(obs => obs.status === "active")
@@ -128,6 +127,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                             })
                             for (let i = 0; i < customers.length; i++) {
+                                console.log(user.email)
                                 if (user.email == customers[i]) {
                                     console.log("CONFIRMED")
                                     const numDate = subs[i].createdAt
