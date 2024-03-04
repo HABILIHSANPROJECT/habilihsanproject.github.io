@@ -690,7 +690,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 }
                                 if (document.getElementById("items")) {
                                     if (document.getElementById("items").style.display === "none") {
-                                        document.getElementById("empty").style.display = "block"
+                                        if (document.getElementById("empty")) {
+                                            document.getElementById("empty").style.display = "block"
+                                        }
                                         document.getElementById("load").style.display = "none"
                                     }
                                 }
