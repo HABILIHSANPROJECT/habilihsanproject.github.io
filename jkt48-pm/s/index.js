@@ -490,6 +490,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             alert(err);
                                         }
                                     })
+                                if (document.getElementById("get")) {
+                                        
                                     document.getElementById("get").addEventListener("click", () => {
                                         document.getElementById("loadChat").style.display = "block"
                                         const chat_item = document.querySelector("#chat-item")
@@ -691,6 +693,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         
                                         
                                     })
+                                }
                                 }
                                 if (document.getElementById("items")) {
                                     if (document.getElementById("items").style.display === "none") {
