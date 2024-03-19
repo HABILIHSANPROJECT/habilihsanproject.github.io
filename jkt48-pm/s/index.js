@@ -24,38 +24,50 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         }
                     }
 
-                    let query = `query getMembershipTierPage($page: Int, $pageSize: Int, $search: MembershipTierSearchInput, $searchAny: MembershipTierSearchInput, $sortDirection: SortDirection = DESC, $sortField: MembershipTierSortField = createdAt) {
-                        getMembershipTierPage(
-                        page: $page
-                        pageSize: $pageSize
-                        search: $search
-                        searchAny: $searchAny
-                        sortDirection: $sortDirection
-                        sortField: $sortField) {
+                    let query = `query getMembershipCustomerPage($page: Int, $pageSize: Int, $sortDirection: SortDirection, $sortField: MembershipCustomerSortField, $search: MembershipCustomerSearchInput, $searchAny: MembershipCustomerSearchInput) {
+                        getMembershipCustomerPage(
+                            page: $page
+                            pageSize: $pageSize
+                            sortDirection: $sortDirection
+                            sortField: $sortField
+                            search: $search
+                            searchAny: $searchAny
+                        ) {
                             items {
-                              id, name, description, paymentAtStart, limit, finishMembershipAt, status, notes, gracePeriodInDays, isTrialAvailable, upfrontFee, membershipCustomer {id, status, customer { name, email }
+                                id
+                                createdAt
+                                customerId
+                                membershipTierId
+                                nextPayment
+                                status
+                                updatedAt
+                                userId
+                                memberId
+                                membershipTier {
+                                      name
+                                      gracePeriodInDays
+                                }
+                                customer {
+                                      name
+                                      mobile
+                                      email
+                                }
                             }
-                            membershipTierPeriod { id, amount, status, monthPeriod }
+                            nextPage
                         }
-                        nextPage
-                    }
-                }`
+                    }`
 
                     let body = {
-                        "operationName": "getMembershipTierPage",
-                        "variables": {
-                            "sortDirection": "DESC",
-                            "sortField": "createdAt",
-                            "pageSize": 1000,
-                            "page": 1,
-                            "search": {
-                                "paymentLinkId": [{
-                                    "operator": "eq",
-                                    "value": "3cdba6ef-abd5-424f-91f4-b9fb043012e3"
-                                }],
-                                "status": [{
-                                    "operator": "eq",
-                                    "value": "ACTIVE"
+                        "operationName":"getMembershipCustomerPage",
+                        "variables":{
+                            "pageSize":2147483647,
+                            "page":1,
+                            "sortDirection":"ASC",
+                            "sortField":"status",
+                            "search":{
+                                "paymentLinkId":[{
+                                    "operator":"eq",
+                                    "value":"3cdba6ef-abd5-424f-91f4-b9fb043012e3"
                                 }]
                             }
                         },
@@ -64,15 +76,16 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                     axios.post("https://api.mayar.id/www", body, header)
                         .then(function (response) {
-
+                            
                             const customers = []
-                            const paid = response.data.data.getMembershipTierPage.items[0].membershipCustomer
+                            const paid = response.data.data.getMembershipCustomerPage.items
                             const subs = paid.filter(obs => obs.status === "active")
                             subs.forEach(function (obj) {
                                 const email = obj.customer.email
                                 customers.push(email)
 
                             })
+                            console.log(customers, paid)
                             for (let i = 0; i < customers.length; i++) {
                                 if (emailPM == customers[i] || user.email == customers[i]) {
                                     console.log("CONFIRMED")
@@ -87,8 +100,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     var d = date.getDate()
                                     if (document.getElementById("items")) {
                                         document.getElementById("email").innerHTML = customers[i]
-                                        //document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
-                                        //document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
+                                        document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
+                                        document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
                                         document.getElementById("items").style.display = "block"
                                         document.getElementById("load").style.display = "none"
                                         if (document.getElementById("empty")) {
@@ -96,8 +109,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     }
                                     let list = snapshot.val().member
-                                    console.log(list)
-                                    let member = document.querySelector("#member")
+                                    
+                                    let members = document.querySelector("#member")
+                                    console.log(members)
                                     const member_items = data => {
                                         const member_list = document.createElement("template")
                                         member_list.innerHTML =
@@ -105,9 +119,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 .trim()
                                         return member_list.content.firstChild
                                     }
-                                    if (member) {
+                                    if (members) {
                                         for (i in list) {
-                                            member.append((member_items(0)))
+                                            members.append(member_items(0))
                                         }
                                     }
                                     
@@ -179,8 +193,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         //
                                         let channelId
                                         //
-                                        if (member.value >= 1 && member.value <= 41) {
-                                            channelId = list[member.value - 1].channelId;
+                                        if (members.value >= 1 && members.value <= 41) {
+                                            channelId = list[members.value - 1].channelId;
                                         }
                                         //
                                         const body = {
@@ -219,19 +233,29 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 const chat_list = document.createElement("template")
                                                 if (items[i].format == "text") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">${items[i].message} <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
+                                                        <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }
                                                 if (items[i].format == "image") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item"><img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
+                                                        <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
+                                                        <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }
                                                 if (items[i].format == "audio") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item"><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
+                                                        <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }
@@ -278,8 +302,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         //
                                         let channelId
                                         //
-                                        if (member.value >= 1 && member.value <= 41) {
-                                            channelId = list[member.value - 1].channelId;
+                                        if (members.value >= 1 && members.value <= 41) {
+                                            channelId = list[members.value - 1].channelId;
                                         }
                                         //
                                         const body = {
@@ -318,19 +342,29 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 const chat_list = document.createElement("template")
                                                 if (items[i].format == "text") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">${items[i].message} <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
+                                                        <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }
                                                 if (items[i].format == "image") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item"><img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
+                                                        <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
+                                                        <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }
                                                 if (items[i].format == "audio") {
                                                     chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item"><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio> <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div></li>`
+                                                        `<li class="list-group-item" id="chat-item">
+                                                        <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
+                                                        <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                        </li>`
                                                             .trim()
                                                     return chat_list.content.firstChild
                                                 }

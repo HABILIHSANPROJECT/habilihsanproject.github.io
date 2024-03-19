@@ -144,3 +144,18 @@ label {
 iframe {
     width: -webkit-fill-available !important;
 }
+
+.profpic {
+    display: flex;
+}
+
+.profpic img {
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1;
+    margin-right: 1rem !important;
+}
+
+.chat {
+    display: flex;
+}
