@@ -85,7 +85,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                 customers.push(email)
 
                             })
-                            console.log(customers, paid)
                             for (let i = 0; i < customers.length; i++) {
                                 if (emailPM == customers[i] || user.email == customers[i]) {
                                     console.log("CONFIRMED")
@@ -102,6 +101,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         document.getElementById("email").innerHTML = customers[i]
                                         document.getElementById("startSubs").innerHTML = y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d
                                         document.getElementById("endSubs").innerHTML = y + "-" + (me < 10 ? "0" : "") + me + "-" + (d < 10 ? "0" : "") + d
+                                        document.getElementById("paycheck").attributes.href.value = `https://habilihsanproject.mayar.link/pay-membership/${subs[i].memberId}`
                                         document.getElementById("items").style.display = "block"
                                         document.getElementById("load").style.display = "none"
                                         if (document.getElementById("empty")) {
@@ -111,7 +111,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     let list = snapshot.val().member
                                     
                                     let members = document.querySelector("#member")
-                                    console.log(members)
                                     const member_items = data => {
                                         const member_list = document.createElement("template")
                                         member_list.innerHTML =

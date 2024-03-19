@@ -44,7 +44,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 })
                 .catch((e) => {
                     alert("Data kamu tidak ditemukan! Silahkan registrasi terlebih dulu!")
-                    location.replace("https://habilihsanproject.github.io/jkt48-pm/p/register")
+                    location.reload()
                 })
         })
     })

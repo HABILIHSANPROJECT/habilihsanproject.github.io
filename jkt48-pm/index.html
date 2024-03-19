@@ -88,6 +88,8 @@
                                 <p style="text-align: left;">End Subscription</p>
                                 <p style="margin-left: auto; font-weight: bold;" id="endSubs"></p>
                             </div>
+                            <a id="paycheck" href="" target="_blank"><button type="submit" class="btn btn-sm btn-primary w-100 mt-2">Payment Check</button></a>
+                            <button type="button" class="btn btn-warning btn-sm w-100 mt-2" onclick="changePassword()" style="margin-right: auto;">Ganti Password</button>
                         </div>
 
                         <!-- Modal Footer -->
@@ -113,7 +115,7 @@
             <select class="form-select" id="member">
             </select>
             <a href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525" target="_blank">
-                <button type="button" class="btn btn-primary" id="get">GET</button>
+                <button type="button" class="btn btn-primary" id="get">Chat</button>
             </a>
         </div>
 
@@ -165,3 +167,18 @@
 </footer>
 
 </html>
+
+<script>
+    function changePassword() {
+            const emailaccount = prompt("Masukan email:")
+            firebase.auth().sendPasswordResetEmail(emailaccount)
+                .then(function () {
+                    // Email reset password berhasil dikirim
+                    alert("Email reset password berhasil dikirim. Cek email sekarang!")
+                })
+                .catch(function (error) {
+                    // Handle error di sini
+                    alert("Gagal mengirim email reset password:", error.message)
+                })
+        }
+</script>
