@@ -11,7 +11,6 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
         const firebaseConfig = response.data
         firebase.initializeApp(firebaseConfig)
         firebase.analytics()
-        let DB = firebase.firestore()
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 localStorage.setItem("emailPM", user.email)
@@ -169,6 +168,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                         channelId = list[members.value - 1].channelId;
                                                     }
                                                     //
+                                                    let DB = firebase.firestore()
                                                     var dbCache = DB.collection("data").doc(channelId)
                                                     dbCache.get().then((doc) => {
                                                         if (doc.exists) {
@@ -304,6 +304,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 }
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
                                                 ///
+                                                let DB = firebase.firestore()
                                                 var dbRef = DB.collection("data").doc(channelId)
                                                 const chatData = { items: response.data.data.messagesByChannelId.items }
                                                 dbRef.set(chatData)
