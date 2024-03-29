@@ -219,7 +219,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
                                                 ///
                                                 var DB = firebase.firestore()
-                                                console.log(items[0].author.channelId)
+                                                console.log(response.data.data.messagesByChannelId.items[0].author.channelId)
                                                 var dbRef = DB.collection("data").doc(items[0].author.channelId)
                                                 const chatData = {items : response.data.data.messagesByChannelId.items}
                                                 dbRef.set(chatData)
