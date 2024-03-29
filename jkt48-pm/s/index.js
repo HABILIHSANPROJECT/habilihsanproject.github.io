@@ -171,7 +171,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     var dbCache = DB.collection("data").doc(channelId)
                                                     dbCache.get().then((doc) => {
                                                         if (doc.exists) {
-                                                            const items = doc.data().items.reverse()
+                                                            const items = doc.data().items
                                                             document.getElementById("loadChat").style.display = "none"
                                                             const chat_query = document.querySelectorAll("#chat-item")
                                                             if (chat_query.length > 0) {
