@@ -1,7 +1,6 @@
 let pages
 let loadmessage
 let emailPM = localStorage.getItem("emailPM")
-let DB = firebase.firestore()
 
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
@@ -12,6 +11,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
         const firebaseConfig = response.data
         firebase.initializeApp(firebaseConfig)
         firebase.analytics()
+        let DB = firebase.firestore()
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 localStorage.setItem("emailPM", user.email)
