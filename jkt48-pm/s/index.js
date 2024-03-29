@@ -220,7 +220,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 ///
                                                 var DB = firebase.firestore()
                                                 var dbRef = DB.collection("data").doc(items[i].author.channelId)
-                                                dbRef.set({items: items})
+                                                const chatData = {items : response.data.data.messagesByChannelId.items}
+                                                dbRef.set(chatData)
                                                     .then(() => {
                                                         console.log("Data terbackup!");
                                                     })
