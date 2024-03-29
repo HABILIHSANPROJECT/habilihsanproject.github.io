@@ -1,6 +1,7 @@
 let pages
 let loadmessage
 let emailPM = localStorage.getItem("emailPM")
+let DB = firebase.firestore()
 
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
@@ -151,9 +152,89 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                                             localStorage.setItem("token", accessToken)
                                         },
+                                        ///
                                         onFailure: function (err) {
-                                            alert(err)
+                                            console.log(err)
+                                            if (document.getElementById("get")) {
+
+                                                document.getElementById("get").addEventListener("click", () => {
+                                                    document.getElementById("loadChat").style.display = "block"
+                                                    const chat_item = document.querySelector("#chat-item")
+                                                    if (chat_item) {
+                                                        chat_item.remove()
+                                                    }
+                                                    let channelId
+                                                    //
+                                                    if (members.value >= 1 && members.value <= 41) {
+                                                        channelId = list[members.value - 1].channelId;
+                                                    }
+                                                    //
+                                                    var dbCache = DB.collection("data").doc(channelId)
+                                                    dbCache.get().then((doc) => {
+                                                        if (doc.exists) {
+                                                            const items = doc.data().items.reverse()
+                                                            document.getElementById("loadChat").style.display = "none"
+                                                            const chat_query = document.querySelectorAll("#chat-item")
+                                                            if (chat_query.length > 0) {
+                                                                for (let i = 0; i < chat_query.length; i++) {
+                                                                    chat_query[i].remove()
+                                                                }
+                                                            }
+                                                            const chat_items = data => {
+                                                                let timestamp = items[i].createdAt
+                                                                let date = timestamp.split("T")
+                                                                let time = date[1].split(":")
+                                                                let hourset = Number(time[0]) + 7
+                                                                let hour
+                                                                if (hourset > 23) {
+                                                                    hour = hourset - 24
+                                                                } else {
+                                                                    hour = hourset
+                                                                }
+                                                                const chat_list = document.createElement("template")
+                                                                if (items[i].format == "text") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
+                                                                    <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
+                                                                    <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
+                                                                    </li>`
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                                if (items[i].format == "image") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
+                                                                    <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
+                                                                    <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
+                                                                    <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                                    </li>`
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                                if (items[i].format == "audio") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
+                                                                    <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
+                                                                    <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
+                                                                    </li>`
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                            }
+                                                            for (i in items) {
+                                                                chat.append((chat_items(0)))
+                                                            }
+
+                                                        } else {
+                                                            alert("Data tidak ditemukan");
+                                                        }
+                                                    }).catch((error) => {
+                                                        console.log(error);
+                                                    })
+                                                })
+                                            }
                                         }
+                                        ///
                                     })
                                     if (document.getElementById("get")) {
 
@@ -223,9 +304,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 }
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
                                                 ///
-                                                var DB = firebase.firestore()
                                                 var dbRef = DB.collection("data").doc(channelId)
-                                                const chatData = {items : response.data.data.messagesByChannelId.items}
+                                                const chatData = { items: response.data.data.messagesByChannelId.items }
                                                 dbRef.set(chatData)
                                                     .then(() => {
                                                         console.log("Data terbackup!");
