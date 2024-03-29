@@ -151,7 +151,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             localStorage.setItem("token", accessToken)
                                         },
                                         onFailure: function (err) {
-                                            alert(err);
+                                            alert(err)
                                         }
                                     })
                                     if (document.getElementById("get")) {
@@ -219,6 +219,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
                                                 ///
                                                 var DB = firebase.firestore()
+                                                console.log(items[0].author.channelId)
                                                 var dbRef = DB.collection("data").doc(items[0].author.channelId)
                                                 const chatData = {items : response.data.data.messagesByChannelId.items}
                                                 dbRef.set(chatData)
