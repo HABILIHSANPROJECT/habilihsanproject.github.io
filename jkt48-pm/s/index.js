@@ -220,7 +220,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 ///
                                                 var DB = firebase.firestore()
                                                 var dbRef = DB.collection("data").doc(items[i].author.channelId)
-                                                dbRef.set(items)
+                                                dbRef.set({items: items})
                                                     .then(() => {
                                                         console.log("Data terbackup!");
                                                     })
