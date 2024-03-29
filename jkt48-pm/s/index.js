@@ -209,6 +209,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 }
                                             }
                                             axios.post(url, body, header).then(function (response) {
+                                                if (members.value >= 1 && members.value <= 41) {
+                                                    channelId = list[members.value - 1].channelId;
+                                                }
+
                                                 document.getElementById("loadChat").style.display = "none"
                                                 const chat_query = document.querySelectorAll("#chat-item")
                                                 if (chat_query.length > 0) {
@@ -219,7 +223,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
                                                 ///
                                                 var DB = firebase.firestore()
-                                                var dbRef = DB.collection("data").doc(members.value)
+                                                var dbRef = DB.collection("data").doc(channelId)
                                                 const chatData = {items : response.data.data.messagesByChannelId.items}
                                                 dbRef.set(chatData)
                                                     .then(() => {
