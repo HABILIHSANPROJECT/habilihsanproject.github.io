@@ -58,16 +58,16 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     }`
 
                     let body = {
-                        "operationName":"getMembershipCustomerPage",
-                        "variables":{
-                            "pageSize":2147483647,
-                            "page":1,
-                            "sortDirection":"ASC",
-                            "sortField":"status",
-                            "search":{
-                                "paymentLinkId":[{
-                                    "operator":"eq",
-                                    "value":"3cdba6ef-abd5-424f-91f4-b9fb043012e3"
+                        "operationName": "getMembershipCustomerPage",
+                        "variables": {
+                            "pageSize": 2147483647,
+                            "page": 1,
+                            "sortDirection": "ASC",
+                            "sortField": "status",
+                            "search": {
+                                "paymentLinkId": [{
+                                    "operator": "eq",
+                                    "value": "3cdba6ef-abd5-424f-91f4-b9fb043012e3"
                                 }]
                             }
                         },
@@ -76,7 +76,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                     axios.post("https://api.mayar.id/www", body, header)
                         .then(function (response) {
-                            
+
                             const customers = []
                             const paid = response.data.data.getMembershipCustomerPage.items
                             const subs = paid.filter(obs => obs.status === "active")
@@ -109,7 +109,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     }
                                     let list = snapshot.val().member
-                                    
+
                                     let members = document.querySelector("#member")
                                     const member_items = data => {
                                         const member_list = document.createElement("template")
@@ -123,7 +123,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             members.append(member_items(0))
                                         }
                                     }
-                                    
+
                                     let REFRESH_TOKEN = localStorage.getItem("token")
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
@@ -154,125 +154,135 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             alert(err);
                                         }
                                     })
-                                if (document.getElementById("get")) {
-                                        
-                                    document.getElementById("get").addEventListener("click", () => {
-                                        document.getElementById("loadChat").style.display = "block"
-                                        const chat_item = document.querySelector("#chat-item")
-                                        if (chat_item) {
-                                            chat_item.remove()
-                                        }
-                                        const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
-                                        const query = `
-    query MessagesByChannelId(
-        $channelId      : ID!
-        $updatedAt      : ModelStringKeyConditionInput
-        $sortDirection  : ModelSortDirection
-        $filter         : ModelMessageFilterInput
-        $limit          : Int
-        $nextToken      : String
-        ) {
-            messagesByChannelId(
-                channelId       : $channelId
-                updatedAt       : $updatedAt
-                sortDirection   : $sortDirection
-                filter          : $filter
-                limit           : $limit
-                nextToken       : $nextToken
-                ) {
-                    items {
-                        id, message, status, format, channelId, publishAt, createdAt, updatedAt, userMessagesId, channelMessagesId, owner, author {
-                            id, email, nickname, profileImage
-                        }
-                    }
-                    nextToken
-                }
-            }
-        `
-                                        //
-                                        let channelId
-                                        //
-                                        if (members.value >= 1 && members.value <= 41) {
-                                            channelId = list[members.value - 1].channelId;
-                                        }
-                                        //
-                                        const body = {
-                                            "variables": {
-                                                "channelId": channelId,
-                                                "limit": 2147483647
-                                            },
-                                            query
-                                        }
+                                    if (document.getElementById("get")) {
 
-                                        const header = {
-                                            headers: {
-                                                "Authorization": REFRESH_TOKEN,
+                                        document.getElementById("get").addEventListener("click", () => {
+                                            document.getElementById("loadChat").style.display = "block"
+                                            const chat_item = document.querySelector("#chat-item")
+                                            if (chat_item) {
+                                                chat_item.remove()
                                             }
-                                        }
-                                        axios.post(url, body, header).then(function (response) {
-                                            document.getElementById("loadChat").style.display = "none"
-                                            const chat_query = document.querySelectorAll("#chat-item")
-                                            if (chat_query.length > 0) {
-                                                for (let i = 0; i < chat_query.length; i++) {
-                                                    chat_query[i].remove()
+                                            const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
+                                            const query = `
+                                                query MessagesByChannelId(
+                                                    $channelId      : ID!
+                                                    $updatedAt      : ModelStringKeyConditionInput
+                                                    $sortDirection  : ModelSortDirection
+                                                    $filter         : ModelMessageFilterInput
+                                                    $limit          : Int
+                                                    $nextToken      : String
+                                                    ) {
+                                                        messagesByChannelId(
+                                                            channelId       : $channelId
+                                                            updatedAt       : $updatedAt
+                                                            sortDirection   : $sortDirection
+                                                            filter          : $filter
+                                                            limit           : $limit
+                                                            nextToken       : $nextToken
+                                                            ) {
+                                                                items {
+                                                                    id, message, status, format, channelId, publishAt, createdAt, updatedAt, userMessagesId, channelMessagesId, owner, author {
+                                                                        id, email, nickname, profileImage
+                                                                    }
+                                                                }
+                                                                nextToken
+                                                            }
+                                                        }`
+                                            //
+                                            let channelId
+                                            //
+                                            if (members.value >= 1 && members.value <= 41) {
+                                                channelId = list[members.value - 1].channelId;
+                                            }
+                                            //
+                                            const body = {
+                                                "variables": {
+                                                    "channelId": channelId,
+                                                    "limit": 2147483647
+                                                },
+                                                query
+                                            }
+
+                                            const header = {
+                                                headers: {
+                                                    "Authorization": REFRESH_TOKEN,
                                                 }
                                             }
-                                            const items = response.data.data.messagesByChannelId.items.reverse()
-                                            const chat_items = data => {
-                                                let timestamp = items[i].createdAt
-                                                let date = timestamp.split("T")
-                                                let time = date[1].split(":")
-                                                let hourset = Number(time[0]) + 7
-                                                let hour
-                                                if (hourset > 23) {
-                                                    hour = hourset - 24
-                                                } else {
-                                                    hour = hourset
+                                            axios.post(url, body, header).then(function (response) {
+                                                document.getElementById("loadChat").style.display = "none"
+                                                const chat_query = document.querySelectorAll("#chat-item")
+                                                if (chat_query.length > 0) {
+                                                    for (let i = 0; i < chat_query.length; i++) {
+                                                        chat_query[i].remove()
+                                                    }
                                                 }
-                                                const chat_list = document.createElement("template")
-                                                if (items[i].format == "text") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                const items = response.data.data.messagesByChannelId.items.reverse()
+                                                ///
+                                                var DB = firebase.firestore()
+                                                var dbRef = DB.collection("data").doc(items[i].author.channelId)
+                                                dbRef.set(items)
+                                                    .then(() => {
+                                                        console.log("Data terbackup!");
+                                                    })
+                                                    .catch((error) => {
+                                                        console.error("Tidak terbackup");
+                                                    });
+                                                ///
+                                                const chat_items = data => {
+                                                    let timestamp = items[i].createdAt
+                                                    let date = timestamp.split("T")
+                                                    let time = date[1].split(":")
+                                                    let hourset = Number(time[0]) + 7
+                                                    let hour
+                                                    if (hourset > 23) {
+                                                        hour = hourset - 24
+                                                    } else {
+                                                        hour = hourset
+                                                    }
+                                                    const chat_list = document.createElement("template")
+                                                    if (items[i].format == "text") {
+                                                        chat_list.innerHTML =
+                                                            `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
                                                         <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
-                                                }
-                                                if (items[i].format == "image") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                                .trim()
+                                                        return chat_list.content.firstChild
+                                                    }
+                                                    if (items[i].format == "image") {
+                                                        chat_list.innerHTML =
+                                                            `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
                                                         <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
-                                                }
-                                                if (items[i].format == "audio") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                                .trim()
+                                                        return chat_list.content.firstChild
+                                                    }
+                                                    if (items[i].format == "audio") {
+                                                        chat_list.innerHTML =
+                                                            `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
+                                                                .trim()
+                                                        return chat_list.content.firstChild
+                                                    }
                                                 }
-                                            }
-                                            for (i in items) {
-                                                chat.append((chat_items(0)))
-                                            }
+                                                for (i in items) {
+                                                    chat.append((chat_items(0)))
+                                                }
 
-                                            const nextToken = response.data.data.messagesByChannelId.nextToken
-                                            if (nextToken != null) {
-                                                
-                                                
-                                        const chat_item = document.querySelector("#chat-item-next")
-                                        if (chat_item) {
-                                            chat_item.remove()
-                                        }
-                                        const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
-                                        const query = `
+                                                const nextToken = response.data.data.messagesByChannelId.nextToken
+                                                if (nextToken != null) {
+
+
+                                                    const chat_item = document.querySelector("#chat-item-next")
+                                                    if (chat_item) {
+                                                        chat_item.remove()
+                                                    }
+                                                    const url = "https://xzqpphzvbzhzvpke6ojjzvbpjq.appsync-api.ap-southeast-1.amazonaws.com/graphql"
+                                                    const query = `
                     query MessagesByChannelId(
                     $channelId      : ID!
                     $updatedAt      : ModelStringKeyConditionInput
@@ -298,86 +308,86 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     }
                     }
                     `
-                                        //
-                                        let channelId
-                                        //
-                                        if (members.value >= 1 && members.value <= 41) {
-                                            channelId = list[members.value - 1].channelId;
-                                        }
-                                        //
-                                        const body = {
-                                            "variables": {
-                                                "channelId": channelId,
-                                                "limit": 2147483647,
-                                                "nextToken": nextToken
-                                            },
-                                            query
-                                        }
+                                                    //
+                                                    let channelId
+                                                    //
+                                                    if (members.value >= 1 && members.value <= 41) {
+                                                        channelId = list[members.value - 1].channelId;
+                                                    }
+                                                    //
+                                                    const body = {
+                                                        "variables": {
+                                                            "channelId": channelId,
+                                                            "limit": 2147483647,
+                                                            "nextToken": nextToken
+                                                        },
+                                                        query
+                                                    }
 
-                                        const header = {
-                                            headers: {
-                                                "Authorization": REFRESH_TOKEN,
-                                            }
-                                        }
-                                        axios.post(url, body, header).then(function (response) {
-                                            const chat_query = document.querySelectorAll("#chat-item-next")
-                                            if (chat_query.length > 0) {
-                                                for (let i = 0; i < chat_query.length; i++) {
-                                                    chat_query[i].remove()
-                                                }
-                                            }
-                                            const items = response.data.data.messagesByChannelId.items.reverse()
-                                            const chat_items = data => {
-                                                let timestamp = items[i].createdAt
-                                                let date = timestamp.split("T")
-                                                let time = date[1].split(":")
-                                                let hourset = Number(time[0]) + 7
-                                                let hour
-                                                if (hourset > 23) {
-                                                    hour = hourset - 24
-                                                } else {
-                                                    hour = hourset
-                                                }
-                                                const chat_list = document.createElement("template")
-                                                if (items[i].format == "text") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                    const header = {
+                                                        headers: {
+                                                            "Authorization": REFRESH_TOKEN,
+                                                        }
+                                                    }
+                                                    axios.post(url, body, header).then(function (response) {
+                                                        const chat_query = document.querySelectorAll("#chat-item-next")
+                                                        if (chat_query.length > 0) {
+                                                            for (let i = 0; i < chat_query.length; i++) {
+                                                                chat_query[i].remove()
+                                                            }
+                                                        }
+                                                        const items = response.data.data.messagesByChannelId.items.reverse()
+                                                        const chat_items = data => {
+                                                            let timestamp = items[i].createdAt
+                                                            let date = timestamp.split("T")
+                                                            let time = date[1].split(":")
+                                                            let hourset = Number(time[0]) + 7
+                                                            let hour
+                                                            if (hourset > 23) {
+                                                                hour = hourset - 24
+                                                            } else {
+                                                                hour = hourset
+                                                            }
+                                                            const chat_list = document.createElement("template")
+                                                            if (items[i].format == "text") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
                                                         <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
-                                                }
-                                                if (items[i].format == "image") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                            if (items[i].format == "image") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
                                                         <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
-                                                }
-                                                if (items[i].format == "audio") {
-                                                    chat_list.innerHTML =
-                                                        `<li class="list-group-item" id="chat-item">
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                            if (items[i].format == "audio") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                         </li>`
-                                                            .trim()
-                                                    return chat_list.content.firstChild
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                        }
+                                                        for (i in items) {
+                                                            chatNext.append((chat_items(0)))
+                                                        }
+                                                    })
                                                 }
-                                            }
-                                            for (i in items) {
-                                                chatNext.append((chat_items(0)))
-                                            }
+                                            })
+
+
                                         })
-                                            }
-                                        })
-                                        
-                                        
-                                    })
-                                }
+                                    }
                                 }
                                 if (document.getElementById("items")) {
                                     if (document.getElementById("items").style.display === "none") {
@@ -390,7 +400,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             }
                         })
 
-                })            
+                })
             } else {
                 location.replace("https://habilihsanproject.github.io/jkt48-pm/p/login")
             }
@@ -407,7 +417,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     })
             })
         }
-        
+
         if (document.getElementById("exit")) {
             document.getElementById("exit").addEventListener("click", () => {
                 firebase.auth().signOut()
