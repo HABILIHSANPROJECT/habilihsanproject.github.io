@@ -124,6 +124,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     }
                                     
+                                    localStorage.setItem("token", "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9")
                                     let REFRESH_TOKEN = localStorage.getItem("token")
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
