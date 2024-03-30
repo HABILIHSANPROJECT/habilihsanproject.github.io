@@ -244,6 +244,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             ///
                                         })
                                     } else {
+                                        AWSCognito.config.update({
+                                            region: "ap-southeast-1"
+                                          })
                                         var cognitoUserISP = new AWSCognito.CognitoIdentityServiceProvider()
                                         var params = {
                                             AuthFlow: 'REFRESH_TOKEN_AUTH',
