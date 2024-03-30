@@ -165,7 +165,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     let channelId
                                                     //
                                                     if (members.value >= 1 && members.value <= 41) {
-                                                        channelId = list[members.value - 1].channelId;
+                                                        channelId = list[members.value - 1].channelId
                                                     }
                                                     //
                                                     let DB = firebase.firestore()
@@ -274,7 +274,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             let channelId
                                             //
                                             if (members.value >= 1 && members.value <= 41) {
-                                                channelId = list[members.value - 1].channelId;
+                                                channelId = list[members.value - 1].channelId
                                             }
                                             //
                                             const body = {
