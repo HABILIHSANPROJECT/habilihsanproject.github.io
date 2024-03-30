@@ -637,10 +637,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                             }
                         }))
                         
-                        console.log("Authentication successful:", response.AuthenticationResult)
+                        console.log(response.AuthenticationResult)
                         return response.AuthenticationResult
                     } catch (err) {
-                        console.error("Authentication error:", err)
+                        console.error(err)
                         throw err
                     }
                 }
