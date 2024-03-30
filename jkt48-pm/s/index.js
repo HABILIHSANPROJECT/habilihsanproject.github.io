@@ -645,12 +645,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     }
                 }
 
-                // Contoh penggunaan
                 authenticateUser("h48ilihsan@gmail.com", "HA13ILIHSAN")
                     .then((data) => {
-                        console.log(data)
-                        // Lanjutkan dengan tindakan sesudah login
-                    });
+                        console.log("OK", data)
+                    })
 
 
             } else {
