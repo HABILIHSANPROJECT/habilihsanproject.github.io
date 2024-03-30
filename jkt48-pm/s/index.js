@@ -253,7 +253,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             ClientId: '7590jfhebmg1egosilucoot5ak'
                                           }
                                         cognitoUserISP.initiateAuth(params,
-                                            function (err, data) {
+                                            (err, data) => {
                                                 if (err) {
                                                     console.error(err)
                                                      // =============================================================================== ///
