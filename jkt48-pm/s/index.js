@@ -637,7 +637,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 }
                 async function authenticateUser(username, password) {
                     try {
-                        var response = await cognitoClient.send(new AWSCognito.CognitoUser(userData).InitiateAuth({
+                        var cognitoUser = AWSCognito.CognitoUser(userData)
+                        var response = await cognitoClient.send(new cognitoUser.InitiateAuth({
                             AuthFlow: "USER_PASSWORD_AUTH",
                             ClientId: "7590jfhebmg1egosilucoot5ak",
                             AuthParameters: {
@@ -656,7 +657,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                 authenticateUser("h48ilihsan@gmail.com", "HA13ILIHSAN")
                     .then((data) => {
-                        console.log(data)
+                        console.log("OK",data)
                     })
 
 
