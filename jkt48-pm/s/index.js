@@ -137,12 +137,13 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         ClientId: clientId
                                     }
                                     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData)
-                                    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+                                    // var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData)
                                     var userData = {
                                         Username: snapshot.val().config.email,
                                         Pool: userPool
                                     }
-                                    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+                                    // var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+                                    var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData)
                                     cognitoUser.authenticateUser(authenticationDetails, {
                                         onSuccess: function (result) {
                                             let accessToken = result.getAccessToken().getJwtToken()
