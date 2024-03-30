@@ -1,6 +1,7 @@
 let pages
 let loadmessage
 let emailPM = localStorage.getItem("emailPM")
+localStorage.clear()
 
 window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
