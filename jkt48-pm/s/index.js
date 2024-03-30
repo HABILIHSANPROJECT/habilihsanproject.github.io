@@ -229,7 +229,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 for (i in items) {
                                                                     chat.append((chat_items(0)))
                                                                 }
-    
+
                                                             } else {
                                                                 alert("Data tidak ditemukan");
                                                             }
@@ -248,100 +248,100 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             region: "ap-southeast-1",
                                             accessKeyId: "ASIAZAYVXMECIKCRHC2R",
                                             secretAccessKey: "wCu8Cm1mG4xtz+YJQePKyoTbjnxhYrrgBSB8QTAz"
-                                          })
+                                        })
                                         var cognitoUserISP = new AWSCognito.CognitoIdentityServiceProvider()
                                         var params = {
                                             AuthFlow: 'REFRESH_TOKEN_AUTH',
                                             AuthParameters: {
-                                              REFRESH_TOKEN: REFRESH_TOKEN
-                                             },
+                                                REFRESH_TOKEN: REFRESH_TOKEN
+                                            },
                                             ClientId: '7590jfhebmg1egosilucoot5ak'
-                                          }
+                                        }
                                         cognitoUserISP.initiateAuth(params,
                                             function (err, data) {
                                                 if (err) {
                                                     console.error(err)
-                                                     // =============================================================================== ///
-                                                if (document.getElementById("get")) {
+                                                    // =============================================================================== ///
+                                                    if (document.getElementById("get")) {
 
-                                                    document.getElementById("get").addEventListener("click", () => {
-                                                        document.getElementById("loadChat").style.display = "block"
-                                                        const chat_item = document.querySelector("#chat-item")
-                                                        if (chat_item) {
-                                                            chat_item.remove()
-                                                        }
-                                                        let channelId
-                                                        //
-                                                        if (members.value >= 1 && members.value <= 41) {
-                                                            channelId = list[members.value - 1].channelId
-                                                        }
-                                                        //
-                                                        let DB = firebase.firestore()
-                                                        var dbCache = DB.collection("data").doc(channelId)
-                                                        dbCache.get().then((doc) => {
-                                                            if (doc.exists) {
-                                                                const items = doc.data().items
-                                                                document.getElementById("loadChat").style.display = "none"
-                                                                const chat_query = document.querySelectorAll("#chat-item")
-                                                                if (chat_query.length > 0) {
-                                                                    for (let i = 0; i < chat_query.length; i++) {
-                                                                        chat_query[i].remove()
+                                                        document.getElementById("get").addEventListener("click", () => {
+                                                            document.getElementById("loadChat").style.display = "block"
+                                                            const chat_item = document.querySelector("#chat-item")
+                                                            if (chat_item) {
+                                                                chat_item.remove()
+                                                            }
+                                                            let channelId
+                                                            //
+                                                            if (members.value >= 1 && members.value <= 41) {
+                                                                channelId = list[members.value - 1].channelId
+                                                            }
+                                                            //
+                                                            let DB = firebase.firestore()
+                                                            var dbCache = DB.collection("data").doc(channelId)
+                                                            dbCache.get().then((doc) => {
+                                                                if (doc.exists) {
+                                                                    const items = doc.data().items
+                                                                    document.getElementById("loadChat").style.display = "none"
+                                                                    const chat_query = document.querySelectorAll("#chat-item")
+                                                                    if (chat_query.length > 0) {
+                                                                        for (let i = 0; i < chat_query.length; i++) {
+                                                                            chat_query[i].remove()
+                                                                        }
                                                                     }
-                                                                }
-                                                                const chat_items = data => {
-                                                                    let timestamp = items[i].createdAt
-                                                                    let date = timestamp.split("T")
-                                                                    let time = date[1].split(":")
-                                                                    let hourset = Number(time[0]) + 7
-                                                                    let hour
-                                                                    if (hourset > 23) {
-                                                                        hour = hourset - 24
-                                                                    } else {
-                                                                        hour = hourset
-                                                                    }
-                                                                    const chat_list = document.createElement("template")
-                                                                    if (items[i].format == "text") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                                    const chat_items = data => {
+                                                                        let timestamp = items[i].createdAt
+                                                                        let date = timestamp.split("T")
+                                                                        let time = date[1].split(":")
+                                                                        let hourset = Number(time[0]) + 7
+                                                                        let hour
+                                                                        if (hourset > 23) {
+                                                                            hour = hourset - 24
+                                                                        } else {
+                                                                            hour = hourset
+                                                                        }
+                                                                        const chat_list = document.createElement("template")
+                                                                        if (items[i].format == "text") {
+                                                                            chat_list.innerHTML =
+                                                                                `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
                                                                         <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
-                                                                    }
-                                                                    if (items[i].format == "image") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                                                    .trim()
+                                                                            return chat_list.content.firstChild
+                                                                        }
+                                                                        if (items[i].format == "image") {
+                                                                            chat_list.innerHTML =
+                                                                                `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
                                                                         <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
                                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
-                                                                    }
-                                                                    if (items[i].format == "audio") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                                                    .trim()
+                                                                            return chat_list.content.firstChild
+                                                                        }
+                                                                        if (items[i].format == "audio") {
+                                                                            chat_list.innerHTML =
+                                                                                `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
                                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
+                                                                                    .trim()
+                                                                            return chat_list.content.firstChild
+                                                                        }
                                                                     }
+                                                                    for (i in items) {
+                                                                        chat.append((chat_items(0)))
+                                                                    }
+
+                                                                } else {
+                                                                    alert("Data tidak ditemukan");
                                                                 }
-                                                                for (i in items) {
-                                                                    chat.append((chat_items(0)))
-                                                                }
-    
-                                                            } else {
-                                                                alert("Data tidak ditemukan");
-                                                            }
-                                                        }).catch((error) => {
-                                                            console.log(error);
+                                                            }).catch((error) => {
+                                                                console.log(error);
+                                                            })
                                                         })
-                                                    })
-                                                }
-                                                /// =============================================================================== ///
+                                                    }
+                                                    /// =============================================================================== ///
                                                 } else {
                                                     REFRESH_TOKEN = data.AuthenticationResult
                                                     localStorage.setItem("token", data.AuthenticationResult)
@@ -624,6 +624,35 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         })
 
                 })
+
+                const cognitoClient = new CognitoIdentityProviderClient({ region: "ap-southeast-1" })
+                async function authenticateUser(username, password) {
+                    try {
+                        const response = await cognitoClient.send(new InitiateAuthCommand({
+                            AuthFlow: "USER_PASSWORD_AUTH",
+                            ClientId: "7590jfhebmg1egosilucoot5ak",
+                            AuthParameters: {
+                                "USERNAME": username,
+                                "PASSWORD": password
+                            }
+                        }))
+                        
+                        console.log("Authentication successful:", response.AuthenticationResult)
+                        return response.AuthenticationResult
+                    } catch (err) {
+                        console.error("Authentication error:", err)
+                        throw err
+                    }
+                }
+
+                // Contoh penggunaan
+                authenticateUser("h48ilihsan@gmail.com", "HA13ILIHSAN")
+                    .then((data) => {
+                        console.log(data)
+                        // Lanjutkan dengan tindakan sesudah login
+                    });
+
+
             } else {
                 location.replace("https://habilihsanproject.github.io/jkt48-pm/p/login")
             }
