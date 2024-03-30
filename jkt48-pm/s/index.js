@@ -626,9 +626,18 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                 })
 
                 var cognitoClient = new AWSCognito.CognitoIdentityServiceProvider({ region: "ap-southeast-1" })
+                let poolData = {
+                    UserPoolId: "ap-southeast-1_RoHCv6Ilc",
+                    ClientId: "7590jfhebmg1egosilucoot5ak"
+                }
+                let userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData)
+                let userData = {
+                    Username: "h48ilihsan@gmail.com",
+                    Pool: userPool
+                }
                 async function authenticateUser(username, password) {
                     try {
-                        var response = await cognitoClient.send(new CognitoUser.InitiateAuth({
+                        var response = await cognitoClient.send(new AWSCognito.CognitoUser(userData).InitiateAuth({
                             AuthFlow: "USER_PASSWORD_AUTH",
                             ClientId: "7590jfhebmg1egosilucoot5ak",
                             AuthParameters: {
