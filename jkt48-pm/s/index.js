@@ -244,11 +244,18 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         })
                                     } else {
                                         var cognitoUserISP = new AWSCognito.CognitoIdentityServiceProvider()
+                                        var params = {
+                                            AuthFlow: 'REFRESH_TOKEN_AUTH',
+                                            AuthParameters: {
+                                              REFRESH_TOKEN: REFRESH_TOKEN
+                                             },
+                                            ClientId: '7590jfhebmg1egosilucoot5ak'
+                                          }
                                         cognitoUserISP.initiateAuth(param,
                                             function (err, data) {
                                                 if (err) {
                                                     console.error(err)
-                                                                                                    /// =============================================================================== ///
+                                                     // =============================================================================== ///
                                                 if (document.getElementById("get")) {
 
                                                     document.getElementById("get").addEventListener("click", () => {
