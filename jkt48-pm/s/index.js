@@ -124,8 +124,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     }
 
-                                    let REFRESH_TOKEN = "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAiLCJjb2duaXRvOmdyb3VwcyI6WyJVc2VycyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfUm9IQ3Y2SWxjIiwiY2xpZW50X2lkIjoiNzU5MGpmaGVibWcxZWdvc2lsdWNvb3Q1YWsiLCJvcmlnaW5fanRpIjoiZWMzYWRhZTktMzIzYy00MGJhLWJmYzEtNTZlNGIxZDk0YjY0IiwiZXZlbnRfaWQiOiJlMGQyNzk3NC1kOTZiLTQ5NjEtYWEzZS00NDJmMjNiYzM0MGIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzExNzEyNTU3LCJleHAiOjE3MTE4MjQ5MDYsImlhdCI6MTcxMTgyMTMwNiwianRpIjoiYzRiY2JiMWItMDI0Ni00MzNhLTg0ZDctMzdmNDU2NmY1NmE5IiwidXNlcm5hbWUiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAifQ.NA3Z5UOWKLnIxf2OlOReigZAOAwO1qMMIMLCI2BpT7zMFLcsvbbh5PzJhag0UT4TU7Ujt4sGnRRtpj67BiE-g4dxbrxkmR7dYINRA4TrGXz13YFlCJZBwHEr2tbNnYTZtg5UWJh1kDbHqyyg9vrmjc5JXgpozs4VjyYg8XfCRCrv-fX5I-QhOJYSEf8PiRDVFqdw4ppfJINdcMjFdRSwHs3mYhrT9hMRKlOf_VopG5cSyJJFdcY_ue3elAwH-BuwMOXEznPTFI3oeEaw8wFr4CTB5f8mJ9m3sSaEVa7btpydDS3bAiDv8mdDy26zWueKJRJZ_bogVdiYBn7u3avv_A"
-                                    REFRESH_TOKEN = localStorage.getItem("token")
+                                    let REFRESH_TOKEN = localStorage.getItem("token")
 
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
@@ -251,9 +250,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         })
                                         var cognitoUserISP = new AWSCognito.CognitoIdentityServiceProvider()
                                         var params = {
-                                            AuthFlow: 'REFRESH_TOKEN_AUTH',
+                                            AuthFlow: "REFRESH_TOKEN_AUTH",
                                             AuthParameters: {
-                                                REFRESH_TOKEN: REFRESH_TOKEN
+                                                REFRESH_TOKEN: "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAiLCJjb2duaXRvOmdyb3VwcyI6WyJVc2VycyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfUm9IQ3Y2SWxjIiwiY2xpZW50X2lkIjoiNzU5MGpmaGVibWcxZWdvc2lsdWNvb3Q1YWsiLCJvcmlnaW5fanRpIjoiZWMzYWRhZTktMzIzYy00MGJhLWJmYzEtNTZlNGIxZDk0YjY0IiwiZXZlbnRfaWQiOiJlMGQyNzk3NC1kOTZiLTQ5NjEtYWEzZS00NDJmMjNiYzM0MGIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzExNzEyNTU3LCJleHAiOjE3MTE4MzY4MjYsImlhdCI6MTcxMTgzMzIyNiwianRpIjoiZDQzZWM2ZWUtMDZmMS00NTQ5LTlhZWEtNDIyYWI3ZmZhNjk5IiwidXNlcm5hbWUiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAifQ.Ls9POENDr3cca7FpGvyh4tyqJ_KZ17yn-IGflVCJcjzJ3wBJOoJpW_YAeUes2c3WfKCLQrdm2-Zt0DJPo95T1Sh14hnQvISoKrkkga8idQpq8brPPsE5emyQLepKs5osaYf9jyxGbSwyEXFrlyQoPNXxv1t26RIBiwrL0-08K6raPkHqcnLd20KQ-TnVSraUokAuYJxktP3jbrbS-4nR3nJ6fTH3d-CgDQ5NVOJBZRIFwH75zEGH3177REelA0fmbUcsbh6teNAFBlQW5jLhs_bXqPk0s-j3PTiA2WH_A7O84ddmu0mVQfrCA-BnKqE9ltpuWJuBuevkdvpVDeag4w"
                                             },
                                             ClientId: '7590jfhebmg1egosilucoot5ak'
                                         }
