@@ -245,7 +245,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         })
                                     } else {
                                         AWSCognito.config.update({
-                                            region: "ap-southeast-1"
+                                            region: "ap-southeast-1",
+                                            accessKeyId: "ASIAZAYVXMECIKCRHC2R",
+                                            secretAccessKey: "wCu8Cm1mG4xtz+YJQePKyoTbjnxhYrrgBSB8QTAz"
                                           })
                                         var cognitoUserISP = new AWSCognito.CognitoIdentityServiceProvider()
                                         var params = {
