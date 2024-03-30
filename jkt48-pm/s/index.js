@@ -625,7 +625,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                 })
 
-                var cognitoClient = new AWSCognito.CognitoIdentityProviderClient({ region: "ap-southeast-1" })
+                var cognitoClient = new AWSCognito.CognitoIdentityProvider({ region: "ap-southeast-1" })
                 async function authenticateUser(username, password) {
                     try {
                         var response = await cognitoClient.send(new AWSCognito.InitiateAuthCommand({
@@ -647,7 +647,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                 authenticateUser("h48ilihsan@gmail.com", "HA13ILIHSAN")
                     .then((data) => {
-                        console.log("OK", data)
+                        console.log(data)
                     })
 
 
