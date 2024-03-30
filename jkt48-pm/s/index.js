@@ -305,14 +305,15 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 ///
                                                 let DB = firebase.firestore()
                                                 var dbRef = DB.collection("data").doc(channelId)
-                                                const chatData = { items: response.data.data.messagesByChannelId.items }
+                                                var itemChat = response.data.data.messagesByChannelId.items
+                                                const chatData = { items: itemChat }
                                                 dbRef.set(chatData)
                                                     .then(() => {
-                                                        console.log("Data terbackup!");
+                                                        console.log("Data terbackup!")
                                                     })
                                                     .catch((error) => {
-                                                        console.error("Tidak terbackup");
-                                                    });
+                                                        console.error("Data Tidak terbackup")
+                                                    })
                                                 ///
                                                 const chat_items = data => {
                                                     let timestamp = items[i].createdAt
@@ -417,12 +418,34 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     }
                                                     axios.post(url, body, header).then(function (response) {
                                                         const chat_query = document.querySelectorAll("#chat-item-next")
+                                                        ///
+                                                        let DB = firebase.firestore()
+                                                        var dbRef = DB.collection("data").doc(channelId)
+                                                        var dbCache = DB.collection("data").doc(channelId)
+                                                        dbCache.get().then((doc) => {
+                                                            if (doc.exists) {
+                                                                var itemChat = []
+                                                                itemChat.push(response.data.data.messagesByChannelId.items)
+                                                                itemChat.push(doc.data().items)
+                                                                const chatData = { items: itemChat }
+                                                                dbRef.set(chatData)
+                                                                    .then(() => {
+                                                                        console.log("Data terbackup!")
+                                                                    })
+                                                                    .catch((error) => {
+                                                                        console.error("Data Tidak terbackup")
+                                                                    })
+                                                            }
+                                                        })
+                                                        ///
                                                         if (chat_query.length > 0) {
                                                             for (let i = 0; i < chat_query.length; i++) {
                                                                 chat_query[i].remove()
                                                             }
                                                         }
                                                         const items = response.data.data.messagesByChannelId.items.reverse()
+
+
                                                         const chat_items = data => {
                                                             let timestamp = items[i].createdAt
                                                             let date = timestamp.split("T")
