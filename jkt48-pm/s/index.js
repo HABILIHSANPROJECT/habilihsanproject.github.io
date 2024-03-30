@@ -625,10 +625,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
 
                 })
 
-                const cognitoClient = new CognitoIdentityProviderClient({ region: "ap-southeast-1" })
+                const cognitoClient = new AWSCognito.CognitoIdentityProviderClient({ region: "ap-southeast-1" })
                 async function authenticateUser(username, password) {
                     try {
-                        const response = await cognitoClient.send(new InitiateAuthCommand({
+                        const response = await cognitoClient.send(new AWSCognito.InitiateAuthCommand({
                             AuthFlow: "USER_PASSWORD_AUTH",
                             ClientId: "7590jfhebmg1egosilucoot5ak",
                             AuthParameters: {
