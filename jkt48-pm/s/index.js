@@ -145,6 +145,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                     }
 
                                     if (REFRESH_TOKEN == null) {
+                                        REFRESH_TOKEN = "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAiLCJjb2duaXRvOmdyb3VwcyI6WyJVc2VycyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfUm9IQ3Y2SWxjIiwiY2xpZW50X2lkIjoiNzU5MGpmaGVibWcxZWdvc2lsdWNvb3Q1YWsiLCJvcmlnaW5fanRpIjoiZWMzYWRhZTktMzIzYy00MGJhLWJmYzEtNTZlNGIxZDk0YjY0IiwiZXZlbnRfaWQiOiJlMGQyNzk3NC1kOTZiLTQ5NjEtYWEzZS00NDJmMjNiYzM0MGIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzExNzEyNTU3LCJleHAiOjE3MTE4NDE0NTksImlhdCI6MTcxMTgzNzg1OSwianRpIjoiZGIyM2FlMDgtY2Q4NC00OThhLTkxYzAtMzY3ZjU5NDc3OWM3IiwidXNlcm5hbWUiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAifQ.fGGtupPk3j16Ap1oxAIqEZKYmwfL1rigFAw5W3DnSb6QayV7_p5cgmA18OYdMXKwhs3UhTScNMAZXOZ5mVPjDqh0p6WloioARvpbZYrJMnzsD3HDu0fTqyx44jAdLRWbTsvQt3eAc_TI7yZBXN7EqEvL9W7DV9SA5THuElaV2wPJxmDPUPOAXiQ_dRH7lQ0GzHkAf6WQzYlSGXoUhRiM1U1JgKsU3rjjvTugAmFmHbvehSPcqv9s8PgFxOV9I7VEgQ0oQzPxJ4Et44SuaJmjZRqhHhullHJAc3ZsRr13OSFnwGISKdBrbC_MbWysy7yqSsrHe3qsnEq3serqP1la-w"
                                         // var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
                                         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData)
                                         cognitoUser.authenticateUser(authenticationDetails, {
@@ -230,7 +231,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 }
 
                                                             } else {
-                                                                alert("Data tidak ditemukan");
+                                                                console.log("Data tidak ditemukan");
                                                             }
                                                         }).catch((error) => {
                                                             console.log(error);
@@ -252,7 +253,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         var params = {
                                             AuthFlow: "REFRESH_TOKEN_AUTH",
                                             AuthParameters: {
-                                                REFRESH_TOKEN: "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAiLCJjb2duaXRvOmdyb3VwcyI6WyJVc2VycyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfUm9IQ3Y2SWxjIiwiY2xpZW50X2lkIjoiNzU5MGpmaGVibWcxZWdvc2lsdWNvb3Q1YWsiLCJvcmlnaW5fanRpIjoiZWMzYWRhZTktMzIzYy00MGJhLWJmYzEtNTZlNGIxZDk0YjY0IiwiZXZlbnRfaWQiOiJlMGQyNzk3NC1kOTZiLTQ5NjEtYWEzZS00NDJmMjNiYzM0MGIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzExNzEyNTU3LCJleHAiOjE3MTE4MzY4MjYsImlhdCI6MTcxMTgzMzIyNiwianRpIjoiZDQzZWM2ZWUtMDZmMS00NTQ5LTlhZWEtNDIyYWI3ZmZhNjk5IiwidXNlcm5hbWUiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAifQ.Ls9POENDr3cca7FpGvyh4tyqJ_KZ17yn-IGflVCJcjzJ3wBJOoJpW_YAeUes2c3WfKCLQrdm2-Zt0DJPo95T1Sh14hnQvISoKrkkga8idQpq8brPPsE5emyQLepKs5osaYf9jyxGbSwyEXFrlyQoPNXxv1t26RIBiwrL0-08K6raPkHqcnLd20KQ-TnVSraUokAuYJxktP3jbrbS-4nR3nJ6fTH3d-CgDQ5NVOJBZRIFwH75zEGH3177REelA0fmbUcsbh6teNAFBlQW5jLhs_bXqPk0s-j3PTiA2WH_A7O84ddmu0mVQfrCA-BnKqE9ltpuWJuBuevkdvpVDeag4w"
+                                                REFRESH_TOKEN : "eyJraWQiOiJcL2FrZkNyZVFEWXJtT2JPbFpZelpaNXZNa2ZvSGp5dkNkZWVZTWVCR3pCYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAiLCJjb2duaXRvOmdyb3VwcyI6WyJVc2VycyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfUm9IQ3Y2SWxjIiwiY2xpZW50X2lkIjoiNzU5MGpmaGVibWcxZWdvc2lsdWNvb3Q1YWsiLCJvcmlnaW5fanRpIjoiZWMzYWRhZTktMzIzYy00MGJhLWJmYzEtNTZlNGIxZDk0YjY0IiwiZXZlbnRfaWQiOiJlMGQyNzk3NC1kOTZiLTQ5NjEtYWEzZS00NDJmMjNiYzM0MGIiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzExNzEyNTU3LCJleHAiOjE3MTE4NDE0NTksImlhdCI6MTcxMTgzNzg1OSwianRpIjoiZGIyM2FlMDgtY2Q4NC00OThhLTkxYzAtMzY3ZjU5NDc3OWM3IiwidXNlcm5hbWUiOiI5ZDY4MWRlOC1jOGExLTQ2MzktODhjMy0xMjg5NzFkODVjNzAifQ.fGGtupPk3j16Ap1oxAIqEZKYmwfL1rigFAw5W3DnSb6QayV7_p5cgmA18OYdMXKwhs3UhTScNMAZXOZ5mVPjDqh0p6WloioARvpbZYrJMnzsD3HDu0fTqyx44jAdLRWbTsvQt3eAc_TI7yZBXN7EqEvL9W7DV9SA5THuElaV2wPJxmDPUPOAXiQ_dRH7lQ0GzHkAf6WQzYlSGXoUhRiM1U1JgKsU3rjjvTugAmFmHbvehSPcqv9s8PgFxOV9I7VEgQ0oQzPxJ4Et44SuaJmjZRqhHhullHJAc3ZsRr13OSFnwGISKdBrbC_MbWysy7yqSsrHe3qsnEq3serqP1la-w"
                                             },
                                             ClientId: '7590jfhebmg1egosilucoot5ak'
                                         }
@@ -333,7 +334,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                     }
 
                                                                 } else {
-                                                                    alert("Data tidak ditemukan");
+                                                                    console.log("Data tidak ditemukan");
                                                                 }
                                                             }).catch((error) => {
                                                                 console.log(error);
