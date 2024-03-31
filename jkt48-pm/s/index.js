@@ -177,7 +177,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                         let DB = firebase.firestore()
                                                         let items = []
                                                         items.splice(0, items.length)
-                                                        DB.collection(channelId).orderBy(FieldPath.documentId()).get()
+                                                        DB.collection(channelId).orderBy("createdAt","desc").get()
                                                             .then(querySnapshot => {
                                                                 querySnapshot.forEach(doc => {
                                                                     items.push(doc.data())
@@ -288,7 +288,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             let DB = firebase.firestore()
                                                             let items = []
                                                             items.splice(0, items.length)
-                                                            DB.collection(channelId).orderBy(FieldPath.documentId()).get()
+                                                            DB.collection(channelId).orderBy("createdAt","desc").get()
                                                                 .then(querySnapshot => {
                                                                     querySnapshot.forEach(doc => {
                                                                         items.push(doc.data())
