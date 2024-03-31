@@ -233,6 +233,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                     chat.append((chat_items(0)))
                                                                 }
 
+                                                            return items
                                                             })
                                                             .catch(error => {
                                                                 console.error(error)
@@ -339,6 +340,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                         chat.append((chat_items(0)))
                                                                     }
 
+                                                                    return items
                                                                 })
                                                                 .catch(error => {
                                                                     console.error(error)
