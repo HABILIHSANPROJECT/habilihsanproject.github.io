@@ -177,7 +177,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                         let DB = firebase.firestore()
                                                         let items = []
                                                         items.splice(0, items.length)
-                                                        DB.collection(channelId).get()
+                                                        DB.collection(channelId).orderBy(FieldPath.documentId()).get()
                                                             .then(querySnapshot => {
                                                                 querySnapshot.forEach(doc => {
                                                                     items.push(doc.data())
@@ -261,6 +261,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         var params = {
                                             AuthFlow: "REFRESH_TOKEN_AUTH",
                                             AuthParameters: {
+                                                USERNAME: "9d681de8-c8a1-4639-88c3-128971d85c70",
                                                 REFRESH_TOKEN: REFRESH_TOKEN
                                             },
                                             ClientId: '7590jfhebmg1egosilucoot5ak'
@@ -287,7 +288,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             let DB = firebase.firestore()
                                                             let items = []
                                                             items.splice(0, items.length)
-                                                            DB.collection(channelId).get()
+                                                            DB.collection(channelId).orderBy(FieldPath.documentId()).get()
                                                                 .then(querySnapshot => {
                                                                     querySnapshot.forEach(doc => {
                                                                         items.push(doc.data())
