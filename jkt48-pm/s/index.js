@@ -180,13 +180,12 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             .then(querySnapshot => {
                                                                 querySnapshot.forEach(doc => {
                                                                     items.push(doc.data())
-                                                                    console.log(items)
                                                                 })
                                                             })
                                                             .catch(error => {
                                                                 console.error(error)
                                                             })
-
+                                                            console.log(items)
                                                         document.getElementById("loadChat").style.display = "none"
                                                         const chat_query = document.querySelectorAll("#chat-item")
                                                         if (chat_query.length > 0) {
@@ -286,13 +285,12 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 .then(querySnapshot => {
                                                                     querySnapshot.forEach(doc => {
                                                                         items.push(doc.data())
-                                                                        console.log(items)
                                                                     })
                                                                 })
                                                                 .catch(error => {
                                                                     console.error(error)
                                                                 })
-
+                                                                console.log(items)
                                                             document.getElementById("loadChat").style.display = "none"
                                                             const chat_query = document.querySelectorAll("#chat-item")
                                                             if (chat_query.length > 0) {
