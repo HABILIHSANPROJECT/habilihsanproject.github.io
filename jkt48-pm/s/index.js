@@ -180,6 +180,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                             .then(querySnapshot => {
                                                                 querySnapshot.forEach(doc => {
                                                                     items.push(doc.data())
+                                                                    console.log(items)
                                                                 })
                                                             })
                                                             .catch(error => {
@@ -285,6 +286,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 .then(querySnapshot => {
                                                                     querySnapshot.forEach(doc => {
                                                                         items.push(doc.data())
+                                                                        console.log(items)
                                                                     })
                                                                 })
                                                                 .catch(error => {
