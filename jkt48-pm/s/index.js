@@ -250,6 +250,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             ///
                                         })
                                     } else {
+                                        REFRESH_TOKEN = snapshot.val().config.token
+                                        localStorage.setItem("token", REFRESH_TOKEN)
                                         AWSCognito.config.update({
                                             region: "ap-southeast-1",
                                             accessKeyId: "ASIAZAYVXMECIKCRHC2R",
