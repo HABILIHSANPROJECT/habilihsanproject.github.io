@@ -186,59 +186,59 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 console.error(error)
                                                             })
 
-                                                                document.getElementById("loadChat").style.display = "none"
-                                                                const chat_query = document.querySelectorAll("#chat-item")
-                                                                if (chat_query.length > 0) {
-                                                                    for (let i = 0; i < chat_query.length; i++) {
-                                                                        chat_query[i].remove()
-                                                                    }
-                                                                }
-                                                                const chat_items = data => {
-                                                                    let timestamp = items[i].createdAt
-                                                                    let date = timestamp.split("T")
-                                                                    let time = date[1].split(":")
-                                                                    let hourset = Number(time[0]) + 7
-                                                                    let hour
-                                                                    if (hourset > 23) {
-                                                                        hour = hourset - 24
-                                                                    } else {
-                                                                        hour = hourset
-                                                                    }
-                                                                    const chat_list = document.createElement("template")
-                                                                    if (items[i].format == "text") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                        document.getElementById("loadChat").style.display = "none"
+                                                        const chat_query = document.querySelectorAll("#chat-item")
+                                                        if (chat_query.length > 0) {
+                                                            for (let i = 0; i < chat_query.length; i++) {
+                                                                chat_query[i].remove()
+                                                            }
+                                                        }
+                                                        const chat_items = data => {
+                                                            let timestamp = items[i].createdAt
+                                                            let date = timestamp.split("T")
+                                                            let time = date[1].split(":")
+                                                            let hourset = Number(time[0]) + 7
+                                                            let hour
+                                                            if (hourset > 23) {
+                                                                hour = hourset - 24
+                                                            } else {
+                                                                hour = hourset
+                                                            }
+                                                            const chat_list = document.createElement("template")
+                                                            if (items[i].format == "text") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
                                                                         <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
-                                                                    }
-                                                                    if (items[i].format == "image") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                            if (items[i].format == "image") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
                                                                         <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
                                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
-                                                                    }
-                                                                    if (items[i].format == "audio") {
-                                                                        chat_list.innerHTML =
-                                                                            `<li class="list-group-item" id="chat-item">
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                            if (items[i].format == "audio") {
+                                                                chat_list.innerHTML =
+                                                                    `<li class="list-group-item" id="chat-item">
                                                                         <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
                                                                         <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                         </li>`
-                                                                                .trim()
-                                                                        return chat_list.content.firstChild
-                                                                    }
-                                                                }
-                                                                for (i in items) {
-                                                                    chat.append((chat_items(0)))
-                                                                }
+                                                                        .trim()
+                                                                return chat_list.content.firstChild
+                                                            }
+                                                        }
+                                                        for (i in items) {
+                                                            chat.append((chat_items(0)))
+                                                        }
 
-                                                           
+
                                                     })
                                                 }
                                                 /// =============================================================================== ///
@@ -290,60 +290,60 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                 .catch(error => {
                                                                     console.error(error)
                                                                 })
-    
-                                                                    document.getElementById("loadChat").style.display = "none"
-                                                                    const chat_query = document.querySelectorAll("#chat-item")
-                                                                    if (chat_query.length > 0) {
-                                                                        for (let i = 0; i < chat_query.length; i++) {
-                                                                            chat_query[i].remove()
-                                                                        }
-                                                                    }
-                                                                    const chat_items = data => {
-                                                                        let timestamp = items[i].createdAt
-                                                                        let date = timestamp.split("T")
-                                                                        let time = date[1].split(":")
-                                                                        let hourset = Number(time[0]) + 7
-                                                                        let hour
-                                                                        if (hourset > 23) {
-                                                                            hour = hourset - 24
-                                                                        } else {
-                                                                            hour = hourset
-                                                                        }
-                                                                        const chat_list = document.createElement("template")
-                                                                        if (items[i].format == "text") {
-                                                                            chat_list.innerHTML =
-                                                                                `<li class="list-group-item" id="chat-item">
+
+                                                            document.getElementById("loadChat").style.display = "none"
+                                                            const chat_query = document.querySelectorAll("#chat-item")
+                                                            if (chat_query.length > 0) {
+                                                                for (let i = 0; i < chat_query.length; i++) {
+                                                                    chat_query[i].remove()
+                                                                }
+                                                            }
+                                                            const chat_items = data => {
+                                                                let timestamp = items[i].createdAt
+                                                                let date = timestamp.split("T")
+                                                                let time = date[1].split(":")
+                                                                let hourset = Number(time[0]) + 7
+                                                                let hour
+                                                                if (hourset > 23) {
+                                                                    hour = hourset - 24
+                                                                } else {
+                                                                    hour = hourset
+                                                                }
+                                                                const chat_list = document.createElement("template")
+                                                                if (items[i].format == "text") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
                                                                             <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a>${items[i].message} </div>
                                                                             <p class="date" style="text-align: right;">${date[0]} ${hour}:${time[1]}</p>
                                                                             </li>`
-                                                                                    .trim()
-                                                                            return chat_list.content.firstChild
-                                                                        }
-                                                                        if (items[i].format == "image") {
-                                                                            chat_list.innerHTML =
-                                                                                `<li class="list-group-item" id="chat-item">
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                                if (items[i].format == "image") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
                                                                             <div class="profpic mb-3"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a></div>
                                                                             <img onerror="this.src='${items[i].message}'" src="${items[i].message}" style="width: -webkit-fill-available"></img>
                                                                             <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                             </li>`
-                                                                                    .trim()
-                                                                            return chat_list.content.firstChild
-                                                                        }
-                                                                        if (items[i].format == "audio") {
-                                                                            chat_list.innerHTML =
-                                                                                `<li class="list-group-item" id="chat-item">
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                                if (items[i].format == "audio") {
+                                                                    chat_list.innerHTML =
+                                                                        `<li class="list-group-item" id="chat-item">
                                                                             <div class="profpic"><a href="${items[i].author.profileImage}" target="_blank"><img src="${items[i].author.profileImage}"></a><audio onerror="this.src='${items[i].message}'" controls src="${items[i].message}"></audio></div>
                                                                             <div style="display: flex; margin-top: 10px"><a href="${items[i].message}" target="_blank" class="btn btn-success date btn-sm">Download</a><p class="date" style="margin-left:auto;">${date[0]} ${hour}:${time[1]}</p></div>
                                                                             </li>`
-                                                                                    .trim()
-                                                                            return chat_list.content.firstChild
-                                                                        }
-                                                                    }
-                                                                    for (i in items) {
-                                                                        chat.append((chat_items(0)))
-                                                                    }
-    
-                                                               
+                                                                            .trim()
+                                                                    return chat_list.content.firstChild
+                                                                }
+                                                            }
+                                                            for (i in items) {
+                                                                chat.append((chat_items(0)))
+                                                            }
+
+
                                                         })
                                                     }
                                                     /// =============================================================================== ///
@@ -422,8 +422,22 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     }
                                                 }
                                                 const items = response.data.data.messagesByChannelId.items.reverse()
-                                                ///
+                                                /*
+
                                                 let DB = firebase.firestore()
+                                                let docRef = DB.collection(channelId)
+                                                var chat = response.data.data.messagesByChannelId.items
+                                                chat.forEach((dataObj) => {
+                                                    docRef.add(dataObj)
+                                                        .then(function () {
+                                                            console.log("Data berhasil ditambahkan atau ditimpa!", list[i].name)
+                                                        })
+                                                        .catch(function (error) {
+                                                            console.error(`Error: ${list[i].name}`, error)
+                                                        })
+                                                })
+
+
                                                 var dbRef = DB.collection("data").doc(channelId)
                                                 var itemChat = response.data.data.messagesByChannelId.items
                                                 const chatData = { items: itemChat }
@@ -434,7 +448,8 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     .catch((error) => {
                                                         console.error("Data Tidak terbackup")
                                                     })
-                                                ///
+                                                */
+
                                                 const chat_items = data => {
                                                     let timestamp = items[i].createdAt
                                                     let date = timestamp.split("T")
@@ -537,7 +552,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                     }
                                                     axios.post(url, body, header).then(function (response) {
                                                         const chat_query = document.querySelectorAll("#chat-item-next")
-                                                        ///
+                                                        /*
                                                         let DB = firebase.firestore()
                                                         var dbRef = DB.collection("data").doc(channelId)
                                                         var dbCache = DB.collection("data").doc(channelId)
@@ -556,7 +571,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                                     })
                                                             }
                                                         })
-                                                        ///
+                                                        */
                                                         if (chat_query.length > 0) {
                                                             for (let i = 0; i < chat_query.length; i++) {
                                                                 chat_query[i].remove()
