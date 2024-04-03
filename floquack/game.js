@@ -375,7 +375,7 @@ function click(ev) {
             window.open("https://x.com/HIBIKUN_", "_blank")
         }
 
-        if (mouseX >= 10 && mouseX <= canvas.width - 200 &&
+        if (mouseX >= 10 && mouseX <= canvas.width - (canvas.width-200) &&
             mouseY >= canvas.height - 260 && mouseY <= canvas.height - 10) {
             window.open("https://twitter.com/FloRisenID/status/1775580080158449850", "_blank")
         }
@@ -411,5 +411,4 @@ function startGame() {
 // Menampilkan layar menu saat pertama kali permainan dimuat
 bgMenu.onload = function () {
     drawMenu();
-    screen.orientation.lock('landscape')
 };
