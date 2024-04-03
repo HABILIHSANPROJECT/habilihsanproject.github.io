@@ -440,7 +440,7 @@ function exitFullscreen() {
 }
 
 // Menampilkan layar menu saat pertama kali permainan dimuat
-bgMenu.onload = function () {
+window.onload = function () {
     drawMenu();
 };
 
