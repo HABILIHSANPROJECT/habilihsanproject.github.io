@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="viewport" content="width=1024; maximum-scale=1; user-scalable=0;"/>
+    <meta name="viewport" content="width=1024; maximum-scale=1; user-scalable=0;" />
     <meta charset="UTF-8">
     <title>Floquack Adventure</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,10 +14,33 @@
             overflow: hidden;
             overflow-y: hidden;
         }
+
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .fab:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
+
 <body>
-<canvas id="gameArea" width="1300" height="650"></canvas>
-<script src="./game.js"></script>
+    <canvas id="gameArea" width="1300" height="650"></canvas>
+    <button id="exitFullscreenBtn" class="fab">X</button>
+    <script src="./game.js"></script>
 </body>
+
 </html>

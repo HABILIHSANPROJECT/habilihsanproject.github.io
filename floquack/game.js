@@ -1,6 +1,7 @@
 // Mendapatkan elemen canvas dan menginisialisasi konteks 2D
 var canvas = document.getElementById("gameArea");
 var c = canvas.getContext("2d");
+var fab = document.getElementById("exitFullscreenBtn")
 
 // Mengatur ukuran canvas sesuai dengan ukuran jendela browser
 canvas.width = window.innerWidth;
@@ -122,8 +123,6 @@ function drawGameOverScreen() {
     c.fillStyle = "#FFD700";
     c.font = "40px Delicious Handrawn";
     c.fillText("Click to Play Again", canvas.width / 2, canvas.height / 2 + 100);
-    
-    exitFullscreen()
 }
 
 function soundClick(ev) {
@@ -440,3 +439,7 @@ function exitFullscreen() {
 bgMenu.onload = function () {
     drawMenu();
 };
+
+document.getElementById("exitFullscreenBtn").addEventListener("click", function() {
+    exitFullscreen();
+});
