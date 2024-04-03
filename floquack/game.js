@@ -275,11 +275,11 @@ function checkCollision() {
         if (collision(duck, enemies[i])) {
             playing = false;
             gameOver = true;
-
             duckImg = new Image()
             duckImg.src = "./assets/duckShrink.png"
             c.drawImage(duckImg, duck.x, duck.y, duck.width, duck.height);
             fab.style.visibility = "hidden"
+            exitFullscreen()
             break;
         }
     }
