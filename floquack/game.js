@@ -279,7 +279,6 @@ function checkCollision() {
             duckImg = new Image()
             duckImg.src = "./assets/duckShrink.png"
             c.drawImage(duckImg, duck.x, duck.y, duck.width, duck.height);
-            exitFullscreen();
             fab.style.visibility = "hidden"
             break;
         }
