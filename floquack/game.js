@@ -279,7 +279,6 @@ function checkCollision() {
             duckImg.src = "./assets/duckShrink.png"
             c.drawImage(duckImg, duck.x, duck.y, duck.width, duck.height);
             fab.style.visibility = "hidden"
-            exitFullscreen()
             break;
         }
     }
@@ -385,6 +384,7 @@ function click(ev) {
     }
 
     if (gameOver) {
+        exitFullscreen()
         c.clearRect(0, 0, canvas.width, canvas.height);
         location.reload()
     }
