@@ -395,6 +395,7 @@ canvas.addEventListener('mousedown', click, false);
 
 // Fungsi untuk menampilkan layar menu
 function drawMenu() {
+    menu = true
     c.drawImage(bgMenu, 0, 0, canvas.width, canvas.height);
     c.drawImage(splatImg, canvas.width - (splat.width + 10), canvas.height - (splat.height + 10), splat.width, splat.height)
     c.drawImage(floraImg, 10, canvas.height - (flora.height + 20), flora.width, flora.height)
@@ -441,8 +442,14 @@ function exitFullscreen() {
 }
 
 // Menampilkan layar menu saat pertama kali permainan dimuat
+
 window.onload = function () {
     drawMenu();
+};
+
+canvas.onerror = function() {
+    exitFullscreen()
+    window.location.reload();
 };
 
 fab.addEventListener("click", function() {
