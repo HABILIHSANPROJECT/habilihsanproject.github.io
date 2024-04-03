@@ -410,7 +410,10 @@ function startGame() {
     music()
 }
 
+var fullscreen = false
+
 function requestFullscreen() {
+    fullscreen = true
     var element = document.documentElement;
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -424,6 +427,7 @@ function requestFullscreen() {
 }
 
 function exitFullscreen() {
+    fullscreen = false
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { /* Firefox */
@@ -440,6 +444,12 @@ bgMenu.onload = function () {
     drawMenu();
 };
 
-document.getElementById("exitFullscreenBtn").addEventListener("click", function() {
+fab.addEventListener("click", function() {
     exitFullscreen();
 });
+
+if (fullscreen) {
+    fab.style.visibility = "visible"
+} else {
+    fab.style.visibility = "hidden"
+}
