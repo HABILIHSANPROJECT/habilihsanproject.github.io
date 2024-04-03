@@ -411,14 +411,22 @@ function startGame() {
 // Menampilkan layar menu saat pertama kali permainan dimuat
 bgMenu.onload = function () {
     drawMenu();
-    document.addEventListener("orientationchange", function(event){
-        switch(screen.orientation) 
-        {  
-            case -90: case 90:
-                /* Device is in landscape mode */
-                break; 
-            default:
-                /* Device is in portrait mode */
-        }
-    });
+    if (document.documentElement.requestFullscreen) {
+        // Meminta mode layar penuh
+        document.documentElement.requestFullscreen().then(function() {
+            // Memeriksa apakah perangkat mendukung orientasi horizontal
+            if (screen.orientation && screen.orientation.lock) {
+                // Mengunci orientasi layar menjadi horizontal
+                screen.orientation.lock('landscape').then(function() {
+                    console.log('Layar diatur ke orientasi horizontal.');
+                }).catch(function(error) {
+                    console.error('Gagal mengunci orientasi layar:', error);
+                });
+            } else {
+                console.error('Perangkat tidak mendukung pengaturan orientasi layar.');
+            }
+        }).catch(function(error) {
+            console.error('Gagal meminta mode layar penuh:', error);
+        });
+    }
 };
