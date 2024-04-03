@@ -109,7 +109,7 @@ var gameOver = false;
 function drawGameOverScreen() {
     //drawDuckShrink()
 
-    c.fillStyle = "rgba(0, 0, 0, 0.5)";
+    c.fillStyle = "#51b8db";
     c.fillRect(0, 0, canvas.width, canvas.height)
 
     c.fillStyle = "white";
@@ -280,6 +280,7 @@ function checkCollision() {
             duckImg.src = "./assets/duckShrink.png"
             c.drawImage(duckImg, duck.x, duck.y, duck.width, duck.height);
             exitFullscreen();
+            fab.style.visibility = "hidden"
             break;
         }
     }
