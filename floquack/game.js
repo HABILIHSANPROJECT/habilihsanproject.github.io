@@ -122,6 +122,8 @@ function drawGameOverScreen() {
     c.fillStyle = "#FFD700";
     c.font = "40px Delicious Handrawn";
     c.fillText("Click to Play Again", canvas.width / 2, canvas.height / 2 + 100);
+    
+    exitFullscreen()
 }
 
 function soundClick(ev) {
@@ -405,11 +407,36 @@ function startGame() {
     gameOver = false
     score = 0;
     requestAnimationFrame(playGame);
+    requestFullscreen()
     music()
+}
+
+function requestFullscreen() {
+    var element = document.documentElement;
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { /* Firefox */
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { /* IE/Edge */
+        element.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari & Opera */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+        document.msExitFullscreen();
+    }
 }
 
 // Menampilkan layar menu saat pertama kali permainan dimuat
 bgMenu.onload = function () {
     drawMenu();
-    alert("Disarankan dimainkan dalam orientasi Landscape dan mode Desktop untuk pengguna Mobile")
 };
