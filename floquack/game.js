@@ -408,6 +408,7 @@ function startGame() {
     requestAnimationFrame(playGame);
     requestFullscreen()
     music()
+    fab.style.visibility = "visible"
 }
 
 var fullscreen = false
@@ -427,7 +428,6 @@ function requestFullscreen() {
 }
 
 function exitFullscreen() {
-    fullscreen = false
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { /* Firefox */
@@ -448,8 +448,8 @@ fab.addEventListener("click", function() {
     exitFullscreen();
 });
 
-if (fullscreen) {
-    fab.style.visibility = "visible"
-} else {
-    fab.style.visibility = "hidden"
+if (fullscreen == false) {
+    fab.addEventListener("click", function() {
+        requestFullscreen();
+    });
 }
