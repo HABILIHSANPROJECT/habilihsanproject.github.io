@@ -411,22 +411,5 @@ function startGame() {
 // Menampilkan layar menu saat pertama kali permainan dimuat
 bgMenu.onload = function () {
     drawMenu();
-    if (document.documentElement.requestFullscreen) {
-        // Meminta mode layar penuh
-        document.documentElement.requestFullscreen().then(function() {
-            // Memeriksa apakah perangkat mendukung orientasi horizontal
-            if (screen.orientation && screen.orientation.lock) {
-                // Mengunci orientasi layar menjadi horizontal
-                screen.orientation.lock('landscape').then(function() {
-                    console.log('Layar diatur ke orientasi horizontal.');
-                }).catch(function(error) {
-                    console.error('Gagal mengunci orientasi layar:', error);
-                });
-            } else {
-                console.error('Perangkat tidak mendukung pengaturan orientasi layar.');
-            }
-        }).catch(function(error) {
-            console.error('Gagal meminta mode layar penuh:', error);
-        });
-    }
+    alert("Disarankan dimainkan dalam orientasi Landscape dan mode Desktop untuk pengguna Mobile")
 };
