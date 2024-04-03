@@ -3,6 +3,7 @@ var canvas = document.getElementById("gameArea");
 var c = canvas.getContext("2d");
 var fab = document.getElementById("exitFullscreenBtn")
 
+
 // Mengatur ukuran canvas sesuai dengan ukuran jendela browser
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -109,7 +110,7 @@ var gameOver = false;
 function drawGameOverScreen() {
     //drawDuckShrink()
 
-    c.fillStyle = "#51b8db";
+    c.fillStyle = "rgba(0,0,0,0.5)";
     c.fillRect(0, 0, canvas.width, canvas.height)
 
     c.fillStyle = "white";
@@ -126,24 +127,24 @@ function drawGameOverScreen() {
 }
 
 function soundClick(ev) {
-        var rect = canvas.getBoundingClientRect();
-        var mouseX = ev.clientX - rect.left;
-        var mouseY = ev.clientY - rect.top;
+    var rect = canvas.getBoundingClientRect();
+    var mouseX = ev.clientX - rect.left;
+    var mouseY = ev.clientY - rect.top;
 
-        if (sounding) {
-            if (mouseX >= 25 && mouseX <= 65 &&
-                mouseY >= 5 && mouseY <= 45) {
-                sounding = false
-                sound.pause()
-            }
-        } else {
-            if (mouseX >= 25 && mouseX <= 65 &&
-                mouseY >= 5 && mouseY <= 45) {
-                sounding = true
-                sound.play()
-                sound.loop = true
-            }
+    if (sounding) {
+        if (mouseX >= 25 && mouseX <= 65 &&
+            mouseY >= 5 && mouseY <= 45) {
+            sounding = false
+            sound.pause()
         }
+    } else {
+        if (mouseX >= 25 && mouseX <= 65 &&
+            mouseY >= 5 && mouseY <= 45) {
+            sounding = true
+            sound.play()
+            sound.loop = true
+        }
+    }
 }
 
 function music() {
@@ -176,7 +177,7 @@ function playGame() {
         drawWater();
         drawDuck();
         drawEnemies();
-        
+
 
         // Menghitung skor berdasarkan waktu yang telah berlalu
         score = Math.floor(elapsedTime);
@@ -376,7 +377,7 @@ function click(ev) {
             window.open("https://x.com/HIBIKUN_", "_blank")
         }
 
-        if (mouseX >= 10 && mouseX <= canvas.width - (canvas.width-200) &&
+        if (mouseX >= 10 && mouseX <= canvas.width - (canvas.width - 200) &&
             mouseY >= canvas.height - 260 && mouseY <= canvas.height - 10) {
             window.open("https://twitter.com/FloRisenID/status/1775580080158449850", "_blank")
         }
@@ -396,6 +397,7 @@ canvas.addEventListener('mousedown', click, false);
 // Fungsi untuk menampilkan layar menu
 function drawMenu() {
     menu = true
+    fullscreen = false
     c.drawImage(bgMenu, 0, 0, canvas.width, canvas.height);
     c.drawImage(splatImg, canvas.width - (splat.width + 10), canvas.height - (splat.height + 10), splat.width, splat.height)
     c.drawImage(floraImg, 10, canvas.height - (flora.height + 20), flora.width, flora.height)
@@ -416,7 +418,6 @@ function startGame() {
 var fullscreen = false
 
 function requestFullscreen() {
-    fullscreen = true
     var element = document.documentElement;
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -447,17 +448,21 @@ window.onload = function () {
     drawMenu();
 };
 
-canvas.onerror = function() {
+canvas.onerror = function () {
     exitFullscreen()
     window.location.reload();
 };
 
-fab.addEventListener("click", function() {
-    exitFullscreen();
-});
+
 
 if (fullscreen == false) {
-    fab.addEventListener("click", function() {
+    fab.addEventListener("click", function () {
         requestFullscreen();
     });
+    requestFullscreen();
+} else {
+    fab.addEventListener("click", function () {
+        exitFullscreen();
+    });
+    exitFullscreen();
 }
