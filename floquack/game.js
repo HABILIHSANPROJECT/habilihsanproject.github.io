@@ -417,6 +417,13 @@ function requestFullscreen() {
     } else if (element.msRequestFullscreen) { /* IE/Edge */
         element.msRequestFullscreen();
     }
+
+    if (menu) {
+        drawMenu()
+    }
+    if (gameOver) {
+        drawGameOverScreen()
+    }
 }
 
 function exitFullscreen() {
@@ -429,6 +436,13 @@ function exitFullscreen() {
         document.webkitExitFullscreen();
     } else if (document.msExitFullscreen) { /* IE/Edge */
         document.msExitFullscreen();
+    }
+
+    if (menu) {
+        drawMenu()
+    }
+    if (gameOver) {
+        drawGameOverScreen()
     }
 }
 
