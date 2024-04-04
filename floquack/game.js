@@ -192,15 +192,30 @@ function playGame() {
 
 // Fungsi untuk memunculkan musuh baru
 function spawnEnemy() {
-    let bottom = canvas.height - 100
-    if (enemy.spawnClock % 35 === 0) {
+    let bottom = canvas.height - 100;
+    let spawnRate = 35; // Tingkat spawn musuh awal
+
+    // Tingkat spawn musuh yang berbeda sesuai dengan skor
+    if (score >= 60 && score < 100) {
+        spawnRate = 25; // Tingkat spawn musuh setelah skor mencapai 60
+    } else if (score >= 100 && score < 300) {
+        spawnRate = 20; // Tingkat spawn musuh setelah skor mencapai 100
+    } else if (score >= 300 && score < 600) {
+        spawnRate = 15; // Tingkat spawn musuh setelah skor mencapai 300
+    } else if (score >= 600) {
+        spawnRate = 10; // Tingkat spawn musuh setelah skor mencapai 600
+    }
+
+    if (enemy.spawnClock % spawnRate === 0) {
         enemies.push({
             x: canvas.width,
             y: randomInt(UIHeight + 10, bottom)
         });
     }
+
     enemy.spawnClock++;
 }
+
 
 function spawnWater() {
     let bottom = canvas.height - 100
