@@ -2,6 +2,7 @@
 var canvas = document.getElementById("gameArea");
 var c = canvas.getContext("2d");
 var fab = document.getElementById("exitFullscreenBtn")
+var restart = document.getElementById("restart")
 
 
 // Mengatur ukuran canvas sesuai dengan ukuran jendela browser
@@ -108,8 +109,6 @@ var gameOver = false;
 
 // Fungsi untuk menggambar layar game over
 function drawGameOverScreen() {
-    //drawDuckShrink()
-
     c.fillStyle = "rgba(0,0,0,0.5)";
     c.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -120,10 +119,7 @@ function drawGameOverScreen() {
 
     c.font = "60px Delicious Handrawn";
     c.fillText("Your Score: " + score, canvas.width / 2, canvas.height / 2 + 50);
-
-    c.fillStyle = "#FFD700";
-    c.font = "40px Delicious Handrawn";
-    c.fillText("Click to Play Again", canvas.width / 2, canvas.height / 2 + 100);
+    restart.style.visibility = "visible"
 }
 
 function soundClick(ev) {
@@ -148,7 +144,7 @@ function soundClick(ev) {
 }
 
 function music() {
-    canvas.addEventListener('mousedown', soundClick, true);
+    canvas.addEventListener('mousedown', soundClick, false);
     if (sounding) {
         sound.play()
         sound.loop = true
@@ -188,9 +184,8 @@ function playGame() {
         requestAnimationFrame(playGame);
     } else {
         // Jika permainan berakhir, menampilkan layar game over
-        menu = false
-        playing = false
         gameOver = true
+        
         drawGameOverScreen();
     }
 }
@@ -383,13 +378,6 @@ function click(ev) {
         }
 
     }
-
-    if (gameOver) {
-        exitFullscreen()
-        c.clearRect(0, 0, canvas.width, canvas.height);
-        location.reload()
-    }
-
 }
 
 canvas.addEventListener('mousedown', click, false);
@@ -418,6 +406,7 @@ function startGame() {
 var fullscreen = false
 
 function requestFullscreen() {
+    fullscreen = true
     var element = document.documentElement;
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -431,6 +420,7 @@ function requestFullscreen() {
 }
 
 function exitFullscreen() {
+    fullscreen = false
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { /* Firefox */
@@ -459,10 +449,12 @@ if (fullscreen == false) {
     fab.addEventListener("click", function () {
         requestFullscreen();
     });
-    requestFullscreen();
-} else {
-    fab.addEventListener("click", function () {
-        exitFullscreen();
-    });
-    exitFullscreen();
 }
+
+fab.addEventListener("click", function () {
+    exitFullscreen();
+});
+
+restart.addEventListener("click", function () {
+    location.reload()
+});

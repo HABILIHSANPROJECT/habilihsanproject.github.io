@@ -34,12 +34,26 @@
         .fab:hover {
             background-color: #0056b3;
         }
+
+        .restart {
+            position: fixed;
+            top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+            color: #FFD700;
+            border: none;
+            cursor: pointer;
+            font-size: 40px;
+            font-family: "Delicious Handrawn";
+            background-color: transparent;
+        }
     </style>
 </head>
 
 <body>
     <canvas id="gameArea" width="1300" height="650"></canvas>
     <button id="exitFullscreenBtn" class="fab" style="visibility: hidden;">⛶</button>
+    <button id="restart" class="restart" style="visibility: hidden;">Restart</button>
     <script src="./game.js"></script>
 </body>
 
