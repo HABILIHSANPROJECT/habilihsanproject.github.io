@@ -124,8 +124,10 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                         }
                                     }
 
-                                    let REFRESH_TOKEN = localStorage.getItem("token")
+                                    let REFRESH_TOKEN = snapshot.val().config.token
+                                    //localStorage.setItem("token", REFRESH_TOKEN)
 
+                                    /*
                                     let userPoolId = snapshot.val().config.userpool
                                     let clientId = snapshot.val().config.client
                                     let authenticationData = {
@@ -359,7 +361,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                                 }
                                             })
 
-                                    }
+                                    }*/
 
                                     if (document.getElementById("get")) {
 
