@@ -1,3 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Framework -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Fetch Data -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/aws-cognito-sdk.min.js"></script>
+    <script src="https://rawgit.com/aws/amazon-cognito-identity-js/master/dist/amazon-cognito-identity.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="./s/index.js"></script>
+
+    <!-- Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1580562505317506"
+        crossorigin="anonymous"></script>
+    <script async="async" data-cfasync="false"
+        src="//pl22486326.profitablegatecpm.com/447c775022427997699b9223051cb580/invoke.js"></script>
+    <script type='text/javascript' src='//pl22517162.profitablegatecpm.com/ff/7c/4d/ff7c4d9bafb3ea36c5bf3bd4812d08a5.js'></script>
+    <script src="./s/ads.js"></script>
+
+    <!-- Style -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./r/index.css" />
+
+    <title>JKT48 PRIVATE MESSAGE</title>
+    <div class="title">
+        <a href="https://habilihsanproject.github.io/jkt48-pm/">
+            <img style="width: 30%;"
+                src="https://jkt48.primesse.me/_next/image?url=%2Fimages%2FLogo%402x.png&w=384&q=75">
+        </a>
+    </div>
+</head>
+
+<body style="background-image: url(https://jkt48.primesse.me/images/top_background.png)">
+    <section id="load" class="load">
+        <div class="alert alert-primary">
+            <div class="spinner-border" role="status"></div>
+            <span class="modal-title ms-3">Memuat Data...</span><br />
+        </div>
+    </section>
+    <section id="items" class="items" style="display: none;">
+        <div class="button">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#myModal">Profile</button>
+            <a href="https://t.me/JKT48PMMMWWW" style="margin-left: auto;">
+                <button type="button" class="btn btn-info">Contact Us</button>
+            </a>
+            <button type="button" class="btn btn-danger" id="exit" style="margin-left: auto;">Log Out</button>
+
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <p class="modal-title">Information</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <div style="display: flex;">
+                                <p style="text-align: left;">Email</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="email"></p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="text-align: left;">Start Subscription</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="startSubs"></p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="text-align: left;">End Subscription</p>
+                                <p style="margin-left: auto; font-weight: bold;" id="endSubs"></p>
+                            </div>
+                            <a id="paycheck" href="" target="_blank"><button type="submit" class="btn btn-sm btn-primary w-100 mt-2">Payment Check</button></a>
+                            <button type="button" class="btn btn-warning btn-sm w-100 mt-2" onclick="changePassword()" style="margin-right: auto;">Ganti Password</button>
+                        </div>
+
+                        <!-- Modal Footer -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-100">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e5ed8309a7df23b456c80760b4671bee',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/e5ed8309a7df23b456c80760b4671bee/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
+
+        <div class="input-group">
+            <select class="form-select" id="member">
+            </select>
+            <a href="https://www.profitablegatecpm.com/rb52f96g?key=30d5900c37c30b30a343c8f91abef525" target="_blank">
+                <button type="button" class="btn btn-primary" id="get">Chat</button>
+            </a>
+        </div>
+
+        <div id="loadChat" class="load" style="display: none;">
+            <div class="alert alert-primary">
+                <div class="spinner-border" role="status"></div>
+                <span class="modal-title ms-3">Memuat Data...</span><br />
+            </div>
+        </div>
+
+        <ul class="list-group" id="chatNext">
+            <li class="list-group-item" style="display: none;" id="chat-item-next"></li>
+        </ul>
+        <ul class="list-group" id="chat">
+            <li class="list-group-item" style="display: none;" id="chat-item"></li>
+        </ul>
+
+        <div class="ads mt-3 mb-3" id="container-447c775022427997699b9223051cb580"></div>
+    </section>
+    <section id="empty" class="empty" style="display: none;">
+        <div class="w-100">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e5ed8309a7df23b456c80760b4671bee',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/e5ed8309a7df23b456c80760b4671bee/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
+        <p class="modal-title">Data Tidak Ditemukan!</p><br />
+        <p class="modal-body mb-3">
+            Mohon maaf! Kami tidak dapat menemukan data berlangganan kamu.<br />
+            Silahkan berlangganan untuk menikmati konten dari web ini.
+        </p><br />
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="exits" style="margin-right: auto;">Log Out</button>
+            <a href="https://habilihsanproject.github.io/jkt48-pm/p/subs" class="btn btn-success" tabindex="-1"
+                role="button" aria-disabled="true">Langganan</a>
+        </div>
+        <div class="ads mt-3 mb-3" id="container-447c775022427997699b9223051cb580"></div>
+    </section>
+</body>
+
+<footer class="footer">
+    <span class="copyright badge text-bg-secondary">Powered by <b>JKT48PMMMWWW</b></span>
+</footer>
+
+</html>
+
 <script>
     location.replace("https://habilihsanproject.vercel.app/jkt48pm/")
+    function changePassword() {
+            const emailaccount = prompt("Masukan email:")
+            firebase.auth().sendPasswordResetEmail(emailaccount)
+                .then(function () {
+                    // Email reset password berhasil dikirim
+                    alert("Email reset password berhasil dikirim. Cek email sekarang!")
+                })
+                .catch(function (error) {
+                    // Handle error di sini
+                    alert("Gagal mengirim email reset password:", error.message)
+                })
+        }
 </script>
