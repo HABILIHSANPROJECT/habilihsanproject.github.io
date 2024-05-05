@@ -41,6 +41,7 @@
             <div class="carousel-item p-5">
                 <h1 class="w3-animate-bottom">Denah Lokasi</h1>
                 <img src="./assets/denah.png" class="w3-animate-bottom denah">
+                <iframe class="m-3" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.3130840990981!2d100.38983652818061!3d-0.9650909895497095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b98fb19a521b%3A0x1117b7b0910a2c55!2sRumah!5e0!3m2!1sid!2sus!4v1714891944977!5m2!1sid!2sus" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -66,7 +67,7 @@
         height: -webkit-fill-available;
         align-content: center;
         text-align: center;
-        background-image: url("assets/background.png");
+        background-image: url("assets/background.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -75,6 +76,7 @@
 
     .pic {
         width: -webkit-fill-available;
+        filter: brightness(0.3);
     }
 
     .denah {
@@ -121,7 +123,7 @@
     if (document.body.clientWidth > 720) {
         denah.style.width = "75%"
         for (let i = 0; i < pic.length; i++) {
-            pic[i].style.width = `${document.body.clientWidth / 3}px`
+            pic[i].style.width = `${document.body.clientWidth / 2.75}px`
         }
     }
 </script>
