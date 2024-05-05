@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hafidh & Riska</title>
+    <title>Undangan Baralek: Hafidh & Riska</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
@@ -40,8 +40,13 @@
             </div>
             <div class="carousel-item p-5">
                 <h1 class="w3-animate-bottom">Denah Lokasi</h1>
-                <img src="./assets/denah.png" class="w3-animate-bottom denah">
-                <iframe class="m-3" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.3130840990981!2d100.38983652818061!3d-0.9650909895497095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b98fb19a521b%3A0x1117b7b0910a2c55!2sRumah!5e0!3m2!1sid!2sus!4v1714891944977!5m2!1sid!2sus" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div>
+                    <img src="./assets/denah.png" class="w3-animate-bottom denah">
+                    <iframe class="m-3 w3-animate-bottom"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.3130840990981!2d100.38983652818061!3d-0.9650909895497095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b98fb19a521b%3A0x1117b7b0910a2c55!2sRumah!5e0!3m2!1sid!2sus!4v1714891944977!5m2!1sid!2sus"
+                        id="map" height="240" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -72,6 +77,10 @@
         background-size: cover;
         background-position: center;
         display: block;
+    }
+
+    .carousel-item {
+        align-content: center !important;
     }
 
     .pic {
@@ -120,10 +129,19 @@
 
     var pic = document.getElementsByClassName("pic")
     var denah = document.getElementsByClassName("denah")[0]
+    var map = document.getElementById("map")
+
     if (document.body.clientWidth > 720) {
-        denah.style.width = "75%"
+        denah.style.width = "35%"
+        map.style.width = "35%"
+        map.style.align
         for (let i = 0; i < pic.length; i++) {
             pic[i].style.width = `${document.body.clientWidth / 2.75}px`
         }
+    }
+
+    var carousel = document.getElementsByClassName("carousel-item")
+    for (let i = 0; i < pic.length; i++) {
+        carousel[i].style.height = `${document.body.clientHeight}px`
     }
 </script>
