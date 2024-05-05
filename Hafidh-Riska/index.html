@@ -60,6 +60,7 @@
 
 <style>
     html {
+        min-height: -webkit-fill-available;
         height: -webkit-fill-available;
     }
 
@@ -89,6 +90,7 @@
 </style>
 
 <script>
+    document.body.clientHeight = window.clientHeight
     function GetParam(url, param) {
         const index = url.indexOf("?")
         if (index === -1) {
@@ -110,13 +112,14 @@
     var tamu = document.getElementById("tamu")
     tamu.innerText = decodeURI(param)
 
-    if (tamu.innerText === null) {
-        tamu.innerText = ""
+    if (tamu.innerText == "null") {
+        console.log("true")
+        tamu.innerText = `\n`
     }
 
     var pic = document.getElementsByClassName("pic")
     var denah = document.getElementsByClassName("denah")[0]
-    if (document.body.clientWidth > 1000) {
+    if (document.body.clientWidth > 720) {
         denah.style.width = "75%"
         for (let i = 0; i < pic.length; i++) {
             pic[i].style.width = `${document.body.clientWidth/3}px`
