@@ -22,6 +22,7 @@
     <div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active p-5">
+                <div class="item-carousel">
                 <img src="./assets/cover.png" class="w3-animate-bottom pic">
                 <div class="w3-animate-bottom" id="tujuan">
                     <p>Kepada Yth.</p>
@@ -31,14 +32,20 @@
                         Di Tempat
                     </p>
                 </div>
+                </div>
             </div>
             <div class="carousel-item p-5">
+                <div class="item-carousel">
                 <img src="./assets/jadwal.png" class="w3-animate-bottom pic">
+                </div>
             </div>
             <div class="carousel-item p-5">
+                <div class="item-carousel">
                 <img src="./assets/keterangan.png" class="w3-animate-bottom pic">
+                </div>
             </div>
             <div class="carousel-item p-5">
+                <div class="item-carousel">
                 <h1 class="w3-animate-bottom">Denah Lokasi</h1>
                 <div>
                     <img src="./assets/denah.png" class="w3-animate-bottom denah">
@@ -46,6 +53,7 @@
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.3130840990981!2d100.38983652818061!3d-0.9650909895497095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b98fb19a521b%3A0x1117b7b0910a2c55!2sRumah!5e0!3m2!1sid!2sus!4v1714891944977!5m2!1sid!2sus"
                         id="map" height="240" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
                 </div>
             </div>
         </div>
@@ -81,6 +89,11 @@
 
     .carousel-item {
         align-content: center !important;
+    }
+
+    .item-carousel {
+        height: -webkit-fill-available;
+        align-content: center;
     }
 
     .pic {
