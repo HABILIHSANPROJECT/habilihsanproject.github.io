@@ -23,7 +23,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active p-5">
                 <img src="./assets/cover.png" class="w3-animate-bottom pic">
-                <div class="w3-animate-bottom">
+                <div class="w3-animate-bottom tujuan">
                     <p>Kepada Yth.</p>
                     <h1 id="tamu" class="p-0"></h1>
                     <p>& Keluarga<br />
@@ -111,11 +111,11 @@
     var url = window.location.href
     var param = GetParam(url, "tamu")
     var tamu = document.getElementById("tamu")
+    var tujuan = document.getElementById("tujuan")
     tamu.innerText = decodeURI(param)
 
     if (tamu.innerText == "null") {
-        console.log("true")
-        tamu.innerText = `\n`
+        tujuan.style.display = "none"
     }
 
     var pic = document.getElementsByClassName("pic")
