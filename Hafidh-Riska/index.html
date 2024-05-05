@@ -19,40 +19,38 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active p-5">
-                    <img src="./assets/cover.png" class="w3-animate-bottom pic">
-                    <div class="w3-animate-bottom">
-                        <p>Kepada Yth.</p>
-                        <h1 id="tamu" class="p-0"></h1>
-                        <p>& Keluarga<br />
-                            <br />
-                            Di Tempat
-                        </p>
-                    </div>
-                </div>
-                <div class="carousel-item p-5">
-                    <img src="./assets/jadwal.png" class="w3-animate-bottom pic">
-                </div>
-                <div class="carousel-item p-5">
-                    <img src="./assets/keterangan.png" class="w3-animate-bottom pic">
-                </div>
-                <div class="carousel-item p-5">
-                    <h1 class="w3-animate-bottom">Denah Lokasi</h1>
-                    <img src="./assets/denah.png" class="w3-animate-bottom denah">
+    <div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active p-5">
+                <img src="./assets/cover.png" class="w3-animate-bottom pic">
+                <div class="w3-animate-bottom">
+                    <p>Kepada Yth.</p>
+                    <h1 id="tamu" class="p-0"></h1>
+                    <p>& Keluarga<br />
+                        <br />
+                        Di Tempat
+                    </p>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
+            <div class="carousel-item p-5">
+                <img src="./assets/jadwal.png" class="w3-animate-bottom pic">
+            </div>
+            <div class="carousel-item p-5">
+                <img src="./assets/keterangan.png" class="w3-animate-bottom pic">
+            </div>
+            <div class="carousel-item p-5">
+                <h1 class="w3-animate-bottom">Denah Lokasi</h1>
+                <img src="./assets/denah.png" class="w3-animate-bottom denah">
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
     </div>
 </body>
 
@@ -62,6 +60,11 @@
     html {
         min-height: -webkit-fill-available;
         height: -webkit-fill-available;
+    }
+
+    .carousel {
+        height: -webkit-fill-available;
+        align-content: center;
     }
 
     body {
@@ -75,9 +78,9 @@
     }
 
     .pic {
-       width: -webkit-fill-available;
+        width: -webkit-fill-available;
     }
-    
+
     .denah {
         width: -webkit-fill-available;
     }
@@ -122,7 +125,7 @@
     if (document.body.clientWidth > 720) {
         denah.style.width = "75%"
         for (let i = 0; i < pic.length; i++) {
-            pic[i].style.width = `${document.body.clientWidth/3}px`
+            pic[i].style.width = `${document.body.clientWidth / 3}px`
         }
     }
 </script>
