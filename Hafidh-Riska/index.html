@@ -134,7 +134,7 @@
     var param = GetParam(url, "tamu")
     var tamu = document.getElementById("tamu")
     var tujuan = document.getElementById("tujuan")
-    tamu.innerText = decodeURI(param)
+    tamu.innerText = decodeURI(param).replace(/\\+/g,"")
 
     if (tamu.innerText == "null") {
         tujuan.style.display = "none"
