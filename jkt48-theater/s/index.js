@@ -1,4 +1,4 @@
-axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
+axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/r/firebase.json").then(function (response) {
     const firebaseConfig = response.data
     firebase.initializeApp(firebaseConfig)
     firebase.analytics()

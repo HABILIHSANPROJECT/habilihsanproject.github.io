@@ -5,69 +5,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <title>JKT48 THEATER STREAMING</title>
 
-    <!-- Style -->
+    <link href="https://unpkg.com/video.js@8.5.2/dist/video-js.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="./r/index.css" />
+    <link href="./r/index.css" rel="stylesheet">
 
-    <!-- Script -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-        crossorigin="anonymous"></script>
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+    <script src="./s/index.js"></script>
+    <script src="./s/schedule.js"></script>
+
+    <title>JKT48 THEATER STREAMING</title>
+    <div class="title">
+        <a href="./index.html" class="logo"><img src="./r/logo.png"></a>
+        <a href="./p/signup.html" class="btn btn-success authBtn" role="button" id="login-btn">Sign Up</a>
+        <a href="./p/login.html" class="btn btn-primary authBtn" role="button" id="signup-btn">Log In</a>
+        <a href="./p/payment.html" class="btn btn-info authBtn" style="display: none; color: white;" id="link">Watch</a>
+        <button class="btn btn-danger authBtn" id="logout-btn" style="display: none;">Log Out</button>
+        <button type="button" class="btn btn-light rounded-0 fw-bold" data-bs-toggle="modal" data-bs-target="#myModal">
+            Cara Pembelian
+          </button>
+    </div>
 </head>
 
-<body data-bs-theme="dark">
+<body>
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <p class="modal-title fw-bold fs-3">Cara Pembelian</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body float">
-        <div class="container-fluid w-75">
-            <a class="navbar-brand w-50" href="#">
-                <div class="logo"></div>
-            </a>
-            <button class="navbar-toggler btn text-body" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbar">
-                <span class="mdi mdi-menu"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item me-5">
-                        Schedule
-                    </li>
-                    <li class="nav-item">
-                        Information
-                    </li>
-                </ul>
+                <!-- Modal Body -->
+                <div class="modal-body pb-0">
+                    <ul>
+                        <li>Silahkan <b>Sign Up</b> jika belum memiliki akun</li>
+                        <li>Jika sudah memiliki akun, silahkan ke menu <b>Log In</b></li>
+                        <li>Lalu ke menu <b>Watch</b> untuk melakukan pembelian tiket</li>
+                        <li>Isi biodata pembelian dan lakukan pembayaran agar dapat mengakses laman Streaming Theater</li>
+                        <li>Jika kamu sudah membeli tiket, silahkan ke menu <b>Watch</b>, maka kamu akan secara otomatis ke laman Streaming Theater</li>
+                    </ul>
+                    <div class="alert alert-warning" role="alert">
+                        <span class="fw-bold">Apabila kamu sudah membeli tiket, namun tidak bisa mengakses lama Streaming Theater. Segera hubungi kami di <a href="https://t.me/h48ilihsan" target="_blank">Telegram</a> dengan melampirkan bukti pembayaran</span>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
             </div>
         </div>
-    </nav>
-
-    <!-- Container -->
-    <section class="container-fluid p-5 w-100 text-center welcome d-grid align-content-center">
-        <h1 class="fw-bold">
-            Selamat Datang di <br/>
-            JKT48 Theater Live Streaming!
-        </h1>
-        <h3 class="fw-light">
-            Ini adalah website dimana kamu dapat memesan dan menyasikan pertunjukan<br/>
-            Live Streaming JKT48 Theater dengan harga yang sangat terjangkau
-        </h3>
-        <div class="mt-5 w-100">
-            <button class="btn small-btn btn-success me-2" type="button">Register Akun</button>
-            <button class="btn small-btn btn-primary ms-2" type="button">Log In</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-body text-center p-3 float bottom-0">
-        HIBIKUN © 2024
-    </footer>
+    </div>
+    <div class="contain">
+        <p class="welcome">
+            Selamat datang di JKT48 THEATER STREAMING! <br>
+            Disini kamu bisa menonton tayangan streaming setlist JKT48. <br>
+        </p><br>
+        <p class="title-schedule">Jadwal JKT48 Theater minggu ini:</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Setlist</th>
+                    <th>Pukul</th>
+                </tr>
+            </thead>
+            <tbody id="show">
+            </tbody>
+        </table><br>
+        <p class="title-schedule">Member yang perform minggu ini:</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Setlist</th>
+                    <th>Member</th>
+                </tr>
+            </thead>
+            <tbody id="member">
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

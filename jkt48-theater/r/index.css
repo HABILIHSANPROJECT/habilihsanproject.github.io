@@ -1,31 +1,147 @@
-html {
-    height: -webkit-fill-available !important;
+body {
+    background-image: url(../r/bg.jpg);
+    background-position: center !important;
+    background-repeat: repeat !important;
+    background-size: cover !important;
+    width: -webkit-fill-available !important;
+    height: 100vh !important;
 }
 
-body {
-    height: 100% !important;
+.video-js {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.player-container {
+    width: 80% !important;
+    text-align: center !important;
+    border: 1px solid white !important;
+    max-width: 1000px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vjs-big-play-button {
+    top: 50% !important;
+    left: 45% !important;
+    right: 45% !important;
+    width: -webkit-fill-available !important;
+}
+
+.title {
+    width: -webkit-fill-available;
+    background-color: #ed2027;
+    display: flex;
+}
+
+.token {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    color: white;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 0 !important;
+}
+
+.contain {
+    background-color: white;
+    padding: 20px;
+    max-width: 1000px !important;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-schedule {
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
 }
 
 .logo {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5a/Jakarta_JKT48_Theater_Live_Streaming_Logo.png");
-    filter: grayscale(1) invert(1);;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 200px;
-    height: 35px;
+    margin-left: 0px !important;
+    margin-right: auto;
+    display: grid;
+    align-content: center;
 }
 
-.float {
-    width: -webkit-fill-available;
-    position: fixed;
-    z-index: 1;
+.logo img {
+    max-width: 300px !important;
+    width: 100%;
+    padding: 10px;
+}
+
+.authBtn {
+    margin: 20px;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.auth {
+    padding: 20px;
+    margin-top: 30px;
+    background-color: white;
+    max-width: 1000px !important;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.authBtn {
+    margin-left: 10px;
 }
 
 .welcome {
-    background-image: url("https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2020/11/09/6a316e89-1a44-4cd2-a7d6-e955d21ec64a-1604884255662-96e876ac72057dcac4e471c186e36f7b.jpg");
-    background-color: var(--bs-body-bg);
-    background-blend-mode: color-burn;
-    background-position: center;
-    background-size: cover;
-    height: 100%;
+    font-size: medium;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.perform {
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-form {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 0;
+}
+
+.loading {
+    width: -webkit-fill-available;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.spinner-grow {
+    width: 1em !important;
+    height: 1em !important;
 }

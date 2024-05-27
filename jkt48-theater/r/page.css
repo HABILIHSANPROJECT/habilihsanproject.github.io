@@ -1,0 +1,31 @@
+html {
+    height: -webkit-fill-available !important;
+}
+
+body {
+    height: 100% !important;
+}
+
+.logo {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5a/Jakarta_JKT48_Theater_Live_Streaming_Logo.png");
+    filter: grayscale(1) invert(1);;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 35px;
+}
+
+.float {
+    width: -webkit-fill-available;
+    position: fixed;
+    z-index: 1;
+}
+
+.welcome {
+    background-image: url("https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit19201280gsm/events/2020/11/09/6a316e89-1a44-4cd2-a7d6-e955d21ec64a-1604884255662-96e876ac72057dcac4e471c186e36f7b.jpg");
+    background-color: var(--bs-body-bg);
+    background-blend-mode: color-burn;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}

@@ -1,3 +1,4 @@
+/*
 axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response) {
   const scrape = response.data
 
@@ -57,4 +58,47 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
   for (i in resultMember) {
     member.append(perform())
   }
+})
+*/
+
+axios.get("https://showroom-admin.vercel.app/schedules?isOnWeekSchedule=true").then(function (response) {
+  const scrape = response.data
+
+  let show = document.querySelector("#show")
+  const schedule = data => {
+    const template1 = document.createElement("template")
+    template1.innerHTML =
+      `<tr>
+            <td>${scrape[i].showDate.split("T")[0]}</td>
+            <td>${scrape[i].setlist.name}</td>
+            <td>${scrape[i].showTime} WIB</td>
+          </tr>`
+        .trim()
+    return template1.content.firstChild
+  }
+  for (i in scrape) {
+    show.append(schedule())
+  }
+
+  for (x = 0; x < scrape.length; x++) {
+    let memberList = []
+    scrape[x].memberList.forEach((members) => {
+      memberList.push(members.stage_name
+      )
+    })
+    let member = document.querySelector("#member")
+      const perform = data => {
+        const template2 = document.createElement("template")
+        template2.innerHTML =
+          `<tr>
+            <td>${scrape[i].setlist.name}</td>
+            <td>${memberList.join(", ")}</td>
+          </tr>`
+            .trim()
+        return template2.content.firstChild
+      }
+      member.append(perform())
+  }
+
+  
 })

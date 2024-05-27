@@ -10,7 +10,7 @@ window.addEventListener("contextmenu", function (e) {
     e.preventDefault()
 })
 
-axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/res/firebase.json").then(function (response) {
+axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject.github.io/main/jkt48-theater/r/firebase.json").then(function (response) {
     const firebaseConfig = response.data
     firebase.initializeApp(firebaseConfig)
     firebase.analytics()
@@ -64,7 +64,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                     }
                     if (tokenData == null) {
                         alert("Data kamu tidak ditemukan! Silahkan sign up terlebih dulu!")
-                        location.replace("../page/signup.html")
+                        location.replace("../p/signup.html")
                     }
 
                     api = snapshot.val().config.api
@@ -90,7 +90,7 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                                             for (let j = 0; j < tokenData.length; j++) {
                                                 const b = tokenData[j]
                                                 if (a == b) {
-                                                    location.replace("../page/player.html")
+                                                    location.replace("../p/player.html")
                                                 } else {
                                                     let fetch = document.getElementById("fetch")
                                                     fetch.style.display = "none"
@@ -121,9 +121,9 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
                         const body = {
                             "name": name.value,
                             "email": email.value,
-                            "amount": 10000,
+                            "amount": 15000,
                             "mobile": phone.value,
-                            "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/page/player",
+                            "redirectUrl": "https://habilihsanproject.github.io/jkt48-theater/p/player",
                             "description": "Pembayaran JKT48 Theater"
                         }
 
@@ -166,6 +166,49 @@ axios.get("https://raw.githubusercontent.com/HABILIHSANPROJECT/habilihsanproject
     })
 })
 
+axios.get("https://showroom-admin.vercel.app/schedules?isOnWeekSchedule=true").then(function (response) {
+    let data_setlist = response.data
+
+    let setlistDate = []
+    response.data.forEach((date) => {
+        setlistDate.push(date.showDate.split("T")[0])
+    })
+    
+    let date = new Date()
+    let d = date.getDate()
+    let m = date.getMonth()
+    if (Number(m) < 10) {
+        m = `0${date.getMonth()}`
+    }
+    let y = date.getFullYear()
+
+    let today = `${y}-${m}-${d}`
+
+    let setlistNode = document.getElementById("setlist")
+            let dateNode = document.getElementById("date")
+            let timeNode = document.getElementById("time")
+            let buy = document.getElementById("buy")
+    for (i=0; i<setlistDate.length; i++) {
+        if (today !== setlistDate[i]) {
+            function off() {
+                setlistNode.innerText = "Tidak ada show hari ini!"
+                buy.disabled = true
+            }
+            return off()
+        } else {
+            function on() {
+                setlistNode.innerText = data_setlist[i].setlist.name
+            dateNode.innerText = data_setlist[i].showDate.split("T")[0]
+            timeNode.innerText = data_setlist[i].showTime
+            buy.disabled = false
+            }
+            return on()
+        }
+    }
+
+})
+
+/*
 axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response) {
     let setlistNode = document.getElementById("setlist")
     let dateNode = document.getElementById("date")
@@ -193,8 +236,9 @@ axios.get("https://jkt48.com/theater/schedule?lang=id").then(function (response)
     }
     show.reverse()
 
+
 const buy = document.getElementById("setlist")
-if (setlist.innerText == "Ingin Bertemu") {
+if (buy.innerText == "Ingin Bertemu") {
         console.log("true")
             const buy = document.getElementById("buy")
             if (buy) {
@@ -214,8 +258,8 @@ if (setlist.innerText == "Ingin Bertemu") {
     for (i in show) {
         setlistNode.append(schedule())
     }
-    */
+    //
 
     //bundling.innerText = `Pembelian tiket show theater yang tersedia saat ini bersifat bundling (${show.length} show)!`
 
-})
+ }) */
