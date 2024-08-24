@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
+    const menu = document.getElementById("menu");
+    const startButton = document.getElementById("startGame");
+    const restartButton = document.getElementById("restartGame");
 
     // Set canvas size
     canvas.width = window.innerWidth;
@@ -11,8 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let isGameOver = false;
     let platforms = [];
     let isJumping = true;
-    let isGoingLeft = false;
-    let isGoingRight = false;
     let score = 0;
     let level = 1;
     let timers = {}; // Holds intervals to clear them later
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const img = new Image();
         img.src = `./zee/jump${i}.png`; // Ganti dengan path yang sesuai
         zeeImages.push(img);
-        zeeImages.sort()
+        zeeImages.sort();
     }
 
     // Load platform images
@@ -34,18 +35,55 @@ document.addEventListener("DOMContentLoaded", () => {
         const normalImg = new Image();
         normalImg.src = `./platform/normal${i}.png`; // Ganti dengan path yang sesuai
         normalImages.push(normalImg);
-        normalImages.sort()
+        normalImages.sort();
 
         const crackImg = new Image();
         crackImg.src = `./platform/crack${i}.png`; // Ganti dengan path yang sesuai
         crackImages.push(crackImg);
-        crackImages.sort()
+        crackImages.sort();
     }
 
     // Load all images
     Promise.all([...zeeImages, ...normalImages, ...crackImages].map(img => new Promise(resolve => img.onload = resolve)))
-        .then(start)
+        .then(startMenu)
         .catch(err => console.error("Error loading images:", err));
+
+    function startMenu() {
+        menu.style.display = "block"; // Show the menu
+    }
+
+    function startGame() {
+        menu.style.display = "none"; // Hide the menu
+        if (!isGameOver) {
+            level = 1; // Start at level 1
+            createPlatforms();
+            drawEverything();
+            timers.platforms = setInterval(() => {
+                movePlatforms();
+                drawEverything();
+            }, 25);
+            jump();
+            document.addEventListener("touchmove", followTouch);
+            document.addEventListener("mousemove", followMouse);
+        } else {
+            gameOver();
+        }
+    }
+
+    function restartGame() {
+        // Reset all game variables
+        ZeeLeftSpace = 50;
+        ZeeBottomSpace = 150;
+        isGameOver = false;
+        platforms = [];
+        score = 0;
+        level = 1;
+        timers = {}; // Clear any existing timers
+
+        // Hide game over menu and show game start menu
+        menu.style.display = "none";
+        startMenu(); // Show the menu again to start a new game
+    }
 
     function createZee() {
         const ZeeImage = zeeImages[level % 12]; // Select image based on level
@@ -96,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     for (let i = 0; i < zeeImages.length; i++) {
                         if (score >= i * 50) {
                             level = i;
-                        }
-                        else {
+                        } else {
                             break;
                         }
                     }
@@ -156,17 +193,23 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.textAlign = "center";
         ctx.fillText(`Game Over!`, canvas.width / 2, canvas.height / 2);
         ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 1.8);
+
+        // Show restart button
+        restartButton.style.display = "block";
+
+        // Stop all intervals
         clearInterval(timers.up);
         clearInterval(timers.down);
         clearInterval(timers.left);
         clearInterval(timers.right);
+
+        // Remove event listeners
         document.removeEventListener("touchmove", followTouch);
         document.removeEventListener("mousemove", followMouse);
     }
 
     function drawEverything() {
         if (!isGameOver) {
-            console.log(level)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             platforms.forEach(platform => platform.draw());
             createZee();
@@ -177,68 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function moveLeft() {
-        if (isGoingRight) {
-            clearInterval(timers.right);
-        }
-        isGoingLeft = true;
-        timers.left = setInterval(() => {
-            if (ZeeLeftSpace >= 0) {
-                ZeeLeftSpace -= 5;
-                drawEverything();
-            } else {
-                stopMoving();
-                gameOver();
-            }
-        }, 25);
-    }
-
-    function moveRight() {
-        if (isGoingLeft) {
-            clearInterval(timers.left);
-        }
-        isGoingRight = true;
-        timers.right = setInterval(() => {
-            if (ZeeLeftSpace <= canvas.width - 60) {
-                ZeeLeftSpace += 5;
-                drawEverything();
-            } else {
-                stopMoving();
-                gameOver();
-            }
-        }, 25);
-    }
-
-    function stopMoving() {
-        isGoingLeft = false;
-        isGoingRight = false;
-        clearInterval(timers.left);
-        clearInterval(timers.right);
-    }
-
-    function levelUp(i) {
-        if (level < 11) {
-            level++;
-            console.log(`Level Up! Now at level ${level}`);
-        }
-    }
-
-    function start() {
-        if (!isGameOver) {
-            level = 1; // Start at level 1
-            createPlatforms();
-            drawEverything();
-            timers.platforms = setInterval(() => {
-                movePlatforms();
-                drawEverything();
-            }, 25);
-            jump();
-            document.addEventListener("touchmove", followTouch);
-            document.addEventListener("mousemove", followMouse);
-        } else {
-            gameOver();
-        }
-    }
+    startButton.addEventListener("click", startGame);
+    restartButton.addEventListener("click", restartGame);
 
     function followMouse(e) {
         const mouseX = e.pageX - canvas.offsetLeft;
@@ -252,7 +235,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function followTouch(e) {
-        const touchX = e.pageX - canvas.offsetLeft;
+        e.preventDefault(); // Mencegah perilaku default seperti menggulir halaman
+
+        const touchX = e.touches[0].pageX - canvas.offsetLeft; // Ambil posisi sentuhan pertama
         const canvasWidth = canvas.width;
         const ZeeWidth = 60;
 

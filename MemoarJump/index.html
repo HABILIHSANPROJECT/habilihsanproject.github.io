@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memoar Jump</title>
+    <title>Memoar Jump Game</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Menghilangkan scroll bar jika tidak diperlukan */
+            font-family: "Montserrat", sans-serif; /* Menambahkan sans-serif sebagai fallback font */
+        }
         canvas {
-            background: #87CEEB;
             display: block;
-            margin: 0 auto;
-            border: 2px solid black;
+            background-color: skyblue;
+            width: 100vw; /* Menyesuaikan dengan lebar viewport */
+            height: 100vh; /* Menyesuaikan dengan tinggi viewport */
+        }
+        #menu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none; /* Sembunyikan menu dan tombol restart secara default */
+        }
+        #restartGame {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none; /* Sembunyikan menu dan tombol restart secara default */
+        }
+        #menu button, #restartGame button {
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div id="menu">
+        <h1>Memoar Jump Game</h1>
+        <button id="startGame">Start Game</button>
+    </div>
+    <div id="restartGame">
+        <button>Restart Game</button>
+    </div>
     <canvas id="gameCanvas"></canvas>
+    
     <script src="app.js"></script>
 </body>
 </html>
