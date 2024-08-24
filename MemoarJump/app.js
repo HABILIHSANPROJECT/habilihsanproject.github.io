@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         timers = {}; // Clear any existing timers
 
         // Hide game over menu and show game start menu
+        restartButton.style.display = "none";
         menu.style.display = "none";
         startMenu(); // Show the menu again to start a new game
     }
