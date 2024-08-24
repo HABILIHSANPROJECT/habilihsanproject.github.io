@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     // Set canvas size
-    canvas.width = 480;
-    canvas.height = 570;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     let ZeeLeftSpace = 50;
     let ZeeBottomSpace = 150;
