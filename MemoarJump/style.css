@@ -1,0 +1,37 @@
+body{
+  background-color: #00ade6;
+}
+.grid {
+  width: 720px;
+  height: 1080px;
+  background-image: url("background.png");
+  position: relative;
+  text-align: center;
+}
+
+.doodler {
+  width: 60px;
+  height: 85px;
+  background-image: url("doodler-guy.png");
+  position: absolute;
+}
+
+.platform {
+  position: absolute;
+  width: 64px;
+  height: 20px;
+}
+
+.platform.normal {
+  background-image: url("kagami-default.png");
+  background-size: cover;
+}
+
+.platform.boost {
+  background: #f39c12; /* Boost platform color */
+}
+
+.platform.crack {
+  background: #e74c3c; /* Crack platform color */
+}
+
