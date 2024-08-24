@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(timers.down);
         clearInterval(timers.left);
         clearInterval(timers.right);
-        document.removeEventListener("touchmove", control);
+        document.removeEventListener("touchmove", followTouch);
         document.removeEventListener("mousemove", followMouse);
     }
 
@@ -175,12 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.textAlign = "center";
             ctx.fillText(`Score: ${score}`, canvas.width / 2, 30);
         }
-    }
-
-    function control(e) {
-        if (e.key === "ArrowLeft") moveLeft();
-        if (e.key === "ArrowRight") moveRight();
-        if (e.key === "ArrowUp") stopMoving();
     }
 
     function moveLeft() {
@@ -239,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 drawEverything();
             }, 25);
             jump();
-            document.addEventListener("touchmove", control);
+            document.addEventListener("touchmove", followTouch);
             document.addEventListener("mousemove", followMouse);
         } else {
             gameOver();
@@ -253,6 +247,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (mouseX >= 0 && mouseX <= canvasWidth - ZeeWidth) {
             ZeeLeftSpace = mouseX;
+            drawEverything();
+        }
+    }
+
+    function followTouch(e) {
+        const touchX = e.pageX - canvas.offsetLeft;
+        const canvasWidth = canvas.width;
+        const ZeeWidth = 60;
+
+        if (touchX >= 0 && touchX <= canvasWidth - ZeeWidth) {
+            ZeeLeftSpace = touchX;
             drawEverything();
         }
     }
