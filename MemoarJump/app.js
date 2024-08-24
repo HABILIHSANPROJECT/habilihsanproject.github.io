@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const img = new Image();
         img.src = `./zee/jump${i}.png`; // Ganti dengan path yang sesuai
         zeeImages.push(img);
-        zeeImages.sort();
     }
 
     // Load platform images
@@ -35,12 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const normalImg = new Image();
         normalImg.src = `./platform/normal${i}.png`; // Ganti dengan path yang sesuai
         normalImages.push(normalImg);
-        normalImages.sort();
 
         const crackImg = new Image();
         crackImg.src = `./platform/crack${i}.png`; // Ganti dengan path yang sesuai
         crackImages.push(crackImg);
-        crackImages.sort();
     }
 
     // Load all images
@@ -50,14 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startMenu() {
         menu.style.display = "block"; // Show the menu
+        canvas.style.display = "none";
     }
 
     function startGame() {
+        canvas.style.display = "block";
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         menu.style.display = "none"; // Hide the menu
         if (!isGameOver) {
-            level = 1; // Start at level 1
             createPlatforms();
-            drawEverything();
             timers.platforms = setInterval(() => {
                 movePlatforms();
                 drawEverything();
@@ -76,9 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ZeeBottomSpace = 150;
         isGameOver = false;
         platforms = [];
+        isJumping = true;
         score = 0;
         level = 1;
-        timers = {}; // Clear any existing timers
+        timers = {}; // Holds intervals to clear them later
 
         // Hide game over menu and show game start menu
         restartButton.style.display = "none";
@@ -129,16 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ZeeBottomSpace > 100) {
             platforms.forEach(platform => {
                 platform.bottom -= 4;
-                if (platform.bottom < 10) {
+                if (platform.bottom < 30) {
                     platform.remove();
                     score++;
-                    for (let i = 0; i < zeeImages.length; i++) {
-                        if (score >= i * 50) {
-                            level = i;
-                        } else {
-                            break;
-                        }
-                    }
+                    level = Math.floor(score / 10);
                     platforms.push(new Platform(canvas.height, ["normal", "crack"][Math.floor(Math.random() * 2)]));
                 }
             });
@@ -149,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(timers.down);
         isJumping = true;
         timers.up = setInterval(() => {
-            ZeeBottomSpace += 20;
+            ZeeBottomSpace += canvas.height / 100;
             if (ZeeBottomSpace > 350) {
                 fall();
             }
@@ -160,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isJumping = false;
         clearInterval(timers.up);
         timers.down = setInterval(() => {
-            ZeeBottomSpace -= 5;
+            ZeeBottomSpace -= canvas.height / 100;
             if (ZeeBottomSpace <= 0) {
                 gameOver();
             }
@@ -181,8 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     isJumping = true;
                 }
             });
-
-            drawEverything();
         }, 25);
     }
 
@@ -201,8 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Stop all intervals
         clearInterval(timers.up);
         clearInterval(timers.down);
-        clearInterval(timers.left);
-        clearInterval(timers.right);
+        clearInterval(timers.platforms);
 
         // Remove event listeners
         document.removeEventListener("touchmove", followTouch);
